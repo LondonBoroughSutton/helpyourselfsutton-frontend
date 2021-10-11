@@ -1,4 +1,4 @@
-# Hounslow Connect - Frontend
+# Help Yourself Sutton - Frontend
 
 The frontend website component to the [API](https://github.com/LBHounslow/hounslow-connect-api).
 
@@ -9,7 +9,7 @@ development and testing purposes.
 
 ### Prerequisites
 
-- [Hounslow Connect - API](https://github.com/LBHounslow/hounslow-connect-api)
+- [Help Yourself Sutton - API](https://github.com/LBHounslow/hounslow-connect-api)
 - [Docker](https://www.docker.com)
 - [Yarn](https://yarnpkg.com/en/docs/install)
 

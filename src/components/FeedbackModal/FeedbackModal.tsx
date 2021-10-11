@@ -82,13 +82,13 @@ class FeedbackModal extends Component<IProps, any> {
           </div>
           <div className="flex-col flex-col--12 ">
             <h1>{feedbackStore.submitted ? 'Thank you' : 'Submit your feedback'}</h1>
-            <p className="body-l modal__question">We would really like to hear your views about the information on this page. Your feedback goes to the Hounslow Connect team and all feedback is private.</p>
+            <p className="body-l modal__question">We would really like to hear your views about the information on this page. Your feedback goes to the Help Yourself Sutton team and all feedback is private.</p>
           </div>
 
           {feedbackStore.submitted ? (
             <div className="flex-container">
               <p className="body-l modal__question">
-                Your feedback has been submitted to the Hounslow Connect admin team.
+                Your feedback has been submitted to the Help Yourself Sutton admin team.
               </p>
             </div>
           ) : (

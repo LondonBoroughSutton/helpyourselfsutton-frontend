@@ -5,8 +5,8 @@ const ServiceDisabled = () => (
     <div className="flex-col flex-col--12">
       <h1 className="not__found--heading">Service not available</h1>
       <p className="body-l">
-        This service has been removed from Hounslow Connect. Please contact{' '}
-        <a href="mailto:info@connectedHounslow.uk">info@connectedHounslow.uk</a> for more
+        This service has been removed from Help Yourself Sutton. Please contact{' '}
+        <a href="mailto:info@helpyourselfsutton.org">info@helpyourselfsutton.org</a> for more
         information.
       </p>
     </div>

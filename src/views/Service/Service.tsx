@@ -117,7 +117,7 @@ class Service extends Component<IProps> {
   getServiceEligibilityInfo = (name: string) => {
     const { serviceStore } = this.props;
     const { service } = serviceStore;
-    
+
     // Get UUIDS from service.elgibility.taxonomies array
     const UUIDs:any = this.getTaxonomyUUIDs()
 
@@ -130,7 +130,7 @@ class Service extends Component<IProps> {
       // Traverse through UUIDS and then filter the array of taxonomies to find a match using the taxonomy ID
       UUIDs.forEach((uuid:string) => {
         const matchedTaxonomyParent = taxonomies.filter(taxonomy => taxonomy.name === name)[0]
-        
+
         if(matchedTaxonomyParent && matchedTaxonomyParent.children) {
           const matchedTaxonomy:any =find(matchedTaxonomyParent.children.filter((taxonomy: any) => taxonomy.id === uuid)) || null
           if(matchedTaxonomy && matchedTaxonomy.name) relatedEligibilities.push(matchedTaxonomy)
@@ -140,14 +140,14 @@ class Service extends Component<IProps> {
 
     const orderEligibilities = _orderBy(relatedEligibilities, 'order', 'asc')
     relatedEligibilities = orderEligibilities.map((eligibility: any) => eligibility.name)
-    
+
     // Check service.elgibility.custom to see if there is a value for the passed in name
     if(service && service.eligibility_types.custom) {
       const customEligibility = get(service.eligibility_types.custom, `${name.split(' ').join('_').toLowerCase()}`)
 
       if(customEligibility) relatedEligibilities.push(customEligibility)
     }
-    
+
     return (relatedEligibilities.length ? relatedEligibilities.join(', ') : null)
   }
 
@@ -166,11 +166,11 @@ class Service extends Component<IProps> {
     return (
       <main>
         <Helmet>
-          {get(service, 'name') && <title>{`${get(service, 'name')} | Hounslow Connect`}</title>}
-          {!get(service, 'name') && <title>Service | Hounslow Connect</title>}
+          {get(service, 'name') && <title>{`${get(service, 'name')} | Help Yourself Sutton`}</title>}
+          {!get(service, 'name') && <title>Service | Help Yourself Sutton</title>}
 
           {get(service, 'intro') &&  <meta name="description" content={get(service, 'intro')} />}
-      
+
           {get(service, 'name') && <meta property="og:title" content={`${get(service, 'name')}`} />}
           {get(service, 'slug') && <meta property="og:url" content={`${process.env.REACT_APP_FRONTEND_URL}/${get(service, 'slug')}`} />}
           {getImg(service) && <meta property="og:image" content={getImg(service)} />}
@@ -482,7 +482,7 @@ class Service extends Component<IProps> {
                     </p>
                   </div>
                 </div>
-                
+
               </div>
               <div className="flex-col flex-col--4 flex-col--tablet--12  ">
                 <div className="flex-container service__right-column mobile-hide">

@@ -28,7 +28,7 @@ const FavouriteShare: React.FunctionComponent<IProps> = ({ favouritesStore }) =>
           <FontAwesomeIcon icon={['fab', 'facebook-f']} />
         </a>
         <a
-          href={`http://twitter.com/share?text=Hounslow Connect&url=${
+          href={`http://twitter.com/share?text=Help Yourself Sutton&url=${
             window.origin
           }/favourites${favouritesStore.generateShareLink()}`}
           target="_blank"
@@ -48,7 +48,7 @@ const FavouriteShare: React.FunctionComponent<IProps> = ({ favouritesStore }) =>
           <FontAwesomeIcon icon="link" />
         </a>
         <a
-          href={`mailto:?subject=Hounslow Connect&amp;body=${
+          href={`mailto:?subject=Help Yourself Sutton&amp;body=${
             window.origin
           }/favourites${favouritesStore.generateShareLink()}"`}
           aria-label="Email favourites link"

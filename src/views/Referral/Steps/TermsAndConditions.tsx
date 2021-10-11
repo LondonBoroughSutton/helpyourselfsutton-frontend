@@ -39,12 +39,12 @@ const TermsAndConditions: React.FunctionComponent<IProps> = ({ referralStore }) 
                 'service.name'
               )} to contact you regarding the service you have connected with`}</li>
               <li>
-                For the Hounslow Connect admin team and/or the London Borough of Hounslow to
+                For the Help Yourself Sutton admin team and/or the London Borough of Sutton to
                 contact you/the client regarding your experience or to request feedback
               </li>
 
               <li>
-                For the Hounslow Connect admin team and/or the London Borough of Hounslow to
+                For the Help Yourself Sutton admin team and/or the London Borough of Sutton to
                 contact you to let you know about changes to our terms of service
               </li>
 

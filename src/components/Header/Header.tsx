@@ -78,7 +78,7 @@ class Header extends Component<IProps> {
           >
             <figure className="logo">
               <RouterLink to="/" aria-label="Home Link">
-                <img src={Logo} alt="Hounslow Connect" />
+                <img src={Logo} alt="Help Yourself Sutton" />
               </RouterLink>
             </figure>
 

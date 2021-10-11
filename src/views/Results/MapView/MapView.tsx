@@ -32,7 +32,7 @@ interface IState {
   activeMarkerId: string;
 }
 
-const CENTRE_OF_Hounslow: [number, number] = [51.460729410758496, -0.3726421426363473];
+const CENTRE_OF_MAP: [number, number] = [51.460729410758496, -0.3726421426363473];
 const TOP_LEFT_CORNER: [number, number] = [51.50023670726737, -0.45281640857676737];
 const BOTTOM_RIGHT_CORNER: [number, number] = [51.425008878160575, -0.27232107871209366];
 
@@ -110,7 +110,7 @@ class MapView extends Component<IProps, IState> {
     return (
       <div className="flex-container flex-container--space flex-container--row-reverse map">
         <div className="flex-col--8 flex-col--tablet--12 map__map-container">
-          <Map centre={CENTRE_OF_Hounslow} attributionControl={false} bounds={this.state.bounds}>
+          <Map centre={CENTRE_OF_MAP} attributionControl={false} bounds={this.state.bounds}>
             <TileLayer url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png" />
             {resultsStore.results.map((result: IService) => {
               if (result.service_locations) {

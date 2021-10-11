@@ -20,7 +20,7 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
   return (
     <CMSPage title={get(cmsStore, 'contact.title')} twoColumn={true} breadcrumb="Contact">
       <Helmet>
-        <title>Contact | Hounslow Connect</title>
+        <title>Contact | Help Yourself Sutton</title>
       </Helmet>
 
       <div className="flex-col flex-col--7 flex-col--tablet--8">
@@ -51,7 +51,7 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
               href={`https://facebook.com/${get(cmsStore, 'global.facebook_handle')}`}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Hounslow Connect Facbook"
+              aria-label="Help Yourself Sutton Facbook"
             >
               <FontAwesomeIcon icon={['fab', 'facebook-f']} className="service__social-icon" />
             </a>
@@ -59,7 +59,7 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
               href={`https://twitter.com/${get(cmsStore, 'global.twitter_handle')}`}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Hounslow Connect Twitter"
+              aria-label="Help Yourself Sutton Twitter"
             >
               <FontAwesomeIcon icon={['fab', 'twitter']} className="service__social-icon" />
             </a>

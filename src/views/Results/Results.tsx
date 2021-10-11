@@ -63,13 +63,13 @@ class Results extends Component<IProps> {
     return (
       <section className="results">
          <Helmet>
-          <title>Search results | Hounslow Connect</title>
-          <meta name="description" content="Hounslow Connect is a site dedicated to helping people find activities, join clubs, and navigate local services in Hounslow" />
+          <title>Search results | Help Yourself Sutton</title>
+          <meta name="description" content="Help Yourself Sutton is a site dedicated to helping people find activities, join clubs, and navigate local services in Sutton" />
         </Helmet>
         <Breadcrumb crumbs={[{ text: 'Home', url: '/' }, { text: 'Search results', url: '' }]} />
         <div className="results__search-box">
           <div className="flex-container">
-            {!resultsStore.isKeywordSearch && 
+            {!resultsStore.isKeywordSearch &&
               <h1 className="results__heading">Results for</h1>
             }
             <div className={"results__overview " + (!resultsStore.isKeywordSearch ? '_disabled-results__overview--category' : 'results__overview--keyword')}>

@@ -16,11 +16,11 @@ const About: React.FunctionComponent<IProps> = ({ cmsStore }) => {
   if (!cmsStore) {
     return null;
   }
-  
+
   return (
     <CMSPage title={get(cmsStore, 'about.title')} breadcrumb="About">
       <Helmet>
-        <title>About | Hounslow Connect</title>
+        <title>About | Help Yourself Sutton</title>
       </Helmet>
       <ReactMarkdown source={get(cmsStore, 'about.content')} />
       {get(cmsStore, 'about.video_url') && <ReactPlayer
@@ -28,7 +28,7 @@ const About: React.FunctionComponent<IProps> = ({ cmsStore }) => {
         style={{ borderRadius: '19px', margin: 'auto', marginTop: '24px' }}
         width={'90%'}
         light={true}
-      />} 
+      />}
     </CMSPage>
   );
 };

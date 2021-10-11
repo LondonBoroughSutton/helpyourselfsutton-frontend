@@ -27,7 +27,7 @@ interface IProps extends RouteComponentProps<RouteParams> {
 
 
 const getImg = (organisation: IOrganisation) => {
-  return (organisation.has_logo ? `${apiBase}/organisations/${organisation.id}/logo.png?` : '')  
+  return (organisation.has_logo ? `${apiBase}/organisations/${organisation.id}/logo.png?` : '')
 };
 
 class Organisation extends Component<IProps> {
@@ -46,7 +46,7 @@ class Organisation extends Component<IProps> {
   render() {
     const { organisationStore } = this.props;
     const { organisation, associatedServices } = organisationStore;
-    
+
     // organisation not found
     if (organisationStore.loading === false && !organisation) {
       return <NotFound />;
@@ -55,11 +55,11 @@ class Organisation extends Component<IProps> {
     return (organisation &&
       <main>
          <Helmet>
-          {get(organisation, 'name') && <title>{`${get(organisation, 'name')} | Hounslow Connect`}</title>}
-          {!get(organisation, 'name') && <title>Organisation | Hounslow Connect</title>}
+          {get(organisation, 'name') && <title>{`${get(organisation, 'name')} | Help Yourself Sutton`}</title>}
+          {!get(organisation, 'name') && <title>Organisation | Help Yourself Sutton</title>}
 
           {get(organisation, 'description') &&  <meta name="description" content={get(organisation, 'description')} />}
-      
+
           {get(organisation, 'name') && <meta property="og:title" content={`${get(organisation, 'name')}`} />}
           {get(organisation, 'slug') && <meta property="og:url" content={`${process.env.REACT_APP_FRONTEND_URL}/${get(organisation, 'slug')}`} />}
           {getImg(organisation) && <meta property="og:image" content={getImg(organisation)} />}
@@ -81,9 +81,9 @@ class Organisation extends Component<IProps> {
                   />}
 
                 <ul className="organisation__header__contact-details">
-                  {get(organisation, 'phone') && <li key={`key_${get(organisation, 'phone')}`}><strong>Phone</strong><a href={`tel:${get(organisation, 'phone')}`}>{get(organisation, 'phone')}</a></li>} 
-                  {get(organisation, 'url') && <li key={`key_${get(organisation, 'url')}`}><strong>Website</strong><a href={`${get(organisation, 'url')}`} target="_blank"  rel="noreferrer">{get(organisation, 'url')}</a></li>} 
-                  {get(organisation, 'email') && <li key={`key_${get(organisation, 'email')}`}><strong>Email</strong><a href={`mailto:${get(organisation, 'email')}`}>{get(organisation, 'email')}</a></li>} 
+                  {get(organisation, 'phone') && <li key={`key_${get(organisation, 'phone')}`}><strong>Phone</strong><a href={`tel:${get(organisation, 'phone')}`}>{get(organisation, 'phone')}</a></li>}
+                  {get(organisation, 'url') && <li key={`key_${get(organisation, 'url')}`}><strong>Website</strong><a href={`${get(organisation, 'url')}`} target="_blank"  rel="noreferrer">{get(organisation, 'url')}</a></li>}
+                  {get(organisation, 'email') && <li key={`key_${get(organisation, 'email')}`}><strong>Email</strong><a href={`mailto:${get(organisation, 'email')}`}>{get(organisation, 'email')}</a></li>}
                   {organisationStore.hasSocials && <li key="key_organisation_social"><strong>Social media</strong><SocialLinks organisationStore={organisationStore} /></li>}
                 </ul>
               </div>
@@ -95,10 +95,10 @@ class Organisation extends Component<IProps> {
         ) : (
           <section className="organisation__services">
             <div className="flex-container">
-              
+
               <div className="flex-col flex-col--12 flex-col--mobile--12 flex-col--tablet--12">
                 <div className="flex-container flex-container--align-left flex-container--no-padding service__section service__section--no-padding">
-                  
+
                   <div className="flex-col flex-col--9 flex-col--tablet--11 flex-col--mobile--12">
                     <h2 className="organisation__services--heading">Services provided by {get(organisation, 'name')}</h2>
                   </div>

@@ -15,7 +15,7 @@ const DutyToRefer: React.FunctionComponent = () => {
   return (
     <CMSPage title="Duty to refer" breadcrumb="Duty to refer">
       <Helmet>
-        <title>Duty to refer | Hounslow Connect</title>
+        <title>Duty to refer | Help Yourself Sutton</title>
       </Helmet>
 
       <section>
@@ -27,7 +27,7 @@ const DutyToRefer: React.FunctionComponent = () => {
                 please take a minute to see if a service may be able to make a more immediate
                 impact. Your intervention could keep the roof over someone’s head.
               </p>
-              <a href="mailto:dutytorefer@Hounslow.gov.uk">
+              <a href="mailto:dutytorefer@sutton.gov.uk">
                 Click to report <i className="fas fa-envelope" aria-hidden={true}/>
               </a>
             </div>

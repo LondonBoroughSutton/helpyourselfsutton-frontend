@@ -42,7 +42,7 @@ class Search extends React.Component<IProps> {
     let covidOptions:any = [{ value: '', text: 'Select category'}]
 
     options = [...options, ...map(SearchStore.categories, ({ name, id }) => ({ value: id, text: name }))]
-    covidOptions = [...covidOptions, ...map(SearchStore.covidCategories, ({ name, id }) => ({ value: id, text: name }))] 
+    covidOptions = [...covidOptions, ...map(SearchStore.covidCategories, ({ name, id }) => ({ value: id, text: name }))]
 
     return (
       <Fragment>
@@ -139,7 +139,7 @@ class Search extends React.Component<IProps> {
                       </label>
                       <div className="flex-col--6 flex-col--mobile--12">
                         <p className="search__category-subtitle">
-                          Find up to date information and support in Hounslow to help you take care
+                          Find up to date information and support in Sutton to help you take care
                           of yourself and your community.
                         </p>
                       </div>
@@ -168,7 +168,7 @@ class Search extends React.Component<IProps> {
                 )}
               </div>
             </form>
-            
+
             {!isMobile &&
               <CategoryList categories={SearchStore.categories} title={get(cmsStore, 'home.categories_title')} />
             }

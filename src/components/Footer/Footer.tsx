@@ -10,7 +10,7 @@ import { membersAreaURL } from '../../config/externalUrls';
 
 import './Footer.scss';
 
-import HounslowLogo from '../../assets/images/london-borough-of-hounslow.png';
+import Logo from '../../assets/images/london-borough-of-hounslow.png';
 
 import CMSStore from '../../stores/CMSStore';
 import UIStore from '../../stores/uiStore';
@@ -53,7 +53,7 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
             <div className="flex-col flex-col--5 flex-col--mobile--12">
               <p className="footer__heading">
                 Get in touch with <br />
-                <span className="highlight">Hounslow</span> Connect
+                <span className="highlight">Help Yourself</span> Sutton
               </p>
               <nav className="footer__social-links" role="menu" aria-label="Social Media Links">
                 <a
@@ -61,7 +61,7 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
                   target="_blank"
                   rel="noopener noreferrer"
                   role="menuitem"
-                  aria-label="Link to Hounslow Connect Facebook"
+                  aria-label="Link to Help Yourself Sutton Facebook"
                 >
                   <FontAwesomeIcon icon={['fab', 'facebook-f']} className="footer__social-icons" />
                 </a>
@@ -70,7 +70,7 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
                   target="_blank"
                   rel="noopener noreferrer"
                   role="menuitem"
-                  aria-label="Link to Hounslow Connect Twitter"
+                  aria-label="Link to Help Yourself Sutton Twitter"
                 >
                   <FontAwesomeIcon icon={['fab', 'twitter']} className="footer__social-icons" />
                 </a>
@@ -90,7 +90,7 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
 
             <div className="flex-col flex-col--6 flex-col--mobile--12 flex-col--tablet--12 footer__button">
               <ButtonLink href={membersAreaURL} text="Members Area" target="_blank" />
-              <img src={HounslowLogo} alt="London Borough of Hounslow" className="footer-hounslow-logo" />
+              <img src={Logo} alt="London Borough of Sutton" className="footer-hounslow-logo" />
             </div>
           </div>
         </div>

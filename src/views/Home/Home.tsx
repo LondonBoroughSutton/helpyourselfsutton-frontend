@@ -19,11 +19,11 @@ const Home: React.FunctionComponent<IProps> = ({ cmsStore }) => {
   if (!cmsStore) {
     return null;
   }
-  
+
   return (
     <main className="home">
       <Helmet>
-        <title>Home | Hounslow Connect</title>
+        <title>Home | Help Yourself Sutton</title>
       </Helmet>
       {cmsStore.home && cmsStore.home.banners && <BannerSlider header_content={cmsStore.banner} banners={cmsStore.home.banners} />}
       <Search />
