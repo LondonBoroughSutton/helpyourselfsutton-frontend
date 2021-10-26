@@ -49,7 +49,8 @@ const TermsAndConditions: React.FunctionComponent<IProps> = ({ referralStore }) 
               </li>
 
               <li>
-                You confirm you have obtained the referred persons consent and they authorise you to refer them for {`${get(referralStore, 'service.name')}`}, where applicable
+                You confirm you have obtained the referred persons consent and they authorise you to
+                refer them for {`${get(referralStore, 'service.name')}`}, where applicable
               </li>
             </ul>
 

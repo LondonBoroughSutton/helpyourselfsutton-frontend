@@ -39,7 +39,6 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
             className="body--xs footer__content"
             source={get(cmsStore, 'global.footer_content')}
           />
-
           <Link to="/privacy-policy" className="body--xs">
             Privacy Policy
           </Link>

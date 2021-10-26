@@ -38,11 +38,17 @@ class Search extends React.Component<IProps> {
 
     const { isMobile } = windowSizeStore;
 
-    let options:any = [{ value: '', text: 'Select category'}]
-    let covidOptions:any = [{ value: '', text: 'Select category'}]
+    let options: any = [{ value: '', text: 'Select category' }];
+    let covidOptions: any = [{ value: '', text: 'Select category' }];
 
-    options = [...options, ...map(SearchStore.categories, ({ name, id }) => ({ value: id, text: name }))]
-    covidOptions = [...covidOptions, ...map(SearchStore.covidCategories, ({ name, id }) => ({ value: id, text: name }))]
+    options = [
+      ...options,
+      ...map(SearchStore.categories, ({ name, id }) => ({ value: id, text: name })),
+    ];
+    covidOptions = [
+      ...covidOptions,
+      ...map(SearchStore.covidCategories, ({ name, id }) => ({ value: id, text: name })),
+    ];
 
     return (
       <Fragment>
@@ -64,7 +70,7 @@ class Search extends React.Component<IProps> {
                     <div
                       className="flex-container flex-container--no-padding flex-container--justify"
                       style={{
-                        margin: 0
+                        margin: 0,
                       }}
                     >
                       <div className="flex-col flex-col--mobile--12">
@@ -79,7 +85,13 @@ class Search extends React.Component<IProps> {
                         />
                       </div>
                       <div className="search__filter-location">
-                        <label className="search__filter-location__label" htmlFor="location" aria-label="Location">in</label>
+                        <label
+                          className="search__filter-location__label"
+                          htmlFor="location"
+                          aria-label="Location"
+                        >
+                          in
+                        </label>
                         <Input
                           id="location"
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -98,12 +110,12 @@ class Search extends React.Component<IProps> {
                           <Select
                             options={options}
                             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                              if(e.target.value !== '') {
-                                SearchStore.setCategory(e)
+                              if (e.target.value !== '') {
+                                SearchStore.setCategory(e);
                                 history.push({
                                   pathname: '/results',
                                   search: `?category=${e.target.value}`,
-                                })
+                                });
                               }
                             }}
                             className="search__category--mobile"
@@ -139,8 +151,8 @@ class Search extends React.Component<IProps> {
                       </label>
                       <div className="flex-col--6 flex-col--mobile--12">
                         <p className="search__category-subtitle">
-                          Find up to date information and support in Sutton to help you take care
-                          of yourself and your community.
+                          Find up to date information and support in Sutton to help you take care of
+                          yourself and your community.
                         </p>
                       </div>
 
@@ -149,12 +161,12 @@ class Search extends React.Component<IProps> {
                           <Select
                             options={covidOptions}
                             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                              if(e.target.value !== '') {
-                                SearchStore.setCategory(e)
+                              if (e.target.value !== '') {
+                                SearchStore.setCategory(e);
                                 history.push({
                                   pathname: '/results',
                                   search: `?category=${e.target.value}`,
-                                })
+                                });
                               }
                             }}
                             className="search__category--mobile"
@@ -169,9 +181,12 @@ class Search extends React.Component<IProps> {
               </div>
             </form>
 
-            {!isMobile &&
-              <CategoryList categories={SearchStore.categories} title={get(cmsStore, 'home.categories_title')} />
-            }
+            {!isMobile && (
+              <CategoryList
+                categories={SearchStore.categories}
+                title={get(cmsStore, 'home.categories_title')}
+              />
+            )}
           </div>
         </section>
       </Fragment>
