@@ -24,7 +24,7 @@ if [[ $# -gt 0  ]]; then
                 -e CF_SECRET_SERVICE=${CF_SECRET_SERVICE:-''} \
                 -e CF_SECRET_SERVICE_KEY=${CF_SECRET_SERVICE_KEY:-''} \
                 ubuntu:latest \
-                bash cloudfoundry/store_env.sh
+                bash .cloudfoundry/store_env.sh
             ;;
 
         deploy )
