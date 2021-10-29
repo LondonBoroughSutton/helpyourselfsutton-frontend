@@ -25,21 +25,20 @@ before_deploy: |
   if ! [[ ${HAS_RAN_BEFORE_DEPLOY} ]]; then
     export HAS_RAN_BEFORE_DEPLOY="TRUE"
 
-    apt-get update && apt-get install -y --allow-unauthenticated wget jq unzip less
+    sudo apt-get update && apt-get install -y --allow-unauthenticated wget gnupg jq unzip less
 
     echo "Installing AWS CLI..."
     rm -Rf ${PWD}/aws
     wget -q -O awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
     unzip awscliv2.zip
-    ${PWD}/aws/install
+    sudo ${PWD}/aws/install
     aws --version
     rm  awscliv2.zip
 
     echo "Installing CloudFoundry CLI..."
-    apt-get update && apt-get install -y --allow-unauthenticated gnupg
     wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add -
     echo "deb https://packages.cloudfoundry.org/debian stable main" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-    apt-get update && apt-get install -y --allow-unauthenticated cf7-cli
+    sudo apt-get update && apt-get install -y --allow-unauthenticated cf7-cli
   fi
 
 deploy:
