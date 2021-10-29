@@ -1,3 +1,6 @@
+os: linux
+dist: xenial
+
 branches:
   only:
     # Tagged releases
@@ -36,7 +39,7 @@ before_deploy: |
     rm  awscliv2.zip
 
     echo "Installing CloudFoundry CLI..."
-    wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add -
+    wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
     echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
     sudo apt-get update && sudo apt-get install -y --allow-unauthenticated cf7-cli
   fi
