@@ -9,8 +9,8 @@
 # $CF_SPACE = The Cloud Foundry space.
 # $CF_INSTANCES = The number of App instances required
 # $CF_ROUTE = The public url of the app without the schema
-# $CF_SECRET_SERVICE = The name of the S3 bucket holding the .env files
-# $CF_SECRET_SERVICE_KEY = The name of the service key that holds the secret S3 bucket access details
+# $CF_ENV_SERVICE = The name of the S3 bucket holding the .env files
+# $CF_ENV_SERVICE_KEY = The name of the service key that holds the secret S3 bucket access details
 # $CF_APP_NAME = The name of the main app as stated in the manifest
 
 # Bail out on first error.
@@ -55,7 +55,7 @@ cf login -a $CF_API -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORGANISATION -s $CF_S
 
 # Get the .env file from the secret S3 bucket
 echo -e "${BLUE}Retreive the AWS S3 access credentials${ENDCOLOUR}"
-cf service-key $CF_SECRET_SERVICE $CF_SECRET_SERVICE_KEY | sed -n '/{/,/}/p' | jq . > secret_access.json
+cf service-key $CF_ENV_SERVICE $CF_ENV_SERVICE_KEY | sed -n '/{/,/}/p' | jq . > secret_access.json
 
 # Export the AWS S3 access credentials for use by the AWS CLI
 export AWS_ACCESS_KEY_ID=`jq -r .aws_access_key_id secret_access.json`

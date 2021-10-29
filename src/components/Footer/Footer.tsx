@@ -10,7 +10,7 @@ import { membersAreaURL } from '../../config/externalUrls';
 
 import './Footer.scss';
 
-import Logo from '../../assets/images/london-borough-of-hounslow.png';
+import Logo from '../../assets/images/stakeholder-logo.png';
 
 import CMSStore from '../../stores/CMSStore';
 import UIStore from '../../stores/uiStore';
