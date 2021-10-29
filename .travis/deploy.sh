@@ -28,6 +28,7 @@ export ENV_SECRET_FILE=".env.frontend.${ENVIRONMENT}"
 echo -e "${BLUE}Logging into Cloud Foundry...${ENDCOLOUR}"
 
 # Login to Cloud Foundry.
+echo "cf login -a $CF_API -u $CF_USERNAME -p '${CF_PASSWORD}' -o $CF_ORGANISATION -s $CF_SPACE"
 cf login -a $CF_API -u $CF_USERNAME -p '${CF_PASSWORD}' -o $CF_ORGANISATION -s $CF_SPACE
 
 # Get the .env file from the secret S3 bucket
