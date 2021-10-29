@@ -37,7 +37,7 @@ before_deploy: |
 
     echo "Installing CloudFoundry CLI..."
     wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add -
-    echo "deb https://packages.cloudfoundry.org/debian stable main" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+    echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
     sudo apt-get update && sudo apt-get install -y --allow-unauthenticated cf7-cli
   fi
 
