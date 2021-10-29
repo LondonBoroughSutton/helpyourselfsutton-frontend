@@ -20,29 +20,6 @@ BLUE='\e[1;34m'
 GREEN='\e[1;32m'
 ENDCOLOUR='\e[1;m'
 
-# ================================
-# Remove once testing complete
-source ${PWD}/.travis/envar
-
-# Install required packages
-apt-get update && apt-get install -y --allow-unauthenticated wget jq unzip less
-
-echo -e "${BLUE}Installing AWS CLI...${ENDCOLOUR}"
-rm -Rf ${PWD}/aws
-wget -q -O awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
-unzip awscliv2.zip
-${PWD}/aws/install
-aws --version
-rm  awscliv2.zip
-
-echo -e "${BLUE}Installing CloudFoundry CLI...${ENDCOLOUR}"
-apt-get update && apt-get install -y --allow-unauthenticated gnupg
-wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add -
-echo "deb https://packages.cloudfoundry.org/debian stable main" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-apt-get update && apt-get install -y --allow-unauthenticated cf7-cli
-# End Remove section
-# ================================
-
 # Set environment variables.
 echo -e "${BLUE}Setting deployment configuration for ${ENVIRONMENT}...${ENDCOLOUR}"
 export ENV_SECRET_FILE=".env.frontend.${ENVIRONMENT}"
