@@ -22,7 +22,7 @@ const About: React.FunctionComponent<IProps> = ({ cmsStore }) => {
       <Helmet>
         <title>About | Help Yourself Sutton</title>
       </Helmet>
-      <ReactMarkdown source={get(cmsStore, 'about.content')} />
+      <ReactMarkdown children={get(cmsStore, 'about.content')} />
       {get(cmsStore, 'about.video_url') && (
         <ReactPlayer
           url={get(cmsStore, 'about.video_url')}

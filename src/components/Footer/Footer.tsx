@@ -37,7 +37,7 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
           <p className="footer__heading">{get(cmsStore, 'global.footer_title')}</p>
           <ReactMarkdown
             className="body--xs footer__content"
-            source={get(cmsStore, 'global.footer_content')}
+            children={get(cmsStore, 'global.footer_content')}
           />
           <Link to="/privacy-policy" className="body--xs">
             Privacy Policy

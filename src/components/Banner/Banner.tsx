@@ -22,7 +22,7 @@ const Banner: FunctionComponent<IProps> = ({ banner, activeCarouselItem, bannerI
       </div>
       <div className="content">
         <h3 className="title">{banner.title}</h3>
-        <ReactMarkdown source={banner.content} />
+        <ReactMarkdown children={banner.content} />
       </div>
       <ButtonLink text={banner.button_text} icon="arrow-right" href={banner.button_url} />
     </div>
