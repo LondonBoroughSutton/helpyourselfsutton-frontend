@@ -1,21 +1,13 @@
-@import 'breakpoint-sass';
 @import './colors.scss';
+@import './breakpoints.scss';
 
 // Define grid variables
 $total-columns: 12;
-$gutter-width: 0px/105px;
+$gutter-width: calc(0px / 105px);
 $container-width: 1260px;
 $base-line-height: 16px;
 $base-margin: 16px;
 $border-radius: 6px;
-
-$break_container: max-width $container-width;
-$break_standard: max-width 1320px;
-$break_medium: max-width 1199px;
-$break_tablet_large: max-width 1024px;
-$break_tablet: max-width 860px;
-$break_mobile: max-width 600px;
-$break_mobile_small: max-width 320px;
 
 * {
   box-sizing: border-box;
@@ -26,18 +18,18 @@ body {
   background-color: $white;
   color: $black;
 
-  @include breakpoint($break_tablet) {
+  @include for-tablet-portrait-down {
     &.noscroll {
       overflow: hidden;
     }
   }
 
   &.noscroll--mobile {
-    @include breakpoint($break_tablet) {
+    @include for-tablet-portrait-down {
       overflow: auto;
     }
 
-    @include breakpoint($break_mobile) {
+    @include for-phone-only {
       overflow: hidden;
     }
   }
@@ -51,17 +43,17 @@ body {
   margin: 0 auto;
   padding: 0 $base-margin * 2.5;
 
-  @include breakpoint($break_tablet) {
+  @include for-tablet-portrait-down {
     padding: 0 $base-margin * 1.5;
   }
 
-  @include breakpoint($break_mobile) {
+  @include for-phone-only {
     padding: 0 $base-margin;
   }
 
   // Mobile no padding
   &--mobile-no-padding {
-    @include breakpoint($break_mobile) {
+    @include for-phone-only {
       padding: 0;
     }
   }
@@ -73,7 +65,7 @@ body {
 
   // Mobile padding - if --no-padding is used
   &--mobile-padding {
-    @include breakpoint($break_mobile) {
+    @include for-phone-only {
       padding: $base-margin;
     }
   }
@@ -144,7 +136,7 @@ body {
   // Column width
   @for $i from 1 to $total-columns + 1 {
     &--#{$i} {
-      width: percentage($i/$total-columns);
+      width: calc($i / $total-columns);
     }
   }
 
@@ -160,51 +152,51 @@ body {
     padding-right: $base-margin * 2;
   }
 
-  @include breakpoint(max-width 1320px) {
-    &--medium {
-      // Column width
-      @for $i from 1 to $total-columns + 1 {
-        &--#{$i} {
-          width: percentage($i/$total-columns);
-        }
-      }
-    }
-  }
-
-  @include breakpoint($break_standard) {
+  @include for-big-desktop-up {
     &--standard {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: percentage($i/$total-columns);
+          width: calc($i/$total-columns);
         }
       }
     }
   }
 
-  @include breakpoint($break_tablet_large) {
+  @include for-desktop-up {
+    &--medium {
+      // Column width
+      @for $i from 1 to $total-columns + 1 {
+        &--#{$i} {
+          width: calc($i/$total-columns);
+        }
+      }
+    }
+  }
+
+  @include for-tablet-landscape-down {
     &--tablet-large {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: percentage($i/$total-columns);
+          width: calc($i/$total-columns);
         }
       }
     }
   }
 
-  @include breakpoint($break_tablet) {
+  @include for-tablet-portrait-down {
     &--tablet {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: percentage($i/$total-columns);
+          width: calc($i/$total-columns);
         }
       }
     }
   }
 
-  @include breakpoint($break_mobile) {
+  @include for-phone-only {
     width: 100%;
     padding-left: 0;
     padding-right: 0;
@@ -223,7 +215,7 @@ body {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: percentage($i/$total-columns);
+          width: calc($i/$total-columns);
           margin-bottom: 0;
 
           &:last-child {
@@ -234,12 +226,12 @@ body {
     }
   }
 
-  @include breakpoint($break_mobile_small) {
+  @include for-small-phone {
     &--mobile-small {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: percentage($i/$total-columns);
+          width: calc($i/$total-columns);
         }
       }
     }
@@ -254,7 +246,7 @@ body {
     }
   }
 
-  @include breakpoint($break_medium) {
+  @include for-tablet-landscape-down {
     &--medium {
       @for $i from 1 to 12 {
         // Column width
@@ -265,7 +257,7 @@ body {
     }
   }
 
-  @include breakpoint($break_tablet) {
+  @include for-tablet-portrait-down {
     &--tablet {
       @for $i from 1 to 12 {
         // Column width
@@ -276,7 +268,7 @@ body {
     }
   }
 
-  @include breakpoint($break_mobile) {
+  @include for-phone-only {
     &--mobile {
       @for $i from 1 to 12 {
         // Column width
@@ -305,7 +297,7 @@ body {
   display: none !important;
 }
 
-@include breakpoint($break_tablet_large) {
+@include for-tablet-landscape-down {
   .tablet--large-hide {
     display: none !important;
   }
@@ -314,7 +306,7 @@ body {
   }
 }
 
-@include breakpoint($break_tablet) {
+@include for-tablet-portrait-down {
   .tablet-hide {
     display: none !important;
   }
@@ -323,7 +315,7 @@ body {
   }
 }
 
-@include breakpoint($break_mobile) {
+@include for-phone-only {
   .mobile-hide {
     display: none !important;
   }
@@ -332,7 +324,7 @@ body {
   }
 }
 
-@include breakpoint($break_medium) {
+@include for-tablet-landscape-down {
   .medium-hide {
     display: none !important;
   }
