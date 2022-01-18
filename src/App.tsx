@@ -1,23 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider, observer } from 'mobx-react';
-
-import Home from './views/Home/Home';
-import NotFound from './views/NotFound/NotFound';
-import Results from './views/Results';
-import Service from './views/Service';
-import Organisation from './views/Organisation';
-import Favourites from './views/Favourites';
-import Referral from './views/Referral';
-import About from './views/About';
-import Contact from './views/Contact';
-import GetInvolved from './views/GetInvolved';
-import Privacy from './views/Privacy';
-import DutyToRefer from './views/DutyToRefer';
 
 import Footer from './components/Footer/Footer';
 import Header from './components/Header';
@@ -41,6 +28,7 @@ import CookieBanner from './components/CookieBanner';
 // add all free font awesome icons to project
 library.add(fas, fab);
 
+// Views = lazyload
 const windowSizeStore = new WindowSizeStore();
 const uiStore = new UIStore();
 const resultsStore = new ResultsStore();
@@ -49,6 +37,20 @@ const organisationStore = new OrganisationStore();
 const favouritesStore = new FavouritesStore();
 const cmsStore = new CMSStore();
 const referralStore = new ReferralStore();
+
+// Views
+const Home = lazy(() => import('./views/Home/Home'));
+const NotFound = lazy(() => import('./views/NotFound/NotFound'));
+const Results = lazy(() => import('./views/Results'));
+const Service = lazy(() => import('./views/Service'));
+const Organisation = lazy(() => import('./views/Organisation'));
+const Favourites = lazy(() => import('./views/Favourites'));
+const Referral = lazy(() => import('./views/Referral'));
+const About = lazy(() => import('./views/About'));
+const Contact = lazy(() => import('./views/Contact'));
+const GetInvolved = lazy(() => import('./views/GetInvolved'));
+const Privacy = lazy(() => import('./views/Privacy'));
+const DutyToRefer = lazy(() => import('./views/DutyToRefer'));
 
 class App extends Component {
   componentDidMount() {
@@ -70,21 +72,23 @@ class App extends Component {
         <Router>
           <ScrollToTop>
             <Header />
-            <Switch>
-              <Route path="/" exact={true} component={Home} />
-              <Route path="/results" component={Results} />
-              <Route path="/services/:service" component={Service} />
-              <Route path="/favourites" component={Favourites} />
-              <Route path="/referral" component={Referral} />
-              <Route path="/about" component={About} />
-              <Route path="/contact" component={Contact} />
-              <Route path="/get-involved" component={GetInvolved} />
-              <Route path="/privacy-policy" component={Privacy} />
-              <Route path="/terms-and-conditions" component={Terms} />
-              <Route path="/duty-to-refer" component={DutyToRefer} />
-              <Route path="/organisations/:organisation" component={Organisation} />
-              <Route component={NotFound} />
-            </Switch>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Switch>
+                <Route path="/" exact={true} component={Home} />
+                <Route path="/results" component={Results} />
+                <Route path="/services/:service" component={Service} />
+                <Route path="/favourites" component={Favourites} />
+                <Route path="/referral" component={Referral} />
+                <Route path="/about" component={About} />
+                <Route path="/contact" component={Contact} />
+                <Route path="/get-involved" component={GetInvolved} />
+                <Route path="/privacy-policy" component={Privacy} />
+                <Route path="/terms-and-conditions" component={Terms} />
+                <Route path="/duty-to-refer" component={DutyToRefer} />
+                <Route path="/organisations/:organisation" component={Organisation} />
+                <Route component={NotFound} />
+              </Switch>
+            </Suspense>
             <FeedbackModal />
             <HomeScreenPrompt />
             <Footer />
