@@ -1,22 +1,10 @@
-@import './_reset.scss';
+@import './reset.scss';
 @import './mixins.scss';
 @import './breakpoints.scss';
 @import './typography.scss';
 @import './colors.scss';
 @import './grid.scss';
 @import './translate.scss';
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
-}
-
-html {
-  height: 100%;
-}
 
 .flex-container {
   max-width: 1260px;
@@ -25,7 +13,7 @@ html {
 ul {
   list-style-type: disc;
   list-style-position: inside;
-  @include body-s;
+  @include body-regular;
   color: inherit;
 }
 

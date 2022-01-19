@@ -36,14 +36,14 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
         <div className="flex-col flex-col--5 flex-col--tablet--12">
           <p className="footer__heading">{get(cmsStore, 'global.footer_title')}</p>
           <ReactMarkdown
-            className="body--xs footer__content"
+            className="body footer__content"
             children={get(cmsStore, 'global.footer_content')}
           />
-          <Link to="/privacy-policy" className="body--xs">
+          <Link to="/privacy-policy" className="body">
             Privacy Policy
           </Link>
           &nbsp;&nbsp;
-          <Link to="/terms-and-conditions" className="body--xs">
+          <Link to="/terms-and-conditions" className="body">
             Terms and Conditions
           </Link>
         </div>
@@ -75,11 +75,11 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
                 </a>
               </nav>
               <div className="flex-col flex-col--12">
-                <Link to={'/contact'} className="body--xs footer-contact-links">
+                <Link to={'/contact'} className="body footer-contact-links">
                   Contact us
                 </Link>
                 <button
-                  className="body--xs footer-contact-links"
+                  className="body footer-contact-links"
                   onClick={() => uiStore.toggleFeedbackModal()}
                 >
                   Give feedback

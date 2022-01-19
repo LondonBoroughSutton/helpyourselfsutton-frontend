@@ -528,7 +528,7 @@
   text-align: right;
 
   button {
-    @include body-s;
+    @include body-regular;
   }
 }
 
@@ -547,7 +547,7 @@
 .results__mobile-edit {
   @include for-phone-only {
     button {
-      @include body-s;
+      @include body-regular;
     }
   }
 }

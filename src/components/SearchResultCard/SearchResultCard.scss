@@ -78,7 +78,7 @@
   margin-right: space(16);
   margin-bottom: space(16);
   padding: space(8);
-  @include body-xs;
+  @include body-regular;
   line-height: 0.875rem;
   background-color: $yellow;
   color: $black;
@@ -89,17 +89,13 @@
   margin-right: space(8);
 }
 
-.search-result-card__tag--cost--free {
-  @include fontSize(7px);
-}
-
 .search-result-card__location {
   display: flex;
   margin-bottom: space(12);
 
   h4 {
     margin-left: space(8);
-    font-size: $font-body-xs;
+    font-size: $font-body-regular;
   }
 }
 

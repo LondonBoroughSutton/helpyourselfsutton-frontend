@@ -22,13 +22,13 @@
   }
 
   p {
-    @include body-s;
+    @include body-regular;
     color: $black;
     margin: space(8) 0;
   }
 
   a {
-    @include body-s;
+    @include body-regular;
     color: $black;
   }
 
