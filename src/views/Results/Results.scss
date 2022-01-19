@@ -6,7 +6,7 @@
 
 .results {
   position: relative;
-  background: linear-gradient(to bottom, $white 0%, $white 270px, $light-turquoise 270px,$light-turquoise 100%);
+  background: linear-gradient(to bottom, $white 0%, $white 270px, $peach 270px,$peach 100%);
 }
 
 .results__list {
@@ -189,7 +189,7 @@
 
 .pagination__item {
   margin: 0;
-  background: $yellow;
+  background: $casablanca;
 
   &:nth-child(2) {
     padding-left: space(16);
@@ -205,7 +205,7 @@
 
   &.disabled {
     .pagination__link {
-      color: $lynch;
+      color: $periwinkle-gray;
     }
   }
 }
@@ -581,7 +581,7 @@
   justify-content: space-between;
   width: 100%;
   padding: space(40);
-  background-color: $yellow;
+  background-color: $casablanca;
   color: $black;
 
   @include for-tablet-portrait-down {
@@ -615,14 +615,14 @@
     height: 0; 
     border-left: 38px solid transparent;
     border-right: 38px solid transparent;
-    border-top: 38px solid $yellow;
+    border-top: 38px solid $casablanca;
 
     @include for-tablet-portrait-down {
       bottom: -20px;
       right: space(20);
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
-      border-top: 20px solid $yellow;
+      border-top: 20px solid $casablanca;
     }
   }
 }
@@ -665,9 +665,9 @@
 }
 
 .results__overview__edit-toggle {
-  color: $turquoise;
+  color: $fountain-blue;
   font-size: pxtorem(16px);
-  border-bottom: 2px solid $turquoise;
+  border-bottom: 2px solid $fountain-blue;
 }
 
 .results__overview__edit-input {
@@ -747,7 +747,7 @@
     margin: 0 0 space(16);
     padding: space(16);
     border-radius: $border-radius-sm;
-    background: $turquoise;
+    background: $fountain-blue;
     text-align: left;
 
     @include for-tablet-portrait-up {

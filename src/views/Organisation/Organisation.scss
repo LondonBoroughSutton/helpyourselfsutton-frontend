@@ -12,10 +12,10 @@
 
         &__wrapper {
            
-            background-color: $turquoise;
+            background-color: $fountain-blue;
 
             &:after {
-                border-top-color: $turquoise;
+                border-top-color: $fountain-blue;
             }
             
             @media(min-width: 426px) {
@@ -118,7 +118,7 @@
     }
 
     &__services {
-        background: $light-turquoise;
+        background: $peach;
 
         &--heading {
             margin: 2rem 0 2rem;

@@ -1,7 +1,7 @@
 @import './mixins.scss';
 @import './breakpoints.scss';
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@400&display=swap');
 
 $font-primary: 'Outfit', sans-serif;
 $font-heading: 'Montserrat', sans-serif;
@@ -20,6 +20,9 @@ $font-heading-mobile-m: pxtorem(22);
 
 $font-heading-s: pxtorem(24);
 $font-heading-mobile-s: pxtorem(20);
+
+$font-heading-xs: pxtorem(20);
+$font-heading-mobile-xs: pxtorem(18);
 
 $font-body-xl: pxtorem(34);
 $font-body-mobile-xl: pxtorem(26);
@@ -80,13 +83,28 @@ $font-link-medium: pxtorem(20);
   font-family: $font-heading;
   font-weight: 700;
   line-height: 1.22;
+
+  @include for-phone-only {
+    font-size: $font-heading-mobile-s;
+  }
+}
+
+@mixin heading-xs {
+  font-size: $font-heading-xs;
+  font-family: $font-heading;
+  font-weight: 700;
+  line-height: 1.22;
+
+  @include for-phone-only {
+    font-size: $font-heading-mobile-xs;
+  }
 }
 
 /* Font mixins */
 @mixin body-xl {
   font-size: $font-body-xl;
   font-family: $font-primary;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
 
   @include for-phone-only {
@@ -98,7 +116,7 @@ $font-link-medium: pxtorem(20);
 @mixin body-l {
   font-size: $font-body-l;
   font-family: $font-primary;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
 
   @include for-phone-only {
@@ -110,7 +128,7 @@ $font-link-medium: pxtorem(20);
 @mixin body-m {
   font-size: $font-body-m;
   font-family: $font-primary;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1rem;
 
   @include for-phone-only {
@@ -121,7 +139,7 @@ $font-link-medium: pxtorem(20);
 @mixin body-regular {
   font-size: $font-body-regular;
   font-family: $font-primary;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.5rem;
 
   @include for-phone-only {
@@ -132,25 +150,29 @@ $font-link-medium: pxtorem(20);
 @mixin link-header {
   font-size: $font-body-m;
   font-family: $font-primary;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 @mixin link-large {
-  font-size: $font-heading-m;
+  font-size: $font-heading-xs;
   font-family: $font-primary;
-  font-weight: 500;
+  font-weight: 400;
+
+  @include for-phone-only {
+    font-size: $font-heading-mobile-xs;
+  }
 }
 
 @mixin link-medium {
   font-size: $font-link-medium;
   font-family: $font-primary;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 @mixin breadcrumb {
   font-size: $font-breadcrumb;
   font-family: $font-primary;
-  font-weight: 500;
+  font-weight: 400;
 
   @include for-phone-only {
     font-size: $font-breadcrumb-mobile;
@@ -164,7 +186,7 @@ html{
 body{
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1;
   color: #000;
 }
@@ -191,6 +213,10 @@ h4,
 }
 
 h5,
+.h5 {
+  @include heading-xs;
+}
+
 h6,
 a,
 button,

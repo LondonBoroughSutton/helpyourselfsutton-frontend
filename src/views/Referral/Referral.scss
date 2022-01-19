@@ -4,7 +4,7 @@
 @import '../../styles/breakpoints.scss';
 
 @mixin greenContainer {
-  background-color: $turquoise;
+  background-color: $fountain-blue;
   padding: space(24) !important;
 
   @include for-tablet-landscape-down {
@@ -185,7 +185,7 @@
   }
 
   &--active {
-    background-color: $yellow;
+    background-color: $casablanca;
 
     svg {
       color: $black;

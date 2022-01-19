@@ -5,7 +5,7 @@
 // Define grid variables
 $total-columns: 12;
 $gutter-width: math.percentage(math.div(0px, 105px));
-$container-width: 1260px;
+$container-width: 1440px;
 $base-line-height: 16px;
 $base-margin: 16px;
 $border-radius: 6px;
@@ -42,14 +42,14 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 auto;
-  padding: 0 $base-margin * 2.5;
+  padding: 0 $base-margin;
 
-  @include for-tablet-portrait-down {
-    padding: 0 $base-margin * 1.5;
+  @include for-mobile-up {
+    padding: 0 $base-margin * 2;
   }
 
-  @include for-phone-only {
-    padding: 0 $base-margin;
+  @include for-tablet-landscape-up {
+    padding: 0 $base-margin * 3;
   }
 
   // Mobile no padding
@@ -194,6 +194,10 @@ body {
           width: math.percentage(math.div($i, $total-columns));
         }
       }
+
+      &--#{$total-columns} {
+        margin-bottom: $base-margin * 1.5;
+      }
     }
   }
 
@@ -201,7 +205,7 @@ body {
     width: 100%;
     padding-left: 0;
     padding-right: 0;
-    margin-bottom: $base-margin * 2;
+    margin-bottom: $base-margin * 1.5;
 
     &.flex-col--gutter {
       width: 100%;
@@ -223,6 +227,10 @@ body {
             border-bottom: 0;
           }
         }
+      }
+
+      &--#{$total-columns} {
+        margin-bottom: $base-margin * 1.5;
       }
     }
   }

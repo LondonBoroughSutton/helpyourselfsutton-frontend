@@ -73,7 +73,7 @@
 
     &--favourites {
       @include for-tablet-landscape-down {
-        background-color: $turquoise;
+        background-color: $fountain-blue;
       }
     }
 
@@ -123,12 +123,12 @@
 
       &--sticky {
         position: fixed;
-        background-color: $turquoise;
+        background-color: $fountain-blue;
       }
 
       &--iceberg {
         @include for-phone-only {
-          background-color: $turquoise;
+          background-color: $fountain-blue;
         }
       }
 
@@ -245,7 +245,7 @@
 }
 
 .header__actions {
-  background-color: $pink;
+  background-color: $mona-lisa;
   padding: space(8) 0;
   margin-bottom: space(24);
 
