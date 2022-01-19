@@ -1,9 +1,10 @@
 @import './mixins.scss';
 @import './breakpoints.scss';
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Outfit:wght@500&display=swap');
 
-$font-primary: 'Nunito Sans', sans-serif;
+$font-primary: 'Outfit', sans-serif;
+$font-heading: 'Montserrat', sans-serif;
 
 $font-base: pxtorem(16px);
 
@@ -23,14 +24,10 @@ $font-body-mobile-l: $font-base;
 
 $font-body-m: pxtorem(18px);
 $font-body-mobile-m: pxtorem(16px);
-$font-body-mobile-tertiary: $font-base;
 
 $font-body-s: $font-base;
 
 $font-body-xs: pxtorem(14px);
-
-$font-body-alt: pxtorem(30px);
-$font-body-mobile-alt: pxtorem(22px);
 
 $font-breadcrumb: $font-base;
 $font-breadcrumb-mobile: pxtorem(10px);
@@ -40,7 +37,7 @@ $font-link-medium: pxtorem(20px);
 /* Headings */
 @mixin heading-xl {
   font-size: $font-heading-xl;
-  font-family: $font-primary;
+  font-family: $font-heading;
   font-weight: 800;
   line-height: 3.5rem;
 
@@ -52,7 +49,7 @@ $font-link-medium: pxtorem(20px);
 
 @mixin heading-l {
   font-size: $font-heading-l;
-  font-family: $font-primary;
+  font-family: $font-heading;
   font-weight: 700;
   line-height: 2.5rem;
 
@@ -64,7 +61,7 @@ $font-link-medium: pxtorem(20px);
 
 @mixin heading-m {
   font-size: $font-heading-m;
-  font-family: $font-primary;
+  font-family: $font-heading;
   font-weight: 700;
   line-height: 2rem;
 
@@ -76,30 +73,12 @@ $font-link-medium: pxtorem(20px);
 
 @mixin heading-s {
   font-size: $font-heading-s;
-  font-family: $font-primary;
+  font-family: $font-heading;
   font-weight: 400;
   line-height: 1.22;
 }
 
-@mixin heading-s-regular {
-  font-family: $font-primary;
-  font-weight: 400;
-
-  @include for-phone-only {
-    font-size: $font-heading-mobile-s;
-    line-height: 1.2;
-  }
-}
-
-@mixin heading-s-light {
-  font-size: $font-heading-s;
-  font-family: $font-primary;
-  font-weight: 300;
-  line-height: 1.22;
-}
-
-/* Body */
-
+/* Font mixins */
 @mixin body-l {
   font-size: $font-body-l;
   font-family: $font-primary;
@@ -123,60 +102,16 @@ $font-link-medium: pxtorem(20px);
   }
 }
 
-@mixin body-m-secondary {
-  font-size: $font-body-m;
-  font-family: $font-primary;
-  line-height: 1.35;
-
-  @include for-phone-only {
-    font-size: $font-body-mobile-m;
-    line-height: 1.15;
-  }
-}
-
-@mixin body-m-tertiary {
-  font-size: $font-body-m;
-  font-family: $font-primary;
-  line-height: 1.35;
-
-  @include for-phone-only {
-    font-size: $font-body-mobile-tertiary;
-    line-height: 1.38;
-  }
-}
-
 @mixin body-s {
   font-size: $font-body-s;
   font-family: $font-primary;
   line-height: 1.25;
 }
 
-@mixin body-s-secondary {
-  font-size: $font-body-s;
-  font-family: $font-primary;
-  line-height: 1.13;
-}
-
-@mixin body-s-tertiary {
-  font-size: $font-body-xs;
-  font-family: $font-primary;
-  line-height: 1.15;
-}
-
 @mixin body-xs {
   font-size: $font-body-xs;
   font-family: $font-primary;
   line-height: 1.15;
-}
-
-@mixin body-alt {
-  font-size: $font-body-alt;
-  font-family: $font-primary;
-  line-height: 1;
-
-  @include for-phone-only {
-    font-size: $font-body-mobile-alt;
-  }
 }
 
 @mixin link-header {
@@ -205,5 +140,47 @@ $font-link-medium: pxtorem(20px);
   @include for-phone-only {
     font-size: $font-breadcrumb-mobile;
     line-height: 1.2;
+  }
+}
+
+/* Type styles */
+h1 {
+  @include heading-xl;
+}
+
+h2 {
+  @include heading-l;
+}
+
+h3 {
+  @include heading-m;
+}
+
+h4 {
+  @include heading-s;
+}
+
+h5,
+h6,
+a,
+button,
+p {
+  @include body-m;
+}
+
+.body {
+  &--l {
+    @include body-l;
+  }
+  &--m {
+    @include body-m;
+  }
+
+  &--s {
+    @include body-s;
+  }
+
+  &--xs {
+    @include body-xs;
   }
 }

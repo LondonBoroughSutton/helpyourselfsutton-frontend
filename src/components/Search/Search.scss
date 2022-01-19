@@ -2,7 +2,7 @@
 @import '../../styles/colors.scss';
 @import '../../styles/grid.scss';
 @import '../../styles/breakpoints.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
 @mixin marginLeft {
   margin-left: pxtorem(60px) !important;
