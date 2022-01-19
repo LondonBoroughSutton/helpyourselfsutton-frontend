@@ -1,9 +1,10 @@
+@use 'sass:math';
 @import './colors.scss';
 @import './breakpoints.scss';
 
 // Define grid variables
 $total-columns: 12;
-$gutter-width: calc(0px / 105px);
+$gutter-width: math.percentage(math.div(0px, 105px));
 $container-width: 1260px;
 $base-line-height: 16px;
 $base-margin: 16px;
@@ -136,7 +137,7 @@ body {
   // Column width
   @for $i from 1 to $total-columns + 1 {
     &--#{$i} {
-      width: calc($i / $total-columns);
+      width: math.percentage(math.div($i, $total-columns));
     }
   }
 
@@ -157,7 +158,7 @@ body {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: calc($i/$total-columns);
+          width: math.percentage(math.div($i, $total-columns));
         }
       }
     }
@@ -168,7 +169,7 @@ body {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: calc($i/$total-columns);
+          width: math.percentage(math.div($i, $total-columns));
         }
       }
     }
@@ -179,7 +180,7 @@ body {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: calc($i/$total-columns);
+          width: math.percentage(math.div($i, $total-columns));
         }
       }
     }
@@ -190,7 +191,7 @@ body {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: calc($i/$total-columns);
+          width: math.percentage(math.div($i, $total-columns));
         }
       }
     }
@@ -215,7 +216,7 @@ body {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: calc($i/$total-columns);
+          width: math.percentage(math.div($i, $total-columns));
           margin-bottom: 0;
 
           &:last-child {
@@ -231,7 +232,7 @@ body {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: calc($i/$total-columns);
+          width: math.percentage(math.div($i, $total-columns));
         }
       }
     }
