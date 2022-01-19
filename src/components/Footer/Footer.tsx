@@ -10,7 +10,7 @@ import { membersAreaURL } from '../../config/externalUrls';
 
 import './Footer.scss';
 
-import Logo from '../../assets/images/stakeholder-logo.png';
+import Logo from '../../assets/logo/logo-footer.png';
 
 import CMSStore from '../../stores/CMSStore';
 import UIStore from '../../stores/uiStore';
@@ -89,7 +89,7 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
 
             <div className="flex-col flex-col--6 flex-col--mobile--12 flex-col--tablet--12 footer__button">
               <ButtonLink href={membersAreaURL} text="Members Area" target="_blank" />
-              <img src={Logo} alt="London Borough of Sutton" className="footer-hounslow-logo" />
+              <img src={Logo} alt="London Borough of Sutton" className="footer-logo" />
             </div>
           </div>
         </div>
