@@ -89,7 +89,7 @@ class Organisation extends Component<IProps> {
                   <span className="organisation__header__sub">Organisation</span>
                   <h1>{get(organisation, 'name')}</h1>
                   {get(organisation, 'description') && (
-                    <ReactMarkdown className="" source={get(organisation, 'description')} />
+                    <ReactMarkdown className="" children={get(organisation, 'description')} />
                   )}
 
                   <ul className="organisation__header__contact-details">

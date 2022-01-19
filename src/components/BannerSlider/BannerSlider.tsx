@@ -22,7 +22,7 @@ const BannerSlider: FunctionComponent<IProps> = ({ banners = [], header_content 
               <h1 className="banner__title">{header_content ? header_content.title : null}</h1>
               <ReactMarkdown
                 className="banner__description"
-                source={header_content ? header_content.content : undefined}
+                children={header_content ? header_content.content : ''}
               />
             </div>
             <div className="banner__carousel">

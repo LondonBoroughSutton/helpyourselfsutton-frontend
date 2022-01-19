@@ -22,7 +22,7 @@ const Terms: React.FunctionComponent<IProps> = ({ cmsStore }) => {
         <title>Terms and Conditions | Help Yourself Sutton</title>
       </Helmet>
 
-      <ReactMarkdown source={get(cmsStore, 'terms_and_conditions.content')} />
+      <ReactMarkdown children={get(cmsStore, 'terms_and_conditions.content')} />
     </CMSPage>
   );
 };

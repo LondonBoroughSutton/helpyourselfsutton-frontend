@@ -22,7 +22,7 @@ const GetInvolved: React.FunctionComponent<IProps> = ({ cmsStore }) => {
         <title>Get Involved | Help Yourself Sutton</title>
       </Helmet>
 
-      <ReactMarkdown source={get(cmsStore, 'get_involved.content')} />
+      <ReactMarkdown children={get(cmsStore, 'get_involved.content')} />
     </CMSPage>
   );
 };

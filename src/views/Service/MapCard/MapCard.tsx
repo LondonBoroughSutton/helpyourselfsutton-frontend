@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, Marker, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { latLngBounds, LatLngBounds } from 'leaflet';
 import L from 'leaflet';
 import map from 'lodash/map';
@@ -57,7 +57,7 @@ class MapCard extends Component<IProps, IState> {
     this.addMarkers(locations);
 
     return (
-      <Map center={mapCenter} zoom={14} attributionControl={false} setMaxBounds={this.state.bounds}>
+      <MapContainer center={mapCenter} zoom={14} attributionControl={false} setMaxBounds={this.state.bounds}>
         <TileLayer url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png" />
         {locations.map((serviceLocation: IServiceLocation) => {
           return (
@@ -68,7 +68,7 @@ class MapCard extends Component<IProps, IState> {
             />
           );
         })}
-      </Map>
+      </MapContainer>
     );
   }
 }
