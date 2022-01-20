@@ -22,11 +22,12 @@
 }
 
 .button {
-  padding: space(12);
+  padding: space(10);
   font-size: pxtorem(20);
+  line-height: pxtorem(20);
   background-color: $black;
   color: $white;
-  border: none;
+  border: 2px solid $black;
   border-radius: 4px;
   box-sizing: border-box;
   transition: all $formControlTransitionDuration ease-in-out;
@@ -60,6 +61,11 @@
   &:disabled:hover {
     box-shadow: none;
     cursor: not-allowed;
+  }
+
+  &--alt {
+    background-color: transparent;
+    color: $black;
   }
 }
 

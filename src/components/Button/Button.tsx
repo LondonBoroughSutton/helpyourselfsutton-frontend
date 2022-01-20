@@ -39,7 +39,7 @@ const Button: React.FunctionComponent<IProps> = ({
   <button
     className={cx('button', `button--${size}`, {
       button__alt: alt,
-      [`button__alt--${size}`]: alt,
+      [`button--alt`]: alt,
       'button__category button__alt button__alt--medium': category,
       button__header: header,
       'buton__burger-menu': burgerMenu,
