@@ -102,7 +102,7 @@ body {
   }
 
   // Vertical align bottom
-  &--align-bottom {
+  &--align-end {
     align-items: flex-end;
   }
 
@@ -197,6 +197,10 @@ body {
 
       &--#{$total-columns} {
         margin-bottom: $base-margin * 1.5;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
       }
     }
   }
@@ -223,8 +227,8 @@ body {
           width: math.percentage(math.div($i, $total-columns));
           margin-bottom: 0;
 
-          &:last-child {
-            border-bottom: 0;
+          &:last-of-type {
+            margin-bottom: 0;
           }
         }
       }

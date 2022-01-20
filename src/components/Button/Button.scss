@@ -31,6 +31,16 @@
   box-sizing: border-box;
   transition: all $formControlTransitionDuration ease-in-out;
 
+  @include for-tablet-landscape-down {
+    padding: space(8) space(10);
+    font-size: pxtorem(18);
+  }
+
+  @include for-phone-only {
+    padding: space(6) space(8);
+    font-size: pxtorem(16);
+  }
+
   &:hover {
     box-shadow: 0 2px 4px 0 rgba(56, 56, 56, 0.5);
     cursor: pointer;
@@ -51,4 +61,8 @@
     box-shadow: none;
     cursor: not-allowed;
   }
+}
+
+.button__icon {
+  margin-left: space(10);
 }

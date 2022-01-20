@@ -47,7 +47,7 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
         </div>
         <div className="flex-col flex-col--6 flex-col--tablet--12">
           <div className="flex-container flex-container--no-padding">
-            <div className="flex-col flex-col--6 flex-col--mobile--12">
+            <div className="flex-col flex-col--6 flex-col--tablet--12">
               <h5 className="footer__header">
                 Get in touch with<br />Sutton Information Hub
               </h5>
@@ -88,7 +88,7 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
               </nav>
             </div>
 
-            <div className="flex-col flex-col--4 flex-col--mobile--12 flex-col--tablet--12 footer__members">
+            <div className="flex-col flex-col--4 flex-col--tablet--12 footer__members">
               <ButtonLink href={membersAreaURL} text="Members Area" target="_blank" />
               <img src={Logo} alt="London Borough of Sutton" className="footer-logo" />
             </div>

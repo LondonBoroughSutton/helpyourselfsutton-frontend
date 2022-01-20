@@ -148,9 +148,13 @@ $font-link-medium: pxtorem(20);
 }
 
 @mixin link-header {
-  font-size: $font-body-m;
-  font-family: $font-primary;
-  font-weight: 400;
+  font-size: $font-heading-xs;
+  font-family: $font-heading;
+  font-weight: 600;
+
+  @include for-tablet-landscape-down {
+    font-size: $font-heading-mobile-xs;
+  }
 }
 
 @mixin link-large {
