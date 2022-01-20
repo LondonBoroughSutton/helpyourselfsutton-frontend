@@ -36,6 +36,9 @@ $font-body-mobile-m: pxtorem(16);
 $font-body-regular: $font-base;
 $font-body-mobile-regular: $font-base-mobile;
 
+$font-body-s: pxtorem(14);
+$font-body-mobile-s: pxtorem(12);
+
 $font-breadcrumb: pxtorem(12);
 $font-breadcrumb-mobile: pxtorem(10);
 
@@ -144,6 +147,16 @@ $font-link-medium: pxtorem(20);
 
   @include for-phone-only {
     font-size: $font-body-mobile-regular;
+  }
+}
+@mixin body-s {
+  font-size: $font-body-s;
+  font-family: $font-primary;
+  font-weight: 400;
+  line-height: 1.25rem;
+
+  @include for-phone-only {
+    font-size: $font-body-mobile-s;
   }
 }
 
