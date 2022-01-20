@@ -66,14 +66,32 @@
   }
 }
 
+.modal__header {
+  margin-bottom: space(32);
+  padding-bottom: space(8);
+  border-bottom: 2px solid $black;
+}
+
+.modal__title {
+  margin-bottom: space(16);
+}
+
 .modal__close {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   margin-bottom: space(24);
-  text-align: right;
+
+  button {
+    display: flex;
+    align-items: center;
+    font-size: pxtorem(18);
+    line-height: pxtorem(18);
+  }
 
   svg {
-    vertical-align: middle;
+    display: block;
+    margin-left: space(8);
   }
 }
 

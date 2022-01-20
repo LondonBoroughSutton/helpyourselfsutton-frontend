@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { makeObservable, observable, action } from 'mobx';
 import axios from 'axios';
 import { apiBase } from '../config/api';
 import get from 'lodash/get';
@@ -9,6 +9,10 @@ class FeedbackStore {
   @observable email: string = '';
   @observable phone: string = '';
   @observable submitted: boolean = false;
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   setField = (field: string, data: string) => {
