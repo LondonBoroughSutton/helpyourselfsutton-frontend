@@ -5,118 +5,28 @@
 .cms {
   color: $black;
   font-family: $font-primary;
-
-  &--contact-card {
-    position: relative;
-    padding: space(16);
-    background-color: $fountain-blue;
-    text-overflow: ellipsis;
-    margin-left: space(16);
-
-    @include for-tablet-portrait-down {
-      margin-left: 0;
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -24px;
-      right: space(32);
-      width: 0; 
-      height: 0; 
-      border-left: 24px solid transparent;
-      border-right: 24px solid transparent;
-      border-top: 24px solid $fountain-blue;
-    }
-
-    &--row {
-      margin-top: space(24);
-    }
-
-    &--socials {
-      margin-top: space(16);
-
-      .service__social-icon {
-        margin-left: 0;
-        margin-right: space(16);
-      }
-    }
-
-    h3 {
-      padding: space(8) 0;
-    }
-
-    h4 {
-      margin-bottom: space(8);
-    }
-
-    &--email {
-      display: block;
-    }
-
-    a {
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-  }
 }
 
 .cms__header {
-  .flex-container {
-    max-width: 1260px;
-  }
+  margin-bottom: space(40);
 
   @include for-tablet-portrait-down {
-    margin-top: space(52);
-
-    .flex-col {
-      width: 41.66667%;
-    }
-  }
-
-  @include for-tablet-portrait-down {
-    .flex-col {
-      width: 100%;
-    }
-  }
-}
-
-.cms__title-card {
-  display: block;
-  width: 100%;
-  max-width: 1260px;
-  margin: 0 auto;
-  padding: space(32) space(48);
-  background-color: $casablanca;
-
-  &--title {
-    font-size: pxtorem(32px);
-    line-height: pxtorem(32px);
-
-    @include for-phone-only {
-      font-size: pxtorem(22px);
-      line-height: pxtorem(22px);
-    }
+    margin-bottom: space(24);
   }
 }
 
 .cms__content {
-  padding: space(32);
+  padding-bottom: space(80);
+  border-bottom: 2px solid $black;
 
-  > .flex-container {
-    max-width: 1260px;
-  }
-
-  h1 {
-    @include heading-xl;
+  @include for-tablet-portrait-down {
+    padding-bottom: space(56);
   }
 
   p {
-    @include body-m;
-    color: $black;
-    word-break: break-word;
+    @include body-l;
+    line-height: 2.25rem;
     margin-bottom: space(16);
-    line-height: 1.75rem;
   }
 
   li p {
@@ -124,8 +34,10 @@
   }
 
   h1,
-  h2 {
-    margin-bottom: space(32);
+  h2,
+  h3,
+  h4 {
+    margin-bottom: space(16);
   }
 
   ul {
@@ -136,5 +48,54 @@
 
   > div {
     width: 100% !important;
+  }
+}
+
+.cms--contact-card {
+  position: relative;
+  padding: space(32) space(24);
+  background-color: $casablanca;
+  border-radius: 20px;
+  text-overflow: ellipsis;
+  margin-left: space(16);
+
+  @include for-tablet-portrait-down {
+    margin-left: 0;
+  }
+
+  &--row {
+    margin-top: space(24);
+  }
+
+  &--socials {
+    margin-top: space(16);
+
+    .service__social-icon {
+      margin-left: 0;
+      margin-right: space(16);
+    }
+  }
+
+  &--email {
+    display: block;
+  }
+
+  h3 {
+    display: flex;
+    align-items: center;
+
+    svg {
+      font-size: pxtorem(16);
+      margin-right: space(12);
+    }
+  }
+
+  p {
+    @include body-regular;
+  }
+
+  a {
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }

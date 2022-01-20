@@ -6,6 +6,11 @@
   margin-top: space(32);
   margin-bottom: space(40);
 
+  @include for-tablet-portrait-down {
+    margin-top: space(16);
+    margin-bottom: space(24);
+  }
+
   ul {
     display: flex;
     align-items: center;
