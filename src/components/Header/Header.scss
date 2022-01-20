@@ -10,9 +10,17 @@
   overflow: hidden;
   padding-top: space(20);
   padding-bottom: space(40);
+  background-color: $white;
 
   @include for-tablet-landscape-down {
     padding: space(20) 0;
+  }
+
+  @include for-tablet-portrait-down {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-content: space-between;
   }
 
   &.active {
@@ -29,6 +37,18 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+
+    @include for-tablet-portrait-down {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: space(48);
+    }
+
+    &--active {
+      display: block;
+    }
   }
 
   .nav__link {
@@ -80,20 +100,43 @@
 .header__actions {
   margin-bottom: space(8);
 
+  @include for-tablet-landscape-down {
+    margin-bottom: 0;
+  }
+
+  > .flex-container {
+    justify-content: flex-end;
+
+    @include for-tablet-portrait-down {
+      justify-content: center;
+    }
+  }
+
   .flex-col {
     margin-left: space(12);
+
+    @include for-tablet-portrait-down {
+      display: flex;
+      justify-content: center;
+      margin: 0 space(12) space(12);
+    }
   }
 }
 
 .header__main {
+  align-items: flex-end;
+
   @include for-tablet-landscape-down {
-    display: flex;
-    justify-content: center;
+    width: 100%;
   }
 }
 
 .header__logo {
   display: inline-block;
+
+  @include for-tablet-landscape-down {
+    align-self: flex-start;
+  }
 
   > a {
     display: block;
@@ -128,6 +171,10 @@
   background: transparent;
   cursor: pointer;
 
+  @include for-tablet-landscape-down {
+    align-self: flex-start;
+  }
+
   &:focus {
     outline: none;
   }
@@ -138,9 +185,9 @@
     margin-right: space(8);
     margin-bottom: 0;
     vertical-align: middle;
-    font-size: pxtorem(20px);
+    font-size: pxtorem(16);
     font-weight: bold;
-    line-height: pxtorem(20px);
+    line-height: pxtorem(16);
     text-decoration: underline;
 
     &:before {

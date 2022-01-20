@@ -6,11 +6,6 @@ export default class UIStore {
   @observable keywordEditOpen: boolean = false;
 
   @action
-  toggleBurgerMenu = () => {
-    this.burgerMenuOpen = !this.burgerMenuOpen;
-  };
-
-  @action
   toggleFeedbackModal = () => {
     this.feedbackModalOpen = !this.feedbackModalOpen;
   };

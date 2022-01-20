@@ -5,7 +5,7 @@
 }
 
 .goog-te-gadget-simple {
-  background-color: $white;
+  background-color: $black;
   border-radius: 4px;
   border: none !important;
   font-size: pxtorem(20px) !important;
@@ -23,14 +23,13 @@
     padding: 6px space(8) !important;
     font-size: pxtorem(16px) !important;
     line-height: pxtorem(16px) !important;
-    color: $black;
   }
 
   &:hover {
     background-color: $black;
 
     span .goog-te-menu-value:before,
-    span .goog-te-menu-value:after, {
+    span .goog-te-menu-value:after {
       color: $white !important;
     }
   }
@@ -45,31 +44,29 @@
 }
 
 .goog-te-menu-value {
+  color: $white !important;
   span {
     display: none;
   }
 
   span &:before {
-    color: $black;
     content: 'Translate';
-    font-family: 'Museo Sans 500', sans-serif;
-    font-size: pxtorem(20px) !important;
+    font-size: pxtorem(20) !important;
     font-weight: 400;
 
     @include for-tablet-landscape-down {
-      font-size: pxtorem(16px) !important;
+      font-size: pxtorem(16) !important;
     }
   }
 
   span &:after {
     content: '\f1ab';
-    font-size: pxtorem(20px) !important;
+    font-size: pxtorem(20) !important;
     font-family: 'Font Awesome 5 Brands', 'Font Awesome 5 Free';
     font-weight: 900;
-    color: $black;
 
     @include for-tablet-landscape-down {
-      font-size: pxtorem(16px) !important;
+      font-size: pxtorem(16) !important;
     }
   }
 }
