@@ -22,6 +22,8 @@
 }
 
 .button {
+  display: inline-flex;
+  align-items: center;
   padding: space(10);
   font-size: pxtorem(20);
   line-height: pxtorem(20);

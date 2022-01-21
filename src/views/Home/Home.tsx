@@ -8,6 +8,7 @@ import './Home.scss';
 import SearchStore from '../../stores/searchStore';
 import CMSStore from '../../stores/CMSStore';
 
+import Banner from '../../components/Banner';
 import BannerSlider from '../../components/BannerSlider';
 import Personas from '../../components/Personas';
 
@@ -25,10 +26,13 @@ const Home: React.FunctionComponent<IProps> = ({ cmsStore }) => {
       <Helmet>
         <title>Home | Help Yourself Sutton</title>
       </Helmet>
-      {cmsStore.home && cmsStore.home.banners && (
-        <BannerSlider header_content={cmsStore.banner} banners={cmsStore.home.banners} />
+      {cmsStore.banner && (
+        <Banner banner={cmsStore.banner} />
       )}
       <Search />
+      {cmsStore.home && cmsStore.home.banners && (
+        <BannerSlider banners={cmsStore.home.banners} />
+      )}
       <Personas personas={SearchStore.personas} />
     </main>
   );
