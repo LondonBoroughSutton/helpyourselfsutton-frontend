@@ -16,7 +16,7 @@ const PersonasCard: React.FunctionComponent<IProps> = ({ persona, url }) => (
       <a
         href={url}
         className="persona-card__link"
-        aria-label={`Go to persona page: ${persona.name}`}></a>
+        aria-label={`Go to persona page: ${persona.name}`}><span className="sr-only">{`Go to persona page: ${persona.name}`}</span></a>
     )}
     <div className="persona-card__image">
       <img

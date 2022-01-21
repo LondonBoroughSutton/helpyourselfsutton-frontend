@@ -6,12 +6,11 @@
 .input {
   @include body-m;
   width: 400px;
-  border: none;
-  padding: space(12);
+  padding: space(16) space(20);
   color: $black;
+  border: 1px solid $black;
   border-radius: 4px;
-  font-size: pxtorem(16px);
-  line-height: 1rem;
+  font-size: pxtorem(18);
   transition: box-shadow $formControlTransitionDuration ease-in-out;
 
   &:focus, &:active {
