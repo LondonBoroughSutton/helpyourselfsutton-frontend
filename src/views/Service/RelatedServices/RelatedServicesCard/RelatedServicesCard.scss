@@ -1,5 +1,5 @@
 @import '../../../../styles/colors.scss';
-@import '../../../../styles/fonts.scss';
+@import '../../../../styles/typography.scss';
 @import '../../../../styles/mixins.scss';
 
 .related-services-card {
@@ -16,8 +16,8 @@
 
   &__info {
     margin-top: space(24);
-    color: $lynch;
-    font-size: $font-body-xs;
+    color: $periwinkle-gray;
+    font-size: $font-body-regular;
     line-height: 17px;
   }
 

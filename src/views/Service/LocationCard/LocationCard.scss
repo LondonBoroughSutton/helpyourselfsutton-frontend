@@ -1,6 +1,6 @@
 @import '../../../styles/mixins.scss';
 @import '../../../styles/colors.scss';
-@import '../../../styles/fonts.scss';
+@import '../../../styles/typography.scss';
 @import '../../../styles/breakpoints.scss';
 
 .location__address {
@@ -71,7 +71,7 @@
 
   button {
     padding: 0;
-    color: $turquoise;
+    color: $fountain-blue;
   }
 
   h3 {

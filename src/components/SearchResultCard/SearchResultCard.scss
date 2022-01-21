@@ -1,7 +1,7 @@
 @import '../../styles/colors.scss';
 @import '../../styles/mixins.scss';
 @import '../../styles/breakpoints.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
 .search-result-card {
   display: flex;
@@ -31,7 +31,7 @@
 }
 
 .search-result-card__organisation {
-  @include heading-s-light;
+  @include heading-s;
   font-weight: normal;
   margin-top: space(8);
 
@@ -78,9 +78,9 @@
   margin-right: space(16);
   margin-bottom: space(16);
   padding: space(8);
-  @include body-xs;
+  @include body-regular;
   line-height: 0.875rem;
-  background-color: $yellow;
+  background-color: $casablanca;
   color: $black;
   border-radius: 4px;
 }
@@ -89,17 +89,13 @@
   margin-right: space(8);
 }
 
-.search-result-card__tag--cost--free {
-  @include fontSize(7px);
-}
-
 .search-result-card__location {
   display: flex;
   margin-bottom: space(12);
 
   h4 {
     margin-left: space(8);
-    font-size: $font-body-xs;
+    font-size: $font-body-regular;
   }
 }
 

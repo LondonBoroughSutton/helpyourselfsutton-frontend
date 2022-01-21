@@ -1,21 +1,14 @@
 @import '../../styles/mixins.scss';
-@import '../../styles/colors.scss';
 @import '../../styles/breakpoints.scss';
+@import '../../styles//typography.scss';
 
 .breadcrumb {
-  position: relative;
-  z-index: 10;
-  
-  > .flex-container {
-    max-width: 1260px;
-  }
+  margin-top: space(32);
+  margin-bottom: space(40);
 
-  &--active {
-    color: $black !important;
-  }
-
-  ul > li:first-child {
-    margin-left: 0 !important;
+  @include for-tablet-portrait-down {
+    margin-top: space(16);
+    margin-bottom: space(24);
   }
 
   ul {
@@ -24,54 +17,17 @@
     list-style-type: none;
     white-space: nowrap;
     overflow: hidden;
-    padding: space(20) space(64);
     text-overflow: ellipsis;
-
-    @include for-tablet-portrait-down {
-      padding: space(16) 0;
-    }
-
-    svg {
-      font-size: pxtorem(20px);
-
-      @include for-phone-only {
-        font-size: pxtorem(16px);
-      }
-    }
-  }
-
-  li {
-    display: inline;
-    font-size: pxtorem(20px) !important;
-    margin: 0;
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    @include for-phone-only {
-      font-size: pxtorem(16px) !important;
-    }
-
-    a {
-      font-size: pxtorem(20px) !important;
-      text-decoration: none;
-
-      @include for-phone-only {
-        font-size: pxtorem(16px) !important;
-      }
-    }
   }
 
   svg {
     margin-left: space(12);
     margin-right: space(12);
-    font-size: pxtorem(16px) !important;
+    font-size: pxtorem(12);
 
     @include for-phone-only {
       margin-left: space(8);
       margin-right: space(8);
-      font-size: pxtorem(14px) !important;
     }
   }
 }

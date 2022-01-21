@@ -23,21 +23,21 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
         <title>Contact | Help Yourself Sutton</title>
       </Helmet>
 
-      <div className="flex-col flex-col--7 flex-col--tablet--8">
+      <div className="flex-col flex-col--7 flex-col--tablet--12">
         <ReactMarkdown children={get(cmsStore, 'contact.content')} />
       </div>
-      <div className="flex-col flex-col--3 flex-col--mobile--12 flex-col--tablet--8 flex-col--tablet-large--4">
+      <div className="flex-col flex-col--3 flex-col--tablet--6">
         <div className="cms--contact-card">
           <h2>Contact</h2>
           <div className="cms--contact-card--row">
-            <h3>
-              <FontAwesomeIcon icon="phone" /> Telephone
+            <h3 className="h5">
+              <FontAwesomeIcon icon="phone-alt" /> Telephone
             </h3>
-            <p>{get(cmsStore, 'global.contact_phone')}</p>
+            <p className="">{get(cmsStore, 'global.contact_phone')}</p>
           </div>
           <div className="cms--contact-card--row">
-            <h3>
-              <FontAwesomeIcon icon="envelope" /> Email
+            <h3 className="h5">
+              <FontAwesomeIcon icon="at" /> Email
             </h3>
             <a
               className="cms--contact-card--email"
@@ -53,7 +53,7 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
               rel="noopener noreferrer"
               aria-label="Help Yourself Sutton Facbook"
             >
-              <FontAwesomeIcon icon={['fab', 'facebook-f']} className="service__social-icon" />
+              <FontAwesomeIcon icon={['fab', 'facebook']} className="service__social-icon" />
             </a>
             <a
               href={`https://twitter.com/${get(cmsStore, 'global.twitter_handle')}`}

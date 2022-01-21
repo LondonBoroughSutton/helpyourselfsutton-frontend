@@ -2,7 +2,7 @@
 @import '../../styles/colors.scss';
 @import '../../styles/grid.scss';
 @import '../../styles/breakpoints.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
 @mixin marginLeft {
   margin-left: pxtorem(60px) !important;
@@ -25,7 +25,7 @@
   position: relative;
   margin-bottom: space(24);
   padding: space(24) space(16);
-  background-color: $yellow;
+  background-color: $casablanca;
   z-index: 10;
 
   @include for-tablet-landscape-up {
@@ -41,7 +41,7 @@
     height: 0; 
     border-left: 38px solid transparent;
     border-right: 38px solid transparent;
-    border-top: 38px solid $yellow;
+    border-top: 38px solid $casablanca;
   }
 }
 

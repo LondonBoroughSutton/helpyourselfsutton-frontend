@@ -5,7 +5,7 @@ import get from 'lodash/get';
 
 import Button from '../Button';
 import InstructionModal from './InstructionModal/InstructionModal';
-import HomeScreenIcon from '../../assets/images/icons/home-screen-icon.svg';
+import HomeScreenIcon from '../../assets/images/icons/home-screen-icon.png';
 import './HomeScreenPrompt.scss';
 
 import ReferralStore from '../../stores/referralStore';
@@ -81,14 +81,14 @@ class HomeScreenPrompt extends Component<any, IState> {
                 </span>
               </div>
               <div className="home-screen-prompt__info">
-                <h3 className="home-screen-prompt__title">Add to homescreen?</h3>
-                <p className="home-screen-prompt__description">
+                <h2 className="home-screen-prompt__title h4">Add to homescreen?</h2>
+                <p>
                   Add this website to your homescreen to quickly access support opportunities
                 </p>
                 <div className="home-screen-prompt__ctas">
                   <Button
                     size="small"
-                    light={true}
+                    alt={true}
                     text="No thanks"
                     type="button"
                     onClick={(e: React.ChangeEvent<HTMLButtonElement>) =>

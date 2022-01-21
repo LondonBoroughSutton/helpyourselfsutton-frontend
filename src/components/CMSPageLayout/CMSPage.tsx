@@ -21,9 +21,7 @@ const CMSPage: React.FunctionComponent<IProps> = ({ title, children, twoColumn, 
     <div className="cms__header">
       <div className="flex-container">
         <div className="flex-col flex-col--12">
-          <div className="cms__title-card">
-            <h1 className="cms__title-card--title">{title}</h1>
-          </div>
+          <h1>{title}</h1>
         </div>
       </div>
     </div>

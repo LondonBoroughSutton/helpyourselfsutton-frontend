@@ -1,7 +1,7 @@
 @import '../../styles/colors.scss';
 @import '../../styles/mixins.scss';
 @import '../../styles/breakpoints.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
 .card {
   position: relative;
@@ -10,15 +10,15 @@
   align-content: center;
   width: 100%;
   min-height: 150px;
-  background-color: $yellow;
+  background-color: $casablanca;
   font-family: $font-primary;
   cursor: pointer;
 
   &:nth-child(2) {
-    background-color: $turquoise;
+    background-color: $fountain-blue;
 
     .card__image::before {
-      background-color: $turquoise;
+      background-color: $fountain-blue;
 
       @include for-tablet-portrait-up {
         left: -1px;
@@ -29,10 +29,10 @@
   }
 
   &:nth-child(3) {
-    background-color: $pink;
+    background-color: $mona-lisa;
 
     .card__image::before {
-      background-color: $pink;
+      background-color: $mona-lisa;
     }
 
     @include for-tablet-portrait-up {
@@ -85,7 +85,7 @@
     height: 100%;
     width: 32px;
     clip-path: polygon(90% 70%, 0 60%, 0 0, 100% 0, 100% 100%, 0 100%, 0 80%);
-    background-color: $yellow;
+    background-color: $casablanca;
     z-index: 10;
 
     @include for-phone-only {

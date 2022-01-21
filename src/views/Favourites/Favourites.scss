@@ -1,7 +1,7 @@
 @import '../../styles/mixins.scss';
 @import '../../styles/colors.scss';
 @import '../../styles/breakpoints.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
 .favourites {
   padding-bottom: space(64);
@@ -19,7 +19,7 @@
 
 .favourites__header {
   padding: space(48) 0;
-  background-color: $turquoise;
+  background-color: $fountain-blue;
 
   &--share-container {
     padding: 0 !important;
@@ -211,7 +211,7 @@
     }
 
     &:focus {
-      border: 2px solid $turquoise;
+      border: 2px solid $fountain-blue;
     }
 
     &--more {

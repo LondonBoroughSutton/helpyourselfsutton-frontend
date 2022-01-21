@@ -3,7 +3,7 @@ import { isIOS } from 'react-device-detect';
 
 import './InstructionModal.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import HomeScreenIcon from '../../../assets/images/icons/home-screen-icon.svg';
+import HomeScreenIcon from '../../../assets/images/icons/home-screen-icon.png';
 
 import Modal from 'react-modal';
 

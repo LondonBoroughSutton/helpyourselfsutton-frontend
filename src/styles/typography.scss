@@ -1,0 +1,258 @@
+@import './mixins.scss';
+@import './breakpoints.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@400&display=swap');
+
+$font-primary: 'Outfit', sans-serif;
+$font-heading: 'Montserrat', sans-serif;
+
+$font-base: pxtorem(16);
+$font-base-mobile: pxtorem(14);
+
+$font-heading-xl: pxtorem(48);
+$font-heading-mobile-xl: pxtorem(32);
+
+$font-heading-l: pxtorem(34);
+$font-heading-mobile-l: pxtorem(26);
+
+$font-heading-m: pxtorem(28);
+$font-heading-mobile-m: pxtorem(22);
+
+$font-heading-s: pxtorem(24);
+$font-heading-mobile-s: pxtorem(20);
+
+$font-heading-xs: pxtorem(20);
+$font-heading-mobile-xs: pxtorem(18);
+
+$font-body-xl: pxtorem(34);
+$font-body-mobile-xl: pxtorem(26);
+
+$font-body-l: pxtorem(24);
+$font-body-mobile-l: pxtorem(20);
+
+$font-body-m: pxtorem(18);
+$font-body-mobile-m: pxtorem(16);
+
+$font-body-regular: $font-base;
+$font-body-mobile-regular: $font-base-mobile;
+
+$font-body-s: pxtorem(14);
+$font-body-mobile-s: pxtorem(12);
+
+$font-breadcrumb: pxtorem(12);
+$font-breadcrumb-mobile: pxtorem(10);
+
+$font-link-medium: pxtorem(20);
+
+/* Headings */
+@mixin heading-xl {
+  font-size: $font-heading-xl;
+  font-family: $font-heading;
+  font-weight: 700;
+  line-height: 3.5rem;
+
+  @include for-phone-only {
+    font-size: $font-heading-mobile-xl;
+    line-height: 2.5rem;
+  }
+}
+
+@mixin heading-l {
+  font-size: $font-heading-l;
+  font-family: $font-heading;
+  font-weight: 700;
+  line-height: 2.5rem;
+
+  @include for-phone-only {
+    font-size: $font-heading-mobile-l;
+    line-height: 2rem;
+  }
+}
+
+@mixin heading-m {
+  font-size: $font-heading-m;
+  font-family: $font-heading;
+  font-weight: 700;
+  line-height: 2rem;
+
+  @include for-phone-only {
+    font-size: $font-heading-mobile-m;
+    line-height: 1.75rem;
+  }
+}
+
+@mixin heading-s {
+  font-size: $font-heading-s;
+  font-family: $font-heading;
+  font-weight: 700;
+  line-height: 1.22;
+
+  @include for-phone-only {
+    font-size: $font-heading-mobile-s;
+  }
+}
+
+@mixin heading-xs {
+  font-size: $font-heading-xs;
+  font-family: $font-heading;
+  font-weight: 700;
+  line-height: 1.22;
+
+  @include for-phone-only {
+    font-size: $font-heading-mobile-xs;
+  }
+}
+
+/* Font mixins */
+@mixin body-xl {
+  font-size: $font-body-xl;
+  font-family: $font-primary;
+  font-weight: 400;
+  line-height: 1rem;
+
+  @include for-phone-only {
+    font-size: $font-body-mobile-xl;
+    line-height: 1.38;
+  }
+}
+
+@mixin body-l {
+  font-size: $font-body-l;
+  font-family: $font-primary;
+  font-weight: 400;
+  line-height: 1rem;
+
+  @include for-phone-only {
+    font-size: $font-body-mobile-l;
+    line-height: 1.38;
+  }
+}
+
+@mixin body-m {
+  font-size: $font-body-m;
+  font-family: $font-primary;
+  font-weight: 400;
+  line-height: 1rem;
+
+  @include for-phone-only {
+    font-size: $font-body-mobile-m;
+  }
+}
+
+@mixin body-regular {
+  font-size: $font-body-regular;
+  font-family: $font-primary;
+  font-weight: 400;
+  line-height: 1.5rem;
+
+  @include for-phone-only {
+    font-size: $font-body-mobile-regular;
+  }
+}
+@mixin body-s {
+  font-size: $font-body-s;
+  font-family: $font-primary;
+  font-weight: 400;
+  line-height: 1.25rem;
+
+  @include for-phone-only {
+    font-size: $font-body-mobile-s;
+  }
+}
+
+@mixin link-header {
+  font-size: $font-heading-xs;
+  font-family: $font-heading;
+  font-weight: 600;
+
+  @include for-tablet-landscape-down {
+    font-size: $font-heading-mobile-xs;
+  }
+}
+
+@mixin link-large {
+  font-size: $font-heading-xs;
+  font-family: $font-primary;
+  font-weight: 400;
+
+  @include for-phone-only {
+    font-size: $font-heading-mobile-xs;
+  }
+}
+
+@mixin link-medium {
+  font-size: $font-link-medium;
+  font-family: $font-primary;
+  font-weight: 400;
+}
+
+@mixin breadcrumb {
+  font-size: $font-breadcrumb;
+  font-family: $font-primary;
+  font-weight: 400;
+
+  @include for-phone-only {
+    font-size: $font-breadcrumb-mobile;
+  }
+}
+
+/* Resets */
+html{ 
+  font-size: 16px;/*for using REM units*/
+}
+body{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #000;
+}
+
+/* Type styles */
+h1,
+.h1 {
+  @include heading-xl;
+}
+
+h2,
+.h2 {
+  @include heading-l;
+}
+
+h3,
+.h3 {
+  @include heading-m;
+}
+
+h4,
+.h4 {
+  @include heading-s;
+}
+
+h5,
+.h5 {
+  @include heading-xs;
+}
+
+h6,
+a,
+button,
+p {
+  @include body-regular;
+}
+
+.body {
+  @include body-regular;
+
+  &--l {
+    @include body-l;
+  }
+
+  &--m {
+    @include body-m;
+  }
+
+  &--s {
+    @include body-regular;
+  }
+}

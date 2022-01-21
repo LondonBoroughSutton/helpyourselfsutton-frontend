@@ -1,12 +1,12 @@
 @import '../../styles/mixins.scss';
 @import '../../styles/colors.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 @import '../../styles/breakpoints.scss';
 
 .service__header {
   position: relative;
   padding-bottom: space(24);
-  background: linear-gradient(to bottom, $white 0%, $white 50%, $light-turquoise 50%,$light-turquoise 100%);
+  background: linear-gradient(to bottom, $white 0%, $white 50%, $peach 50%,$peach 100%);
 
   .flex-container {
     max-width: 1260px;
@@ -20,7 +20,7 @@
     flex: 0 0 100%;
     position: relative;
     padding: space(32) space(48);
-    background-color: $yellow;
+    background-color: $casablanca;
     
     @media(min-width: 426px) {
       display: flex;
@@ -44,14 +44,14 @@
       height: 0; 
       border-left: 38px solid transparent;
       border-right: 38px solid transparent;
-      border-top: 38px solid $yellow;
+      border-top: 38px solid $casablanca;
   
       @include for-tablet-portrait-down {
         bottom: -20px;
         right: space(20);
         border-left: 20px solid transparent;
         border-right: 20px solid transparent;
-        border-top: 20px solid $yellow;
+        border-top: 20px solid $casablanca;
       }
     }
   }
@@ -143,7 +143,7 @@
 .service__info {
   position: relative;
   padding: space(48) 0 space(64) 0 !important;
-  background-color: $light-turquoise;
+  background-color: $peach;
   color: $black;
 
   @include for-phone-only {
@@ -181,7 +181,7 @@
 }
 
 .service__info__cost {
-  background-color: $turquoise !important;
+  background-color: $fountain-blue !important;
   border-radius: 20px;
 
   &.criteria_card {
@@ -208,11 +208,11 @@
 }
 
 .react-player__shadow {
-  background-color: $pink !important;
+  background-color: $mona-lisa !important;
 }
 
 .service__referral {
-  background-color: $yellow;
+  background-color: $casablanca;
   padding: space(32) !important;
   position: relative;
 
@@ -236,7 +236,7 @@
 
 .service__markdown {
   &--intro {
-    border-left: 10px solid $lynch;
+    border-left: 10px solid $periwinkle-gray;
     padding: space(16) 0 space(16) space(20);
     
 
@@ -258,7 +258,7 @@
       &:before {
         content: '•';
         margin: 0 pxtorem(4px);
-        color: $pink;
+        color: $mona-lisa;
       }
     }
 
@@ -464,7 +464,7 @@
     align-items: center;
     justify-content: center;
     flex: 0 0 160px;
-    background-color: $pink;
+    background-color: $mona-lisa;
 
     &::after {
       content: "";
@@ -476,12 +476,12 @@
       height: 0; 
       border-top: 24px solid transparent;
       border-bottom: 24px solid transparent;
-      border-left: 24px solid $pink;
+      border-left: 24px solid $mona-lisa;
   
       @include for-tablet-portrait-down {
         border-top: 24px solid transparent;
       border-bottom: 24px solid transparent;
-      border-left: 24px solid $pink;
+      border-left: 24px solid $mona-lisa;
       }
     }
   }
@@ -572,7 +572,7 @@
 .service__contact-card {
   position: relative;
   padding: space(24) !important;
-  background-color: $yellow;
+  background-color: $casablanca;
 
   &::before {
     content: "";
@@ -584,14 +584,14 @@
     height: 0; 
     border-left: 38px solid transparent;
     border-right: 38px solid transparent;
-    border-bottom: 38px solid $yellow;
+    border-bottom: 38px solid $casablanca;
 
     @include for-tablet-portrait-down {
       top: -20px;
       right: space(20);
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
-      border-bottom: 20px solid $yellow;
+      border-bottom: 20px solid $casablanca;
     }
   }
 
@@ -638,7 +638,7 @@
 
 .service__share-card {
   padding: space(20);
-  background-color: $turquoise;
+  background-color: $fountain-blue;
   border-radius: 20px;
   text-align: center;
   
