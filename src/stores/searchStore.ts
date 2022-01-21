@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { makeObservable, observable, action } from 'mobx';
 import axios from 'axios';
 import get from 'lodash/get';
 import partition from 'lodash/partition';
@@ -15,6 +15,7 @@ class SearchStore {
   @observable covidCategories: ICategory[] = [];
 
   constructor() {
+    makeObservable(this);
     this.getCategories();
     this.getPersonas();
   }
@@ -56,8 +57,6 @@ class SearchStore {
     try {
       const personas = await axios.get(`${apiBase}/collections/personas`);
       let personasList = get(personas, 'data.data', []);
-      personasList = personasList.filter((persona: any) => persona.enabled === true).splice(0, 3);
-
       this.personas = personasList;
     } catch (e) {
       console.error(e);

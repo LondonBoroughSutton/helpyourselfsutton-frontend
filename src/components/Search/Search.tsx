@@ -180,13 +180,6 @@ class Search extends React.Component<IProps> {
                 )}
               </div>
             </form>
-
-            {!isMobile && (
-              <CategoryList
-                categories={SearchStore.categories}
-                title={get(cmsStore, 'home.categories_title')}
-              />
-            )}
           </div>
         </section>
       </Fragment>

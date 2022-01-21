@@ -43,6 +43,7 @@ body {
   justify-content: space-between;
   margin: 0 auto;
   padding: 0 $base-margin;
+  box-sizing: content-box;
 
   @include for-mobile-up {
     padding: 0 $base-margin * 2;

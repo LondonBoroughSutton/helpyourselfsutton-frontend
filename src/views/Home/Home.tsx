@@ -1,7 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { inject, observer } from 'mobx-react';
-import Search from '../../components/Search';
 
 import './Home.scss';
 
@@ -9,7 +8,8 @@ import SearchStore from '../../stores/searchStore';
 import CMSStore from '../../stores/CMSStore';
 
 import Banner from '../../components/Banner';
-import BannerSlider from '../../components/BannerSlider';
+import Search from '../../components/Search';
+import CategoryList from '../../components/CategoryList';
 import Personas from '../../components/Personas';
 
 interface IProps {
@@ -30,8 +30,11 @@ const Home: React.FunctionComponent<IProps> = ({ cmsStore }) => {
         <Banner banner={cmsStore.banner} />
       )}
       <Search />
-      {cmsStore.home && cmsStore.home.banners && (
-        <BannerSlider banners={cmsStore.home.banners} />
+      {cmsStore.home && (
+        <CategoryList
+          categories={SearchStore.categories}
+          title={cmsStore.home.categories_title}
+        />
       )}
       <Personas personas={SearchStore.personas} />
     </main>
