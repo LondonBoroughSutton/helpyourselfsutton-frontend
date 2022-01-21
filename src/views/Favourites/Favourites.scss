@@ -18,7 +18,7 @@
   background-color: $link-water;
 
   @include for-tablet-landscape-down {
-    padding: space(32) 0;
+    padding: space(24) 0 0;
   }
 }
 
@@ -202,19 +202,6 @@
   @include for-tablet-portrait-down {
     margin: space(16) 0 !important;
     padding: 0 space(24) !important;
-  }
-}
-
-.favourites__add-more {
-  margin-top: space(64);
-
-  @include for-phone-only {
-    margin-top: space(32);
-    padding: space(32) !important;
-
-    button {
-      font-size: pxtorem(18px);
-    }
   }
 }
 
