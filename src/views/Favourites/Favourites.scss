@@ -5,91 +5,35 @@
 
 .favourites {
   padding-bottom: space(64);
+  border-bottom: 2px solid $black;
 
   @include for-phone-only {
     padding-bottom: space(32);
   }
-
-  &--container {
-    @include for-tablet-portrait-up {
-      padding: 0 !important;
-    }
-  }
 }
 
 .favourites__header {
+  width: 100%;
   padding: space(48) 0;
-  background-color: $fountain-blue;
+  background-color: $link-water;
 
-  &--share-container {
-    padding: 0 !important;
+  @include for-tablet-landscape-down {
+    padding: space(32) 0;
   }
+}
 
-  &--heading {
-    margin-bottom: space(16) !important;
+.favourites__title {
+  margin-bottom: space(16);
+}
 
-    h1 {
-      margin-bottom: space(8) !important;
-    }
-
-    @include for-phone-only {
-      h1 {
-        font-size: $font-body-l;
-      }
-    }
+.favourites__share__nav {
+  > a {
+    margin-right: space(12);
   }
+}
 
-  &--header-container {
-    flex-wrap: wrap;
-    background-color: $white;
-    padding: space(16);
-    color: $black;
-
-    &:first-of-type {
-      margin-right: space(16);
-    }
-
-    @include for-tablet-portrait-down {
-      padding: 0 !important;
-    }
-  }
-
-  &--inner-container {
-    justify-content: flex-start !important;
-    width: 100%;
-    padding: 0 !important;
-  }
-
-  &--share {
-    margin-right: space(24);
-    color: $black;
-
-    @include for-tablet-portrait-down {
-      text-align: center;
-      margin-top: space(16);
-    }
-
-    p {
-      display: inline;
-      margin-right: space(8);
-    }
-
-    svg {
-      margin: 0 space(10);
-    }
-  }
-
-  &--print {
-    @include for-tablet-portrait-down {
-      text-align: center;
-      margin: space(16) 0;
-    }
-
-    button {
-      color: $black;
-      font-weight: normal !important;
-    }
-  }
+.favourites__share__print {
+  margin-left: space(16);
 }
 
 .favourites__logo {

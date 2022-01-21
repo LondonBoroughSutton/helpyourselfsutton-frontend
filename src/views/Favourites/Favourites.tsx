@@ -53,11 +53,11 @@ class Favourites extends Component<IProps> {
         />
         <div className="favourites__header">
           <div className="flex-container flex-container--align-center">
-            <div className="flex-col flex-col--6 favourites__header--heading">
-              <h1>{get(cmsStore, 'favourites.title')}</h1>
+            <div className="flex-col flex-col--6">
+              <h1 className="favourites__title">{get(cmsStore, 'favourites.title')}</h1>
               <p>{get(cmsStore, 'favourites.content')}</p>
             </div>
-            <div className="flex-col flex-col--6 flex-col--tablet--12 mobile-hide tablet-hide favourites__header--header-container">
+            <div className="flex-col flex-col--tablet--12 mobile-hide tablet-hide">
               <FavouriteShare />
             </div>
           </div>

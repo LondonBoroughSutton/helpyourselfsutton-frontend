@@ -30,7 +30,8 @@
   border: 2px solid $black;
   border-radius: 4px;
   box-sizing: border-box;
-  transition: all $formControlTransitionDuration ease-in-out;
+  transition: box-shadow $formControlTransitionDuration ease-in-out;
+  will-change: box-shadow;
 
   @include for-tablet-landscape-down {
     padding: space(8) space(10);
@@ -44,7 +45,6 @@
 
   &:hover {
     box-shadow: 0 2px 4px 0 rgba(56, 56, 56, 0.5);
-    cursor: pointer;
   }
 
   &:focus, &:active {
