@@ -1,0 +1,50 @@
+@import '../../styles/breakpoints.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/typography.scss';
+
+.banner-slider {
+  padding: space(40) 0;
+  background-color: $botticelli;
+
+  > .flex-container {
+    max-width: 1050px;
+  }
+
+  &__items {
+    position: relative;
+  }
+
+  &__item {
+    display: none;
+    padding: space(48);
+    background-color: $white;
+    border-radius: 40px;
+
+    @include for-tablet-portrait-down {
+      padding: space(32);
+    }
+
+    @include for-phone-only {
+      padding: space(16);
+    }
+
+    &--active {
+      display: block;
+    }
+
+    &__title {
+      margin-bottom: space(16);
+    }
+  
+    &__description {
+      p {
+        @include body-l;
+      }
+    }
+  
+    &__cta {
+      margin-top: space(24);
+    }
+  }
+}

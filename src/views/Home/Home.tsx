@@ -12,6 +12,7 @@ import Search from '../../components/Search';
 import CategoryList from '../../components/CategoryList';
 import Personas from '../../components/Personas';
 import LandingPages from '../../components/LandingPages';
+import BannerSlider from '../../components/BannerSlider';
 
 interface IProps {
   cmsStore: CMSStore;
@@ -31,6 +32,9 @@ const Home: React.FunctionComponent<IProps> = ({ cmsStore }) => {
         <Banner banner={cmsStore.banner} />
       )}
       <Search />
+      {cmsStore.home && (
+        <BannerSlider banners={cmsStore.home.banners} />
+      )}
       <LandingPages />
       {cmsStore.home && (
         <CategoryList
