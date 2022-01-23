@@ -15,7 +15,7 @@ const BannerSlider: FunctionComponent<IProps> = ({ banners = [] }) => {
 
   return (
     <section className="banner-slider">
-      <div className="flex-container flex-container--justify flex-container--mobile-no-padding">
+      <div className="flex-container flex-container--justify">
         {banners.length && (
           <div className="banner-slider__items">
             {banners.map((banner, i) => (
