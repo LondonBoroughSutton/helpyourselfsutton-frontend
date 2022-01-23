@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { observer, inject } from 'mobx-react';
 import map from 'lodash/map';
 import { withRouter, RouteComponentProps } from 'react-router';
-import cx from 'classnames';
 import get from 'lodash/get';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

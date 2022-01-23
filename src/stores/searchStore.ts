@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from 'mobx';
+import { makeObservable, observable, runInAction, action } from 'mobx';
 import axios from 'axios';
 import get from 'lodash/get';
 import partition from 'lodash/partition';
@@ -45,8 +45,10 @@ class SearchStore {
       // sanitize category names by removing keyword for sorting
       covidCategories.forEach(category => (category.name = category.name.replace('COVID-19:', '')));
 
-      this.categories = normalCategories;
-      this.covidCategories = covidCategories;
+      runInAction(() => {
+        this.categories = normalCategories;
+        this.covidCategories = covidCategories;
+      });
     } catch (e) {
       console.error(e);
     }
@@ -57,7 +59,9 @@ class SearchStore {
     try {
       const personas = await axios.get(`${apiBase}/collections/personas`);
       let personasList = get(personas, 'data.data', []);
-      this.personas = personasList;
+      runInAction(() => {
+        this.personas = personasList;
+      });
     } catch (e) {
       console.error(e);
     }
