@@ -1,15 +1,18 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { inject, observer } from 'mobx-react';
-import Search from '../../components/Search';
 
 import './Home.scss';
 
 import SearchStore from '../../stores/searchStore';
 import CMSStore from '../../stores/CMSStore';
 
-import BannerSlider from '../../components/BannerSlider';
+import Banner from '../../components/Banner';
+import Search from '../../components/Search';
+import CategoryList from '../../components/CategoryList';
 import Personas from '../../components/Personas';
+import LandingPages from '../../components/LandingPages';
+import BannerSlider from '../../components/BannerSlider';
 
 interface IProps {
   cmsStore: CMSStore;
@@ -25,10 +28,20 @@ const Home: React.FunctionComponent<IProps> = ({ cmsStore }) => {
       <Helmet>
         <title>Home | Help Yourself Sutton</title>
       </Helmet>
-      {cmsStore.home && cmsStore.home.banners && (
-        <BannerSlider header_content={cmsStore.banner} banners={cmsStore.home.banners} />
+      {cmsStore.banner && (
+        <Banner banner={cmsStore.banner} />
       )}
       <Search />
+      {cmsStore.home && (
+        <BannerSlider banners={cmsStore.home.banners} />
+      )}
+      <LandingPages />
+      {cmsStore.home && (
+        <CategoryList
+          categories={SearchStore.categories}
+          title={cmsStore.home.categories_title}
+        />
+      )}
       <Personas personas={SearchStore.personas} />
     </main>
   );
