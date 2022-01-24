@@ -21,14 +21,14 @@ function LandingPage(props: any) {
       <section className="landing-page__overview">
         <div className="flex-container">
           {console.log(props.content.content)}
-          <div className="flex-col flex-col--7">
+          <div className="flex-col flex-col--7 landing-page__intro">
             {props.content.title && (
               <h1 className="landing-page__heading">{props.content.title}</h1>
             )}
-            {props.content.content.introduction && (
+            {props.content.content.introduction.copy && (
               <ReactMarkdown
-                children={props.content.content.introduction.copy}
-                className="landing-page__intro"
+                children={props.content.content.introduction.copy[0]}
+                className="landing-page__content"
               />
             )}
           </div>
@@ -37,7 +37,7 @@ function LandingPage(props: any) {
               <img alt="" className="landing-page__image" src="https://via.placeholder.com/435x240.png" />
             )}
           </div>
-          <div className="flex-col flex-col--7">
+          <div className="flex-col flex-col--7 landing-page__about">
             {props.content.content.about.copy[0] && (
               <ReactMarkdown
                 children={props.content.content.about.copy[0]}
@@ -47,7 +47,7 @@ function LandingPage(props: any) {
             {props.content.content.about.copy[1] && (
               <ReactMarkdown
                 children={props.content.content.about.copy[1]}
-                className="landing-page__about"
+                className="landing-page__content"
               />
             )}
           </div>

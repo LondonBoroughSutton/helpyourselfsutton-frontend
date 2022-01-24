@@ -8,10 +8,11 @@
 }
 
 .landing-page__heading {
-  margin-bottom: space(24);
+  margin-bottom: space(32);
+  @include heading-xl;
 }
 
-.landing-page__intro {
+.landing-page__content {
   margin-bottom: space(48);
 
   p {
@@ -24,8 +25,7 @@
   border-radius: 40px;
 }
 
+.landing-page__intro,
 .landing-page__about {
-  p {
-    @include body-l;
-  }
+  padding-right: space(40);
 }
