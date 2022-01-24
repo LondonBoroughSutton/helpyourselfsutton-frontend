@@ -41,7 +41,7 @@ function LandingPage(props: any) {
             {props.content.content.about.copy[0] && (
               <ReactMarkdown
                 children={props.content.content.about.copy[0]}
-                className="landing-page__heading"
+                className="landing-page__sub-heading"
               />
             )}
             {props.content.content.about.copy[1] && (
@@ -52,7 +52,22 @@ function LandingPage(props: any) {
             )}
           </div>
           <div className="flex-col flex-col--5">
-            <h2 className="landing-page__heading">Contact</h2>
+            <h2 className="landing-page__sub-heading">Contact</h2>
+            <div className="landing-page__contact">
+              <div className="landing-page__contact__item">
+                <h3 className="h4 landing-page__contact__item__title">Telephone</h3>
+                <a
+                  href="#"
+                  className="landing-page__contact__item__link">123456789</a>
+              </div>
+              <div className="landing-page__contact__item">
+                <h3
+                  className="h4 landing-page__contact__item__title">Email</h3>
+                <a
+                  href="#"
+                  className="landing-page__contact__item__link">test@test.com</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
