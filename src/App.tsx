@@ -24,6 +24,7 @@ import FeedbackModal from './components/FeedbackModal';
 import HomeScreenPrompt from './components/HomeScreenPrompt';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import CookieBanner from './components/CookieBanner';
+import PageStore from './stores/pageStore';
 
 // add all free font awesome icons to project
 library.add(fas, fab);
@@ -37,6 +38,7 @@ const organisationStore = new OrganisationStore();
 const favouritesStore = new FavouritesStore();
 const cmsStore = new CMSStore();
 const referralStore = new ReferralStore();
+const pageStore = new PageStore();
 
 // Views
 const Home = lazy(() => import('./views/Home/Home'));
@@ -51,7 +53,7 @@ const Contact = lazy(() => import('./views/Contact'));
 const GetInvolved = lazy(() => import('./views/GetInvolved'));
 const Privacy = lazy(() => import('./views/Privacy'));
 const DutyToRefer = lazy(() => import('./views/DutyToRefer'));
-const LandingPage = lazy(() => import('./views/LandingPage/LandingPage'));
+const Page = lazy(() => import('./views/Page/Page'));
 
 class App extends Component {
   componentDidMount() {
@@ -69,6 +71,7 @@ class App extends Component {
         favouritesStore={favouritesStore}
         cmsStore={cmsStore}
         referralStore={referralStore}
+        pageStore={pageStore}
       >
         <Router>
           <ScrollToTop>
@@ -87,7 +90,7 @@ class App extends Component {
                 <Route path="/terms-and-conditions" component={Terms} />
                 <Route path="/duty-to-refer" component={DutyToRefer} />
                 <Route path="/organisations/:organisation" component={Organisation} />
-                <Route path="/*" component={LandingPage} />
+                <Route path="/:page" component={Page} />
                 <Route component={NotFound} />
               </Switch>
             </Suspense>

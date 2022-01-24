@@ -1,0 +1,31 @@
+@import '../../styles/breakpoints.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/typography.scss';
+
+.landing-page__overview {
+  padding: space(40) 0;
+}
+
+.landing-page__heading {
+  margin-bottom: space(24);
+}
+
+.landing-page__intro {
+  margin-bottom: space(48);
+
+  p {
+    @include body-l;
+  }
+}
+
+.landing-page__image {
+  margin-bottom: space(32);
+  border-radius: 40px;
+}
+
+.landing-page__about {
+  p {
+    @include body-l;
+  }
+}
