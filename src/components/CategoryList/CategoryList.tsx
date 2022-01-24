@@ -25,32 +25,33 @@ const CategoryList: React.FunctionComponent<IProps> = ({
   covid = false,
   title,
 }) => (
-  <div className="category-list">
-    {title && <h3 className="category-list__heading">{title}</h3>}
-    <div className="category-list__items">
-      {categories.map(({ name, id, icon }) => {
-        const image = requestImageFile(`./${name.replace(/[, ]+/g, '-').toLowerCase()}.svg`)
-          .default;
+  <section className="category-list">
+    <div className="flex-container">
+      {title && <h2 className="category-list__heading h4">{title}</h2>}
+      <div className="category-list__items">
+        {categories.map(({ name, id }) => {
+          const image = requestImageFile(`./${name.replace(/[, ]+/g, '-').toLowerCase()}.svg`).default;
 
-        return (
-          <Button
-            category={true}
-            text={name}
-            key={id}
-            size="small"
-            image={image}
-            onClick={() => {
-              history.push({
-                pathname: '/results',
-                search: `?category=${id}`,
-              });
-            }}
-            covid={covid}
-          />
-        );
-      })}
+          return (
+            <Button
+              category={true}
+              text={name}
+              key={id}
+              size="small"
+              image={image}
+              onClick={() => {
+                history.push({
+                  pathname: '/results',
+                  search: `?category=${id}`,
+                });
+              }}
+              covid={covid}
+            />
+          );
+        })}
+      </div>
     </div>
-  </div>
+  </section>
 );
 
 export default withRouter(observer(CategoryList));

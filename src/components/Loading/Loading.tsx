@@ -8,6 +8,7 @@ import './Loading.scss';
 const Loading: React.FunctionComponent = () => (
   <div className="flex-container flex-container--justify">
     <ReactSVG src={Spinner} className="loading" />
+    <p>Loading...</p>
   </div>
 );
 

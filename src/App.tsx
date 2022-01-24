@@ -19,12 +19,14 @@ import OrganisationStore from './stores/organisationStore';
 import FavouritesStore from './stores/favouritesStore';
 import CMSStore from './stores/CMSStore';
 import ReferralStore from './stores/referralStore';
+import PageStore from './stores/pageStore';
+
 import Terms from './views/Terms';
 import FeedbackModal from './components/FeedbackModal';
 import HomeScreenPrompt from './components/HomeScreenPrompt';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import CookieBanner from './components/CookieBanner';
-import PageStore from './stores/pageStore';
+import Loading from './components/Loading';
 
 // add all free font awesome icons to project
 library.add(fas, fab);
@@ -76,7 +78,7 @@ class App extends Component {
         <Router>
           <ScrollToTop>
             <Header />
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loading />}>
               <Switch>
                 <Route path="/" exact={true} component={Home} />
                 <Route path="/results" component={Results} />
