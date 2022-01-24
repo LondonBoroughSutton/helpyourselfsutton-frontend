@@ -51,6 +51,7 @@ const Contact = lazy(() => import('./views/Contact'));
 const GetInvolved = lazy(() => import('./views/GetInvolved'));
 const Privacy = lazy(() => import('./views/Privacy'));
 const DutyToRefer = lazy(() => import('./views/DutyToRefer'));
+const LandingPage = lazy(() => import('./views/LandingPage/LandingPage'));
 
 class App extends Component {
   componentDidMount() {
@@ -86,6 +87,7 @@ class App extends Component {
                 <Route path="/terms-and-conditions" component={Terms} />
                 <Route path="/duty-to-refer" component={DutyToRefer} />
                 <Route path="/organisations/:organisation" component={Organisation} />
+                <Route path="/*" component={LandingPage} />
                 <Route component={NotFound} />
               </Switch>
             </Suspense>
