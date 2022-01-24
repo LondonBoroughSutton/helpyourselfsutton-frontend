@@ -6,6 +6,11 @@ import './LandingPage.scss';
 
 import Breadcrumb from '../../components/Breadcrumb';
 
+// Import assets
+import servicesIllo1 from '../../assets/images/lady-walking-a-dog.svg';
+import servicesIllo2 from '../../assets/images/aeroplane-flying.svg';
+import Button from '../../components/Button';
+
 function LandingPage(props: any) {
   return (
     <main className="landing-page">
@@ -72,18 +77,76 @@ function LandingPage(props: any) {
         </div>
       </section>
       
-      {props.content.content.children && (
+      {props.content.children.length && (
         <section className="landing-page__information">
           <div className="flex-container">
-            {props.content.content.info_pages.title && (
-              <h2 className="landing-page__sub-heading">{props.content.content.info_pages.title}</h2>
-            )}
-            {props.content.content.info_pages.copy[0] && (
-              <ReactMarkdown
-                children={props.content.content.info_pages.copy[0]}
-                className="landing-page__content"
-              />
-            )}
+            <div className="flex-col flex-col--12">
+              {props.content.content.info_pages.title && (
+                <h2 className="landing-page__sub-heading">{props.content.content.info_pages.title}</h2>
+              )}
+              {props.content.content.info_pages.copy[0] && (
+                <ReactMarkdown
+                  children={props.content.content.info_pages.copy[0]}
+                  className="landing-page__content"
+                />
+              )}
+            </div>
+            <div className="flex-col flex-col--12 landing-page__pages">
+              {props.content.children.map((page: { id: string; title: string; }) => {
+                return (
+                  <Button
+                    category={true}
+                    text={page.title}
+                    key={page.id}
+                    size="small"
+                    onClick={() => {}}
+                  />
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {props.content.collections && (
+        <section className="landing-page__services">
+          <div className="flex-container landing-page__services--wrapper">
+            <div className="flex-col flex-col--12">
+              {props.content.content.collections.title && (
+                <h2 className="landing-page__sub-heading">{props.content.content.collections.title}</h2>
+              )}
+              {props.content.content.collections.copy[0] && (
+                <ReactMarkdown
+                  children={props.content.content.collections.copy[0]}
+                  className="landing-page__content"
+                />
+              )}
+            </div>
+            <div className="flex-col flex-col--12 landing-page__collections">
+              {props.content.collections.map((page: any) => {
+                return (
+                  <Button
+                    category={true}
+                    text={page.title}
+                    key={page.id}
+                    size="small"
+                    onClick={() => {}}
+                  />
+                )
+              })}
+            </div>
+          </div>
+          <div className="flex-col flex-container">
+            <div className="landing-page__illustrations">
+              <img
+                src={servicesIllo1}
+                className="image"
+                alt="Lady walking a dog" />
+              <img
+                src={servicesIllo2}
+                className="image"
+                alt="Lady walking a dog" />
+            </div>
           </div>
         </section>
       )}
