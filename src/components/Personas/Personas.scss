@@ -6,8 +6,9 @@
 .personas {
   padding-top: space(40);
   background-color: $botticelli;
+  overflow: hidden;
 
-  > .flex-container {
+  &__content {
     max-width: 1050px;
   }
 
@@ -57,20 +58,21 @@
   }
 
   &__image {
-    margin-left: auto;
-    margin-right: space(120);
+    margin-top: -160px;
+    transform: translateX(-64px);
 
     @include for-tablet-landscape-down {
-      margin-right: space(80);
+      margin-top: -120px;
     }
 
     @include for-phone-only {
-      margin-right: space(24);
+      margin-top: -16px;
+      transform: translateX(-32px);
     }
 
     .image {
       @include for-tablet-landscape-down {
-        max-height: 200px;
+        max-height: 320px;
       }
 
       @include for-phone-only {

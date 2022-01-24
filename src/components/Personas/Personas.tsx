@@ -7,7 +7,7 @@ import PersonasCard from '../PersonasCard';
 import { IPersona } from '../../types/types';
 import CMSStore from '../../stores/CMSStore';
 
-import personasImage from '../../assets/images/personas-man.svg';
+import personasImage from '../../assets/images/personas-image.svg';
 
 interface IProps extends RouteComponentProps {
   personas: IPersona[];
@@ -21,7 +21,7 @@ const Personas: React.FunctionComponent<IProps> = ({ personas, history, cmsStore
 
   return (
     <section className="personas">
-      <div className="flex-container">
+      <div className="flex-container personas__content">
         <div className="personas__intro">
           {cmsStore.home.personas_title && (
             <h2 className="personas__heading">{cmsStore.home.personas_title}</h2>
@@ -40,13 +40,12 @@ const Personas: React.FunctionComponent<IProps> = ({ personas, history, cmsStore
             />
           ))}
         </div>
-
-        <div className="personas__image">
-          <img
-            src={personasImage}
-            className="image"
-            alt="A man walking" />
-        </div>
+      </div>
+      <div className="personas__image flex-container">
+        <img
+          src={personasImage}
+          className="image"
+          alt="A man walking" />
       </div>
     </section>
   );
