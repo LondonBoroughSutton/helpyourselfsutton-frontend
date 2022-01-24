@@ -71,6 +71,22 @@ function LandingPage(props: any) {
           </div>
         </div>
       </section>
+      
+      {props.content.content.children && (
+        <section className="landing-page__information">
+          <div className="flex-container">
+            {props.content.content.info_pages.title && (
+              <h2 className="landing-page__sub-heading">{props.content.content.info_pages.title}</h2>
+            )}
+            {props.content.content.info_pages.copy[0] && (
+              <ReactMarkdown
+                children={props.content.content.info_pages.copy[0]}
+                className="landing-page__content"
+              />
+            )}
+          </div>
+        </section>
+      )}
     </main>
   )
 };

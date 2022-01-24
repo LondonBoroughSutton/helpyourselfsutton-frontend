@@ -11,6 +11,15 @@
   }
 }
 
+.landing-page__information {
+  padding: space(56) 0;
+  background-color: $casablanca;
+
+  .landing-page__content {
+    max-width: 1050px;
+  }
+}
+
 .landing-page__heading {
   margin-bottom: space(32);
   @include heading-xl;
