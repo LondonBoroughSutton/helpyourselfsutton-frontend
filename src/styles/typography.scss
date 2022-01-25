@@ -9,8 +9,11 @@ $font-heading: 'Montserrat', sans-serif;
 $font-base: pxtorem(16);
 $font-base-mobile: pxtorem(14);
 
-$font-heading-xl: pxtorem(48);
-$font-heading-mobile-xl: pxtorem(32);
+$font-heading-xxl: pxtorem(48);
+$font-heading-mobile-xxl: pxtorem(32);
+
+$font-heading-xl: pxtorem(42);
+$font-heading-mobile-xl: pxtorem(28);
 
 $font-heading-l: pxtorem(34);
 $font-heading-mobile-l: pxtorem(26);
@@ -45,15 +48,27 @@ $font-breadcrumb-mobile: pxtorem(10);
 $font-link-medium: pxtorem(20);
 
 /* Headings */
-@mixin heading-xl {
-  font-size: $font-heading-xl;
+@mixin heading-xxl {
+  font-size: $font-heading-xxl;
   font-family: $font-heading;
   font-weight: 700;
   line-height: 3.5rem;
 
   @include for-phone-only {
-    font-size: $font-heading-mobile-xl;
+    font-size: $font-heading-mobile-xxl;
     line-height: 2.5rem;
+  }
+}
+
+@mixin heading-xl {
+  font-size: $font-heading-xl;
+  font-family: $font-heading;
+  font-weight: 700;
+  line-height: 3rem;
+
+  @include for-phone-only {
+    font-size: $font-heading-mobile-xl;
+    line-height: 2.25rem;
   }
 }
 
@@ -120,7 +135,7 @@ $font-link-medium: pxtorem(20);
   font-size: $font-body-l;
   font-family: $font-primary;
   font-weight: 400;
-  line-height: 1.75rem;
+  line-height: 2.25rem;
 
   @include for-phone-only {
     font-size: $font-body-mobile-l;
@@ -213,7 +228,7 @@ body{
 /* Type styles */
 h1,
 .h1 {
-  @include heading-xl;
+  @include heading-xxl;
 }
 
 h2,
