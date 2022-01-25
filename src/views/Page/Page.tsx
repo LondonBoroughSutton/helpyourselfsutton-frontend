@@ -7,6 +7,7 @@ import './LandingPage.scss';
 import pageStore from '../../stores/pageStore';
 
 import LandingPage from './LandingPage';
+import InformationPage from './InformationPage';
 
 interface RouteParams {
   page: string;
@@ -22,20 +23,30 @@ class Page extends Component<IProps> {
     pageStore.fetchPage(match.params.page);
   }
 
+  componentDidUpdate(prevProps: IProps) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      const { pageStore, match } = this.props;
+
+      pageStore.fetchPage(match.params.page);
+    }
+  }
+
   render() {
     const { pageStore } = this.props;
     const { page } = pageStore;
 
-    // Check if page_type is Landing Page
-      return (
-        page && (
-          <main>
-            {page.page_type === 'landing' && (
-              <LandingPage content={page} />
-            )}
-          </main>
-        )
+    return (
+      page && (
+        <main>
+          {page.page_type === 'landing' && (
+            <LandingPage content={page} />
+          )}
+          {page.page_type === 'information' && (
+            <InformationPage content={page} />
+          )}
+        </main>
       )
+    )
   }
 }
 

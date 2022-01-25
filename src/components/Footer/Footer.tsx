@@ -27,7 +27,7 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
 
   return (
     <footer className="footer">
-      <div className="flex-container">
+      <div className="flex-container flex-container--large">
         <div className="flex-col flex-col--5 flex-col--tablet--12">
           <h5 className="footer__header">{get(cmsStore, 'global.footer_title')}</h5>
           <ReactMarkdown
