@@ -7,11 +7,25 @@ import { IPage } from '../types/types';
 
 export default class PageStore {
   @observable loading: boolean = false;
+  @observable pages: IPage[] | null = null;
   @observable page: IPage | null = null;
 
   constructor() {
     makeObservable(this);
   }
+
+  @action
+  fetchLandingPages = async () => {
+    this.loading = true;
+    try {
+      const pagesData = await axios.get(`${apiBase}/pages?filter[page_type]=landing`);
+      runInAction(() => {
+        this.pages = get(pagesData, 'data.data');
+      });
+    } catch (error) {
+      this.loading = false;
+    }
+  };
 
   /**
    * Get page using the passed in page slug

@@ -9,7 +9,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 // Import assets
 import servicesIllo1 from '../../assets/images/lady-walking-a-dog.svg';
 import servicesIllo2 from '../../assets/images/aeroplane-flying.svg';
-import Button from '../../components/Button';
+import ButtonLink from '../../components/Button/ButtonLink';
 
 function LandingPage(props: any) {
   return (
@@ -30,9 +30,15 @@ function LandingPage(props: any) {
       />
       <section className="landing-page__overview">
         <div className="flex-container">
-          <div className="flex-col flex-col--12">
-            {props.content.content.title && (
-              <h1 className="landing-page__heading">{props.content.content.title}</h1>
+          <div className="flex-col flex-col--7 landing-page__intro">
+            {props.content.title && (
+              <h1 className="landing-page__heading">{props.content.title}</h1>
+            )}
+            {props.content.content.introduction.copy && (
+              <ReactMarkdown
+                children={props.content.content.introduction.copy[0]}
+                className="landing-page__content"
+              />
             )}
           </div>
           <div className="flex-col flex-col--12">
@@ -51,7 +57,7 @@ function LandingPage(props: any) {
         </div>
       </section>
       
-      {props.content.children.length && (
+      {props.content.children.length > 0 && (
         <section className="landing-page__information">
           <div className="flex-container">
             <div className="flex-col flex-col--12">
@@ -68,12 +74,10 @@ function LandingPage(props: any) {
             <div className="flex-col flex-col--12 landing-page__pages">
               {props.content.children.map((page: { id: string; title: string; }) => {
                 return (
-                  <Button
-                    category={true}
+                  <ButtonLink
+                    href={'/' + page.id}
                     text={page.title}
                     key={page.id}
-                    size="small"
-                    onClick={() => {}}
                   />
                 )
               })}
@@ -99,12 +103,10 @@ function LandingPage(props: any) {
             <div className="flex-col flex-col--12 landing-page__collections">
               {props.content.collections.map((page: any) => {
                 return (
-                  <Button
-                    category={true}
+                  <ButtonLink
+                    href={'/' + page.id}
                     text={page.title}
                     key={page.id}
-                    size="small"
-                    onClick={() => {}}
                   />
                 )
               })}

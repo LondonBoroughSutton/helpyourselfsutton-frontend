@@ -5,6 +5,18 @@
 
 /* Section styles */
 
+.information-page__more {
+  margin-top: space(40);
+
+  @include for-tablet-landscape-down {
+    margin-top: space(32);
+  }
+
+  @include for-phone-only {
+    margin-top: space(24);
+  }
+}
+
 .information-page__other {
   padding: space(56) 0 space(72);
   background-color: $casablanca;
@@ -48,14 +60,10 @@
 }
 
 .information-page__sub-heading {
-  margin-bottom: space(48);
-  @include heading-l;
+  margin-bottom: space(24);
+  @include heading-s;
 
   @include for-tablet-landscape-down {
-    margin-bottom: space(24);
-  }
-
-  @include for-phone-only {
     margin-bottom: space(16);
   }
 }
@@ -79,10 +87,19 @@
 .information-page__image {
   margin-bottom: space(64);
   border-radius: 40px;
-
   overflow: hidden;
 
   @include for-tablet-landscape-down {
     margin-bottom: space(32);
+  }
+}
+
+.information-page__illustration {
+  @include for-tablet-landscape-down {
+    max-height: 200px;
+  }
+
+  @include for-phone-only {
+    max-height: 160px;
   }
 }

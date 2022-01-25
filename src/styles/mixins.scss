@@ -28,6 +28,7 @@
     104: pxtorem(104),
     112: pxtorem(112),
     120: pxtorem(120),
+    168: pxtorem(168),
   );
 
   @return map-get($spaceamounts, $pixels);

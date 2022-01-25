@@ -7,8 +7,7 @@ import './InformationPage.scss';
 import Breadcrumb from '../../components/Breadcrumb';
 
 // Import assets
-import servicesIllo1 from '../../assets/images/lady-walking-a-dog.svg';
-import servicesIllo2 from '../../assets/images/aeroplane-flying.svg';
+import pageIllo from '../../assets/images/mother-and-son-walking.svg';
 import Button from '../../components/Button';
 
 function InformationPage(props: any) {
@@ -49,6 +48,18 @@ function InformationPage(props: any) {
               />
             </div>
           )}
+          <div className="flex-col flex-col--12 information-page__more">
+            <div className="flex-container flex-container--no-padding">
+              <div className="flex-col">
+                <h2 className="information-page__sub-heading">Useful Documents</h2>
+              </div>
+              {pageIllo && (
+                <div className="flex-col">
+                  <img alt="Mum and child walking together" className="information-page__illustration" src={pageIllo} />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </section>
       
