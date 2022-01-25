@@ -47,4 +47,4 @@ const Home: React.FunctionComponent<IProps> = ({ cmsStore }) => {
   );
 };
 
-export default inject('cmsStore')(observer(Home));
+export default inject('cmsStore', 'pageStore')(observer(Home));

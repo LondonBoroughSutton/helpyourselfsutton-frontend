@@ -4,6 +4,7 @@ import { apiBase } from '../config/api';
 import get from 'lodash/get';
 
 interface IContent {
+  id: string;
   page_type: string;
   title: string;
   content: {
@@ -18,11 +19,25 @@ interface IContent {
 
 export default class PageStore {
   @observable loading: boolean = false;
+  @observable pages: IContent[] | null = null;
   @observable page: IContent | null = null;
 
   constructor() {
     makeObservable(this);
   }
+
+  @action
+  fetchLandingPages = async () => {
+    this.loading = true;
+    try {
+      const pagesData = await axios.get(`${apiBase}/pages?filter[page_type]=landing`);
+      runInAction(() => {
+        this.pages = get(pagesData, 'data.data');
+      });
+    } catch (error) {
+      this.loading = false;
+    }
+  };
 
   /**
    * Get page using the passed in page slug
