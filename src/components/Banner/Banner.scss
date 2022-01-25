@@ -11,7 +11,7 @@
   &__content {
     max-width: 908px;
     margin: 0 auto;
-    padding: space(88) 0 space(72);
+    padding: space(88) 0 0;
 
     @include for-tablet-portrait-down {
       padding: space(64) 0 space(48);
@@ -44,15 +44,15 @@
     display: flex;
     justify-content: center;
     padding-right: space(80);
-    transform: translateX(-20px) translateY(8px);
+    transform: translateX(-20px) translateY(24px);
 
     @include for-tablet-landscape-down {
-      transform: translateX(-20px) translateY(4px);
+      transform: translateX(-20px) translateY(18px);
     }
 
     @include for-phone-only {
       padding-right: 0;
-      transform: translateX(-20px) translateY(3px);
+      transform: translateX(-20px) translateY(12px);
     }
 
     img {

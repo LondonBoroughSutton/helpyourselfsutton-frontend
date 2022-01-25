@@ -10,6 +10,21 @@
     max-width: 1050px;
   }
 
+  &__heading {
+    margin-left: space(72);
+    margin-bottom: space(48);
+
+    @include for-tablet-landscape-down {
+      margin-left: space(40);
+      margin-bottom: space(32);
+    }
+
+    @include for-phone-only {
+      margin-left: 0;
+      margin-bottom: space(24);
+    }
+  }
+
   &__items {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
