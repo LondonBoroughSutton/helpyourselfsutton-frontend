@@ -8,10 +8,10 @@ interface IContent {
   title: string;
   content: {
     introduction: {
-      copy: string
+      copy: []
     },
     about: {
-      copy: string
+      copy: []
     }
   }
 }
