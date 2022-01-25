@@ -19,6 +19,8 @@ import OrganisationStore from './stores/organisationStore';
 import FavouritesStore from './stores/favouritesStore';
 import CMSStore from './stores/CMSStore';
 import ReferralStore from './stores/referralStore';
+import PageStore from './stores/pageStore';
+
 import Terms from './views/Terms';
 import FeedbackModal from './components/FeedbackModal';
 import HomeScreenPrompt from './components/HomeScreenPrompt';
@@ -38,6 +40,7 @@ const organisationStore = new OrganisationStore();
 const favouritesStore = new FavouritesStore();
 const cmsStore = new CMSStore();
 const referralStore = new ReferralStore();
+const pageStore = new PageStore();
 
 // Views
 const Home = lazy(() => import('./views/Home/Home'));
@@ -52,6 +55,7 @@ const Contact = lazy(() => import('./views/Contact'));
 const GetInvolved = lazy(() => import('./views/GetInvolved'));
 const Privacy = lazy(() => import('./views/Privacy'));
 const DutyToRefer = lazy(() => import('./views/DutyToRefer'));
+const Page = lazy(() => import('./views/Page/Page'));
 
 class App extends Component {
   componentDidMount() {
@@ -69,6 +73,7 @@ class App extends Component {
         favouritesStore={favouritesStore}
         cmsStore={cmsStore}
         referralStore={referralStore}
+        pageStore={pageStore}
       >
         <Router>
           <ScrollToTop>
@@ -87,6 +92,7 @@ class App extends Component {
                 <Route path="/terms-and-conditions" component={Terms} />
                 <Route path="/duty-to-refer" component={DutyToRefer} />
                 <Route path="/organisations/:organisation" component={Organisation} />
+                <Route path="/:page" component={Page} />
                 <Route component={NotFound} />
               </Switch>
             </Suspense>
