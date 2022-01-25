@@ -74,7 +74,8 @@
   margin-left: space(10);
 }
 
-.button__category {
+.button__category,
+.button__link {
   padding: space(24);
   background-color: $white;
   color: $black;

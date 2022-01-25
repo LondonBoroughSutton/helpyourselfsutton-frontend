@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 
-import Button from '../Button';
+import ButtonLink from '../Button/ButtonLink';
 
 import './LandingPages.scss';
 
@@ -37,12 +37,10 @@ class LandingPages extends Component<IProps> {
           <div className="landing-pages__items">
             {pageStore.pages?.map((page: IContent) => {
               return (
-                <Button
-                  category={true}
+                <ButtonLink
+                  href={'/' + page.id}
                   text={page.title}
                   key={page.id}
-                  size="small"
-                  onClick={() => {}}
                 />
               )
             })}
