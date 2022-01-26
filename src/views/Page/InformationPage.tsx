@@ -49,16 +49,11 @@ function InformationPage(props: any) {
             </div>
           )}
           <div className="flex-col flex-col--12 information-page__more">
-            <div className="flex-container flex-container--no-padding">
+            {pageIllo && (
               <div className="flex-col">
-                <h2 className="information-page__sub-heading">Useful Documents</h2>
+                <img alt="Mum and child walking together" className="information-page__illustration" src={pageIllo} />
               </div>
-              {pageIllo && (
-                <div className="flex-col">
-                  <img alt="Mum and child walking together" className="information-page__illustration" src={pageIllo} />
-                </div>
-              )}
-            </div>
+            )}
           </div>
         </div>
       </section>

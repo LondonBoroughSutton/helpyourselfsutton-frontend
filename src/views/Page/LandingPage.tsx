@@ -86,7 +86,7 @@ function LandingPage(props: any) {
         </section>
       )}
 
-      {props.content.collections && (
+      {props.content.collections_categories && (
         <section className="landing-page__services">
           <div className="flex-container landing-page__services--wrapper">
             <div className="flex-col flex-col--12">
@@ -101,7 +101,7 @@ function LandingPage(props: any) {
               )}
             </div>
             <div className="flex-col flex-col--12 landing-page__collections">
-              {props.content.collections.map((page: any) => {
+              {props.content.collections_categories.map((page: any) => {
                 return (
                   <ButtonLink
                     href={'/' + page.id}

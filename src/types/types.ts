@@ -26,7 +26,8 @@ export interface IPage {
   },
   parent: [],
   children: [],
-  collections: []
+  collections_categories: []
+  collections_personas: []
 }
 
 export interface IPersona {

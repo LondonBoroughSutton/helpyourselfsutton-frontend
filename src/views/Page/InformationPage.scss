@@ -6,6 +6,8 @@
 /* Section styles */
 
 .information-page__more {
+  display: flex;
+  justify-content: flex-end;
   margin-top: space(40);
 
   @include for-tablet-landscape-down {
