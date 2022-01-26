@@ -229,7 +229,7 @@ class Service extends Component<IProps> {
               <div className="service__header__actions">
                 {organisation && organisation.slug && (
                   <LinkButton
-                    alt={false}
+                    alt={true}
                     accent={true}
                     text="View organisation"
                     to={`/organisations/${organisation.slug}`}

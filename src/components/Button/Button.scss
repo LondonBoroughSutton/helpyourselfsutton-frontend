@@ -63,11 +63,11 @@
     box-shadow: none;
     cursor: not-allowed;
   }
+}
 
-  &--alt {
-    background-color: transparent;
-    color: $black;
-  }
+.button__alt {
+  background-color: transparent;
+  color: $black;
 }
 
 .button__icon {
