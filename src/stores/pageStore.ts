@@ -3,24 +3,12 @@ import axios from 'axios';
 import { apiBase } from '../config/api';
 import get from 'lodash/get';
 
-interface IContent {
-  id: string;
-  page_type: string;
-  title: string;
-  content: {
-    introduction: {
-      copy: []
-    },
-    about: {
-      copy: []
-    }
-  }
-}
+import { IPage } from '../types/types';
 
 export default class PageStore {
   @observable loading: boolean = false;
-  @observable pages: IContent[] | null = null;
-  @observable page: IContent | null = null;
+  @observable pages: IPage[] | null = null;
+  @observable page: IPage | null = null;
 
   constructor() {
     makeObservable(this);

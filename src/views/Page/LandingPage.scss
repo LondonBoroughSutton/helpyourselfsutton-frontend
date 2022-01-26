@@ -11,19 +11,11 @@
   @include for-tablet-landscape-down {
     margin-bottom: space(24);
   }
-
-  > .flex-container {
-    max-width: 1050px;
-  }
 }
 
 .landing-page__information {
   padding: space(56) 0;
   background-color: $casablanca;
-
-  > .flex-container {
-    max-width: 1050px;
-  }
 }
 
 .landing-page__services {
@@ -47,14 +39,6 @@
   @include for-phone-only {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
-}
-
-.landing__pages__page {
-  display: flex;
-  align-items: center;
-  padding: space(24);
-  border-radius: 40px;
-  background-color: $white;
 }
 
 .landing-page__illustrations {
