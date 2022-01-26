@@ -23,6 +23,9 @@ const Home: React.FunctionComponent<IProps> = ({ cmsStore }) => {
     return null;
   }
 
+  const categories = SearchStore.categories.filter(category => category.homepage);
+  const personas = SearchStore.personas.filter(persona => persona.homepage);
+
   return (
     <main className="home">
       <Helmet>
@@ -38,11 +41,11 @@ const Home: React.FunctionComponent<IProps> = ({ cmsStore }) => {
       <LandingPages />
       {cmsStore.home && (
         <CategoryList
-          categories={SearchStore.categories}
+          categories={categories}
           title={cmsStore.home.categories_title}
         />
       )}
-      <Personas personas={SearchStore.personas} />
+      <Personas personas={personas} />
     </main>
   );
 };

@@ -41,6 +41,7 @@ class LandingPages extends Component<IProps> {
                   href={'/' + page.id}
                   text={page.title}
                   key={page.id}
+                  category={true}
                 />
               )
             })}

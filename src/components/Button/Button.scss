@@ -70,12 +70,17 @@
   }
 }
 
+.button__image {
+  width: auto;
+  max-height: 60px;
+  margin-right: space(20);
+}
+
 .button__icon {
   margin-left: space(10);
 }
 
-.button__category,
-.button__link {
+.button__category {
   padding: space(24);
   background-color: $white;
   color: $black;
