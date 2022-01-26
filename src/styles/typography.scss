@@ -190,7 +190,7 @@ $font-link-medium: pxtorem(20);
 @mixin link-large {
   font-size: $font-heading-xs;
   font-family: $font-primary;
-  font-weight: 400;
+  font-weight: 700;
 
   @include for-phone-only {
     font-size: $font-heading-mobile-xs;
@@ -200,7 +200,7 @@ $font-link-medium: pxtorem(20);
 @mixin link-medium {
   font-size: $font-link-medium;
   font-family: $font-primary;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 @mixin breadcrumb {
