@@ -8,6 +8,7 @@ export interface IPersona {
   sideboxes: ISidebox[];
   subtitle: string;
   updated_at: string;
+  homepage: boolean;
 }
 
 export interface IParams {
@@ -37,6 +38,7 @@ export interface ICategory {
   name: string;
   icon: IconName | undefined;
   sideboxes: ISidebox[];
+  homepage: boolean;
 }
 
 export interface IOrganisation {

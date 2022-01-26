@@ -11,11 +11,14 @@ interface IProps {
   icon?: IconName;
   href: string;
   target?: string;
+  category?: boolean;
 }
 
-const ButtonLink: React.FunctionComponent<IProps> = ({ text, icon, href, target = '_self' }) => (
+const ButtonLink: React.FunctionComponent<IProps> = ({ text, icon, href, target = '_self', category }) => (
   <Link
-    className={cx('button', 'button__link')}
+    className={cx('button', 'button__link', {
+      'button__category': category,
+    })}
     to={href}
     target={target}>
     <span>{text}</span>

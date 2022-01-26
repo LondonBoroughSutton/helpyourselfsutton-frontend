@@ -7,12 +7,6 @@ import './CategoryList.scss';
 import { ICategory } from '../../types/types';
 import Button from '../Button';
 
-const requestImageFile = require.context(
-  '../../assets/images/category-images/',
-  true,
-  /^\.\/.*\.svg$/
-);
-
 interface IProps extends RouteComponentProps {
   categories: ICategory[];
   covid?: boolean;
@@ -30,7 +24,7 @@ const CategoryList: React.FunctionComponent<IProps> = ({
       {title && <h2 className="category-list__heading h4">{title}</h2>}
       <div className="category-list__items">
         {categories.map(({ name, id }) => {
-          const image = requestImageFile(`./${name.replace(/[, ]+/g, '-').toLowerCase()}.svg`).default;
+          const image = require('../../assets/images/category-images/' + name.replace(/[, ]+/g, '-').toLowerCase() + '.svg');
 
           return (
             <Button
