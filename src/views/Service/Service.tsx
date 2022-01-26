@@ -252,16 +252,16 @@ class Service extends Component<IProps> {
           <Loading />
         ) : (
           <section className="service__info">
-            <div className="flex-container flex-container--justify">
-              <div className="flex-col flex-col--8 flex-col--mobile--12 flex-col--tablet--12 service__left-column">
-                <div className="flex-container flex-container--align-center flex-container--no-padding service__section service__section--no-padding">
+            <div className="flex-container">
+              <article className="service__info__content">
+                <div className="flex-container flex-container--align-center flex-container--no-padding service__section">
                   {serviceStore.hasCriteria && (
                     <div className="flex-col flex-col--12 flex-col--mobile--12 service__criteria">
                       <h2 className="service__heading">Who is it for?</h2>
                     </div>
                   )}
                   <div
-                    className="criteria-cards service__section service__section--no-padding"
+                    className="criteria-cards service__section"
                     style={{ alignItems: 'stretch' }}
                   >
                     {this.getServiceEligibilityInfo('Age Group') && (
@@ -341,7 +341,7 @@ class Service extends Component<IProps> {
                     </div>
                   </div>
 
-                  <div className="flex-container flex-container--align-center flex-container--no-padding service__media service__section--no-padding">
+                  <div className="flex-container flex-container--align-center flex-container--no-padding service__media">
                     <div className="flex-col flex-col--mobile--12">
                       <h2 className="service__heading">{`What is this ${get(
                         service,
@@ -360,7 +360,7 @@ class Service extends Component<IProps> {
                     )}
                   </div>
 
-                  <div className="flex-container flex-container--align-center service__section service__section--no-padding service__information">
+                  <div className="flex-container flex-container--align-center service__section service__information">
                     <div className="flex-col flex-col--12 flex-col--mobile--12">
                       <ReactMarkdown
                         children={service.intro}
@@ -443,7 +443,7 @@ class Service extends Component<IProps> {
                   )}
 
                   {service.referral_method !== 'none' && (
-                    <div className="mobile-show">
+                    <div className="service__section mobile-show">
                       <ReferralCard id={service.id} />
                     </div>
                   )}
@@ -525,9 +525,7 @@ class Service extends Component<IProps> {
                     </Accordian>
                   )}
                 </div>
-                <br />
-                <br />
-                <div className="mobile-show">
+                <div className="service__section mobile-show">
                   <div className=" flex-col flex-col--12 flex-container flex-container--justify ">
                     <p>
                       Page last updated{' '}
@@ -535,10 +533,10 @@ class Service extends Component<IProps> {
                     </p>
                   </div>
                 </div>
-              </div>
-              <div className="flex-col flex-col--4 flex-col--tablet--12  ">
-                <div className="flex-container service__right-column mobile-hide">
-                  <div className="tablet-hide flex-col flex-col--12 service__info__cost service__section">
+              </article>
+              <aside className="service__sidebar">
+                <div className="flex-container flex-container--no-padding mobile-hide">
+                  <div className="service__section tablet-hide flex-col flex-col--12">
                     <CostCard service={service} />
                   </div>
                   {service.video_embed && (
@@ -565,8 +563,6 @@ class Service extends Component<IProps> {
                       </div>
                     )}
                   </div>
-                </div>
-                <div className="flex-container service__right-column">
                   <div className="flex-col flex-col--12">
                     <ShareCard serviceStore={serviceStore} />
                   </div>
@@ -577,7 +573,7 @@ class Service extends Component<IProps> {
                     </p>
                   </div>
                 </div>
-              </div>
+              </aside>
             </div>
           </section>
         )}
