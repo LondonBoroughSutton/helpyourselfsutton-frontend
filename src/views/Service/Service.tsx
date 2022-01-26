@@ -48,6 +48,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import Loading from '../../components/Loading';
 import ServiceDisabled from './ServiceDisabled';
 import LinkButton from '../../components/LinkButton';
+import Button from '../../components/Button';
 
 interface RouteParams {
   service: string;
@@ -166,6 +167,7 @@ class Service extends Component<IProps> {
   render() {
     const { serviceStore } = this.props;
     const { service, locations, relatedServices, organisation } = serviceStore;
+
     if (!service) {
       return null;
     }
@@ -176,7 +178,7 @@ class Service extends Component<IProps> {
     }
 
     return (
-      <main>
+      <main className="service">
         <Helmet>
           {get(service, 'name') && (
             <title>{`${get(service, 'name')} | Help Yourself Sutton`}</title>
@@ -203,40 +205,49 @@ class Service extends Component<IProps> {
             { text: service.name, url: '' },
           ]}
         />
-        <div className={`service__header service__header--${get(service, 'type')}`}>
-          <div className="flex-container">
-            <div className="service__header__wrapper">
+        <section className="service__header">
+          <div className="flex-container flex-container--no-wrap">
+            <div className="flex-col flex-col--mobile--4">
               <div className="service__header__logo">
-                <img src={getImg(service)} alt={`${service.name} logo`} />
+                <img
+                  src={getImg(service)}
+                  alt={`${service.name} logo`} />
               </div>
-              <div className="flex-col flex-col--tablet--9">
-                <span className="organisation__header__sub">Service</span>
-                <h1>{get(service, 'name')}</h1>
+            </div>
+            <div className="flex-col">
+              <p className="service__header__label">Service</p>
+              <h1 className="service__header__heading">{get(service, 'name')}</h1>
+              {organisation && organisation.slug && (
+                <p className="service__header__description">
+                  This service is run by the organisation{' '}
+                  <Link to={`/organisations/${organisation.slug}`} aria-label="Home Link">
+                    {organisation.name}
+                  </Link>
+                  . View their organisation details and other listed services.
+                </p>
+              )}
+              <div className="service__header__actions">
                 {organisation && organisation.slug && (
-                  <p className="service__header__desc">
-                    This service is run by the organisation{' '}
-                    <Link to={`/organisations/${organisation.slug}`} aria-label="Home Link">
-                      {organisation.name}
-                    </Link>
-                    . View their organisation details and other listed services.
-                  </p>
+                  <LinkButton
+                    alt={false}
+                    accent={true}
+                    text="View organisation"
+                    to={`/organisations/${organisation.slug}`}
+                  />
                 )}
-                <div className="flex-container flex-container--no-padding flex-container--left">
-                  {organisation && organisation.slug && (
-                    <div className="flex-col--mobile--12">
-                      <LinkButton
-                        alt={false}
-                        accent={true}
-                        text="View organisation"
-                        to={`/organisations/${organisation.slug}`}
-                      />
-                    </div>
-                  )}
-                </div>
+                <Button
+                  size="small"
+                  text={serviceStore.favourite ? 'In your favourites' : 'Add to favourites'}
+                  icon="star"
+                  onClick={() => {
+                    serviceStore.addToFavourites();
+                  }}
+                  disabled={serviceStore.favourite}
+                />
               </div>
             </div>
           </div>
-        </div>
+        </section>
         {serviceStore.loading ? (
           <Loading />
         ) : (
