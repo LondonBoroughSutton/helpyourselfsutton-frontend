@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx';
+import { makeObservable, observable, action, computed } from 'mobx';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import size from 'lodash/size';
@@ -34,7 +34,7 @@ export default class ResultsStore {
   @observable loading: boolean = false;
   @observable currentPage: number = 1;
   @observable totalItems: number = 0;
-  @observable itemsPerPage: number = 9;
+  @observable itemsPerPage: number = 6;
   @observable postcode: string = '';
   @observable locationCoords: IGeoLocation | {} = {};
   @observable view: 'grid' | 'map' = 'grid';
@@ -52,6 +52,7 @@ export default class ResultsStore {
   };
 
   constructor() {
+    makeObservable(this);
     this.getServiceEligibilities();
   }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
+import Pagination from 'react-js-pagination';
 import { observer, inject } from 'mobx-react';
 import { History } from 'history';
 import get from 'lodash/get';
@@ -16,6 +17,7 @@ import map from 'lodash/map';
 import SideboxCard from './SideboxCard';
 import { ISidebox } from '../../types/types';
 import Loading from '../../components/Loading';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface IProps {
   location: Location;
@@ -128,6 +130,45 @@ class Results extends Component<IProps> {
             ) : (
               <MapView />
             )}
+          </div>
+        )}
+
+        {(resultsStore.totalItems > resultsStore.itemsPerPage && resultsStore.view === 'grid') && (
+          <div className="results__pagination">
+            <div className="flex-container">
+              <Pagination
+                activePage={resultsStore.currentPage}
+                itemsCountPerPage={resultsStore.itemsPerPage}
+                totalItemsCount={resultsStore.totalItems}
+                pageRangeDisplayed={10}
+                onChange={(pageNumber: number) => {
+                  resultsStore.paginate(pageNumber);
+                  history.push({
+                    search: resultsStore.updateQueryStringParameter('page', pageNumber),
+                  });
+                }}
+                prevPageText={
+                  <span>
+                    <FontAwesomeIcon icon="arrow-left" /> Prev page
+                  </span>
+                }
+                nextPageText={
+                  <span>
+                    Next page <FontAwesomeIcon icon="arrow-right" />
+                  </span>
+                }
+                innerClass="pagination"
+                activeClass="pagination__item--active"
+                activeLinkClass="pagination__link--active"
+                itemClass="pagination__item"
+                linkClass="pagination__link"
+                linkClassPrev="pagination__link"
+                linkClassNext="pagination__link"
+                itemClassPrev="pagination__nav-prev"
+                itemClassNext="pagination__nav-next"
+                hideFirstLastPages={true}
+              />
+            </div>
           </div>
         )}
       </section>
