@@ -7,7 +7,7 @@ import './Loading.scss';
 
 const Loading: React.FunctionComponent = () => (
   <div className="loading">
-    <p>Loading...</p>
+    <h2>Loading...</h2>
     <ReactSVG src={Spinner} className="loading" />
   </div>
 );

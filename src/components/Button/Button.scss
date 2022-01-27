@@ -68,6 +68,12 @@
     background-color: transparent;
     color: $black;
   }
+
+  &--light {
+    background-color: $white;
+    border-color: transparent;
+    color: $black;
+  }
 }
 
 .button__image {

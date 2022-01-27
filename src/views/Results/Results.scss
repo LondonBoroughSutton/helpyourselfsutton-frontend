@@ -8,7 +8,7 @@
   position: relative;
 }
 
-.results__list {
+.results__wrapper {
   padding: space(48) 0 space(88);
   background-color: $botticelli;
 }
@@ -19,17 +19,8 @@
   justify-content: center;
   gap: space(32);
   margin: 0 auto;
-  padding: 0 space(32);
   position: relative;
   z-index: 10;
-
-  @media (max-width: 860px) {
-    padding: 0 space(24);
-  }
-
-  @media (max-width: 600px) {
-    padding: 0 space(16);
-  }
 
   @include for-tablet-landscape-down {
     grid-template-columns: repeat(2, 1fr);
@@ -93,28 +84,21 @@
 }
 
 .results__info {
-  position: relative;
-  z-index: 1;
+  margin-bottom: space(48);
 }
 
-.results__info__wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: space(12) space(16) space(12) space(24);
-  background-color: $white;
+.results__info__header {
+  margin-bottom: space(16);
 
-  @include for-tablet-portrait-down {
-    flex-wrap: wrap;
-    padding: space(12) space(16);
+  @include for-phone-only {
+    margin-bottom: 0;
   }
 }
 
-.results__count {
+.results__info__count {
   @include for-tablet-portrait-down {
     flex: 0 0 100%;
-    margin-bottom: space(8);
+    margin-bottom: space(16);
   }
 
   @include for-tablet-portrait-up {
@@ -122,7 +106,7 @@
   }
 
   p {
-    font-size: pxtorem(20px);
+    font-size: pxtorem(20);
     font-weight: 700;
   }
 }
@@ -445,27 +429,6 @@
 
   @include for-phone-only {
     flex-wrap: wrap;
-  }
-
-  .button {
-    height: 44px;
-    padding: space(8) space(12);
-    margin-left: space(24);
-    font-weight: 400;
-    background-color: $gray;
-    color: $black;
-
-    &--light {
-      background-color: $white;
-    }
-
-    @include for-phone-only {
-      height: 40px;
-      padding: space(8) space(12);
-      margin-left: 0;
-      margin-right: space(16);
-      font-size: pxtorem(16px); 
-    }
   }
 }
 
