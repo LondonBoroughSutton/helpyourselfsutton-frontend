@@ -6,9 +6,9 @@ import Spinner from '../../assets/images/loading-spinner.svg';
 import './Loading.scss';
 
 const Loading: React.FunctionComponent = () => (
-  <div className="flex-container flex-container--justify">
-    <ReactSVG src={Spinner} className="loading" />
+  <div className="loading">
     <p>Loading...</p>
+    <ReactSVG src={Spinner} className="loading" />
   </div>
 );
 

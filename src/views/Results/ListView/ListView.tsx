@@ -25,10 +25,12 @@ const ListView: React.FunctionComponent<IProps> = ({ resultsStore, history }) =>
       {!!resultsStore.results.length ? (
         <List resultsList={resultsStore.results} resultsStore={resultsStore} />
       ) : (
-        <div className="results__containerresults__container--no-results flex-container ">
-          <div className={'results__container--no-results__suggestions'}>
-            <h2>No results found</h2>
-            <p>Take a look at the tips below which may help in getting more results</p>
+        <div className="results__container--no-results flex-container">
+          <div className="flex-col flex-col--12">
+            <div className="results__container__heading">
+              <h2>No results found</h2>
+              <p>Take a look at the tips below which may help in getting more results</p>
+            </div>
 
             <ul className={'info-cards'}>
               <li>
@@ -47,9 +49,8 @@ const ListView: React.FunctionComponent<IProps> = ({ resultsStore, history }) =>
               </li>
             </ul>
           </div>
-
-          <div className="results__container results__container--no-results__categories flex-container">
-            <h2>You might also find searching by category might be helpful:</h2>
+          <div className="flex-col flex-col--12">
+            <h2 className="results__container__heading">You might also find searching by category might be helpful:</h2>
             <CategoryList categories={SearchStore.categories} />
           </div>
         </div>
