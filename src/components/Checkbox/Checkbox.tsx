@@ -34,12 +34,12 @@ const Checkbox: React.FunctionComponent<IProps> = (props: IProps) => {
         aria-label={props.aria}
       />
       <label htmlFor={props.id} tabIndex={0} onKeyPress={handleKeyPress}>
+        {props.label}
         <span>
           <span>
             <FontAwesomeIcon icon="check" />
           </span>
         </span>
-        {props.label}
       </label>
     </div>
   );
