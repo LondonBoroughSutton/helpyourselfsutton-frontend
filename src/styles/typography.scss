@@ -28,7 +28,7 @@ $font-heading-xs: pxtorem(20);
 $font-heading-mobile-xs: pxtorem(18);
 
 $font-body-xl: pxtorem(34);
-$font-body-mobile-xl: pxtorem(26);
+$font-body-mobile-xl: pxtorem(22);
 
 $font-body-l: pxtorem(24);
 $font-body-mobile-l: pxtorem(20);
@@ -261,6 +261,10 @@ p {
 .body {
   @include body-regular;
 
+  &--xl {
+    @include body-xl;
+  }
+
   &--l {
     @include body-l;
   }
@@ -272,4 +276,8 @@ p {
   &--s {
     @include body-regular;
   }
+}
+
+blockquote {
+  margin: 0;
 }

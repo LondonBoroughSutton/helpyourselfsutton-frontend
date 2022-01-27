@@ -7,6 +7,10 @@ import first from 'lodash/first';
 
 import { IServiceLocation } from '../../../types/types';
 
+import servicePin from '../../../assets/images/icons/maps/service-pin.svg';
+
+import './MapCard.scss';
+
 interface IProps {
   locations: any;
   iconType?: string;
@@ -42,15 +46,15 @@ class MapCard extends Component<IProps, IState> {
 
   render() {
     const { locations, iconType } = this.props;
+
+
     const locationObj: any = first(locations);
     const mapCenter: [number, number] = locationObj
       ? [locationObj.location.lat, locationObj.location.lon]
       : [51.460729410758496, -0.3726421426363473];
-
-    const ServiceMarker = L.icon({
-      iconUrl: iconType
-        ? require(`../../../assets/images/icons/maps/${iconType}-pin.svg`).default
-        : require('../../../assets/images/icons/maps/service-pin.svg').default,
+    
+    let markerPin = L.icon({
+      iconUrl: servicePin,
       iconSize: [50, 95],
     });
 
@@ -64,7 +68,7 @@ class MapCard extends Component<IProps, IState> {
             <Marker
               key={serviceLocation.id}
               position={[serviceLocation.location.lat, serviceLocation.location.lon]}
-              icon={ServiceMarker}
+              icon={markerPin}
             />
           );
         })}

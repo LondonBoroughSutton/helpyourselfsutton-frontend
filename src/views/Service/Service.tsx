@@ -42,7 +42,7 @@ import ContactCard from './ContactCard';
 import ShareCard from './ShareCard';
 import ReferralCard from './ReferralCard';
 import GalleryCard from './GalleryCard';
-import { UsefulInfoCardAccordian, UsefulInfoCard } from './UsefulInfoCard';
+import { UsefulInfoCard, UsefulInfoCardAccordian } from './UsefulInfoCard';
 import RelatedServices from './RelatedServices';
 import Breadcrumb from '../../components/Breadcrumb';
 import Loading from '../../components/Loading';
@@ -220,7 +220,10 @@ class Service extends Component<IProps> {
               {organisation && organisation.slug && (
                 <p className="service__header__description">
                   This service is run by the organisation{' '}
-                  <Link to={`/organisations/${organisation.slug}`} aria-label="Home Link">
+                  <Link
+                    to={`/organisations/${organisation.slug}`}
+                    aria-label="Home Link"
+                    className="service__header__description__link">
                     {organisation.name}
                   </Link>
                   . View their organisation details and other listed services.
@@ -384,14 +387,12 @@ class Service extends Component<IProps> {
                       </div>
                     )}
 
-                    <div className="flex-col service__section mobile-hide">
-                      <ReactMarkdown
-                        children={service.description}
-                        className={cx('service__markdown service__markdown--description', {
-                          'service__markdown--description--tight': !service.offerings.length,
-                        })}
-                      />
-                    </div>
+                    <ReactMarkdown
+                      children={service.description}
+                      className={cx('service__markdown service__markdown--description mobile-hide', {
+                        'service__markdown--description--tight': !service.offerings.length,
+                      })}
+                    />
                   </div>
 
                   {service.testimonial && (
@@ -401,16 +402,9 @@ class Service extends Component<IProps> {
                           <h2 className="service__heading">What people say</h2>
                         </div>
 
-                        <div className="flex-col flex-col--12 service__testimonial">
-                          <div className="flex-container flex-container--align-center flex-container--justify flex-container--no-padding">
-                            <div className="flex-col--1 flex-col--tablet-large--2 flex-col--tablet--2">
-                              <FontAwesomeIcon icon="comment" />
-                            </div>
-                            <div className="flex-col--9 flex-col--tablet--9">
-                              <p>{this.formatTestimonial(service.testimonial)}</p>
-                            </div>
-                          </div>
-                        </div>
+                        <figure className="flex-col flex-col--12 service__testimonial">
+                          <blockquote className="body--xl">{this.formatTestimonial(service.testimonial)}</blockquote>
+                        </figure>
                       </div>
                     </div>
                   )}
@@ -423,7 +417,7 @@ class Service extends Component<IProps> {
                         <LocationCard
                           location={location}
                           key={location.id}
-                          className="service__accordian-inner"
+                          className=""
                           desktop={true}
                         />
                       ))}
@@ -454,7 +448,7 @@ class Service extends Component<IProps> {
                       className="service__accordian mobile-show"
                     >
                       <div className="service__map">
-                        <MapCard iconType={get(service, 'type')} locations={locations} />
+                        <MapCard iconType={service.type} locations={locations} />
                       </div>
                     </Accordian>
                   )}
@@ -535,43 +529,39 @@ class Service extends Component<IProps> {
                 </div>
               </article>
               <aside className="service__sidebar">
-                <div className="flex-container flex-container--no-padding mobile-hide">
-                  <div className="service__section tablet-hide flex-col flex-col--12">
-                    <CostCard service={service} />
+                <div className="service__section tablet-hide">
+                  <CostCard service={service} />
+                </div>
+                {service.video_embed && (
+                  <VideoCard video={service.video_embed} width="100%" />
+                )}
+                {!!locations.length && (
+                  <div className="service__section">
+                    <h2 className="service__heading">{`Where is this ${service.type}?`}</h2>
+                    <div className="service__map">
+                      <MapCard iconType={service.type} locations={locations} />
+                    </div>
                   </div>
-                  {service.video_embed && (
-                    <div className="flex-container flex-container--mobile-no-padding mobile-hide service__video">
-                      <VideoCard video={service.video_embed} width="100%" />
+                )}
+                <div>
+                  <h2 className="service__heading">{`How can I contact this ${service.type}?`}</h2>
+                  <div className="service__section">
+                    <ContactCard organisation={organisation} service={service} />
+                  </div>
+                  {service.referral_method !== 'none' && (
+                    <div className="service__section service__referral--desktop">
+                      <ReferralCard id={service.id} />
                     </div>
                   )}
-                  {!!locations.length && (
-                    <div className="flex-col flex-col--12">
-                      <h2 className="service__heading">{`Where is this ${service.type}?`}</h2>
-                      <div className="service__section service__map">
-                        <MapCard iconType={get(service, 'type')} locations={locations} />
-                      </div>
-                    </div>
-                  )}
-                  <div className="flex-col flex-col--12">
-                    <h2 className="service__heading">{`How can I contact this ${service.type}?`}</h2>
-                    <div className="service__section">
-                      <ContactCard organisation={organisation} service={service} />
-                    </div>
-                    {service.referral_method !== 'none' && (
-                      <div className="service__section service__referral--desktop">
-                        <ReferralCard id={service.id} />
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex-col flex-col--12">
-                    <ShareCard serviceStore={serviceStore} />
-                  </div>
-                  <div className="flex-col flex-col--12 flex-container flex-container--justify flex-container--no-padding">
-                    <p>
-                      Page last updated{' '}
-                      <strong>{moment(service!.updated_at).format('Do MMMM YYYY')}</strong>
-                    </p>
-                  </div>
+                </div>
+                <div className="service__section">
+                  <ShareCard serviceStore={serviceStore} />
+                </div>
+                <div className="flex-container flex-container--justify flex-container--no-padding">
+                  <p>
+                    Page last updated{' '}
+                    <strong>{moment(service!.updated_at).format('Do MMMM YYYY')}</strong>
+                  </p>
                 </div>
               </aside>
             </div>

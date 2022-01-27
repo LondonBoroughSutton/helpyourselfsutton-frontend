@@ -1,0 +1,54 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/colors.scss';
+@import '../../../styles/breakpoints.scss';
+@import  '../../../styles/typography.scss';
+
+.service__useful-info {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: space(32);
+  padding: 0 !important;
+  background-color: $white;
+  border-radius: 20px;
+  overflow: hidden;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(24);
+  }
+
+  @include for-phone-only {
+    margin-bottom: space(16);
+  }
+
+  &__icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 136px;
+    background-color: $cerulean-blue;
+    color: $white;
+  }
+
+  &__content {
+    flex: 0 1 auto;
+    padding: space(24) space(48);
+
+    @include for-phone-only {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  p {
+    margin-top: space(12);
+  }
+
+  a {
+    font-size: $font-base;
+  }
+
+  svg {
+    font-size: pxtorem(36);
+  }
+}

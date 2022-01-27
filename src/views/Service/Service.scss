@@ -38,8 +38,8 @@
   }
 
   @include for-phone-only {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     margin: 0 space(16) space(16) 0;
   }
 
@@ -58,6 +58,7 @@
 .service__header__heading {
   @include heading-xl;
   margin-bottom: space(8);
+  
 }
 
 .service__header__description {
@@ -69,9 +70,22 @@
   }
 }
 
+.service__header__description__link {
+  font-size: pxtorem(20);
+  font-weight: 700;
+
+  @include for-phone-only {
+    font-size: pxtorem(18);
+  }
+}
+
 .service__header__actions {
   display: flex;
   justify-content: flex-start;
+
+  @include for-phone-only {
+    flex-wrap: wrap;
+  }
 
   .button {
     margin-right: space(40);
@@ -81,13 +95,16 @@
     }
 
     @include for-phone-only {
-      margin-right: space(16);
+      width: 100%;
+      margin-bottom: space(16);
+      margin-right: 0;
+      justify-content: center;
     }
   }
 }
 
 .service__info {
-  padding: space(64) 0 space(120) 0;
+  padding: space(64) 0;
   background-color: $botticelli;
 
   @include for-tablet-landscape-down {
@@ -95,7 +112,7 @@
   }
 
   @include for-phone-only {
-    padding: space(40) 0 space(54) 0;
+    padding: space(40) 0 space(56) 0;
   }
 
   > .flex-container {
@@ -119,13 +136,26 @@
   max-width: 435px;
 
   @include for-tablet-landscape-down {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @include for-phone-only {
     margin-top: space(48);
   }
 }
 
 .service__section {
-  margin-bottom: space(32);
+  margin-bottom: space(56);
   width: 100%;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(32);
+  }
+
+  @include for-phone-only {
+    margin-bottom: space(24);
+  }
 }
 
 .react-player__preview {
@@ -134,19 +164,6 @@
 
 .react-player__shadow {
   background-color: $mona-lisa !important;
-}
-
-.service__refer-disclaimer {
-  padding-top: space(16) !important;
-
-  p {
-    text-align: left;
-    padding-left: space(8);
-  }
-
-  @include for-tablet-portrait-down {
-    text-align: center;
-  }
 }
 
 .service__markdown {
@@ -277,49 +294,16 @@
 }
 
 .service__testimonial {
-  background-image: url('../../assets/images/backgrounds/service-quote-shape.svg');
-  background-size: 100% 100%;
-  padding: space(8);
+  padding: space(40);
+  background-color: $peach;
+  border-radius: 40px;
 
-  &--mobile {
-    background-image: none;
-    background-color: $white;
-    border: 1px solid $black;
-    padding: space(16) space(24) space(24) !important;
-
-    svg {
-      width: auto !important;
-      font-size: pxtorem(36px) !important;
-    }
-  }
-
-  p {
-    font-family: $font-primary;
-    font-size: pxtorem(30px);
-    line-height: pxtorem(32px);
-    padding: space(8);
-  }
-
-  svg {
-    font-size: pxtorem(46px);
-    width: auto !important;
-    padding-right: space(10);
-
-    @include for-tablet-landscape-down {
-      padding-right: space(16);
-    }
-  }
-
-  @include for-tablet-landscape-up {
+  @include for-tablet-landscape-down {
     padding: space(32);
   }
 
-  &--header {
-    margin-top: space(32);
-
-    @include for-phone-only {
-      margin-bottom: 0 !important;
-    }
+  @include for-phone-only {
+    padding: space(24);
   }
 }
 
@@ -329,48 +313,6 @@
 
 .service__media {
   margin: 0 !important;
-}
-
-.service__useful-info {
-  width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-  padding: 0 !important;
-  background-color: $white;
-  border-radius: 20px;
-  overflow: hidden;
-
-  &__icon {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 136px;
-    background-color: $cerulean-blue;
-    color: $white;
-  }
-
-  &__content {
-    flex: 0 1 auto;
-    padding: space(24) space(48);
-
-    @include for-phone-only {
-      padding: 0;
-      margin: 0;
-    }
-  }
-
-  p {
-    margin-top: space(12);
-  }
-
-  a {
-    font-size: $font-base;
-  }
-
-  svg {
-    font-size: pxtorem(36);
-  }
 }
 
 .service__organisation {
@@ -383,20 +325,6 @@
   &--sidebar {
     background-color: $white;
     padding: space(20) !important;
-  }
-}
-
-.service__video {
-  padding: 0 !important;
-  margin: 0 !important;
-  width: 100%;
-}
-
-.criteria_card--inner {
-  width: 100%;
-
-  @media(min-width: 601px) {
-    padding: 0 !important;
   }
 }
 
@@ -422,6 +350,10 @@
 
   p, ul {
     margin-bottom: space(24);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   ul {
@@ -454,7 +386,7 @@
   margin-bottom: space(24);
 
   @include for-phone-only {
-    font-size: $font-body-l !important;
+    margin-bottom: space(16);
   }
 }
 
@@ -466,18 +398,6 @@
 
 .criteria-cards {
   width: 100%;
-}
-
-.service__map {
-  height: 320px;
-
-  @include for-tablet-portrait-down {
-    padding: 0;
-  }
-
-  .leaflet-container {
-    min-height: 100%;
-  }
 }
 
 .service {

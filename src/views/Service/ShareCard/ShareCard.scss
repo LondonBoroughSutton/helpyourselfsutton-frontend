@@ -19,22 +19,58 @@
 .service__share-card__social {
   margin-bottom: space(32);
 
+  @include for-tablet-landscape-down {
+    margin-bottom: space(24);
+  }
+
+  @include for-phone-only {
+    margin-bottom: space(16);
+  }
+
   p {
     margin-right: space(48);
     font-size: pxtorem(24);
+
+    @include for-tablet-landscape-down {
+      margin-right: space(32);
+      font-size: pxtorem(20);
+    }
+
+    @include for-phone-only {
+      margin-right: space(24);
+      font-size: pxtorem(18);
+    }
   }
 
   a {
     margin-right: space(24);
     font-size: pxtorem(24);
+
+    @include for-tablet-landscape-down {
+      margin-right: space(16);
+      font-size: pxtorem(20);
+    }
+
+    @include for-phone-only {
+      margin-right: space(12);
+      font-size: pxtorem(18);
+    }
   }
 }
 
 .service__share-card__actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   
   .button {
     margin-right: space(20);
+
+    @include for-tablet-landscape-down {
+      margin-right: space(16);
+    }
+
+    @include for-phone-only {
+      margin-right: space(12);
+    }
   }
 }

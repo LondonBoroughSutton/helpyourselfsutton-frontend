@@ -7,6 +7,14 @@
   background-color: $white;
   border-radius: 20px;
 
+  @include for-tablet-landscape-down {
+    padding: space(24);
+  }
+
+  @include for-phone-only {
+    padding: space(16);
+  }
+
   .flex-col {
     margin-bottom: space(24);
     overflow: hidden;
