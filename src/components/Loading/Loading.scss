@@ -1,4 +1,5 @@
 @import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
 
 .loading {
   display: flex;
@@ -7,6 +8,7 @@
   opacity: 1;
   animation: fadeinout 4s infinite forwards;
   padding: space(64) 0;
+  background-color: $botticelli;
 }
 
 @keyframes fadeinout {

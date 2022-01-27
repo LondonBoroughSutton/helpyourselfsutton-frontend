@@ -83,7 +83,6 @@ class Results extends Component<IProps> {
         />
         <div className="results__search-box">
           <div className="flex-container">
-            {!resultsStore.isKeywordSearch && <h1 className="results__heading">Results for</h1>}
             <div
               className={
                 'results__overview ' +
