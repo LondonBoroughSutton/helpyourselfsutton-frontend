@@ -9,7 +9,7 @@
 }
 
 .results__list {
-  padding: space(48) 0;
+  padding: space(48) 0 space(88);
   background-color: $botticelli;
 }
 
@@ -19,6 +19,7 @@
   justify-content: center;
   gap: space(32);
   margin: 0 auto;
+  padding: 0 space(32);
   position: relative;
   z-index: 10;
 

@@ -34,7 +34,7 @@ export default class ResultsStore {
   @observable loading: boolean = false;
   @observable currentPage: number = 1;
   @observable totalItems: number = 0;
-  @observable itemsPerPage: number = 6;
+  @observable itemsPerPage: number = 9;
   @observable postcode: string = '';
   @observable locationCoords: IGeoLocation | {} = {};
   @observable view: 'grid' | 'map' = 'grid';

@@ -135,7 +135,7 @@ class Results extends Component<IProps> {
 
         {(resultsStore.totalItems > resultsStore.itemsPerPage && resultsStore.view === 'grid') && (
           <div className="results__pagination">
-            <div className="flex-container">
+            <div className="flex-container flex-container--large">
               <Pagination
                 activePage={resultsStore.currentPage}
                 itemsCountPerPage={resultsStore.itemsPerPage}
