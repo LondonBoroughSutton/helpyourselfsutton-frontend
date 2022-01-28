@@ -23,7 +23,7 @@ const ViewFilters: React.FunctionComponent<IProps> = ({ resultsStore, resultsSwi
         text="Grid"
         icon="th-large"
         alt={true}
-        light={resultsStore.view == 'grid'}
+        light={resultsStore.view === 'grid'}
         onClick={() => resultsStore.toggleView('grid')}
       />
       <Button

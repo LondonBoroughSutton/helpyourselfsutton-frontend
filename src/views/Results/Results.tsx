@@ -22,6 +22,7 @@ import SideboxCard from './SideboxCard';
 import { ISidebox } from '../../types/types';
 import Loading from '../../components/Loading';
 import CategoryList from '../../components/CategoryList';
+import { result } from 'lodash';
 
 interface IProps {
   location: Location;
@@ -78,7 +79,7 @@ class Results extends Component<IProps> {
         <Breadcrumb
           crumbs={[
             { text: 'Home', url: '/' },
-            { text: 'Search results', url: '' },
+            { text: !resultsStore.isKeywordSearch ? (resultsStore.category?.name ? resultsStore.category?.name : '') : 'Search results', url: '' },
           ]}
         />
         <div className="results__search-box">
