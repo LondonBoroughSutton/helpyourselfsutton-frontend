@@ -140,7 +140,9 @@ class Results extends Component<IProps> {
             <div className="results__list">
               {!!resultsStore.results.length ? (
                 resultsStore.view === 'grid' ? (
-                  <ListView resultsStore={resultsStore} history={history} />
+                  <div className="flex-container">
+                    <ListView resultsStore={resultsStore} history={history} />
+                  </div>
                 ) : (
                   <MapView />
                 )

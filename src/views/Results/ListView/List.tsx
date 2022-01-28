@@ -23,7 +23,7 @@ const List: FunctionComponent<IProps> = ({
 
   return (
     <Fragment>
-      <div className="results__container flex-container">
+      <div className="results__container">
         {resultsList.map((list: any) => {
           const organisation =
             find(resultsStore.organisations, ['id', list.organisation_id]) || null;
