@@ -10,6 +10,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import servicesIllo1 from '../../assets/images/lady-walking-a-dog.svg';
 import servicesIllo2 from '../../assets/images/aeroplane-flying.svg';
 import ButtonLink from '../../components/Button/ButtonLink';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 function LandingPage(props: any) {
   return (
@@ -78,6 +79,7 @@ function LandingPage(props: any) {
                     href={'/' + page.id}
                     text={page.title}
                     key={page.id}
+                    category={true}
                   />
                 )
               })}
@@ -101,12 +103,14 @@ function LandingPage(props: any) {
               )}
             </div>
             <div className="flex-col flex-col--12 landing-page__collections">
-              {props.content.collections_categories.map((page: any) => {
+              {props.content.collections_categories.map((page: { id: string; title: string; icon: IconName; }) => {
                 return (
                   <ButtonLink
                     href={'/' + page.id}
                     text={page.title}
                     key={page.id}
+                    category={true}
+                    icon={page.icon}
                   />
                 )
               })}
