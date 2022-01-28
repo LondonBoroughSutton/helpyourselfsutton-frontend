@@ -3,8 +3,22 @@
 @import '../../../styles/typography.scss';
 @import '../../../styles/breakpoints.scss';
 
+.location {
+  padding: space(40);
+  background-color: $white;
+  border-radius: 40px;
+
+  @include for-tablet-landscape-down {
+    padding: space(32);
+  }
+
+  @include for-phone-only {
+    padding: space(24);
+  }
+}
+
 .location__address {
-  margin-top: space(8) !important;
+  @include body-l;
 }
 
 .location__image {
@@ -23,32 +37,27 @@
 }
 
 .location__accessibility {
-  margin: space(12) 0 0 0 !important;
+  margin-top: space(16);
   justify-content: flex-start !important;
 
   svg {
-    margin-right: space(8);
-    height: pxtorem(27px);
-    width: pxtorem(27px);
+    margin-right: space(12);
+    height: pxtorem(32);
+    width: pxtorem(32);
   }
 }
 
 .location__google-maps {
-  margin: space(12) 0 0 0 !important;
+  display: flex;
+  margin-top: space(12);
 
-  a:nth-of-type(2) {
-    margin-top: space(8);
+  .link {
+    margin-right: space(16);
   }
 }
 
 .location__opening-times {
-  margin-top: space(24) !important;
-
-  h3 {
-    svg {
-      font-size: pxtorem(19px);
-    }
-  }
+  margin-top: space(32);
 
   &--header {
     margin-bottom: space(8);
@@ -60,42 +69,12 @@
 
   &--list {
     p {
-      padding-bottom: space(8);
-      font-size: $font-base;
+      @include body-l;
+      margin-bottom: space(8);
     }
   }
 }
 
 .location__holiday-times {
-  margin-top: space(12);
-
-  button {
-    padding: 0;
-    color: $fountain-blue;
-  }
-
-  h3 {
-    font-family: $font-primary;
-    font-weight: normal;
-    display: inline;
-  }
-}
-
-.location__container {
-  margin-bottom: space(16) !important;
-  background-color: $white;
-
-  &--address {
-    @include for-tablet-portrait-up {
-      justify-content: flex-end !important;
-    }
-
-    @include for-desktop-up {
-      justify-content: space-between !important;
-    }
-  }
-
-  @include for-tablet-landscape-up {
-    padding: space(24) !important;
-  }
+  margin-top: space(32);
 }
