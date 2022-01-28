@@ -9,15 +9,15 @@ select,
   width: 100%;
   max-width: 320px;
   position: relative;
-  padding: space(20) space(40) space(20) space(20);
-  border: none;
+  padding: space(16) space(24);
+  border: 1px solid $black;
   border-radius: 4px;
   box-shadow: none;
   background-image: url('../../assets/images/icons/icon-cheveron-selection.svg');
   background-repeat: no-repeat;
-  background-position: calc(100% - 10px) 12px;
+  background-position: calc(100% - 4px) 10px;
   background-color: $white;
-  background-size: pxtorem(35px);
+  background-size: pxtorem(35);
   color: $black;
   -webkit-appearance: none;
 }

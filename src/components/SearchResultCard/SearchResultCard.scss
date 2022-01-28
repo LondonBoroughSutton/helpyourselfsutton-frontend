@@ -31,7 +31,7 @@
 }
 
 .search-result-card__organisation {
-  @include heading-s;
+  @include body-m;
   font-weight: normal;
   margin-top: space(8);
 
@@ -41,18 +41,9 @@
 }
 
 .search-result-card__logo {
-  width: pxtorem(65px);
-  height: pxtorem(65px);
-  background-color: $white;
-  border-radius: 4px;
-  border: 1px solid $gray;
-
-  &:before {
-    content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
+  width: pxtorem(62);
+  height: pxtorem(62);
+  background-color: $gray;
 
   img {
     width: 100%;
@@ -79,8 +70,7 @@
   margin-bottom: space(16);
   padding: space(8);
   @include body-regular;
-  line-height: 0.875rem;
-  background-color: $casablanca;
+  background-color: $peach;
   color: $black;
   border-radius: 4px;
 }
@@ -128,8 +118,8 @@
   a {
     display: flex;
     align-items: center;
-    font-size: $font-body-m;
-    text-decoration: none;
+    @include heading-xs;
+    text-decoration: underline;
   }
 
   svg {

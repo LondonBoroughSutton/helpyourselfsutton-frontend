@@ -18,17 +18,19 @@ const ViewFilters: React.FunctionComponent<IProps> = ({ resultsStore, resultsSwi
 
   return (
     <div className={cx('results__view-filter')}>
-      <p className="view-filter--header">{resultsSwitch ? ' View as:' : 'View As'}</p>
+      <h3 className="h4">{resultsSwitch ? ' View as' : 'View As'}</h3>
       <Button
         text="Grid"
         icon="th-large"
-        light={resultsStore.view !== 'grid'}
+        alt={true}
+        light={resultsStore.view === 'grid'}
         onClick={() => resultsStore.toggleView('grid')}
       />
       <Button
         text="Map"
         icon="map-marker-alt"
-        light={resultsStore.view !== 'map'}
+        alt={true}
+        light={resultsStore.view === 'map'}
         onClick={() => resultsStore.toggleView('map')}
       />
     </div>
