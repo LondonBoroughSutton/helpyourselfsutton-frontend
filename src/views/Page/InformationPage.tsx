@@ -8,7 +8,8 @@ import Breadcrumb from '../../components/Breadcrumb';
 
 // Import assets
 import pageIllo from '../../assets/images/mother-and-son-walking.svg';
-import Button from '../../components/Button';
+import ButtonLink from '../../components/Button/ButtonLink';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 function InformationPage(props: any) {
   return (
@@ -65,14 +66,14 @@ function InformationPage(props: any) {
               <h2 className="information-page__sub-heading">Other pages in this section</h2>
             </div>
             <div className="flex-col flex-col--12 information-page__pages">
-              {props.content.children.map((page: { id: string; title: string; }) => {
+              {props.content.children.map((page: { id: string; title: string; icon: IconName; }) => {
                 return (
-                  <Button
-                    category={true}
+                  <ButtonLink
+                    href={'/' + page.id}
                     text={page.title}
                     key={page.id}
-                    size="small"
-                    onClick={() => {}}
+                    category={true}
+                    icon={page.icon}
                   />
                 )
               })}
