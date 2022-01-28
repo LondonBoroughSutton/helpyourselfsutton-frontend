@@ -117,7 +117,7 @@ class Results extends Component<IProps> {
           <section className="results__wrapper">
             {!!resultsStore.results.length && (
               <div className="results__info">
-                <div className="flex-container flex-container--align-center flex-container--large">
+                <div className="flex-container flex-container--align-start">
                   <div className="flex-col flex-col--12">
                     <h2 className="results__info__header">Here's some services you might be interested in</h2>
                   </div>
@@ -181,7 +181,7 @@ class Results extends Component<IProps> {
 
         {(resultsStore.totalItems > resultsStore.itemsPerPage && resultsStore.view === 'grid') && (
           <div className="results__pagination">
-            <div className="flex-container flex-container--large">
+            <div className="flex-container">
               <Pagination
                 activePage={resultsStore.currentPage}
                 itemsCountPerPage={resultsStore.itemsPerPage}

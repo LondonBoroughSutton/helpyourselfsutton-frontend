@@ -54,6 +54,12 @@
   color: $black;
 }
 
+.button__light {
+  background-color: $white;
+  border-color: transparent;
+  color: $black;
+}
+
 .button__image {
   width: auto;
   max-height: 60px;

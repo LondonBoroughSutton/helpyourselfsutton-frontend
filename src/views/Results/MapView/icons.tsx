@@ -1,43 +1,47 @@
 import L from 'leaflet';
-const requestImageFile = require.context(
-  '../../../assets/images/icons/maps/',
-  true,
-  /^\.\/.*\.svg$/
-);
+import activeIcon from '../../../assets/images/icons/maps/active-pin.svg';
+import activityIcon from '../../../assets/images/icons/maps/activity-pin.svg';
+import adviceIcon from '../../../assets/images/icons/maps/advice-pin.svg';
+import appIcon from '../../../assets/images/icons/maps/app-pin.svg';
+import clubIcon from '../../../assets/images/icons/maps/club-pin.svg';
+import groupIcon from '../../../assets/images/icons/maps/group-pin.svg';
+import helplineIcon from '../../../assets/images/icons/maps/helpline-pin.svg';
+import informationIcon from '../../../assets/images/icons/maps/information-pin.svg';
+import serviceIcon from '../../../assets/images/icons/maps/service-pin.svg';
 
 export const ActiveMarker = L.icon({
-  iconUrl: requestImageFile('./active-pin.svg').default,
+  iconUrl: activeIcon,
   iconSize: [62, 88],
 });
 export const ActivityMarker = L.icon({
-  iconUrl: requestImageFile('./activity-pin.svg').default,
+  iconUrl: activityIcon,
   iconSize: [50, 95],
 });
 export const AdviceMarker = L.icon({
-  iconUrl: requestImageFile('./advice-pin.svg').default,
+  iconUrl: adviceIcon,
   iconSize: [50, 95],
 });
 export const AppMarker = L.icon({
-  iconUrl: requestImageFile('./app-pin.svg').default,
+  iconUrl: appIcon,
   iconSize: [50, 95],
 });
 export const ClubMarker = L.icon({
-  iconUrl: requestImageFile('./club-pin.svg').default,
+  iconUrl: clubIcon,
   iconSize: [50, 95],
 });
 export const GroupMarker = L.icon({
-  iconUrl: requestImageFile('./group-pin.svg').default,
+  iconUrl: groupIcon,
   iconSize: [50, 95],
 });
 export const HelplineMarker = L.icon({
-  iconUrl: requestImageFile('./helpline-pin.svg').default,
+  iconUrl: helplineIcon,
   iconSize: [50, 95],
 });
 export const InformationMarker = L.icon({
-  iconUrl: requestImageFile('./information-pin.svg').default,
+  iconUrl: informationIcon,
   iconSize: [50, 95],
 });
 export const ServiceMarker = L.icon({
-  iconUrl: requestImageFile('./service-pin.svg').default,
+  iconUrl: serviceIcon,
   iconSize: [50, 95],
 });

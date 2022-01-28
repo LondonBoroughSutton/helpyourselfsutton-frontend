@@ -93,8 +93,7 @@
   }
 
   p {
-    font-size: pxtorem(20);
-    font-weight: 700;
+    @include body-m;
   }
 }
 
@@ -237,6 +236,11 @@
       margin-left: 0;
     }
 
+    .results__overview-keyword & {
+      margin-left: 0;
+      padding: space(20);
+    }
+
     & > div {
       padding-right: space(16);
       margin-bottom: space(32);
@@ -263,13 +267,16 @@
   &--secondary {
     border: 1px solid $black;
     border-radius: 40px;
+    margin: 0 -40px;
     padding: space(20) space(40);
 
     @include for-tablet-landscape-down {
+      margin: 0 -32px;
       padding: space(20) space(32);
     }
 
     @include for-phone-only {
+      margin: 0;
       padding: space(20);
     }
 
@@ -516,6 +523,12 @@
 
   @include for-phone-only {
     padding: space(16);
+  }
+
+  &--keyword {
+    .results__filters--primary {
+      margin: 0;
+    }
   }
 }
 

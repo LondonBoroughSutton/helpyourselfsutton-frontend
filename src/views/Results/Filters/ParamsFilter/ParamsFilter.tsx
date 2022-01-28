@@ -141,7 +141,7 @@ class Filter extends Component<IProps, IState> {
     return (
       <div className="results__filters">
         {resultsStore.isKeywordSearch && (
-          <h2 className="results__filters__heading">Search results</h2>
+          <h1 className="results__filters__heading">Search results</h1>
         )}
         <form
           onSubmit={e => {
@@ -271,6 +271,7 @@ class Filter extends Component<IProps, IState> {
                 </div>
                 <div className={'flex-col flex-col-medium-2'}>
                   <button
+                    type="button"
                     onClick={this.toggleFilters}
                     className={'results__filters__show-more-button'}>
                     {this.state.showFilters ? 'Hide' : 'Show more'} filters
@@ -422,6 +423,8 @@ class Filter extends Component<IProps, IState> {
                         text="Remove all filters"
                         />
                     </div>
+
+                    <button type="submit"></button>
                   </div>
                 </div>
               )}
