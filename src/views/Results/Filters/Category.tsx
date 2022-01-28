@@ -48,11 +48,11 @@ const Category: React.FunctionComponent<IProps> = ({ resultsStore }) => {
             )}
           </div>
           <div className="results__overview__info">
-            <h2>
+            <h1>
               {resultsStore && resultsStore.category
                 ? get(resultsStore, 'category.name').replace('COVID-19:', '')
                 : get(resultsStore, 'persona.name')}
-            </h2>
+            </h1>
             <div>
               <p className="results__overview__intro">
                 {resultsStore && resultsStore.category

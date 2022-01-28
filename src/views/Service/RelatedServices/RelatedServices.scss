@@ -4,35 +4,43 @@
 @import '../../../styles/breakpoints.scss';
 
 .related-services {
-  background-color: $casablanca;
-  font-family: $font-primary;
-  padding: space(56) 0 space(104) 0;
-  text-align: center;
-  color: $black;
+  background-color: $bermuda;
+  padding: space(56) 0 space(96) 0;
 
   @include for-tablet-landscape-down {
     padding: space(32) 0 space(48);
   }
+}
 
-  .button {
-    margin: space(16) 0;
+.related-services__header {
+  flex-wrap: nowrap;
+  margin-bottom: space(48);
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(32);
   }
 
-  &__container {
-    display: grid;
-    gap: space(32);
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-top: space(24) !important;
+  @include for-phone-only {
+    flex-wrap: wrap;
+  }
 
-    @include for-tablet-portrait-down {
-      gap: space(24);
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      margin-top: space(24) !important;
-    }
+  .button {
+    flex: none;
+  }
+}
 
-    @include for-phone-only {
-      gap: 0;
-      grid-template-columns: repeat(1, minmax(0, 1fr));
-    }
+.related-services__items {
+  display: grid;
+  gap: space(32);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @include for-tablet-landscape-down {
+    gap: space(24);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include for-phone-only {
+    gap: space(16);
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }

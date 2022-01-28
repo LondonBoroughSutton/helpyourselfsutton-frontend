@@ -1,0 +1,148 @@
+@import '../../styles/breakpoints.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/typography.scss';
+
+/* Section styles */
+
+.landing-page__overview {
+  padding: space(40) 0;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(24);
+  }
+}
+
+.landing-page__information {
+  padding: space(56) 0;
+  background-color: $casablanca;
+}
+
+.landing-page__services {
+  padding-top: space(56);
+  background-color: $bermuda;
+
+  &--wrapper {
+    max-width: 1050px;
+  }
+}
+
+.landing-page__pages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+
+  @media(max-width: 992px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include for-phone-only {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+.landing-page__illustrations {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+
+  .image {
+    @include for-tablet-landscape-down {
+      max-width: 20%;
+      height: auto;
+    }
+  }
+}
+
+/* Base content styles */
+
+.landing-page__heading {
+  margin-bottom: space(32);
+  @include heading-xl;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(24);
+  }
+
+  @include for-phone-only {
+    margin-bottom: space(16);
+  }
+}
+
+.landing-page__sub-heading {
+  margin-bottom: space(32);
+  @include heading-l;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(24);
+  }
+
+  @include for-phone-only {
+    margin-bottom: space(16);
+  }
+}
+
+.landing-page__content {
+  margin-bottom: space(48);
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(32);
+  }
+
+  @include for-phone-only {
+    margin-bottom: space(24);
+  }
+
+  p {
+    @include body-l;
+  }
+}
+
+.landing-page__image {
+  margin-bottom: space(32);
+  border-radius: 40px;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(24);
+  }
+}
+
+.landing-page__intro,
+.landing-page__about {
+  padding-right: space(40);
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(32);
+  }
+
+  @include for-phone-only {
+    margin-bottom: 0;
+  }
+}
+
+.landing-page__contact {
+  padding: space(32);
+  border-radius: 40px;
+  box-shadow: 0 4px 4px rgba(0,0,0,0.25);
+
+  @include for-phone-only {
+    margin-top: space(16);
+  }
+
+  &__item {
+    margin-bottom: space(16);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &__title {
+      margin-bottom: space(16);
+    }
+
+    &__link {
+      @include body-m;
+    }
+  }
+}

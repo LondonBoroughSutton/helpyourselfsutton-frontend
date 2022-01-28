@@ -1,0 +1,66 @@
+@import '../../styles/colors.scss';
+@import '../../styles/breakpoints.scss';
+@import '../../styles/mixins.scss';
+
+.landing-pages {
+  padding: space(48) 0;
+  background-color: $fountain-blue;
+
+  
+
+  &__heading {
+    margin-left: space(72);
+    margin-bottom: space(48);
+
+    @include for-tablet-landscape-down {
+      margin-left: space(40);
+      margin-bottom: space(32);
+    }
+
+    @include for-phone-only {
+      margin-left: 0;
+      margin-bottom: space(24);
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 34px 62px;
+    width: 100%;
+
+    @include for-phone-only {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: space(20) space(56);
+    box-sizing: content-box;
+    border-radius: 40px;
+    background-color: $white;
+
+    @include for-tablet-portrait-down {
+      padding: space(16) space(40);
+    }
+
+    @include for-phone-only {
+      padding: space(12) space(32);
+    }
+
+    .image {
+      margin-right: space(40);
+
+      @include for-tablet-portrait-down {
+        margin-right: space(32);
+      }
+
+      @include for-phone-only {
+        margin-right: space(24);
+      }
+    }
+  }
+}

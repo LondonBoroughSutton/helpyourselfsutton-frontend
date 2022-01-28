@@ -55,7 +55,6 @@ class HomeScreenPrompt extends Component<any, IState> {
     const d = new Date();
 
     d.setMonth(d.getMonth() + 6);
-    console.log(d);
 
     cookies.set('ct_home_screen_prompt_visible', false, {
       expires: d,

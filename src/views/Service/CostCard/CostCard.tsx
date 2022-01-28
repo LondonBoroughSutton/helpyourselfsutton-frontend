@@ -1,6 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import './CostCard.scss';
+
 import { IService } from '../../../types/types';
 
 interface IProps {
@@ -9,12 +11,10 @@ interface IProps {
 
 const CostCard: React.FunctionComponent<IProps> = ({ service }) => (
   <div className="service__cost-card">
-    <div className="service__cost-card--img">
-      <FontAwesomeIcon icon="pound-sign" className="service__info__cost--icon" />
-      <p className="criteria_card-title">{!service.is_free ? 'Cost' : 'Free'}</p>
-    </div>
-    <div className="service__cost-card--content">
-      <p>
+    <FontAwesomeIcon icon="credit-card" className="service__cost-card__icon" />
+    <div className="service__cost-card__content">
+      <p className="service__cost-card__title">{!service.is_free ? 'Cost' : 'Free'}</p>
+      <p className="service__cost-card__description">
         This {service.type} {service.is_free ? 'is free' : 'has a cost associated'}
       </p>
       {service.fees_url && (

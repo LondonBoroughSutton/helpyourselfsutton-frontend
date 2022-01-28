@@ -1,0 +1,17 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/colors.scss';
+@import '../../../styles/breakpoints.scss';
+
+.service__referral {
+  background-color: $white;
+  padding: space(32);
+  border-radius: 20px;
+  
+  @include for-tablet-landscape-down {
+    padding: space(24);
+  }
+
+  @include for-phone-only {
+    padding: space(16);
+  }
+}

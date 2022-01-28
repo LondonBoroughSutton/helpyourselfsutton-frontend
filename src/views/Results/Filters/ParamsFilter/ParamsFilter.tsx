@@ -11,6 +11,8 @@ import Checkbox from '../../../../components/Checkbox';
 import Input from '../../../../components/Input';
 import Select from '../../../../components/Select';
 import ResultsStore from '../../../../stores/resultsStore';
+import Button from '../../../../components/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface IProps extends RouteComponentProps {
   resultsStore?: ResultsStore;
@@ -261,22 +263,27 @@ class Filter extends Component<IProps, IState> {
 
             <div className="results__filters--secondary">
               <div
-                className={'flex-container flex-container--align-top flex-container--no-padding'}
+                className={'flex-container flex-container--align-center flex-container--no-padding'}
               >
-                <div className={'flex-col-12 flex-col-medium-8 flex-col--gutter'}>
-                  <h3>Filter your results</h3>
-                  <p>You can get more personalised results by providing some extra information</p>
+                <div className={'flex-col flex-col-medium-8'}>
+                  <h3 className="h4">Filter by</h3>
+                  <p className="body--m">You can get more personalised results</p>
                 </div>
-                <div className={'flex-col-12 flex-col-medium-2 flex-col--gutter'}>
-                  <button onClick={this.toggleFilters} className={'button button__alt--small'}>
-                    {this.state.showFilters ? 'Hide' : 'Show'} filters
+                <div className={'flex-col flex-col-medium-2'}>
+                  <button
+                    onClick={this.toggleFilters}
+                    className={'results__filters__show-more-button'}>
+                    {this.state.showFilters ? 'Hide' : 'Show more'} filters
+                    <FontAwesomeIcon
+                      icon={!this.state.showFilters ? 'chevron-down' : 'chevron-up'}
+                    />
                   </button>
                 </div>
               </div>
 
               {this.state.showFilters && (
                 <div>
-                  <div className={'results__filters--group flex-col--gutter'}>
+                  <div className={'results__filters--group'}>
                     {/* column */}
                     {!_isEmpty(this.getFilterOptions('age')) && (
                       <div className={'results__filters--group__item'}>
@@ -407,11 +414,15 @@ class Filter extends Component<IProps, IState> {
                       </div>
                     )}
                     {/* ./column */}
+                    
+                    <div className="results__filters--remove">
+                      <Button
+                        onClick={this.resetFilters}
+                        alt={true}
+                        text="Remove all filters"
+                        />
+                    </div>
                   </div>
-
-                  <button onClick={this.resetFilters} className={'link results__filters--remove'}>
-                    Remove all filters
-                  </button>
                 </div>
               )}
             </div>

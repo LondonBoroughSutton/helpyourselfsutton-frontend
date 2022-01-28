@@ -10,9 +10,11 @@ interface IProps {
 }
 
 const SideboxCard: React.FunctionComponent<IProps> = ({ sidebox }) => (
-  <div className="sidebox">
-    <h3>{sidebox.title}</h3>
-    <ReactMarkdown children={sidebox.content} />
+  <div className="sidebox-card">
+    <h3 className="sidebox-card__heading">{sidebox.title}</h3>
+    <ReactMarkdown
+      children={sidebox.content}
+      className="sidebox-card__content" />
   </div>
 );
 
