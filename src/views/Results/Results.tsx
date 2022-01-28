@@ -98,6 +98,19 @@ class Results extends Component<IProps> {
           </div>
         </div>
 
+        {this.hasCategories() && this.hasCategories().length !== 0 && (
+          <section className="results__info-boxes">
+            <div className="flex-container">
+              <h2 className="results__info-boxes__heading">Here's some information you might find useful</h2>
+              <div className="results__info-boxes__items">
+                {map(this.hasCategories(), (sidebox: ISidebox, index) => {
+                  return <SideboxCard sidebox={sidebox} key={index} />;
+                })}
+              </div>
+            </div>
+          </section>
+        )}
+
         {resultsStore.loading ? (
           <Loading />
         ) : (
@@ -125,14 +138,6 @@ class Results extends Component<IProps> {
               </div>
             )}
             <div className="results__list">
-              {this.hasCategories() && this.hasCategories().length !== 0 && (
-                <div className="results__category-sidebar">
-                  {map(this.hasCategories(), (sidebox: ISidebox, index) => {
-                    return <SideboxCard sidebox={sidebox} key={index} />;
-                  })}
-                </div>
-              )}
-
               {!!resultsStore.results.length ? (
                 resultsStore.view === 'grid' ? (
                   <ListView resultsStore={resultsStore} history={history} />
