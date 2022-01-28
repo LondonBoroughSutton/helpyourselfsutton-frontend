@@ -42,12 +42,13 @@ import ContactCard from './ContactCard';
 import ShareCard from './ShareCard';
 import ReferralCard from './ReferralCard';
 import GalleryCard from './GalleryCard';
-import { UsefulInfoCardAccordian, UsefulInfoCard } from './UsefulInfoCard';
+import { UsefulInfoCard, UsefulInfoCardAccordian } from './UsefulInfoCard';
 import RelatedServices from './RelatedServices';
 import Breadcrumb from '../../components/Breadcrumb';
 import Loading from '../../components/Loading';
 import ServiceDisabled from './ServiceDisabled';
 import LinkButton from '../../components/LinkButton';
+import Button from '../../components/Button';
 
 interface RouteParams {
   service: string;
@@ -166,6 +167,7 @@ class Service extends Component<IProps> {
   render() {
     const { serviceStore } = this.props;
     const { service, locations, relatedServices, organisation } = serviceStore;
+
     if (!service) {
       return null;
     }
@@ -176,7 +178,7 @@ class Service extends Component<IProps> {
     }
 
     return (
-      <main>
+      <main className="service">
         <Helmet>
           {get(service, 'name') && (
             <title>{`${get(service, 'name')} | Help Yourself Sutton`}</title>
@@ -203,54 +205,66 @@ class Service extends Component<IProps> {
             { text: service.name, url: '' },
           ]}
         />
-        <div className={`service__header service__header--${get(service, 'type')}`}>
-          <div className="flex-container">
-            <div className="service__header__wrapper">
+        <section className="service__header">
+          <div className="flex-container flex-container--no-wrap">
+            <div className="flex-col flex-col--mobile--4">
               <div className="service__header__logo">
-                <img src={getImg(service)} alt={`${service.name} logo`} />
+                <img
+                  src={getImg(service)}
+                  alt={`${service.name} logo`} />
               </div>
-              <div className="flex-col flex-col--tablet--9">
-                <span className="organisation__header__sub">Service</span>
-                <h1>{get(service, 'name')}</h1>
+            </div>
+            <div className="flex-col">
+              <p className="service__header__label">Service</p>
+              <h1 className="service__header__heading">{get(service, 'name')}</h1>
+              {organisation && organisation.slug && (
+                <p className="service__header__description">
+                  This service is run by the organisation{' '}
+                  <Link
+                    to={`/organisations/${organisation.slug}`}
+                    aria-label="Home Link"
+                    className="service__header__description__link">
+                    {organisation.name}
+                  </Link>
+                  . View their organisation details and other listed services.
+                </p>
+              )}
+              <div className="service__header__actions">
                 {organisation && organisation.slug && (
-                  <p className="service__header__desc">
-                    This service is run by the organisation{' '}
-                    <Link to={`/organisations/${organisation.slug}`} aria-label="Home Link">
-                      {organisation.name}
-                    </Link>
-                    . View their organisation details and other listed services.
-                  </p>
+                  <LinkButton
+                    alt={true}
+                    accent={true}
+                    text="View organisation"
+                    to={`/organisations/${organisation.slug}`}
+                  />
                 )}
-                <div className="flex-container flex-container--no-padding flex-container--left">
-                  {organisation && organisation.slug && (
-                    <div className="flex-col--mobile--12">
-                      <LinkButton
-                        alt={false}
-                        accent={true}
-                        text="View organisation"
-                        to={`/organisations/${organisation.slug}`}
-                      />
-                    </div>
-                  )}
-                </div>
+                <Button
+                  size="small"
+                  text={serviceStore.favourite ? 'In your favourites' : 'Add to favourites'}
+                  icon="star"
+                  onClick={() => {
+                    serviceStore.addToFavourites();
+                  }}
+                  disabled={serviceStore.favourite}
+                />
               </div>
             </div>
           </div>
-        </div>
+        </section>
         {serviceStore.loading ? (
           <Loading />
         ) : (
           <section className="service__info">
-            <div className="flex-container flex-container--justify">
-              <div className="flex-col flex-col--8 flex-col--mobile--12 flex-col--tablet--12 service__left-column">
-                <div className="flex-container flex-container--align-center flex-container--no-padding service__section service__section--no-padding">
+            <div className="flex-container">
+              <article className="service__info__content">
+                <div className="flex-container flex-container--align-center flex-container--no-padding service__section">
                   {serviceStore.hasCriteria && (
                     <div className="flex-col flex-col--12 flex-col--mobile--12 service__criteria">
                       <h2 className="service__heading">Who is it for?</h2>
                     </div>
                   )}
                   <div
-                    className="criteria-cards service__section service__section--no-padding"
+                    className="criteria-cards service__section"
                     style={{ alignItems: 'stretch' }}
                   >
                     {this.getServiceEligibilityInfo('Age Group') && (
@@ -330,7 +344,7 @@ class Service extends Component<IProps> {
                     </div>
                   </div>
 
-                  <div className="flex-container flex-container--align-center flex-container--no-padding service__media service__section--no-padding">
+                  <div className="flex-container flex-container--align-center flex-container--no-padding service__media">
                     <div className="flex-col flex-col--mobile--12">
                       <h2 className="service__heading">{`What is this ${get(
                         service,
@@ -349,7 +363,7 @@ class Service extends Component<IProps> {
                     )}
                   </div>
 
-                  <div className="flex-container flex-container--align-center service__section service__section--no-padding service__information">
+                  <div className="flex-container flex-container--align-center service__section service__information">
                     <div className="flex-col flex-col--12 flex-col--mobile--12">
                       <ReactMarkdown
                         children={service.intro}
@@ -373,14 +387,12 @@ class Service extends Component<IProps> {
                       </div>
                     )}
 
-                    <div className="flex-col service__section mobile-hide">
-                      <ReactMarkdown
-                        children={service.description}
-                        className={cx('service__markdown service__markdown--description', {
-                          'service__markdown--description--tight': !service.offerings.length,
-                        })}
-                      />
-                    </div>
+                    <ReactMarkdown
+                      children={service.description}
+                      className={cx('service__markdown service__markdown--description mobile-hide', {
+                        'service__markdown--description--tight': !service.offerings.length,
+                      })}
+                    />
                   </div>
 
                   {service.testimonial && (
@@ -390,16 +402,9 @@ class Service extends Component<IProps> {
                           <h2 className="service__heading">What people say</h2>
                         </div>
 
-                        <div className="flex-col flex-col--12 service__testimonial">
-                          <div className="flex-container flex-container--align-center flex-container--justify flex-container--no-padding">
-                            <div className="flex-col--1 flex-col--tablet-large--2 flex-col--tablet--2">
-                              <FontAwesomeIcon icon="comment" />
-                            </div>
-                            <div className="flex-col--9 flex-col--tablet--9">
-                              <p>{this.formatTestimonial(service.testimonial)}</p>
-                            </div>
-                          </div>
-                        </div>
+                        <figure className="flex-col flex-col--12 service__testimonial">
+                          <blockquote className="body--xl">{this.formatTestimonial(service.testimonial)}</blockquote>
+                        </figure>
                       </div>
                     </div>
                   )}
@@ -412,7 +417,7 @@ class Service extends Component<IProps> {
                         <LocationCard
                           location={location}
                           key={location.id}
-                          className="service__accordian-inner"
+                          className=""
                           desktop={true}
                         />
                       ))}
@@ -432,7 +437,7 @@ class Service extends Component<IProps> {
                   )}
 
                   {service.referral_method !== 'none' && (
-                    <div className="mobile-show">
+                    <div className="service__section mobile-show">
                       <ReferralCard id={service.id} />
                     </div>
                   )}
@@ -443,7 +448,7 @@ class Service extends Component<IProps> {
                       className="service__accordian mobile-show"
                     >
                       <div className="service__map">
-                        <MapCard iconType={get(service, 'type')} locations={locations} />
+                        <MapCard iconType={service.type} locations={locations} />
                       </div>
                     </Accordian>
                   )}
@@ -514,9 +519,7 @@ class Service extends Component<IProps> {
                     </Accordian>
                   )}
                 </div>
-                <br />
-                <br />
-                <div className="mobile-show">
+                <div className="service__section mobile-show">
                   <div className=" flex-col flex-col--12 flex-container flex-container--justify ">
                     <p>
                       Page last updated{' '}
@@ -524,49 +527,43 @@ class Service extends Component<IProps> {
                     </p>
                   </div>
                 </div>
-              </div>
-              <div className="flex-col flex-col--4 flex-col--tablet--12  ">
-                <div className="flex-container service__right-column mobile-hide">
-                  <div className="tablet-hide flex-col flex-col--12 service__info__cost service__section">
-                    <CostCard service={service} />
+              </article>
+              <aside className="service__sidebar">
+                <div className="service__section tablet-hide">
+                  <CostCard service={service} />
+                </div>
+                {service.video_embed && (
+                  <VideoCard video={service.video_embed} width="100%" />
+                )}
+                {!!locations.length && (
+                  <div className="service__section">
+                    <h2 className="service__heading">{`Where is this ${service.type}?`}</h2>
+                    <div className="service__map">
+                      <MapCard iconType={service.type} locations={locations} />
+                    </div>
                   </div>
-                  {service.video_embed && (
-                    <div className="flex-container flex-container--mobile-no-padding mobile-hide service__video">
-                      <VideoCard video={service.video_embed} width="100%" />
+                )}
+                <div>
+                  <h2 className="service__heading">{`How can I contact this ${service.type}?`}</h2>
+                  <div className="service__section">
+                    <ContactCard organisation={organisation} service={service} />
+                  </div>
+                  {service.referral_method !== 'none' && (
+                    <div className="service__section service__referral--desktop">
+                      <ReferralCard id={service.id} />
                     </div>
                   )}
-                  {!!locations.length && (
-                    <div className="flex-col flex-col--12">
-                      <h2 className="service__heading">{`Where is this ${service.type}?`}</h2>
-                      <div className="service__section service__map">
-                        <MapCard iconType={get(service, 'type')} locations={locations} />
-                      </div>
-                    </div>
-                  )}
-                  <div className="flex-col flex-col--12">
-                    <h2 className="service__heading">{`How can I contact this ${service.type}?`}</h2>
-                    <div className="service__section">
-                      <ContactCard organisation={organisation} service={service} />
-                    </div>
-                    {service.referral_method !== 'none' && (
-                      <div className="service__section service__referral--desktop">
-                        <ReferralCard id={service.id} />
-                      </div>
-                    )}
-                  </div>
                 </div>
-                <div className="flex-container service__right-column">
-                  <div className="flex-col flex-col--12">
-                    <ShareCard serviceStore={serviceStore} />
-                  </div>
-                  <div className="flex-col flex-col--12 flex-container flex-container--justify flex-container--no-padding">
-                    <p>
-                      Page last updated{' '}
-                      <strong>{moment(service!.updated_at).format('Do MMMM YYYY')}</strong>
-                    </p>
-                  </div>
+                <div className="service__section">
+                  <ShareCard serviceStore={serviceStore} />
                 </div>
-              </div>
+                <div className="flex-container flex-container--justify flex-container--no-padding">
+                  <p>
+                    Page last updated{' '}
+                    <strong>{moment(service!.updated_at).format('Do MMMM YYYY')}</strong>
+                  </p>
+                </div>
+              </aside>
             </div>
           </section>
         )}

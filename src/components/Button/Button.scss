@@ -4,23 +4,6 @@
 @import '../../styles/breakpoints.scss';
 @import '../../styles/typography.scss';
 
-@mixin disabled-btn {
-  &:disabled {
-    color: $gray;
-    background-color: inherit;
-    border: 2px solid $gray;
-    opacity: 0.75;
-  }
-}
-
-@mixin disabled-btn-hover {
-  &:disabled:hover {
-    box-shadow: none;
-    cursor: not-allowed;
-    border: 2px solid $gray;
-  }
-}
-
 .button {
   display: inline-flex;
   align-items: center;
@@ -54,8 +37,9 @@
   }
 
   &:disabled {
-    background-color: $periwinkle-gray;
-    color: #fff;
+    background-color: $gray;
+    border: 2px solid $gray;
+    color: $black;
     opacity: 0.75;
   }
 
@@ -63,17 +47,11 @@
     box-shadow: none;
     cursor: not-allowed;
   }
+}
 
-  &--alt {
-    background-color: transparent;
-    color: $black;
-  }
-
-  &--light {
-    background-color: $white;
-    border-color: transparent;
-    color: $black;
-  }
+.button__alt {
+  background-color: transparent;
+  color: $black;
 }
 
 .button__image {
@@ -99,4 +77,8 @@
     border-color: $black;
     box-shadow: none;
   }
+}
+
+.button--small {
+  padding: space(8);  
 }

@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import ReactMarkdown from 'react-markdown';
 
+import './UsefulInfoCard.scss';
+
 interface IInfo {
   title: string;
   description: string;

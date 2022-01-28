@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import find from 'lodash/find';
 import size from 'lodash/size';
 
+import './ContactCard.scss';
+
 import { IOrganisation, IService } from '../../../types/types';
 
 interface IProps {

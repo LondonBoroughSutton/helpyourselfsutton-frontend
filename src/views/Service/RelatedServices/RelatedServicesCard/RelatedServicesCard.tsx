@@ -16,7 +16,7 @@ interface IProps extends RouteComponentProps {
 const RelatedServicesCard: React.FunctionComponent<IProps> = ({ service, history }) => (
   <div className="related-services-card">
     <div className="flex-container flex-container--no-padding flex-container--no-wrap flex-container--align-center flex-container--space-between">
-      <h3>{service.name}</h3>
+      <h3 className="h4">{service.name}</h3>
       {service.has_logo && (
         <div className="related-services-card__logo mobile-hide">
           <img
@@ -29,9 +29,7 @@ const RelatedServicesCard: React.FunctionComponent<IProps> = ({ service, history
         </div>
       )}
     </div>
-    <div className="related-services-card__info">
-      <p>{service.intro}</p>
-    </div>
+    <p className="related-services-card__info">{service.intro}</p>
     <Link
       size="medium"
       text="Read more"
