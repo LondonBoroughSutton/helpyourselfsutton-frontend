@@ -81,7 +81,12 @@
 
 .search-result-card__location {
   display: flex;
+  align-items: center;
   margin-bottom: space(12);
+
+  > svg {
+    margin-right: space(8);
+  }
 
   h4 {
     margin-left: space(8);
@@ -111,7 +116,9 @@
 }
 
 .search-result-card__footer {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   align-self: flex-end;
 
@@ -126,4 +133,20 @@
     font-size: pxtorem(24px);
     margin-left: space(12);
   }
+}
+
+.search-result-card__contact {
+  display: flex;
+  flex-direction: column;
+  margin-top: space(32);
+  margin-bottom: space(16);
+
+  > .flex-col {
+    margin-bottom: space(16);
+  }
+}
+
+.search-result-card__contact-heading {
+  @include heading-xs;
+  margin-bottom: space(8);
 }

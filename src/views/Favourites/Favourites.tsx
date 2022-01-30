@@ -40,7 +40,7 @@ class Favourites extends Component<IProps> {
     const { favouritesStore, cmsStore, history } = this.props;
 
     return (
-      <section className="favourites">
+      <main className="favourites">
         <Helmet>
           <title>Favourites | Help Yourself Sutton</title>
         </Helmet>
@@ -51,7 +51,7 @@ class Favourites extends Component<IProps> {
             { text: 'Favourites', url: '' },
           ]}
         />
-        <div className="favourites__header">
+        <section className="favourites__header">
           <div className="flex-container flex-container--align-center">
             <div className="flex-col flex-col--6">
               <h1 className="favourites__title">{get(cmsStore, 'favourites.title')}</h1>
@@ -61,19 +61,19 @@ class Favourites extends Component<IProps> {
               <FavouriteShare />
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className="flex-container flex-container--mobile-no-padding flex-container--align-center ">
-          {!!favouritesStore.favourites.length ? (
-            <Fragment>
-              <div className="flex-col flex-col--12 favourites__count">
-                <p>
-                  <strong>{`${favouritesStore.favourites.length} results found`}</strong>
-                </p>
-              </div>
+        <section className="favourites__content">
+          <div className="flex-container flex-container--large">
+            {!!favouritesStore.favourites.length ? (
+              <Fragment>
+                <div className="favourites__count">
+                  <p>
+                    <strong>{`${favouritesStore.favourites.length} results found`}</strong>
+                  </p>
+                </div>
 
-              <div className="flex-col flex-col--12">
-                <div className="results__container">
+                <div className="favourites__list">
                   {favouritesStore.favourites.map((favourite: IService) => {
                     return (
                       <FavouritesCard
@@ -85,28 +85,21 @@ class Favourites extends Component<IProps> {
                     );
                   })}
                 </div>
+              </Fragment>
+            ) : (
+              <div className="favourites__no-favourites">
+                <h2>No favourites saved</h2>
               </div>
+            )}
 
-              <div className="flex-container mobile-show tablet-show">
-                <FavouriteShare />
-              </div>
-            </Fragment>
-          ) : (
-            <div className="flex-container favourites__no-favourites">
-              <div className="flex-col flex-col--12">
-                <h3>No favourites saved</h3>
-              </div>
+            <div className="favourites__add-more">
+              <Link to="/">
+                <Button text="Add more" icon="plus" onClick={() => history.push('/')} />
+              </Link>
             </div>
-          )}
-        </div>
-        <div className="flex-container flex-container--justify">
-          <div className="favourites__add-more">
-            <Link to="/">
-              <Button text="Add more" icon="plus" onClick={() => history.push('/')} />
-            </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
     );
   }
 }
