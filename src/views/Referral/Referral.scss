@@ -200,6 +200,12 @@
 }
 
 .referral__form__field {
+  margin-bottom: space(16);
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
   .input--container {
     margin: space(12) 0;
 
