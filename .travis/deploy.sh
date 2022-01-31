@@ -11,7 +11,6 @@
 # $CF_ROUTE = The public url of the app without the schema
 # $CF_ENV_SERVICE = The name of the S3 bucket holding the .env files
 # $CF_ENV_SERVICE_KEY = The name of the service key that holds the secret S3 bucket access details
-# $CF_APP_NAME = The name of the main app as stated in the manifest
 
 # Bail out on first error.
 set -e
