@@ -14,4 +14,8 @@
   @include for-phone-only {
     padding: space(16);
   }
+  
+  .button {
+    margin-bottom: space(24);
+  }
 }

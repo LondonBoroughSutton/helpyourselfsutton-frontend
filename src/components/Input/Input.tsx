@@ -7,7 +7,7 @@ interface IProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: any;
   id: string;
-  value: string;
+  value?: string;
   className?: string;
   fullWidth?: boolean;
   required?: boolean;

@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { inject, observer } from 'mobx-react';
 import get from 'lodash/get';
-
 import ReferralStore from '../../../../stores/referralStore';
 import Button from '../../../../components/Button';
 import html from '../../../../components/Html';
@@ -13,29 +12,36 @@ interface IProps {
 
 const chooseForm = (referralStore: ReferralStore) => {
   switch (referralStore.whoFor) {
-    case 'A friend or family member':
+    case 'Myself':
       return (
         <Form
           label="Your full name"
           heading="About you"
-          subtitle={`You will be notified when ${get(
+          referralStore={referralStore}
+        />
+      );
+    case 'A friend or family member':
+      return (
+        <Form
+          label="Their full name"
+          heading="About your Friend or Family Member"
+          subtitle={`This is the person who will be contacted by ${get(
             referralStore,
             'service.name'
-          )} makes contact with ${get(referralStore, 'referral.name')}.`}
+          )}`}
           referralStore={referralStore}
         />
       );
     case 'Someone else':
       return (
         <Form
-          label="Your full name"
-          heading="About you"
-          subtitle={`You will be notified when ${get(
+          label="Their full name"
+          heading="About the person being connected"
+          subtitle={`This is the person who will be contacted by ${get(
             referralStore,
             'service.name'
-          )} makes contact with ${get(referralStore, 'referral.name')}.`}
+          )}`}
           referralStore={referralStore}
-          showPartnerOrgs={true}
         />
       );
     default:
@@ -43,7 +49,7 @@ const chooseForm = (referralStore: ReferralStore) => {
   }
 };
 
-const StepFive: React.FunctionComponent<IProps> = ({ referralStore }) => {
+const StepThree: React.FunctionComponent<IProps> = ({ referralStore }) => {
   if (!referralStore) {
     return null;
   }
@@ -57,11 +63,8 @@ const StepFive: React.FunctionComponent<IProps> = ({ referralStore }) => {
             text="Continue"
             type="submit"
             icon="chevron-right"
-            onClick={(e: React.FormEvent) => {
-              e.preventDefault();
-              referralStore.nextStep();
-            }}
-            disabled={!referralStore.referral.referee_name}
+            onClick={() => referralStore.nextStep()}
+            disabled={referralStore.step === 2 && !referralStore.whoFor}
           />
           <p
             dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
@@ -72,4 +75,4 @@ const StepFive: React.FunctionComponent<IProps> = ({ referralStore }) => {
   );
 };
 
-export default inject('referralStore')(observer(StepFive));
+export default inject('referralStore')(observer(StepThree));

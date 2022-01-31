@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx';
+import { makeObservable, observable, action, computed } from 'mobx';
 import axios from 'axios';
 import { apiBase } from '../config/api';
 import get from 'lodash/get';
@@ -8,6 +8,10 @@ export default class OrganisationStore {
   @observable organisation: IOrganisation | null = null;
   @observable associatedServices: IService[] | null = null;
   @observable loading: boolean = false;
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @computed
   get hasSocials() {

@@ -17,6 +17,7 @@ import { IServiceLocation, IOpeningHour } from '../../../types/types';
 import { apiBase } from '../../../config/api';
 import Link from '../../../components/Link';
 import Accordian from '../../../components/Accordian';
+import html from '../../../components/Html';
 
 interface IProps {
   location: IServiceLocation;
@@ -84,7 +85,7 @@ const LocationCard: React.FunctionComponent<IProps> = ({ location, className, de
               <div className="flex-col flex-col--12 flex-col--mobile--12 location__opening-times--list">
                 {formatOpeningTimes(location.regular_opening_hours).map(
                   (openingTime: string) => (
-                    <p key={uniqueId()} dangerouslySetInnerHTML={{ __html: openingTime }} />
+                    <p key={uniqueId()} dangerouslySetInnerHTML={{ __html: html(openingTime) }} />
                   )
                 )}
               </div>
@@ -93,7 +94,7 @@ const LocationCard: React.FunctionComponent<IProps> = ({ location, className, de
                   <Accordian title="Bank holiday times" className="location__holiday-times">
                     {formatHolidayTimes(location.holiday_opening_hours).map(
                       (time: string) => (
-                        <p key={uniqueId()} dangerouslySetInnerHTML={{ __html: time }} />
+                        <p key={uniqueId()} dangerouslySetInnerHTML={{ __html: html(time) }} />
                       )
                     )}
                   </Accordian>

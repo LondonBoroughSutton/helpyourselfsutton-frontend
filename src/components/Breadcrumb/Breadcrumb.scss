@@ -4,7 +4,7 @@
 
 .breadcrumb {
   margin-top: space(32);
-  margin-bottom: space(40);
+  margin-bottom: space(32);
 
   @include for-tablet-portrait-down {
     margin-top: space(16);
@@ -47,6 +47,16 @@
     @include for-phone-only {
       font-size: pxtorem(16);
       line-height: pxtorem(16);
+    }
+  }
+
+  &__item {
+    > a {
+      font-weight: 700;
+    }
+
+    &--active {
+      font-weight: 400;
     }
   }
 

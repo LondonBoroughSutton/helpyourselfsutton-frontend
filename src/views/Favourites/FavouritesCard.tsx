@@ -64,7 +64,7 @@ const FavouritesCard: React.FunctionComponent<IProps> = ({
   const organisation = find(favouritesStore.organisations, ['id', service.organisation_id]);
 
   return (
-    <article className="search-result-card favourites__card">
+    <article className="search-result-card">
       <div className="search-result-card__content">
         <div className="search-result-card__top-row">
           <div className="search-result-card__title">
@@ -91,7 +91,7 @@ const FavouritesCard: React.FunctionComponent<IProps> = ({
         </div>
 
         {serviceLocations.length > 0 && (
-          <div className="search-result-card__location favourites__card--location">
+          <div className="search-result-card__location">
             <FontAwesomeIcon icon="map-marker-alt" />
             {serviceLocations.length === 1 ? (
               <p>{first(serviceLocations)}</p>
@@ -135,30 +135,30 @@ const FavouritesCard: React.FunctionComponent<IProps> = ({
           </div>
         )}
 
-        <div className="flex-container  flex-container--no-padding favourites__card--contact">
+        <div className="search-result-card__contact">
           {service.contact_phone && (
             <div className="flex-col flex-col--12">
-              <p className="favourites__card--contact--heading">
+              <p className="search-result-card__contact-heading">
                 <FontAwesomeIcon icon="phone" /> Telephone
               </p>
-              <a href={`tel:${service.contact_phone}`} className="body--s">
+              <a href={`tel:${service.contact_phone}`} className="body--m">
                 {service.contact_phone}
               </a>
             </div>
           )}
           {service.contact_email && (
             <div className="flex-col flex-col--12">
-              <p className="favourites__card--contact--heading">
+              <p className="search-result-card__contact-heading">
                 <FontAwesomeIcon icon="envelope" /> Email
               </p>
-              <a href={`mailto:${service.contact_email}`} className="body--s">
+              <a href={`mailto:${service.contact_email}`} className="body--m">
                 {service.contact_email}
               </a>
             </div>
           )}
         </div>
       </div>
-      <div className="favourites__card--footer">
+      <div className="search-result-card__footer">
         <div>
           <Link to={`/services/${service.slug}`}>
             <span>View more</span>

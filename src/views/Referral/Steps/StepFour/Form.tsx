@@ -4,6 +4,7 @@ import cx from 'classnames';
 import ReferralStore from '../../../../stores/referralStore';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
+import html from '../../../../components/Html';
 import { observer } from 'mobx-react';
 
 interface IProps {
@@ -113,19 +114,15 @@ class Form extends Component<IProps, IState> {
 
     return (
       <Fragment>
-        <div className="flex-container flex-container--mobile-no-padding referral--intro--no-padding">
-          <div className="flex-col flex-col--12 flex-col--mobile--12 referral__step-container--intro">
-            <p className="referral__step-container--steps">{`Step 2 of ${referralStore.totalSteps}`}</p>
-            <h1>{header}</h1>
-            {subtitle && <p className="referral__step-container--subtitle">{subtitle}</p>}
+        <div className="referral__step-container">
+          <div className="flex-col flex-col--12">
+            <p className="body--s">{`Step 1 of ${referralStore.totalSteps}`}</p>
+            <h2 className="referral__step-container__question">{header}</h2>
+            {subtitle && <p className="referral__step-container__subtitle">{subtitle}</p>}
           </div>
-          <div className="flex-container referral--intro--no-padding referral__step-container referral__step-container--full-width">
-            <div className="flex-col flex-col--12 flex-col--mobile--12 referral__step-container--form referral__form">
-              <label htmlFor="email">
-                <p className="referral__step-container--question--large referral__step-container--label">
-                  {label1}
-                </p>
-              </label>
+          <form className="referral__form">
+            <div className="referral__form__field">
+              <label className="referral__form__label" htmlFor="email">{label1}</label>
               <Input
                 id="email"
                 type="email"
@@ -141,12 +138,8 @@ class Form extends Component<IProps, IState> {
                 errorMessage="Please enter a valid email adress"
               />
             </div>
-            <div className="flex-col flex-col--12 flex-col--mobile--12 referral__step-container--form referral__form">
-              <label htmlFor="phone">
-                <p className="referral__step-container--question--large referral__step-container--label">
-                  {label2}
-                </p>
-              </label>
+            <div className="referral__form__field">
+              <label className="referral__form__label" htmlFor="phone">{label2}</label>
               <Input
                 id="phone"
                 type="tel"
@@ -162,9 +155,8 @@ class Form extends Component<IProps, IState> {
               />
             </div>
 
-            <div className="flex-col flex-col--12 referral__form">
-              <p
-                role="button"
+            <div className="referral__form__field">
+              <button
                 aria-label="Select if you can't provide these details"
                 onClick={() => this.toggleNoContactDetails()}
                 className={cx('referral__step-container--other-contact--toggle', {
@@ -175,20 +167,19 @@ class Form extends Component<IProps, IState> {
                 onKeyDown={e => (e.key === 'Enter' ? this.toggleNoContactDetails() : null)}
               >
                 {otherContactToggle}
-              </p>
+              </button>
+            </div>
 
-              {open && (
-                <div className="flex-container flex-container--mobile-no-padding referral__step-container--other-contact">
-                  <div className="flex-col flex-col--12">
-                    <h3>{otherContactHeading}</h3>
-                    <label htmlFor="other_contact">
-                      <p>{otherContactDescription}</p>
-                    </label>
-                  </div>
-                  <div className="flex-col flex-col--12">
+            {open && (
+              <div className="referral__form__field">
+                <h3>{otherContactHeading}</h3>
+                <div>
+                  <label className="referral__form__label" htmlFor="other_contact">{otherContactDescription}</label>
+                  <div className="input--container">
                     <textarea
                       id="other_contact"
-                      className="referral__step-container--text-area flex-col flex-col--12"
+                      className="input"
+                      style={{ height: 180 }}
                       onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                         referralStore.handleInput('other_contact', e.target.value)
                       }
@@ -196,29 +187,24 @@ class Form extends Component<IProps, IState> {
                     />
                   </div>
                 </div>
-              )}
-            </div>
-          </div>
+              </div>
+            )}
+          </form>
         </div>
-        <div className="flex-col flex-col--12 flex-col--mobile--12">
-          <div className="flex-container referral--next-step referral--intro--no-padding">
-            <div className="flex-col flex-col--12 flex-col--mobile--12">
-              <Button
-                text="Continue"
-                type="submit"
-                icon="chevron-right"
-                onClick={(e: any) => {
-                  e.preventDefault();
-                  this.handleSubmit();
-                }}
-              />
-            </div>
-            <div className="flex-col flex-col--12 referral--step">
-              <span
-                className="body--s"
-                dangerouslySetInnerHTML={{ __html: referralStore.stepDescription }}
-              />
-            </div>
+        <div className="referral__actions">
+          <div className="flex-container flex-container--no-padding flex-container--column flex-container--align-start">
+            <Button
+              text="Continue"
+              type="submit"
+              icon="chevron-right"
+              onClick={(e: any) => {
+                e.preventDefault();
+                this.handleSubmit();
+              }}
+            />
+            <p
+              dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
+              className="body--s" />
           </div>
         </div>
       </Fragment>
