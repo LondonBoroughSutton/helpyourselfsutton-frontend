@@ -140,160 +140,61 @@
 }
 
 .referral__button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: space(12);
   border: 2px solid $black;
-  padding: space(16) !important;
-  margin-bottom: space(12) !important;
+  border-radius: 4px;
+  text-align: center;
   background-color: $white;
-  text-align: left;
-
-  @include for-desktop-up {
-    text-align: center;
-    margin: 0 space(8) !important;
-    height: 100%;
-  }
-
-  @include for-tablet-landscape-down {
-    width: 100%;
-  }
+  transition: background-color, color 0.25s ease-in-out;
 
   &--active {
-    background-color: $casablanca;
-
-    svg {
-      color: $black;
-    }
+    background-color: $black;
+    color: $white;
   }
+}
 
-  h4 {
-    @include for-desktop-up {
-      margin-bottom: space(24);
-    }
-  }
+.referral__button__icon {
+  margin-bottom: space(12);
+  font-size: pxtorem(32);
+}
 
-  &--small-margin {
-    h4 {
-      @include for-desktop-up {
-        margin-bottom: space(16) !important;
-      }
-    }
+.referral__button__title {
+  margin-bottom: space(8);
+  @include body-m;
+  font-weight: 700;
+}
 
-    svg {
-      @include for-desktop-up {
-        margin-bottom: space(16) !important;
-      }
-    }
-  }
-
-  svg {
-    font-size: pxtorem(36px);
-    margin-bottom: space(24);
-
-    @include for-tablet-landscape-down {
-      font-size: pxtorem(25px);
-      margin-bottom: 0;
-    }
-  }
+.referral__button__description {
+  @include body-s;
 }
 
 .referral__step-container {
-  margin: space(24) 0;
   padding: space(24);
   border-radius: 20px;
   background-color: $white;
-
-  &--select {
-    @include for-tablet-landscape-down {
-      max-width: 100% !important;
-    }
-  }
-
-  &--steps {
-    margin-bottom: space(6);
-  }
-
-  &--subtitle {
-    margin-top: space(12);
-  }
-
-  &--full-width {
-    width: 100%;
-  }
-
-  &--input {
-    width: 100%;
-  }
-
-  &--label {
-    margin-bottom: space(24) !important;
-  }
-
-  &--form {
-    padding: space(16) !important;
-  }
-
-  &--question {
-    padding: 0 space(16);
-    font-family: $font-primary;
-
-    @include for-tablet-landscape-up {
-      font-size: $font-heading-m;
-      padding: 0 !important;
-    }
-
-    &--large {
-      font-size: $font-body-l;
-      font-family: $font-primary;
-    }
-  }
-
-  &--inner {
-    margin-top: space(20) !important;
-  }
-
-  &--text-area {
-    @include body-m;
-
-    border: 2px solid $black;
-    resize: none;
-    height: pxtorem(100px);
-    padding: space(12) !important;
-    margin-top: space(12);
-  }
-
-  &--other-contact {
-    margin: space(20) 0 !important;
-
-    @include for-tablet-landscape-up {
-      box-sizing: border-box;
-      border-left: 2px solid $gray;
-    }
-
-    .flex-col {
-      margin-bottom: 0 !important;
-    }
-
-    label {
-      p {
-        margin-top: space(12);
-      }
-    }
-
-    &--toggle {
-      font-size: pxtorem(18px);
-      text-decoration: underline;
-
-      &--open {
-        margin-bottom: space(12) !important;
-      }
-    }
-  }
 }
 
-.referral__form {
-  padding: space(24) !important;
+.referral__step-container__question {
+  margin-bottom: space(24);
+  @include heading-s;
+}
 
-  @include for-tablet-portrait-down {
-    padding: space(20) 0 !important;
+.referral__step-container__answers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: space(12);
+  width: 100%;
+
+  @include for-tablet-landscape-down {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include for-phone-only {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
 
