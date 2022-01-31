@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const StepOne: React.FunctionComponent<IProps> = ({ name }) => (
-  <div className="referral__intro">
+  <div className="referral__step-container">
     <div className="referral__intro__item">
       <div className="referral__intro__item__icon">
         <FontAwesomeIcon icon="envelope" />

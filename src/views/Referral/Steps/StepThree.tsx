@@ -23,31 +23,27 @@ const StepThreeInput: React.FunctionComponent<IStepThreeInputProps> = ({
   heading,
   subtitle,
 }) => (
-  <div className="flex-container flex-container--mobile-no-padding referral--intro--no-padding">
-    <div className="flex-col flex-col--12 flex-col--mobile--12 referral__step-container--intro">
-      <p className="referral__step-container--steps">{`Step 1 of ${referralStore.totalSteps}`}</p>
-      <h1>{heading}</h1>
-      {subtitle && <p className="referral__step-container--subtitle">{subtitle}</p>}
+  <div className="flex-container flex-container--no-padding">
+    <div className="flex-col flex-col--12">
+      <p className="body--s">{`Step 1 of ${referralStore.totalSteps}`}</p>
+      <h2 className="referral__step-container__question">{heading}</h2>
+      {subtitle && <p className="referral__step-container__subtitle">{subtitle}</p>}
     </div>
-    <div className="flex-container referral--intro--no-padding referral__step-container referral__step-container--full-width">
-      <div className="flex-col flex-col--12 flex-col--mobile--12 referral__step-container--form referral__form">
-        <label htmlFor="name">
-          <p className="referral__step-container--question--large referral__step-container--label">
-            {label}
-          </p>
-        </label>
+    <form className="referral__form">
+      <div className="referral__form__field">
+        <label
+          className="referral__form__label"
+          htmlFor="name">{label}</label>
         <Input
           id="name"
           value={referralStore.referral.name}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            referralStore.handleInput('name', e.target.value)
-          }
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => referralStore.handleInput('name', e.target.value)}
           className="referral__step-container--input"
           placeholder="John Smith"
           required={true}
         />
       </div>
-    </div>
+    </form>
   </div>
 );
 
@@ -92,34 +88,26 @@ const StepThree: React.FunctionComponent<IProps> = ({ referralStore }) => {
   }
 
   return (
-    <form
-      className="flex-col flex-col--7 flex-col--mobile--12 flex-col--tablet--12 flex-col--tablet-large--6"
-      style={{ margin: '24px 0' }}
-    >
-      {chooseForm(referralStore)}
-      <div className="flex-col flex-col--12 flex-col--mobile--12">
-        <div className="flex-container referral--next-step referral--intro--no-padding">
-          <div className="flex-col flex-col--12 flex-col--mobile--12">
-            <Button
-              text="Continue"
-              type="submit"
-              icon="chevron-right"
-              onClick={(e: React.FormEvent) => {
-                e.preventDefault();
-                referralStore.nextStep();
-              }}
-              disabled={!referralStore.referral.name}
-            />
-          </div>
-          <div className="flex-col flex-col--12 referral--step">
-            <span
-              className="body--s"
-              dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
-            />
-          </div>
+    <div>
+      <div className="referral__step-container">
+        {chooseForm(referralStore)}
+      </div>
+
+      <div className="referral__actions">
+        <div className="flex-container flex-container--no-padding flex-container--column flex-container--align-start">
+          <Button
+            text="Continue"
+            type="submit"
+            icon="chevron-right"
+            onClick={() => referralStore.nextStep()}
+            disabled={referralStore.step === 2 && !referralStore.whoFor}
+          />
+          <p
+            dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
+            className="body--s" />
         </div>
       </div>
-    </form>
+    </div>
   );
 };
 

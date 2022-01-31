@@ -104,8 +104,6 @@
 }
 
 .referral__actions {
-  margin-top: space(32);
-
   .button {
     margin-bottom: space(16);
   }
@@ -134,8 +132,6 @@
   width: 56px;
   height: 56px;
   margin-right: space(16);
-  border-radius: 4px;
-  background-color: $white;
   font-size: pxtorem(24);
 }
 
@@ -173,6 +169,7 @@
 }
 
 .referral__step-container {
+  margin-bottom: space(48);
   padding: space(24);
   border-radius: 20px;
   background-color: $white;
@@ -181,6 +178,10 @@
 .referral__step-container__question {
   margin-bottom: space(24);
   @include heading-s;
+}
+
+.referral__step-container__subtitle {
+  margin-bottom: space(24);
 }
 
 .referral__step-container__answers {
@@ -196,6 +197,21 @@
   @include for-phone-only {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
+}
+
+.referral__form__field {
+  .input--container {
+    margin: space(12) 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.referral__form__label {
+  display: block;
+  @include body-regular;
 }
 
 .referral__terms {
