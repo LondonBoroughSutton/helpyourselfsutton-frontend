@@ -31,7 +31,6 @@ const CategoryList: React.FunctionComponent<IProps> = ({
               category={true}
               text={name}
               key={id}
-              size="small"
               image={image}
               onClick={() => {
                 history.push({
