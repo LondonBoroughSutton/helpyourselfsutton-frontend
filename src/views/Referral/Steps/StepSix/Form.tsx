@@ -4,6 +4,7 @@ import cx from 'classnames';
 import ReferralStore from '../../../../stores/referralStore';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
+import html from '../../../../components/Html';
 import { observer } from 'mobx-react';
 import get from 'lodash/get';
 
@@ -210,7 +211,7 @@ class Form extends Component<IProps, IState> {
             <div className="flex-col flex-col--12 referral--step">
               <span
                 className="body--s"
-                dangerouslySetInnerHTML={{ __html: referralStore.stepDescription }}
+                dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
               />
             </div>
           </div>

@@ -4,6 +4,7 @@ import get from 'lodash/get';
 
 import ReferralStore from '../../../../stores/referralStore';
 import Button from '../../../../components/Button';
+import html from '../../../../components/Html';
 import Form from './Form';
 
 interface IProps {
@@ -70,7 +71,7 @@ const StepFive: React.FunctionComponent<IProps> = ({ referralStore }) => {
           <div className="flex-col flex-col--12 referral--step">
             <span
               className="body--s"
-              dangerouslySetInnerHTML={{ __html: referralStore.stepDescription }}
+              dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
             />
           </div>
         </div>

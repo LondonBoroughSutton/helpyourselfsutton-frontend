@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import ReferralStore from '../../../stores/referralStore';
 import Checkbox from '../../../components/Checkbox';
 import Button from '../../../components/Button';
+import html from '../../../components/Html';
 
 interface IProps {
   referralStore?: ReferralStore;
@@ -92,7 +93,7 @@ const TermsAndConditions: React.FunctionComponent<IProps> = ({ referralStore }) 
           <div className="flex-col flex-col--12 referral--step">
             <span
               className="body--s"
-              dangerouslySetInnerHTML={{ __html: referralStore.stepDescription }}
+              dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
             />
           </div>
         </div>

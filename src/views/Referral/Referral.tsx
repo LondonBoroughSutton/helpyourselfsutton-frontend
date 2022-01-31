@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { inject, observer } from 'mobx-react';
 import queryString from 'query-string';
@@ -6,12 +6,12 @@ import { withRouter, RouteComponentProps } from 'react-router';
 import get from 'lodash/get';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import cx from 'classnames';
 
 import ReferralStore from '../../stores/referralStore';
 
 import './Referral.scss';
 import Button from '../../components/Button';
+import html from '../../components/Html';
 import { apiBase } from '../../config/api';
 import StepOne from './Steps/StepOne';
 import StepTwo from './Steps/StepTwo';
@@ -159,10 +159,9 @@ class Referral extends Component<IProps> {
                 icon="chevron-right"
                 onClick={() => referralStore.nextStep()}
               />
-              <span
-                className="body--s"
-                dangerouslySetInnerHTML={{ __html: referralStore.stepDescription }}
-              />
+              <p
+            dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
+            className="body--s" />
             </div>
           </section>
         )}
