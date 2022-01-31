@@ -40,22 +40,15 @@ class Form extends Component<IProps, IState> {
     const { heading, subtitle, label, referralStore, showPartnerOrgs } = this.props;
     const { open } = this.state;
     return (
-      <div className="flex-container flex-container--mobile-no-padding referral--intro--no-padding">
-        <div className="flex-col flex-col--12 flex-col--mobile--12 referral__step-container--intro">
-          <p className="referral__step-container--steps">{`Step 3 of ${get(
-            referralStore,
-            'totalSteps'
-          )}`}</p>
-          <h1>{heading}</h1>
-          <p className="referral__step-container--subtitle">{subtitle}</p>
+      <div className="referral__step-container">
+        <div className="flex-col flex-col--12">
+          <p className="body--s">{`Step 1 of ${referralStore.totalSteps}`}</p>
+          <h2 className="referral__step-container__question">{heading}</h2>
+          {subtitle && <p className="referral__step-container__subtitle">{subtitle}</p>}
         </div>
-        <div className="flex-container referral--intro--no-padding referral__step-container referral__step-container--full-width">
-          <div className="flex-col flex-col--12 flex-col--mobile--12 referral__step-container--form referral__form">
-            <label htmlFor="name">
-              <p className="referral__step-container--question--large referral__step-container--label">
-                {label}
-              </p>
-            </label>
+        <form className="referral__form">
+          <div className="referral__form__field">
+            <label className="referral__form__label" htmlFor="name">{label}</label>
             <Input
               id="name"
               value={get(referralStore, 'referral.referee_name') || ''}
@@ -69,13 +62,8 @@ class Form extends Component<IProps, IState> {
           </div>
           {showPartnerOrgs && (
             <Fragment>
-              <div className="flex-col flex-col--12 flex-col--mobile--12 referral__step-container--form referral__form">
-                <label htmlFor="orderBy" className="results__sort-by-label">
-                  <p className="referral__step-container--question--large referral__step-container--label">
-                    Do you work for one of our partner organisations?
-                  </p>
-                </label>
-
+              <div className="referral__form__field">
+                <label className="referral__form__label" htmlFor="orderBy">Do you work for one of our partner organisations?</label>
                 <Autocomplete
                   storeTextField="organisation"
                   defaultText={get(referralStore, 'referral.organisation')}
@@ -86,8 +74,7 @@ class Form extends Component<IProps, IState> {
               </div>
 
               <div className="flex-col flex-col--12 referral__form">
-                <p
-                  role="button"
+                <button
                   aria-label="Select if you can't provide these details"
                   onClick={() => this.toggleOrganisation()}
                   className={cx('referral__step-container--other-contact--toggle', {
@@ -98,15 +85,11 @@ class Form extends Component<IProps, IState> {
                   onKeyDown={e => (e.key === 'Enter' ? this.toggleOrganisation() : null)}
                 >
                   I can't see my organisation
-                </p>
+                </button>
 
                 {open && (
-                  <div className="flex-col flex-col--12 flex-col--mobile--12 referral__step-container--form referral__form referral__other-organisation">
-                    <label htmlFor="organisation">
-                      <p className="referral__step-container--question--large referral__step-container--label">
-                        Other organisation
-                      </p>
-                    </label>
+                  <div className="referral__form__field">
+                    <label className="referral__form__label" htmlFor="organisation">Other organisation</label>
                     <Input
                       id="organisation"
                       value={get(referralStore, 'referral.organisation') || ''}
@@ -120,7 +103,7 @@ class Form extends Component<IProps, IState> {
               </div>
             </Fragment>
           )}
-        </div>
+        </form>
       </div>
     );
   }

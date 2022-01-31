@@ -29,7 +29,7 @@
 
   &--error {
     display: block;
-    border-left: 2px solid $mona-lisa;
+    border-left: 2px solid $error;
     padding-left: space(16);
   }
 
@@ -55,7 +55,7 @@
 
   &--show {
     display: inline-block;
-    color: $mona-lisa;
+    color: $error;
     margin-top: space(8);
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { inject, observer } from 'mobx-react';
 import get from 'lodash/get';
 
@@ -49,34 +49,26 @@ const StepFive: React.FunctionComponent<IProps> = ({ referralStore }) => {
   }
 
   return (
-    <form
-      className="flex-col flex-col--7 flex-col--mobile--12 flex-col--tablet--12 flex-col--tablet-large--6"
-      style={{ margin: '24px 0' }}
-    >
+    <Fragment>
       {chooseForm(referralStore)}
-      <div className="flex-col flex-col--12 flex-col--mobile--12">
-        <div className="flex-container referral--next-step referral--intro--no-padding">
-          <div className="flex-col flex-col--12 flex-col--mobile--12">
-            <Button
-              text="Continue"
-              type="submit"
-              icon="chevron-right"
-              onClick={(e: React.FormEvent) => {
-                e.preventDefault();
-                referralStore.nextStep();
-              }}
-              disabled={!referralStore.referral.referee_name}
-            />
-          </div>
-          <div className="flex-col flex-col--12 referral--step">
-            <span
-              className="body--s"
-              dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
-            />
-          </div>
+      <div className="referral__actions">
+        <div className="flex-container flex-container--no-padding flex-container--column flex-container--align-start">
+          <Button
+            text="Continue"
+            type="submit"
+            icon="chevron-right"
+            onClick={(e: React.FormEvent) => {
+              e.preventDefault();
+              referralStore.nextStep();
+            }}
+            disabled={!referralStore.referral.referee_name}
+          />
+          <p
+            dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
+            className="body--s" />
         </div>
       </div>
-    </form>
+    </Fragment>
   );
 };
 
