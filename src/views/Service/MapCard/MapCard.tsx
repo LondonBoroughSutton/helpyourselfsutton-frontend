@@ -45,7 +45,7 @@ class MapCard extends Component<IProps, IState> {
   };
 
   render() {
-    const { locations, iconType } = this.props;
+    const { locations } = this.props;
 
 
     const locationObj: any = first(locations);

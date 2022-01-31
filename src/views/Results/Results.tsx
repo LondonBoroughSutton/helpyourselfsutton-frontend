@@ -22,7 +22,6 @@ import SideboxCard from './SideboxCard';
 import { ISidebox } from '../../types/types';
 import Loading from '../../components/Loading';
 import CategoryList from '../../components/CategoryList';
-import { result } from 'lodash';
 
 interface IProps {
   location: Location;

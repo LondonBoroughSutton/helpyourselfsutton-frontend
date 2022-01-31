@@ -3,8 +3,6 @@ import cx from 'classnames';
 
 import ReferralStore from '../../../../stores/referralStore';
 import Input from '../../../../components/Input';
-import Button from '../../../../components/Button';
-import html from '../../../../components/Html';
 import { observer } from 'mobx-react';
 import get from 'lodash/get';
 

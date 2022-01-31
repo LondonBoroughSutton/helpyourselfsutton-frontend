@@ -17,29 +17,8 @@
   padding: space(40) 0;
   background-color: $botticelli;
 
-  &--next-step {
-    margin: space(20) 0 !important;
-  }
-
-  &--mobile-connect {
-    @include whiteContainer;
-
-    @include for-tablet-portrait-down {
-      margin-top: space(32);
-    }
-
-    @include for-phone-only {
-      margin-top: 0;
-    }
-
-    &--name {
-      font-family: $font-primary;
-    }
-  }
-
-  &--step {
-    margin: space(20) 0;
-    color: $black;
+  .link {
+    text-decoration: underline;
   }
 }
 
@@ -220,31 +199,8 @@
   @include body-regular;
 }
 
-.referral__terms {
-  a {
-    @include body-regular;
-    cursor: pointer;
-  }
-
-  &--heading {
-    margin-bottom: space(40);
-
-    @include for-tablet-landscape-down {
-      margin-bottom: space(24);
-    }
-  }
-
-  &--privacy {
-    margin-top: space(16);
-  }
-
-  &--checkbox {
-    margin: space(20) 0;
-
-    label {
-      color: $black !important;
-    }
-  }
+.referral__terms__section {
+  margin-bottom: space(16);
 }
 
 .referral__confirmation {
