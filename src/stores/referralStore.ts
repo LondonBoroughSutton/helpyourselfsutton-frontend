@@ -1,4 +1,4 @@
-import { makeObservable, observable, action, computed } from 'mobx';
+import { makeObservable, observable, runInAction, action, computed } from 'mobx';
 import axios from 'axios';
 import get from 'lodash/get';
 import orderBy from 'lodash/orderBy';
@@ -48,6 +48,14 @@ class ReferralStore {
   constructor() {
     makeObservable(this);
   }
+
+  @action
+  handleInput = (field: string, input: string) => {
+    runInAction(() => {
+      // @ts-ignore
+      this.referral[field] = input;
+    })
+  };
 
   @action
   clear = () => {
@@ -175,12 +183,6 @@ class ReferralStore {
   get totalSteps() {
     return this.whoFor === 'Myself' ? 3 : 5;
   }
-
-  @action
-  handleInput = (field: string, input: string) => {
-    // @ts-ignore
-    this.referral[field] = input;
-  };
 
   @action
   toggleConsent = () => {

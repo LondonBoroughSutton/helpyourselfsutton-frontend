@@ -204,50 +204,43 @@
 }
 
 .referral__confirmation {
-  color: $black;
-  max-width: pxtorem(1000px);
+  padding: space(56) 0;
+  background-color: $botticelli;
+}
 
-  @include for-phone-only {
-    margin-bottom: space(64) !important;
-  }
+.referral__confirmation__logo {
+  width: 120px;
+  height: 120px;
+  background-color: $gray;
+  text-align: center;
+  margin-bottom: space(24);
 
-  &--info {
-    background-color: $gray;
-    padding: space(48) space(60) !important;
-    margin-top: space(48);
-
-    @include for-tablet-landscape-down {
-      margin-top: space(24);
-    }
-  }
-
-  &--logo {
-    text-align: center;
-    margin-bottom: space(24);
-
-    @include for-tablet-landscape-down {
-      margin-top: space(24);
-    }
+  @include for-tablet-landscape-down {
+    margin-top: space(24);
   }
 
   img {
-    height: 100px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
+}
 
-  h1 {
-    text-align: center;
-  }
+.referral__confirmation__heading {
+  max-width: 640px;
+  text-align: center;
+}
 
-  h2 {
-    font-size: pxtorem(24px);
-  }
+.referral__confirmation__info {
+  max-width: 640px;
+  margin-top: space(48);
+  padding: space(20);
+  border-radius: 20px;
+  background-color: $white;
+  text-align: center;
 
-  li {
-    font-size: pxtorem(18px);
-  }
-
-  ul {
-    margin: space(24) 0;
+  @include for-tablet-landscape-down {
+    margin-top: space(24);
   }
 }
 

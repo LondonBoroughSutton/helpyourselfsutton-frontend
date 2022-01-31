@@ -64,13 +64,15 @@ class Form extends Component<IProps, IState> {
             <Fragment>
               <div className="referral__form__field">
                 <label className="referral__form__label" htmlFor="orderBy">Do you work for one of our partner organisations?</label>
-                <Autocomplete
-                  storeTextField="organisation"
-                  defaultText={get(referralStore, 'referral.organisation')}
-                  defaultValue={get(referralStore, 'referral.organisation')}
-                  store={referralStore}
-                  endpointEntity="organisations"
-                />
+                <div className="input--container">
+                  <Autocomplete
+                    storeTextField="organisation"
+                    defaultText={get(referralStore, 'referral.organisation')}
+                    defaultValue={get(referralStore, 'referral.organisation')}
+                    store={referralStore}
+                    endpointEntity="organisations"
+                  />
+                </div>
               </div>
 
               <div className="flex-col flex-col--12 referral__form">
