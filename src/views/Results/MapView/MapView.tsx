@@ -119,11 +119,7 @@ class MapView extends Component<IProps, IState> {
                     <Marker
                       key={serviceLocation.id}
                       position={[serviceLocation.location.lat, serviceLocation.location.lon]}
-                      icon={
-                        this.state.activeMarkerId === result.id
-                          ? this.getMarkerType('active')
-                          : this.getMarkerType(result.type)
-                      }
+                      icon={this.getMarkerType('service')}
                       eventHandlers={{
                         click: () => {
                           this.setActiveService(result.id)

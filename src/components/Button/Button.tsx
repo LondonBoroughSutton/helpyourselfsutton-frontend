@@ -43,7 +43,7 @@ const Button: React.FunctionComponent<IProps> = ({
       'button__category button__alt': category,
       button__header: header,
       'buton__burger-menu': burgerMenu,
-      'button--light': light,
+      'button__light': light,
       'button button--black': covid,
     })}
     disabled={disabled}
