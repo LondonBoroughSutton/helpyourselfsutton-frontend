@@ -1,21 +1,14 @@
-@import 'breakpoint-sass';
+@use 'sass:math';
 @import './colors.scss';
+@import './breakpoints.scss';
 
 // Define grid variables
 $total-columns: 12;
-$gutter-width: 0px/105px;
-$container-width: 1260px;
+$gutter-width: math.percentage(math.div(0px, 105px));
+$container-width: 1440px;
 $base-line-height: 16px;
 $base-margin: 16px;
 $border-radius: 6px;
-
-$break_container: max-width $container-width;
-$break_standard: max-width 1320px;
-$break_medium: max-width 1199px;
-$break_tablet_large: max-width 1024px;
-$break_tablet: max-width 860px;
-$break_mobile: max-width 600px;
-$break_mobile_small: max-width 320px;
 
 * {
   box-sizing: border-box;
@@ -26,18 +19,18 @@ body {
   background-color: $white;
   color: $black;
 
-  @include breakpoint($break_tablet) {
+  @include for-tablet-portrait-down {
     &.noscroll {
       overflow: hidden;
     }
   }
 
   &.noscroll--mobile {
-    @include breakpoint($break_tablet) {
+    @include for-tablet-portrait-down {
       overflow: auto;
     }
 
-    @include breakpoint($break_mobile) {
+    @include for-phone-only {
       overflow: hidden;
     }
   }
@@ -48,20 +41,26 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  max-width: 1050px;
   margin: 0 auto;
-  padding: 0 $base-margin * 2.5;
+  padding: 0 $base-margin;
+  box-sizing: content-box;
 
-  @include breakpoint($break_tablet) {
-    padding: 0 $base-margin * 1.5;
+  &--large {
+    max-width: 1240px;
   }
 
-  @include breakpoint($break_mobile) {
-    padding: 0 $base-margin;
+  @include for-mobile-up {
+    padding: 0 $base-margin * 2;
+  }
+
+  @include for-tablet-landscape-up {
+    padding: 0 $base-margin * 3;
   }
 
   // Mobile no padding
   &--mobile-no-padding {
-    @include breakpoint($break_mobile) {
+    @include for-phone-only {
       padding: 0;
     }
   }
@@ -73,7 +72,7 @@ body {
 
   // Mobile padding - if --no-padding is used
   &--mobile-padding {
-    @include breakpoint($break_mobile) {
+    @include for-phone-only {
       padding: $base-margin;
     }
   }
@@ -109,7 +108,7 @@ body {
   }
 
   // Vertical align bottom
-  &--align-bottom {
+  &--align-end {
     align-items: flex-end;
   }
 
@@ -144,7 +143,7 @@ body {
   // Column width
   @for $i from 1 to $total-columns + 1 {
     &--#{$i} {
-      width: percentage($i/$total-columns);
+      width: math.percentage(math.div($i, $total-columns));
     }
   }
 
@@ -160,55 +159,63 @@ body {
     padding-right: $base-margin * 2;
   }
 
-  @include breakpoint(max-width 1320px) {
-    &--medium {
-      // Column width
-      @for $i from 1 to $total-columns + 1 {
-        &--#{$i} {
-          width: percentage($i/$total-columns);
-        }
-      }
-    }
-  }
-
-  @include breakpoint($break_standard) {
+  @include for-big-desktop-up {
     &--standard {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: percentage($i/$total-columns);
+          width: math.percentage(math.div($i, $total-columns));
         }
       }
     }
   }
 
-  @include breakpoint($break_tablet_large) {
+  @include for-desktop-up {
+    &--medium {
+      // Column width
+      @for $i from 1 to $total-columns + 1 {
+        &--#{$i} {
+          width: math.percentage(math.div($i, $total-columns));
+        }
+      }
+    }
+  }
+
+  @include for-tablet-landscape-down {
     &--tablet-large {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: percentage($i/$total-columns);
+          width: math.percentage(math.div($i, $total-columns));
         }
       }
     }
   }
 
-  @include breakpoint($break_tablet) {
+  @include for-tablet-portrait-down {
     &--tablet {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: percentage($i/$total-columns);
+          width: math.percentage(math.div($i, $total-columns));
+        }
+      }
+
+      &--#{$total-columns} {
+        margin-bottom: $base-margin * 1.5;
+
+        &:last-of-type {
+          margin-bottom: 0;
         }
       }
     }
   }
 
-  @include breakpoint($break_mobile) {
+  @include for-phone-only {
     width: 100%;
     padding-left: 0;
     padding-right: 0;
-    margin-bottom: $base-margin * 2;
+    margin-bottom: $base-margin * 1.5;
 
     &.flex-col--gutter {
       width: 100%;
@@ -223,23 +230,27 @@ body {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: percentage($i/$total-columns);
+          width: math.percentage(math.div($i, $total-columns));
           margin-bottom: 0;
 
-          &:last-child {
-            border-bottom: 0;
+          &:last-of-type {
+            margin-bottom: 0;
           }
         }
+      }
+
+      &--#{$total-columns} {
+        margin-bottom: $base-margin * 1.5;
       }
     }
   }
 
-  @include breakpoint($break_mobile_small) {
+  @include for-small-phone {
     &--mobile-small {
       // Column width
       @for $i from 1 to $total-columns + 1 {
         &--#{$i} {
-          width: percentage($i/$total-columns);
+          width: math.percentage(math.div($i, $total-columns));
         }
       }
     }
@@ -254,7 +265,7 @@ body {
     }
   }
 
-  @include breakpoint($break_medium) {
+  @include for-tablet-landscape-down {
     &--medium {
       @for $i from 1 to 12 {
         // Column width
@@ -265,7 +276,7 @@ body {
     }
   }
 
-  @include breakpoint($break_tablet) {
+  @include for-tablet-portrait-down {
     &--tablet {
       @for $i from 1 to 12 {
         // Column width
@@ -276,7 +287,7 @@ body {
     }
   }
 
-  @include breakpoint($break_mobile) {
+  @include for-phone-only {
     &--mobile {
       @for $i from 1 to 12 {
         // Column width
@@ -305,7 +316,7 @@ body {
   display: none !important;
 }
 
-@include breakpoint($break_tablet_large) {
+@include for-tablet-landscape-down {
   .tablet--large-hide {
     display: none !important;
   }
@@ -314,7 +325,7 @@ body {
   }
 }
 
-@include breakpoint($break_tablet) {
+@include for-tablet-portrait-down {
   .tablet-hide {
     display: none !important;
   }
@@ -323,7 +334,7 @@ body {
   }
 }
 
-@include breakpoint($break_mobile) {
+@include for-phone-only {
   .mobile-hide {
     display: none !important;
   }
@@ -332,7 +343,7 @@ body {
   }
 }
 
-@include breakpoint($break_medium) {
+@include for-tablet-landscape-down {
   .medium-hide {
     display: none !important;
   }

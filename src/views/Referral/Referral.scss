@@ -1,10 +1,10 @@
 @import '../../styles/colors.scss';
 @import '../../styles/mixins.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 @import '../../styles/breakpoints.scss';
 
 @mixin greenContainer {
-  background-color: $turquoise;
+  background-color: $fountain-blue;
   padding: space(24) !important;
 
   @include for-tablet-landscape-down {
@@ -185,7 +185,7 @@
   }
 
   &--active {
-    background-color: $yellow;
+    background-color: $casablanca;
 
     svg {
       color: $black;
@@ -330,7 +330,7 @@
 
 .referral__terms {
   a {
-    @include body-s;
+    @include body-regular;
     cursor: pointer;
   }
 

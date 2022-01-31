@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
-import ReactSVG from 'react-svg';
+import { ReactSVG } from 'react-svg';
 
 import './CriteriaCard.scss';
 
@@ -43,13 +43,13 @@ const CriteriaCard: React.FunctionComponent<IProps> = ({ svg, title, info }) => 
   };
 
   return (
-    <div className="flex-col flex-col--mobile--12 criteria_card">
-      <div className="flex-container flex-container--align-center criteria_card--inner">
-        <div className="flex-col--tablet-2 criteria_card-img">
+    <div className="flex-col flex-col--mobile--12 criteria-card">
+      <div className="flex-container flex-container--align-center criteria-card--inner">
+        <div className="flex-col--tablet-2 criteria-card-img">
           <ReactSVG src={svg} />
-          <p className="criteria_card-title">{title}</p>
+          <p className="criteria-card-title">{title}</p>
         </div>
-        <div className="criteria_card-content">
+        <div className="criteria-card-content">
           <p>
             {getInfo()}
             {shouldShowToggle() && !open && ', plus more...'}
@@ -57,7 +57,7 @@ const CriteriaCard: React.FunctionComponent<IProps> = ({ svg, title, info }) => 
           </p>
         </div>
 
-        <div className="flex-col flex-col--1 flex-col--mobile--1 criteria_card-toggle">
+        <div className="flex-col flex-col--1 flex-col--mobile--1 criteria-card-toggle">
           {shouldShowToggle() && (
             <button aria-label={`Show more ${title} details`} onClick={() => toggleContent(!open)}>
               <FontAwesomeIcon

@@ -1,22 +1,21 @@
 @import '../../styles/variables.scss';
 @import '../../styles/colors.scss';
 @import '../../styles/mixins.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
 .input {
   @include body-m;
   width: 400px;
-  border: none;
-  padding: space(20);
+  padding: space(16) space(20);
   color: $black;
+  border: 1px solid $black;
   border-radius: 4px;
-  font-size: pxtorem(16px);
-  line-height: 1rem;
+  font-size: pxtorem(18);
   transition: box-shadow $formControlTransitionDuration ease-in-out;
 
   &:focus, &:active {
     outline: 0;
-    box-shadow: 0 0 0pt $formControlOutlineWidth $blue;
+    box-shadow: 0 0 0pt $formControlOutlineWidth $cerulean-blue;
   }
 
   @include for-phone-only {
@@ -30,7 +29,7 @@
 
   &--error {
     display: block;
-    border-left: 2px solid $pink;
+    border-left: 2px solid $mona-lisa;
     padding-left: space(16);
   }
 
@@ -56,7 +55,7 @@
 
   &--show {
     display: inline-block;
-    color: $pink;
+    color: $mona-lisa;
     margin-top: space(8);
   }
 }

@@ -6,7 +6,8 @@ import './Personas.scss';
 import PersonasCard from '../PersonasCard';
 import { IPersona } from '../../types/types';
 import CMSStore from '../../stores/CMSStore';
-import get from 'lodash/get';
+
+import personasImage from '../../assets/images/personas-image.svg';
 
 interface IProps extends RouteComponentProps {
   personas: IPersona[];
@@ -14,30 +15,37 @@ interface IProps extends RouteComponentProps {
 }
 
 const Personas: React.FunctionComponent<IProps> = ({ personas, history, cmsStore }) => {
-  if (!cmsStore) {
+  if (!cmsStore?.home || !personas.length) {
     return null;
   }
 
   return (
-    <section className="personas" role="button">
-      <div className="personas__intro">
-        <h2 className="personas__heading">{get(cmsStore, 'home.personas_title')}</h2>
-        <p>{get(cmsStore, 'home.personas_content')}</p>
-      </div>
+    <section className="personas">
+      <div className="flex-container personas__content">
+        <div className="personas__intro">
+          {cmsStore.home.personas_title && (
+            <h2 className="personas__heading">{cmsStore.home.personas_title}</h2>
+          )}
+          {cmsStore.home.personas_content && (
+            <p className="personas__description">{cmsStore.home.personas_content}</p>
+          )}
+        </div>
 
-      <div className="personas__list">
-        {personas.map(persona => (
-          <PersonasCard
-            key={persona.id}
-            persona={persona}
-            action={() => {
-              history.push({
-                pathname: '/results',
-                search: `?persona=${persona.id}`,
-              });
-            }}
-          />
-        ))}
+        <div className="personas__list">
+          {personas.map(persona => (
+            <PersonasCard
+              key={persona.id}
+              persona={persona}
+              url={`/results?persona=${persona.id}`}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="personas__image flex-container">
+        <img
+          src={personasImage}
+          className="image"
+          alt="A man walking" />
       </div>
     </section>
   );

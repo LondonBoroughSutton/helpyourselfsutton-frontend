@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx';
+import { makeObservable, observable, action, computed } from 'mobx';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import size from 'lodash/size';
@@ -52,6 +52,7 @@ export default class ResultsStore {
   };
 
   constructor() {
+    makeObservable(this);
     this.getServiceEligibilities();
   }
 

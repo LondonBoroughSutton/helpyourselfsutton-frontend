@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import ReactMarkdown from 'react-markdown';
 
+import './UsefulInfoCard.scss';
+
 interface IInfo {
   title: string;
   description: string;
@@ -21,7 +23,7 @@ const UsefulInfoCardAccordian: React.FunctionComponent<IProps> = ({ icon, info }
       </h3>
     </div>
     <div className="flex-col flex-col--12 service__useful-info__content">
-      <ReactMarkdown source={info.description} />
+      <ReactMarkdown children={info.description} />
     </div>
   </div>
 );
@@ -33,7 +35,7 @@ const UsefulInfoCard: React.FunctionComponent<IProps> = ({ icon, info }) => (
     </div>
     <div className="service__useful-info__content">
       <h3>{info.title}</h3>
-      <ReactMarkdown source={info.description} />
+      <ReactMarkdown children={info.description} />
     </div>
   </div>
 );

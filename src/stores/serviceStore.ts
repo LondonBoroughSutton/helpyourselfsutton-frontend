@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx';
+import { makeObservable, observable, action, computed } from 'mobx';
 import axios from 'axios';
 import { apiBase } from '../config/api';
 import get from 'lodash/get';
@@ -14,6 +14,10 @@ export default class ServiceStore {
   @observable favourite: boolean = false;
   @observable organisationId: string = '';
   @observable serviceEligibilityTaxonomies: IServiceTaxonomy[] | null = null;
+
+  constructor() {
+    makeObservable(this);
+  }
 
   checkIfFavorited = () => {
     const favourites = localStorage.getItem('favourites');

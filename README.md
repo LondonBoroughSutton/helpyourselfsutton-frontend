@@ -1,6 +1,6 @@
 # Help Yourself Sutton - Frontend
 
-The frontend website component to the [API](https://github.com/LBHounslow/hounslow-connect-api).
+The frontend website component to the [API](https://github.com/LondonBoroughSutton/helpyourselfsutton-frontend).
 
 ## Getting started
 
@@ -9,7 +9,7 @@ development and testing purposes.
 
 ### Prerequisites
 
-- [Help Yourself Sutton - API](https://github.com/LBHounslow/hounslow-connect-api)
+- [Help Yourself Sutton - API](https://github.com/LondonBoroughSutton/helpyourselfsutton-api)
 - [Docker](https://www.docker.com)
 - [Yarn](https://yarnpkg.com/en/docs/install)
 
@@ -40,5 +40,5 @@ This project is intended to be deployed onto AWS to a S3 bucket.
 
 - [Ayup Digital](https://ayup.agency/)
 
-See also the list of [contributors](https://github.com/LBHounslow/hounslow-connect-frontend/contributors) who
+See also the list of [contributors](https://github.com/LondonBoroughSutton/helpyourselfsutton-frontend/graphs/contributors) who
 participated in this project.

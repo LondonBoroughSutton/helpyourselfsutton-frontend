@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { apiBase } from '../config/api';
-import { observable, computed } from 'mobx';
+import { runInAction, makeObservable, observable, computed, action } from 'mobx';
 import get from 'lodash/get';
 import forEach from 'lodash/forEach';
 import omit from 'lodash/omit';
@@ -48,18 +48,22 @@ class CMSStore {
   @observable banner: IBanner | null = null;
 
   constructor() {
+    makeObservable(this);
     this.getCMSFields();
   }
 
+  @action
   getCMSFields = async () => {
     try {
       const CMSFields = await axios.get(`${apiBase}/settings`);
       const cmsData = get(CMSFields, 'data.data.cms.frontend');
 
-      return forEach(cmsData, (data, key) => {
-        // @ts-ignore
-        this[key] = data;
-      });
+      runInAction(() => {
+        return forEach(cmsData, (data, key) => {
+          // @ts-ignore
+          this[key] = data;
+        });
+      })
     } catch (e) {
       console.error(e);
     }

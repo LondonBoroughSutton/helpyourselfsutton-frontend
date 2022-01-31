@@ -1,7 +1,7 @@
 @import '../../styles/colors.scss';
 @import '../../styles/mixins.scss';
 @import '../../styles/breakpoints.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
 .search-result-card {
   display: flex;
@@ -31,7 +31,7 @@
 }
 
 .search-result-card__organisation {
-  @include heading-s-light;
+  @include body-m;
   font-weight: normal;
   margin-top: space(8);
 
@@ -41,18 +41,9 @@
 }
 
 .search-result-card__logo {
-  width: pxtorem(65px);
-  height: pxtorem(65px);
-  background-color: $white;
-  border-radius: 4px;
-  border: 1px solid $gray;
-
-  &:before {
-    content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
+  width: pxtorem(62);
+  height: pxtorem(62);
+  background-color: $gray;
 
   img {
     width: 100%;
@@ -78,9 +69,8 @@
   margin-right: space(16);
   margin-bottom: space(16);
   padding: space(8);
-  @include body-xs;
-  line-height: 0.875rem;
-  background-color: $yellow;
+  @include body-regular;
+  background-color: $peach;
   color: $black;
   border-radius: 4px;
 }
@@ -89,17 +79,13 @@
   margin-right: space(8);
 }
 
-.search-result-card__tag--cost--free {
-  @include fontSize(7px);
-}
-
 .search-result-card__location {
   display: flex;
   margin-bottom: space(12);
 
   h4 {
     margin-left: space(8);
-    font-size: $font-body-xs;
+    font-size: $font-body-regular;
   }
 }
 
@@ -132,8 +118,8 @@
   a {
     display: flex;
     align-items: center;
-    font-size: $font-body-m;
-    text-decoration: none;
+    @include heading-xs;
+    text-decoration: underline;
   }
 
   svg {

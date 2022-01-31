@@ -1,0 +1,107 @@
+@import '../../styles/breakpoints.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/typography.scss';
+
+/* Section styles */
+
+.information-page__more {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: space(40);
+
+  @include for-tablet-landscape-down {
+    margin-top: space(32);
+  }
+
+  @include for-phone-only {
+    margin-top: space(24);
+  }
+}
+
+.information-page__other {
+  padding: space(56) 0 space(72);
+  background-color: $casablanca;
+  
+  @include for-tablet-landscape-down {
+    padding: space(40) 0 space(56);
+  }
+
+  @include for-phone-only {
+    padding: space(24) 0 space(32);
+  }
+}
+
+.information-page__pages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+
+  @include for-tablet-landscape-down {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include for-phone-only {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+/* Base content styles */
+
+.information-page__heading {
+  margin-bottom: space(32);
+  @include heading-xl;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(24);
+  }
+
+  @include for-phone-only {
+    margin-bottom: space(16);
+  }
+}
+
+.information-page__sub-heading {
+  margin-bottom: space(24);
+  @include heading-s;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(16);
+  }
+}
+
+.information-page__content {
+  margin-bottom: space(48);
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(32);
+  }
+
+  @include for-phone-only {
+    margin-bottom: space(24);
+  }
+
+  p {
+    @include body-l;
+  }
+}
+
+.information-page__image {
+  margin-bottom: space(64);
+  border-radius: 40px;
+  overflow: hidden;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(32);
+  }
+}
+
+.information-page__illustration {
+  @include for-tablet-landscape-down {
+    max-height: 200px;
+  }
+
+  @include for-phone-only {
+    max-height: 160px;
+  }
+}

@@ -21,9 +21,10 @@ class CookieBanner extends Component<any> {
           text: '#ffffff',
         },
       },
-      position: 'bottom',
+      position: 'top',
+      pushdown: true,
       content: {
-        href: 'https://helpyourselfsutton.org/privacy-policy',
+        href: '/privacy-policy',
         message:
           'Our website uses cookies, for more information on what they are, how they work and how to manage them, please view our ',
         link: 'policy here',

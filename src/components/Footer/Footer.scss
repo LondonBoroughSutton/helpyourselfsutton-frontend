@@ -1,147 +1,64 @@
 @import '../../styles/mixins.scss';
 @import '../../styles/colors.scss';
 @import '../../styles/breakpoints.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
 .footer {
-  position: relative;
-  background-color: $pink;
-  padding: space(32) 0;
-  margin-top: pxtorem(0px);
+  padding: space(64) 0;
 
   @include for-phone-only {
-    &::before {
-      content: "";
-    }
+    padding: space(32) 0;
   }
+}
 
-  &--inner-container {
-    position: relative;
-
-    @include for-tablet-portrait-up {
-      padding-top: space(16) !important;
-    }
-  }
-
-  &--service {
-    margin-top: 0;
-
-    > .flex-container {
-      &:before,
-      &:after {
-        display: none !important;
-      }
-    }
-  }
-
-  > .flex-container {
-    position: relative;
-    max-width: 1260px;
-
-    &:before,
-    &::after {
-      position: absolute;
-    }
-  }
-
-  &__disclaimer {
-    padding-right: space(56);
-
-    @include for-tablet-portrait-down {
-      padding-right: 0;
-      padding-bottom: space(56);
-    }
-
-    @include for-phone-only {
-      padding-bottom: 0;
-    }
-  }
+.footer__header {
+  margin-bottom: space(20);
 }
 
 .footer__content {
-  margin: space(16) 0;
-
-  a {
-    @include body-xs;
-  }
-
-  p {
-    @include body-xs;
-    line-height: 1.25rem;
-  }
+  margin-bottom: space(16);
 }
 
-.footer__social-icons {
-  margin-right: space(10);
+.footer__link {
+  @include link-large;
+  margin-right: space(20);
+  text-decoration: underline;
 }
 
 .footer__social-links {
-  margin: space(24) 0;
-}
+  margin-bottom: space(20);
 
-.footer__section {
-  @include for-tablet-landscape-up {
-    padding: space(12);
-  }
-
-  @include for-tablet-portrait-down {
-    padding: 0;
+  > .footer__link {
+    @include heading-s;
   }
 }
 
-.footer__heading {
-  font-weight: 700;
+.footer__contact-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-  .highlight {
-    display: inline-block;
-    margin-top: 2px;
-    padding: 2px 4px;
-    background-color: $black;
-    color: $pink;
+  > .footer__link {
+    margin-bottom: space(12);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
-.footer-contact-links {
-  display: block;
-  padding: 0 !important;
-  color: $black;
-  font-weight: 700;
-  line-height: 26px;
-  text-decoration: underline;
-  cursor: pointer;
+.footer__members {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.footer__button {
-  position: relative;
-  text-align: right;
-
-  .button {
-    background: transparent;
-    background-color: $black;
-    color: $pink;
-    font-size: pxtorem(18px);
-    font-weight: 900;
-    border-radius: 4px;
-  }
-
-  @include for-phone-only {
-    margin-top: space(32);
-    text-align: left;
-  }
-}
-
-.footer-mobile-menu {
-  text-align: left;
-}
-
-.footer-hounslow-logo {
-  display: block;
-  width: 100%;
-  max-width: 200px;
+.footer-logo {
   margin-top: space(32);
-  margin-left: auto;
+  max-width: 140px;
+  height: auto;
 
   @include for-phone-only {
-    margin-left: 0;
+    max-width: 90px;
   }
 }

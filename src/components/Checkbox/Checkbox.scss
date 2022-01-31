@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 @import '../../styles/colors.scss';
 @import '../../styles/mixins.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
 .checkbox {
   input[type='checkbox'] {
@@ -14,9 +14,9 @@
     align-items: center;
     cursor: pointer;
     margin-bottom: 0;
-    font-size: pxtorem(20px);
+    font-size: pxtorem(20);
     font-weight: 700;
-    line-height: pxtorem(20px);
+    line-height: pxtorem(20);
 
     svg {
       display: none;
@@ -26,7 +26,7 @@
       outline: 0;
       & > span {
         outline: 0;
-      box-shadow: 0 0 0pt $formControlOutlineWidth $blue;
+      box-shadow: 0 0 0pt $formControlOutlineWidth $cerulean-blue;
       }
     }
   }
@@ -34,7 +34,7 @@
   input[type='checkbox']:checked + label {
     svg {
       display: inline-block;
-      font-size: pxtorem(20px);
+      font-size: pxtorem(20);
       top: 4px;
       position: absolute;
       left: 4px;
@@ -43,7 +43,7 @@
       @include for-phone-only {
         top: 3px;
         left: 3px;
-        font-size: pxtorem(14px);
+        font-size: pxtorem(14);
       }
     }
   }
@@ -53,7 +53,7 @@
     display: inline-block;
     width: 32px;
     height: 32px;
-    margin-right: space(12);
+    margin-left: space(12);
     vertical-align: middle;
     cursor: pointer;
     background-color: $white;

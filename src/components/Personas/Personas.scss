@@ -1,60 +1,83 @@
+@import '../../styles/breakpoints.scss';
 @import '../../styles/colors.scss';
 @import '../../styles/mixins.scss';
-@import '../../styles/breakpoints.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
 .personas {
-  max-width: 1030px;
-  margin: auto;
+  padding-top: space(40);
+  background-color: $botticelli;
+  overflow: hidden;
 
-  @include for-tablet-portrait-up {
-    padding: 0 space(40) space(120);
+  &__content {
+    max-width: 1050px;
   }
 
   &__intro {
-    padding: space(32) space(24);
+    margin-left: space(72);
+    margin-bottom: space(48);
 
-    @include for-tablet-portrait-up {
-      padding: 0 space(24);
+    @include for-tablet-landscape-down {
+      margin-left: space(40);
+      margin-bottom: space(32);
+    }
+
+    @include for-phone-only {
+      margin-left: 0;
+      margin-bottom: space(24);
     }
   }
 
-  .flex-container {
-    max-width: 1030px;
+  &__heading {
+    margin-bottom: space(16);
   }
-}
 
-.personas__intro {
-  max-width: 1030px;
-  margin: 0 auto;
-}
+  &__description {
+    @include body-m;
+  }
 
-.personas__heading {
-  margin-bottom: space(8);
-}
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 32px;
+    width: 100%;
 
-.personas__list {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  max-width: 1030px;
-
-  @include for-tablet-portrait-up {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin: space(48) auto 0;
-
-    > .card:nth-child(1) {
-      grid-column: 1 / span 2;
+    @include for-tablet-landscape-down {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-  
-    > .card:nth-child(3) {
-      grid-column: 3 ;
-      grid-row: 1 / span 2;
+
+    @include for-tablet-portrait-down {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include for-phone-only {
+      display: flex;
       flex-direction: column;
+      gap: 0;
     }
-  
-    > .card:nth-child(2) {
-      grid-column: 1 / span 2;
-      flex-direction: row-reverse;
+  }
+
+  &__image {
+    margin-top: -160px;
+    transform: translateX(-64px);
+
+    @include for-tablet-landscape-down {
+      margin-top: -120px;
+    }
+
+    @include for-phone-only {
+      margin-top: -16px;
+      transform: translateX(-32px);
+    }
+
+    .image {
+      @include for-tablet-landscape-down {
+        max-height: 320px;
+      }
+
+      @include for-phone-only {
+        max-height: 160px;
+      }
     }
   }
 }

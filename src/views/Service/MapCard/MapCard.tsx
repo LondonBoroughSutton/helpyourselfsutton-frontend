@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { Map, Marker, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { latLngBounds, LatLngBounds } from 'leaflet';
 import L from 'leaflet';
 import map from 'lodash/map';
 import first from 'lodash/first';
 
 import { IServiceLocation } from '../../../types/types';
+
+import servicePin from '../../../assets/images/icons/maps/service-pin.svg';
+
+import './MapCard.scss';
 
 interface IProps {
   locations: any;
@@ -42,33 +46,33 @@ class MapCard extends Component<IProps, IState> {
 
   render() {
     const { locations, iconType } = this.props;
+
+
     const locationObj: any = first(locations);
     const mapCenter: [number, number] = locationObj
       ? [locationObj.location.lat, locationObj.location.lon]
       : [51.460729410758496, -0.3726421426363473];
-
-    const ServiceMarker = L.icon({
-      iconUrl: iconType
-        ? require(`../../../assets/images/icons/maps/${iconType}-pin.svg`).default
-        : require('../../../assets/images/icons/maps/service-pin.svg').default,
+    
+    let markerPin = L.icon({
+      iconUrl: servicePin,
       iconSize: [50, 95],
     });
 
     this.addMarkers(locations);
 
     return (
-      <Map center={mapCenter} zoom={14} attributionControl={false} setMaxBounds={this.state.bounds}>
+      <MapContainer center={mapCenter} zoom={14} attributionControl={false} setMaxBounds={this.state.bounds}>
         <TileLayer url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png" />
         {locations.map((serviceLocation: IServiceLocation) => {
           return (
             <Marker
               key={serviceLocation.id}
               position={[serviceLocation.location.lat, serviceLocation.location.lon]}
-              icon={ServiceMarker}
+              icon={markerPin}
             />
           );
         })}
-      </Map>
+      </MapContainer>
     );
   }
 }

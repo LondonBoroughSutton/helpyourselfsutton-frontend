@@ -75,7 +75,7 @@ class SearchResultCard extends React.Component<IProps> {
         <div className="search-result-card__content">
           <div className="search-result-card__top-row">
             <div className="search-result-card__title">
-              <h3>{result.name}</h3>
+              <h3 className="h4">{result.name}</h3>
               {organisation && (
                 <h4 className="search-result-card__organisation">
                   <span className="sr-only">{`This ${result.type} is ran by`}</span>

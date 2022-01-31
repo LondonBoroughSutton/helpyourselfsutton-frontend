@@ -5,6 +5,8 @@ import Button from '../../../components/Button';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { observer } from 'mobx-react';
 
+import './ReferralCard.scss';
+
 interface IProps extends RouteComponentProps {
   id: string;
 }

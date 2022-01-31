@@ -1,5 +1,35 @@
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 
+export interface IPage {
+  id: string;
+  page_type: string;
+  title: string;
+  image: string;
+  introduction: {
+    copy: string[]
+  },
+  content: {
+    about: null | {
+      copy: string[]
+    },
+    info_pages: null | {
+      copy: string[],
+      title: string
+    },
+    collections: null | {
+      copy: string[],
+      title: string
+    },
+    introduction: null | {
+      copy: string[]
+    },
+  },
+  parent: [],
+  children: [],
+  collections_categories: []
+  collections_personas: []
+}
+
 export interface IPersona {
   created_at: string;
   id: string;
@@ -8,6 +38,7 @@ export interface IPersona {
   sideboxes: ISidebox[];
   subtitle: string;
   updated_at: string;
+  homepage: boolean;
 }
 
 export interface IParams {
@@ -37,6 +68,7 @@ export interface ICategory {
   name: string;
   icon: IconName | undefined;
   sideboxes: ISidebox[];
+  homepage: boolean;
 }
 
 export interface IOrganisation {

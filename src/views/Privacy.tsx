@@ -22,7 +22,7 @@ const Privacy: React.FunctionComponent<IProps> = ({ cmsStore }) => {
         <title>Privacy policy | Help Yourself Sutton</title>
       </Helmet>
 
-      <ReactMarkdown source={get(cmsStore, 'privacy_policy.content')} />
+      <ReactMarkdown children={get(cmsStore, 'privacy_policy.content')} />
     </CMSPage>
   );
 };

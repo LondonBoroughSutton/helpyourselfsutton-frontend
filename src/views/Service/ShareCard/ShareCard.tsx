@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ServiceStore from '../../../stores/serviceStore';
 
 import Button from '../../../components/Button';
+
+import './ShareCard.scss';
+
 interface IProps {
   serviceStore: ServiceStore;
 }
@@ -16,7 +19,7 @@ const ShareCard: React.FunctionComponent<IProps> = ({ serviceStore }) => {
     <div className="service__share-card service__section">
       <div className="service__share-card__social">
         <div className="flex-container flex-container--no-padding flex-container--left flex-container--align-center">
-          <h3>Share</h3>
+          <p>Share</p>
           <a
             href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
             target="_blank"
@@ -51,7 +54,7 @@ const ShareCard: React.FunctionComponent<IProps> = ({ serviceStore }) => {
         </div>
       </div>
       <div className="flex-container flex-container--no-padding">
-        <div className="flex-col service__action-buttons">
+        <div className="flex-col service__share-card__actions">
           <Button size="small" text="Print" icon="print" onClick={() => window.print()} />
           <Button
             size="small"

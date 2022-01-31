@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
 import { inject, observer } from 'mobx-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -10,7 +9,7 @@ import { membersAreaURL } from '../../config/externalUrls';
 
 import './Footer.scss';
 
-import Logo from '../../assets/images/stakeholder-logo.png';
+import Logo from '../../assets/logo/logo-footer.png';
 
 import CMSStore from '../../stores/CMSStore';
 import UIStore from '../../stores/uiStore';
@@ -27,33 +26,31 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
   }
 
   return (
-    <footer
-      className={cx('footer', {
-        'footer-mobile-menu': mobileMenu,
-      })}
-    >
-      <div className="flex-container footer--inner-container">
+    <footer className="footer">
+      <div className="flex-container flex-container--large">
         <div className="flex-col flex-col--5 flex-col--tablet--12">
-          <p className="footer__heading">{get(cmsStore, 'global.footer_title')}</p>
+          <h5 className="footer__header">{get(cmsStore, 'global.footer_title')}</h5>
           <ReactMarkdown
-            className="body--xs footer__content"
-            source={get(cmsStore, 'global.footer_content')}
+            className="footer__content"
+            children={get(cmsStore, 'global.footer_content')}
           />
-          <Link to="/privacy-policy" className="body--xs">
+          <Link
+            className="footer__link"
+            to="/privacy-policy">
             Privacy Policy
           </Link>
-          &nbsp;&nbsp;
-          <Link to="/terms-and-conditions" className="body--xs">
+          <Link
+            className="footer__link"
+            to="/terms-and-conditions">
             Terms and Conditions
           </Link>
         </div>
-        <div className="flex-col flex-col--6 flex-col--tablet--12 footer__section">
+        <div className="flex-col flex-col--6 flex-col--tablet--12">
           <div className="flex-container flex-container--no-padding">
-            <div className="flex-col flex-col--5 flex-col--mobile--12">
-              <p className="footer__heading">
-                Get in touch with <br />
-                <span className="highlight">Help Yourself</span> Sutton
-              </p>
+            <div className="flex-col flex-col--6 flex-col--tablet--12">
+              <h5 className="footer__header">
+                Get in touch with<br />Sutton Information Hub
+              </h5>
               <nav className="footer__social-links" role="menu" aria-label="Social Media Links">
                 <a
                   href={`https://facebook.com/${get(cmsStore, 'global.facebook_handle')}`}
@@ -61,8 +58,9 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
                   rel="noopener noreferrer"
                   role="menuitem"
                   aria-label="Link to Help Yourself Sutton Facebook"
+                  className="footer__link"
                 >
-                  <FontAwesomeIcon icon={['fab', 'facebook-f']} className="footer__social-icons" />
+                  <FontAwesomeIcon icon={['fab', 'facebook']} className="footer__social-icons" />
                 </a>
                 <a
                   href={`https://twitter.com/${get(cmsStore, 'global.twitter_handle')}`}
@@ -70,26 +68,29 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
                   rel="noopener noreferrer"
                   role="menuitem"
                   aria-label="Link to Help Yourself Sutton Twitter"
+                  className="footer__link"
                 >
                   <FontAwesomeIcon icon={['fab', 'twitter']} className="footer__social-icons" />
                 </a>
               </nav>
-              <div className="flex-col flex-col--12">
-                <Link to={'/contact'} className="body--xs footer-contact-links">
+              <nav className="footer__contact-links">
+                <Link
+                  className="footer__link"
+                  to={'/contact'}>
                   Contact us
                 </Link>
                 <button
-                  className="body--xs footer-contact-links"
+                  className="footer__link"
                   onClick={() => uiStore.toggleFeedbackModal()}
                 >
                   Give feedback
                 </button>
-              </div>
+              </nav>
             </div>
 
-            <div className="flex-col flex-col--6 flex-col--mobile--12 flex-col--tablet--12 footer__button">
+            <div className="flex-col flex-col--4 flex-col--tablet--12 footer__members">
               <ButtonLink href={membersAreaURL} text="Members Area" target="_blank" />
-              <img src={Logo} alt="London Borough of Sutton" className="footer-hounslow-logo" />
+              <img src={Logo} alt="London Borough of Sutton" className="footer-logo" />
             </div>
           </div>
         </div>
