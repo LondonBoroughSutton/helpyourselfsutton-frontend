@@ -3,41 +3,26 @@
 @import '../../styles/typography.scss';
 @import '../../styles/breakpoints.scss';
 
-@mixin greenContainer {
-  background-color: $fountain-blue;
-  padding: space(24) !important;
+@mixin whiteContainer {
+  padding: space(24);
+  border-radius: 20px;
+  background-color: $white;
 
   @include for-tablet-landscape-down {
-    padding: space(12) space(24) !important;
+    padding: space(12) space(24);
   }
 }
 
 .referral {
   padding: space(40) 0;
-  color: $black;
-
-  &--container {
-    align-items: center !important;
-    height: 100%;
-
-    &--flex-end {
-      align-items: flex-end !important;
-    }
-
-    padding: 0 !important;
-    width: 100%;
-  }
-
-  &--right-column {
-    margin-bottom: space(24) !important;
-  }
+  background-color: $botticelli;
 
   &--next-step {
     margin: space(20) 0 !important;
   }
 
   &--mobile-connect {
-    @include greenContainer;
+    @include whiteContainer;
 
     @include for-tablet-portrait-down {
       margin-top: space(32);
@@ -52,119 +37,106 @@
     }
   }
 
-  &--connect {
-    @include greenContainer;
-
-    &--logo {
-      width: pxtorem(65px);
-      height: pxtorem(65px);
-
-      &:before {
-        content: '';
-        display: inline-block;
-        height: 100%;
-        vertical-align: middle;
-      }
-
-      img {
-        width: 100%;
-      }
-    }
-  }
-
-  &--back {
-    line-height: 26px;
-    padding-left: space(16) !important;
-    text-decoration: underline;
-    cursor: pointer;
-
-    svg {
-      margin-right: space(12);
-    }
-  }
-
   &--step {
     margin: space(20) 0;
     color: $black;
   }
+}
 
-  &--form-time {
-    @include greenContainer;
-    margin-top: space(20);
+.referral__back {
+  margin-bottom: space(32);
+  text-decoration: underline;
+  cursor: pointer;
 
-    svg {
-      font-size: $font-base;
-      margin-right: space(20) !important;
-    }
+  svg {
+    margin-right: space(12);
+  }
+}
 
-    svg {
-      font-size: pxtorem(29px);
+.referral__container {
+  padding: space(24) 0;
+}
 
-      @include for-tablet-landscape-up {
-        margin-right: space(16);
-      }
-    }
+.referral__sidebar {
+  padding-left: space(40);
+
+  @include for-phone-only {
+    padding-left: 0;
+  }
+}
+
+.referral__connect {
+  @include whiteContainer;
+  display: flex;
+  align-items: center;
+}
+
+.referral__connect__logo {
+  width: pxtorem(65px);
+  height: pxtorem(65px);
+  margin-right: space(16);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.referral__time {
+  @include whiteContainer;
+  margin-top: space(20);
+  display: flex;
+  align-items: center;
+
+  svg {
+    font-size: $font-base;
+    margin-right: space(20) !important;
   }
 
-  &--intro {
-    padding: space(32);
-    color: $black;
-    margin: space(24) 0 !important;
+  svg {
+    font-size: pxtorem(32);
 
-    &--inner {
-      background-color: $gray;
-    }
-    @include for-tablet-landscape-down {
-      background-color: $white;
-      padding: 0;
-    }
-
-    &--heading {
-      @include for-tablet-landscape-down {
-        font-family: $font-primary;
-        margin-bottom: space(8);
-      }
-    }
-
-    &--no-padding {
-      @include for-tablet-landscape-up {
-        padding: 0 !important;
-      }
-    }
-
-    svg {
-      font-size: pxtorem(29px);
-    }
-
-    &--row {
-      margin-bottom: space(32) !important;
-
-      @include for-tablet-landscape-down {
-        padding: space(12) !important;
-        margin-bottom: 0 !important;
-
-        &:nth-of-type(odd) {
-          background-color: $gray;
-        }
-      }
-
-      @include for-tablet-landscape-up {
-        &:last-of-type {
-          margin-bottom: 0 !important;
-        }
-      }
-    }
-
-    &--description {
-      font-size: $font-body-l;
-      font-family: $font-primary;
-
-      @include for-tablet-landscape-down {
-        font-family: $font-primary;
-        font-size: $font-base;
-      }
+    @include for-tablet-landscape-up {
+      margin-right: space(16);
     }
   }
+}
+
+.referral__actions {
+  margin-top: space(32);
+
+  .button {
+    margin-bottom: space(16);
+  }
+}
+
+.referral__intro {
+  display: flex;
+  flex-direction: column;
+}
+
+.referral__intro__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: space(24);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.referral__intro__item__icon {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  margin-right: space(16);
+  border-radius: 4px;
+  background-color: $white;
+  font-size: pxtorem(24);
 }
 
 .referral__button {
@@ -224,9 +196,10 @@
 }
 
 .referral__step-container {
-  background-color: $gray;
-  margin: space(24) 0 !important;
-  padding: space(32);
+  margin: space(24) 0;
+  padding: space(24);
+  border-radius: 20px;
+  background-color: $white;
 
   &--select {
     @include for-tablet-landscape-down {
@@ -256,10 +229,6 @@
 
   &--form {
     padding: space(16) !important;
-  }
-
-  &--intro {
-    padding: 0 space(16) !important;
   }
 
   &--question {

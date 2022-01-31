@@ -12,15 +12,15 @@ interface IProps extends RouteComponentProps {
 }
 
 const ReferralCard: React.FunctionComponent<IProps> = ({ history, id }) => (
-  <div className="flex-container flex-container--align-center flex-container--mobile-no-padding service__referral">
-    <div className="flex-col flex-col--tablet--6 flex-col--mobile--12 flex-col--mobile-small--12">
+  <div className="flex-container flex-container--align-center service__referral">
+    <div className="flex-col flex-col--12">
       <Button
         text="Make a connection"
         icon="arrow-right"
         onClick={() => history.push(`/referral?service=${id}`)}
       />
     </div>
-    <div className="flex-col">
+    <div className="flex-col flex-col--12">
       <div className="flex-container flex-container--no-padding flex-container--align-center service__refer-disclaimer">
         <div className="flex-col--1">
           <FontAwesomeIcon icon="info-circle" size="lg" />

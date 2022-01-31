@@ -88,12 +88,12 @@ class Referral extends Component<IProps> {
     }
 
     return (
-      <div className="referral">
+      <main className="referral">
         <Helmet>
           <title>Referral | Help Yourself Sutton</title>
         </Helmet>
-        <div className="flex-container flex-container--mobile-no-padding">
-          <div className="flex-col flex-col--12 referral--back">
+        <section className="referral__back">
+          <div className="flex-container">
             {referralStore.step === 1 ? (
               <Link to={`/services/${referralStore.service.slug}`}>
                 <p className="body--s">
@@ -108,130 +108,65 @@ class Referral extends Component<IProps> {
               </p>
             )}
           </div>
+        </section>
 
-          <div className="mobile-show tablet-show flex-col--mobile--12 flex-col--tablet--12">
-            <div className="flex-container">
-              <div className="flex-col flex-col--mobile--12 flex-col--tablet--12 referral--mobile-connect">
-                <p className="body--s">Connect to</p>
-                <p className="body--s referral--mobile-connect--name">
-                  {referralStore.service.name}
-                </p>
-              </div>
+        <section className="mobile-show tablet-show flex-col--mobile--12 flex-col--tablet--12">
+          <h1 className="body--s">
+            Connect to {referralStore.service.name}
+          </h1>
+        </section>
+
+        <section className="referral__container">
+          <div className="flex-container">
+            <div className="flex-col flex-col--7">
+              {this.displayStep()}
             </div>
-          </div>
 
-          <div
-            className={cx('flex-container flex-container--mobile-no-padding referral--container', {
-              'referral--container--flex-end': referralStore.step === 1,
-            })}
-          >
-            {this.displayStep()}
-            <div className="mobile-hide tablet-hide flex-col--5 flex-col--tablet--12 flex-col--tablet-large--6">
-              <div className="flex-container referral--right-column">
-                <div className="flex-col flex-col--12">
-                  <div className="flex-container flex-container--align-center referral--connect">
-                    <div className="flex-col flex-col--3">
-                      <div className="referral--connect--logo">
-                        <img
-                          src={`${apiBase}/organisations/${referralStore.service.organisation_id}/logo.png?v=${referralStore.service.last_modified_at}`}
-                          alt={`${referralStore.service.name} logo`}
-                        />
-                      </div>
-                    </div>
-                    <div className="flex-col flex-col--9">
-                      <p>Your making a connection to:</p>
-                      <h3>{referralStore.service.name}</h3>
-                    </div>
-                  </div>
-                </div>
-
-                {referralStore.step === 1 && (
-                  <div className="flex-col flex-col--12 flex-col--mobile--12 mobile-hide tablet-hide">
-                    <div className="flex-container flex-container--align-center referral--intro--no-padding">
-                      <div className="flex-col flex-col--12  flex-col--mobile--12 referral--form-time">
-                        <div className="flex-container flex-container--align-center referral--intro--no-padding">
-                          <div
-                            className="flex-col flex-col--2 flex-col--mobile--2"
-                            style={{ textAlign: 'center' }}
-                          >
-                            <FontAwesomeIcon icon="clock" />
-                          </div>
-                          <div className="flex-col flex-col--10 flex-col--mobile--10">
-                            <p>
-                              This form should take no longer than <strong>5 minutes</strong> to
-                              complete.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {referralStore.step === 1 && (
-            <Fragment>
-              <div className="flex-col flex-col--mobile--12 flex-col--tablet--12 mobile-show tablet-show">
-                <div className="flex-container flex-container--align-center">
-                  <div className="flex-col flex-col--mobile--12 flex-col--tablet--12 referral--form-time">
-                    <div className="flex-container flex-container--align-center flex-container--mobile-no-padding">
-                      <div className="flex-col flex-col--mobile--2 flex-col--tablet--1">
-                        <FontAwesomeIcon icon="clock" />
-                      </div>
-                      <div className="flex-col flex-col--mobile--10 flex-col--tablet--11">
-                        <p>
-                          This form should take no longer than <strong>5 minutes</strong> to
-                          complete.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex-col flex-col--12 flex-col--mobile--12 mobile-show tablet-show">
-                <div className="flex-container referral--next-step referral--intro--no-padding">
-                  <div className="flex-col flex-col--12 flex-col--mobile--12">
-                    <Button
-                      text="Continue"
-                      type="submit"
-                      icon="chevron-right"
-                      onClick={() => referralStore.nextStep()}
-                    />
-                  </div>
-                  <div className="flex-col flex-col--12 referral--step">
-                    <span
-                      className="body--s"
-                      dangerouslySetInnerHTML={{ __html: referralStore.stepDescription }}
+            <aside className="referral__sidebar flex-col flex-col--5">
+              <div className="referral__connect">
+                <div className="flex-col flex-col--3">
+                  <div className="referral__connect__logo">
+                    <img
+                      src={`${apiBase}/organisations/${referralStore.service.organisation_id}/logo.png?v=${referralStore.service.last_modified_at}`}
+                      alt={`${referralStore.service.name} logo`}
                     />
                   </div>
                 </div>
+                <div className="flex-col flex-col--9">
+                  <p>Your making a connection to:</p>
+                  <h2 className="h5">{referralStore.service.name}</h2>
+                </div>
               </div>
-            </Fragment>
-          )}
 
-          {referralStore.step === 1 && (
-            <div className="flex-col flex-col--12 flex-col--mobile--12 mobile-hide tablet-hide">
-              <div className="flex-container referral--next-step referral--intro--no-padding">
-                <div className="flex-col flex-col--12 flex-col--mobile--12">
-                  <Button
-                    text="Continue"
-                    icon="chevron-right"
-                    onClick={() => referralStore.nextStep()}
-                  />
+              {referralStore.step === 1 && (
+                <div className="referral__time">
+                  <FontAwesomeIcon icon="clock" />
+                  <p>
+                    This form should take no longer than <strong>5 minutes</strong> to
+                    complete.
+                  </p>
                 </div>
-                <div className="flex-col flex-col--12 referral--step">
-                  <span
-                    className="body--s"
-                    dangerouslySetInnerHTML={{ __html: referralStore.stepDescription }}
-                  />
-                </div>
-              </div>
+              )}
+            </aside>
+          </div>
+        </section>
+
+        {referralStore.step === 1 && (
+          <section className="referral__actions">
+            <div className="flex-container flex-container--column flex-container--align-start">
+              <Button
+                text="Continue"
+                icon="chevron-right"
+                onClick={() => referralStore.nextStep()}
+              />
+              <span
+                className="body--s"
+                dangerouslySetInnerHTML={{ __html: referralStore.stepDescription }}
+              />
             </div>
-          )}
-        </div>
-      </div>
+          </section>
+        )}
+      </main>
     );
   }
 }

@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx';
+import { makeObservable, observable, action, computed } from 'mobx';
 import axios from 'axios';
 import get from 'lodash/get';
 import orderBy from 'lodash/orderBy';
@@ -44,6 +44,10 @@ class ReferralStore {
   };
   @observable showConfirmation: boolean = false;
   @observable partnerOrganisations: IPartnerOrganistion[] = [];
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   clear = () => {

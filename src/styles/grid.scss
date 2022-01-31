@@ -107,6 +107,11 @@ body {
     align-items: center;
   }
 
+  // Vertical align top
+  &--align-start {
+    align-items: flex-start;
+  }
+
   // Vertical align bottom
   &--align-end {
     align-items: flex-end;
