@@ -1,6 +1,6 @@
 ---
 applications:
-- name: helpyourselfsutton-frontend
+- name: sutton-frontend-((environment))
   memory: 64M
   instances: ((instances))
   routes:
