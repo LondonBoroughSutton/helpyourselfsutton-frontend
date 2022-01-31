@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 
 import ReferralStore from '../../../../stores/referralStore';
@@ -12,10 +12,6 @@ interface IProps {
 }
 
 class Form extends Component<IProps> {
-  constructor(props: IProps) {
-    super(props);
-  }
-
   render() {
     const { heading, subtitle, label, referralStore } = this.props;
 
