@@ -14,6 +14,7 @@ import {
   IService,
   IGeoLocation,
   IEligibilityFilters,
+  IPage,
 } from '../types/types';
 
 import { queryRegex, querySeparator } from '../utils/utils';
@@ -31,6 +32,7 @@ export default class ResultsStore {
   @observable wait_time: string = 'null';
   @observable order: 'relevance' | 'distance' = 'relevance';
   @observable results: IService[] = [];
+  @observable pages: IPage[] = [];
   @observable loading: boolean = false;
   @observable currentPage: number = 1;
   @observable totalItems: number = 0;
@@ -142,6 +144,7 @@ export default class ResultsStore {
     this.wait_time = 'null';
     this.order = 'relevance';
     this.results = [];
+    this.pages = [];
     this.loading = false;
     this.organisations = [];
     this.currentPage = 1;
@@ -422,6 +425,21 @@ export default class ResultsStore {
     } catch (e) {
       this.results = [];
       console.error(e);
+      this.loading = false;
+    }
+  };
+
+  @action
+  fetchPages = async () => {
+    this.loading = true;
+    try {
+      const results = await axios.post(
+        `${apiBase}/search/pages?page=${this.currentPage}&per_page=${this.itemsPerPage}&query=${this.keyword}`,
+      );
+      this.pages = get(results, 'data.data', []);
+      console.log(this.pages);
+    } catch (e) {
+      this.pages = [];
       this.loading = false;
     }
   };

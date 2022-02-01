@@ -34,6 +34,10 @@ class Results extends Component<IProps> {
     const { resultsStore } = this.props;
 
     resultsStore.getSearchTerms();
+
+    if(resultsStore.isKeywordSearch) {
+      resultsStore.fetchPages();
+    }
   }
 
   hasCategories = () => {
@@ -96,6 +100,19 @@ class Results extends Component<IProps> {
             </div>
           </div>
         </div>
+
+        {resultsStore.pages.length > 0 && (
+          <section className="results__info-boxes">
+            <div className="flex-container">
+              <h2 className="results__info-boxes__heading">Here's some information you might find useful</h2>
+              <div className="results__info-boxes__items">
+                {map(resultsStore.pages, (sidebox: ISidebox, index) => {
+                  return <SideboxCard sidebox={sidebox} key={index} />;
+                })}
+              </div>
+            </div>
+          </section>
+        )}
 
         {this.hasCategories() && this.hasCategories().length !== 0 && (
           <section className="results__info-boxes">
