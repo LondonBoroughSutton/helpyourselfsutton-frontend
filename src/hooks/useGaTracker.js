@@ -15,7 +15,7 @@ const useGaTracker = () => {
       if (initialized) {
         ReactGA.pageview(window.location.pathname + window.location.search);
       }
-  }, [initialized, window.location]);
+  }, [initialized]);
 };
 
 export default useGaTracker;
