@@ -5,6 +5,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider, observer } from 'mobx-react';
+import useGaTracker from './hooks/useGaTracker';
 
 import Footer from './components/Footer/Footer';
 import Header from './components/Header';
@@ -57,54 +58,51 @@ const Privacy = lazy(() => import('./views/Privacy'));
 const DutyToRefer = lazy(() => import('./views/DutyToRefer'));
 const Page = lazy(() => import('./views/Page/Page'));
 
-class App extends Component {
-  componentDidMount() {
-    windowSizeStore.setWindow();
-  }
+const App = () => {
+  windowSizeStore.setWindow();
+  useGaTracker();
 
-  render() {
-    return (
-      <Provider
-        windowSizeStore={windowSizeStore}
-        uiStore={uiStore}
-        resultsStore={resultsStore}
-        serviceStore={serviceStore}
-        organisationStore={organisationStore}
-        favouritesStore={favouritesStore}
-        cmsStore={cmsStore}
-        referralStore={referralStore}
-        pageStore={pageStore}
-      >
-        <Router>
-          <ScrollToTop>
-            <Header />
-            <Suspense fallback={<Loading />}>
-              <Switch>
-                <Route path="/" exact={true} component={Home} />
-                <Route path="/results" component={Results} />
-                <Route path="/services/:service" component={Service} />
-                <Route path="/favourites" component={Favourites} />
-                <Route path="/referral" component={Referral} />
-                <Route path="/about" component={About} />
-                <Route path="/contact" component={Contact} />
-                <Route path="/get-involved" component={GetInvolved} />
-                <Route path="/privacy-policy" component={Privacy} />
-                <Route path="/terms-and-conditions" component={Terms} />
-                <Route path="/duty-to-refer" component={DutyToRefer} />
-                <Route path="/organisations/:organisation" component={Organisation} />
-                <Route path="/:page" component={Page} />
-                <Route component={NotFound} />
-              </Switch>
-            </Suspense>
-            <FeedbackModal />
-            <HomeScreenPrompt />
-            <Footer />
-            <CookieBanner />
-          </ScrollToTop>
-        </Router>
-      </Provider>
-    );
-  }
+  return (
+    <Provider
+      windowSizeStore={windowSizeStore}
+      uiStore={uiStore}
+      resultsStore={resultsStore}
+      serviceStore={serviceStore}
+      organisationStore={organisationStore}
+      favouritesStore={favouritesStore}
+      cmsStore={cmsStore}
+      referralStore={referralStore}
+      pageStore={pageStore}
+    >
+      <Router>
+        <ScrollToTop>
+          <Header />
+          <Suspense fallback={<Loading />}>
+            <Switch>
+              <Route path="/" exact={true} component={Home} />
+              <Route path="/results" component={Results} />
+              <Route path="/services/:service" component={Service} />
+              <Route path="/favourites" component={Favourites} />
+              <Route path="/referral" component={Referral} />
+              <Route path="/about" component={About} />
+              <Route path="/contact" component={Contact} />
+              <Route path="/get-involved" component={GetInvolved} />
+              <Route path="/privacy-policy" component={Privacy} />
+              <Route path="/terms-and-conditions" component={Terms} />
+              <Route path="/duty-to-refer" component={DutyToRefer} />
+              <Route path="/organisations/:organisation" component={Organisation} />
+              <Route path="/:page" component={Page} />
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
+          <FeedbackModal />
+          <HomeScreenPrompt />
+          <Footer />
+          <CookieBanner />
+        </ScrollToTop>
+      </Router>
+    </Provider>
+  );
 }
 
 export default observer(App);
