@@ -68,7 +68,16 @@
 }
 
 .button__icon {
-  margin-left: space(10);
+  margin-left: space(20);
+  font-size: pxtorem(40);
+  
+  @include for-tablet-landscape-down {
+    font-size: pxtorem(36);
+  }
+
+  @include for-phone-only {
+    font-size: pxtorem(32);
+  }
 }
 
 .button__category {
