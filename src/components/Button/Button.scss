@@ -68,16 +68,8 @@
 }
 
 .button__icon {
-  margin-left: space(20);
-  font-size: pxtorem(40);
-  
-  @include for-tablet-landscape-down {
-    font-size: pxtorem(36);
-  }
-
-  @include for-phone-only {
-    font-size: pxtorem(32);
-  }
+  margin-left: space(10);
+  font-size: pxtorem(20);
 }
 
 .button__category {
@@ -92,6 +84,20 @@
   &:hover {
     border-color: $black;
     box-shadow: none;
+  }
+
+  .button__icon {
+    margin-left: space(20);
+    font-size: pxtorem(40);
+  
+    @include for-tablet-landscape-down {
+      margin-left: space(16);
+      font-size: pxtorem(36);
+    }
+
+    @include for-phone-only {
+      font-size: pxtorem(32);
+    }
   }
 }
 
