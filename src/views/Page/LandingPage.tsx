@@ -16,10 +16,10 @@ function LandingPage(props: any) {
   return (
     <main className="landing-page">
       <Helmet>
-        {props.content.content.title && (
+        {props.content.title && (
           <title>{`${props.content.title} | Help Yourself Sutton`}</title>
         )}
-        {!props.content.content.title && (
+        {!props.content.title && (
           <title>Landing Page | Help Yourself Sutton</title>
         )}
       </Helmet>
@@ -44,17 +44,26 @@ function LandingPage(props: any) {
           </div>
           <div className="flex-col flex-col--12">
             {props.content.image && (
-              <img alt="" className="landing-page__image" src="https://via.placeholder.com/435x240.png" />
+              <img alt={props.content.title ? props.content.title : ''} className="landing-page__image" src={props.content.image} />
             )}
           </div>
-          <div className="flex-col flex-col--12 landing-page__about">
-            {props.content.content.introduction.copy[0] && (
+          
+          {props.content.content.about.copy[0] && (
+            <div className="flex-col flex-col--7 landing-page__about">
               <ReactMarkdown
-                children={props.content.content.introduction.copy[0]}
-                className="landing-page__content"
+                children={props.content.content.about.copy[0]}
+                className="landing-page__content markdown"
               />
-            )}
-          </div>
+            </div>
+          )}
+          {props.content.content.about.copy[1] && (
+            <div className="flex-col flex-col--5">
+              <ReactMarkdown
+                children={props.content.content.about.copy[1]}
+                className="landing-page__content markdown"
+              />
+            </div>
+          )}
         </div>
       </section>
       
@@ -88,7 +97,7 @@ function LandingPage(props: any) {
         </section>
       )}
 
-      {props.content.collections_categories && (
+      {props.content.collection_categories && (
         <section className="landing-page__services">
           <div className="flex-container landing-page__services--wrapper">
             <div className="flex-col flex-col--12">
@@ -103,11 +112,11 @@ function LandingPage(props: any) {
               )}
             </div>
             <div className="flex-col flex-col--12 landing-page__collections">
-              {props.content.collections_categories.map((page: { id: string; title: string; icon: IconName; }) => {
+              {props.content.collection_categories.map((page: { id: string; name: string; icon: IconName; }) => {
                 return (
                   <ButtonLink
-                    href={'/' + page.id}
-                    text={page.title}
+                    href={'/results?category=' + page.id}
+                    text={page.name}
                     key={page.id}
                     category={true}
                     icon={page.icon}
