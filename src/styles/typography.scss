@@ -281,3 +281,9 @@ p {
 blockquote {
   margin: 0;
 }
+
+.markdown {
+  > * {
+    margin-bottom: space(16);
+  }
+}
