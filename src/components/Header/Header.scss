@@ -128,11 +128,8 @@
 }
 
 .header__main {
+  width: 100%;
   align-items: flex-end;
-
-  @include for-tablet-landscape-down {
-    width: 100%;
-  }
 }
 
 .header__logo {
@@ -177,10 +174,6 @@
 
   @include for-tablet-landscape-down {
     align-self: flex-start;
-  }
-
-  &:focus {
-    outline: none;
   }
 
   &--button {

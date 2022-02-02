@@ -41,20 +41,32 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1050px;
+  width: 100%;
+  max-width: 1082px;
   margin: 0 auto;
   padding: 0 $base-margin;
-  box-sizing: content-box;
 
   &--large {
-    max-width: 1240px;
+    max-width: 1272px;
+
+    @include for-mobile-up {
+      max-width: 1304px;
+      padding: 0 $base-margin * 2;
+    }
+  
+    @include for-tablet-landscape-up {
+      max-width: 1336px;
+      padding: 0 $base-margin * 3;
+    }
   }
 
   @include for-mobile-up {
+    max-width: 1114px;
     padding: 0 $base-margin * 2;
   }
 
   @include for-tablet-landscape-up {
+    max-width: 1146px;
     padding: 0 $base-margin * 3;
   }
 
