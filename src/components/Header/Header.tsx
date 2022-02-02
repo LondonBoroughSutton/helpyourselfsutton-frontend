@@ -13,6 +13,7 @@ import Button from '../Button';
 import LinkButton from '../LinkButton';
 
 import UIStore from '../../stores/uiStore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface IProps extends RouteComponentProps {
   uiStore?: UIStore;
@@ -69,14 +70,16 @@ class Header extends Component<IProps> {
           </figure>
 
           <button
-            className={cx('nav-trigger tablet-show', {
+            className={cx('nav-trigger', {
               active: burgerMenuOpen,
             })}
             onClick={() => toggleBurgerMenu()}
             aria-label="Show mobile menu"
           >
             <span className="nav-trigger--button" />
-            <i className="bars fa fa-bars" aria-hidden={true} title="Menu Trigger" />
+            <FontAwesomeIcon
+              icon={burgerMenuOpen ? 'times' : 'bars'}
+            />
           </button>
 
           <nav
