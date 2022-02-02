@@ -19,9 +19,11 @@ import MapView from './MapView';
 import Breadcrumb from '../../components/Breadcrumb';
 import map from 'lodash/map';
 import SideboxCard from './SideboxCard';
-import { ISidebox } from '../../types/types';
+import { IPage, ISidebox } from '../../types/types';
 import Loading from '../../components/Loading';
 import CategoryList from '../../components/CategoryList';
+import Button from '../../components/Button/Button';
+import ButtonLink from '../../components/Button/ButtonLink';
 
 interface IProps {
   location: Location;
@@ -29,14 +31,26 @@ interface IProps {
   history: History;
 }
 
-class Results extends Component<IProps> {
+interface IState {
+  showMoreInfo: boolean;
+}
+
+class Results extends Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+
+    this.state = {
+      showMoreInfo: false,
+    };
+  }
+  
   componentDidMount() {
     const { resultsStore } = this.props;
 
     resultsStore.getSearchTerms();
 
     if(resultsStore.isKeywordSearch) {
-      resultsStore.fetchPages();
+      resultsStore.fetchPages(12);
     }
   }
 
@@ -67,8 +81,15 @@ class Results extends Component<IProps> {
     resultsStore.clear();
   }
 
+  toggleMoreInfo = () => {
+    this.setState(prevState => ({
+      showMoreInfo: !prevState.showMoreInfo,
+    }));
+  };
+
   render() {
     const { resultsStore, history } = this.props;
+    const { showMoreInfo } = this.state;
 
     return (
       <section className="results">
@@ -106,9 +127,22 @@ class Results extends Component<IProps> {
             <div className="flex-container">
               <h2 className="results__info-boxes__heading">Here's some information you might find useful</h2>
               <div className="results__info-boxes__items">
-                {map(resultsStore.pages, (sidebox: ISidebox, index) => {
-                  return <SideboxCard sidebox={sidebox} key={index} />;
+                {map(resultsStore.pages.slice(0, 3), (page: IPage) => {
+                  return <ButtonLink text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
                 })}
+              </div>
+              {showMoreInfo && (
+                <div className="results__info-boxes__more-items">
+                  {map(resultsStore.pages.slice(3, 12), (page: IPage) => {
+                    return <ButtonLink text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
+                  })}
+                </div>
+              )}
+              <div className="results__info-boxes__show-more">
+                <Button
+                  text={`Show ${showMoreInfo ? 'less' : 'more'}`}
+                  icon={showMoreInfo ? 'caret-up' : 'caret-down'}
+                  onClick={() => this.toggleMoreInfo()} />
               </div>
             </div>
           </section>

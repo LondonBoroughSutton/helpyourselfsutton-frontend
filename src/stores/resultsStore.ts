@@ -430,11 +430,16 @@ export default class ResultsStore {
   };
 
   @action
-  fetchPages = async () => {
+  fetchPages = async (perPage: number) => {
     this.loading = true;
     try {
       const results = await axios.post(
-        `${apiBase}/search/pages?page=${this.currentPage}&per_page=${this.itemsPerPage}&query=${this.keyword}`,
+        `${apiBase}/search/pages`,
+        {
+          page: 1,
+          per_page: perPage,
+          query: this.keyword
+        }
       );
       this.pages = get(results, 'data.data', []);
       console.log(this.pages);

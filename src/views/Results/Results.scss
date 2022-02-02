@@ -625,7 +625,8 @@
   margin-bottom: space(24);
 }
 
-.results__info-boxes__items {
+.results__info-boxes__items,
+.results__info-boxes__more-items {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: space(32);
@@ -640,6 +641,21 @@
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: space(16);
   }
+}
+
+.results__info-boxes__more-items {
+  width: calc(100% + 64px);
+  margin: space(32) -2rem;
+  padding: space(20);
+  border-radius: 40px;
+  background-color: $peach;
+}
+
+.results__info-boxes__show-more {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: space(40);
 }
 
 .info-cards {
