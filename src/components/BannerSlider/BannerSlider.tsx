@@ -13,34 +13,36 @@ interface IProps {
 const BannerSlider: FunctionComponent<IProps> = ({ banners = [] }) => {
   const [activeCarouselItem, setActiveCarouselItem] = useState(0);
 
+  if(banners.length === 0) {
+    return null
+  }
+
   return (
     <section className="banner-slider">
       <div className="flex-container flex-container--justify">
-        {banners.length && (
-          <div className="banner-slider__items">
-            {banners.map((banner, i) => (
-              <div
-                key={i}
-                className={'banner-slider__item' + (activeCarouselItem === i ? ' banner-slider__item--active' : '')}>
-                {banner.title && (
-                  <h2 className="banner-slider__item__title">{banner.title}</h2>
-                )}
-                <ReactMarkdown
-                  className="banner-slider__item__description"
-                  children={banner.content} />
-                {banner.button_url && (
-                  <div className="banner-slider__item__cta">
-                    <ButtonLink
-                      text={banner.button_text}
-                      icon="arrow-right"
-                      href={banner.button_url} />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-        {banners.length && banners.length > 1 && (
+        <div className="banner-slider__items">
+          {banners.map((banner, i) => (
+            <div
+              key={i}
+              className={'banner-slider__item' + (activeCarouselItem === i ? ' banner-slider__item--active' : '')}>
+              {banner.title && (
+                <h2 className="banner-slider__item__title">{banner.title}</h2>
+              )}
+              <ReactMarkdown
+                className="banner-slider__item__description"
+                children={banner.content} />
+              {banner.button_url && (
+                <div className="banner-slider__item__cta">
+                  <ButtonLink
+                    text={banner.button_text}
+                    icon="arrow-right"
+                    href={banner.button_url} />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        {banners.length > 1 && (
           <div className="banner-slider__arrows">
             <button
               className="banner-slider__arrow arrow-left"

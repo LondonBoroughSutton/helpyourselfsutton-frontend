@@ -69,10 +69,10 @@ class Results extends Component<IProps> {
     return (
       <section className="results">
         <Helmet>
-          <title>Search results | Help Yourself Sutton</title>
+          <title>Search results | Sutton Information Hub</title>
           <meta
             name="description"
-            content="Help Yourself Sutton is a site dedicated to helping people find activities, join clubs, and navigate local services in Sutton"
+            content="Sutton Information Hub is a site dedicated to helping people find activities, join clubs, and navigate local services in Sutton"
           />
         </Helmet>
         <Breadcrumb

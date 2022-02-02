@@ -17,10 +17,10 @@ function LandingPage(props: any) {
     <main className="landing-page">
       <Helmet>
         {props.content.title && (
-          <title>{`${props.content.title} | Help Yourself Sutton`}</title>
+          <title>{`${props.content.title} | Sutton Information Hub`}</title>
         )}
         {!props.content.title && (
-          <title>Landing Page | Help Yourself Sutton</title>
+          <title>Landing Page | Sutton Information Hub</title>
         )}
       </Helmet>
       <Breadcrumb

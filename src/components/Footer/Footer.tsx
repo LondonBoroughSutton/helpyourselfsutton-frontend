@@ -56,7 +56,7 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   role="menuitem"
-                  aria-label="Link to Help Yourself Sutton Facebook"
+                  aria-label="Link to Sutton Information Hub Facebook"
                   className="footer__link"
                 >
                   <FontAwesomeIcon icon={['fab', 'facebook']} className="footer__social-icons" />
@@ -66,7 +66,7 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   role="menuitem"
-                  aria-label="Link to Help Yourself Sutton Twitter"
+                  aria-label="Link to Sutton Information Hub Twitter"
                   className="footer__link"
                 >
                   <FontAwesomeIcon icon={['fab', 'twitter']} className="footer__social-icons" />

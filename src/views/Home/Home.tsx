@@ -29,7 +29,7 @@ const Home: React.FunctionComponent<IProps> = ({ cmsStore }) => {
   return (
     <main className="home">
       <Helmet>
-        <title>Home | Help Yourself Sutton</title>
+        <title>Home | Sutton Information Hub</title>
       </Helmet>
       {cmsStore.banner && (
         <Banner banner={cmsStore.banner} />

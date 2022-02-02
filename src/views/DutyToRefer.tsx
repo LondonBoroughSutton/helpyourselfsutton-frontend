@@ -15,7 +15,7 @@ const DutyToRefer: React.FunctionComponent = () => {
   return (
     <CMSPage title="Duty to refer" breadcrumb="Duty to refer">
       <Helmet>
-        <title>Duty to refer | Help Yourself Sutton</title>
+        <title>Duty to refer | Sutton Information Hub</title>
       </Helmet>
 
       <section>

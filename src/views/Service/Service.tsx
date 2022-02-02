@@ -181,9 +181,9 @@ class Service extends Component<IProps> {
       <main className="service">
         <Helmet>
           {get(service, 'name') && (
-            <title>{`${get(service, 'name')} | Help Yourself Sutton`}</title>
+            <title>{`${get(service, 'name')} | Sutton Information Hub`}</title>
           )}
-          {!get(service, 'name') && <title>Service | Help Yourself Sutton</title>}
+          {!get(service, 'name') && <title>Service | Sutton Information Hub</title>}
 
           {get(service, 'intro') && <meta name="description" content={get(service, 'intro')} />}
 
