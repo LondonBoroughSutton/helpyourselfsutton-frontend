@@ -15,12 +15,11 @@ import CMSStore from '../../stores/CMSStore';
 import UIStore from '../../stores/uiStore';
 import ButtonLink from '../Button/ButtonLink';
 interface IProps {
-  mobileMenu?: boolean;
   cmsStore?: CMSStore;
   uiStore?: UIStore;
 }
 
-const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore }) => {
+const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
   if (!uiStore || !cmsStore) {
     return null;
   }
@@ -89,7 +88,13 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
             </div>
 
             <div className="flex-col flex-col--4 flex-col--tablet--12 footer__members">
-              <ButtonLink href={membersAreaURL} text="Members Area" target="_blank" />
+              <a
+                className="button button__link"
+                href={membersAreaURL}
+                target="_blank"
+                rel="noopener nofollow">
+                <span>Members Area</span>
+              </a>
               <img src={Logo} alt="London Borough of Sutton" className="footer-logo" />
             </div>
           </div>
