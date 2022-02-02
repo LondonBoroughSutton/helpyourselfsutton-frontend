@@ -9,7 +9,7 @@ import { membersAreaURL } from '../../config/externalUrls';
 
 import './Footer.scss';
 
-import Logo from '../../assets/logo/logo-footer.png';
+import Logo from '../../assets/logo/logo-footer.svg';
 
 import CMSStore from '../../stores/CMSStore';
 import UIStore from '../../stores/uiStore';
