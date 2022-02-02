@@ -139,7 +139,7 @@ $font-link-medium: pxtorem(20);
 
   @include for-phone-only {
     font-size: $font-body-mobile-l;
-    line-height: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 

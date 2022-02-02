@@ -31,6 +31,7 @@ export interface IPage {
 }
 
 export interface IPersona {
+  enabled: boolean;
   created_at: string;
   id: string;
   intro: string;
