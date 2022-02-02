@@ -44,7 +44,7 @@ const BannerSlider: FunctionComponent<IProps> = ({ banners = [] }) => {
           <div className="banner-slider__arrows">
             <button
               className="banner-slider__arrow arrow-left"
-              disabled={activeCarouselItem <= 1 ? true : false}
+              disabled={activeCarouselItem === 0 ? true : false}
               onClick={() => {
                 setActiveCarouselItem(activeCarouselItem - 1);
               }}
@@ -54,7 +54,7 @@ const BannerSlider: FunctionComponent<IProps> = ({ banners = [] }) => {
             </button>
             <button
               className="banner-slider__arrow arrow-right"
-              disabled={activeCarouselItem >= banners.length ? true : false}
+              disabled={activeCarouselItem >= (banners.length - 1) ? true : false}
               onClick={() => {
                 setActiveCarouselItem(activeCarouselItem + 1);
               }}
