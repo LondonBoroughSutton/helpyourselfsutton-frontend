@@ -21,7 +21,7 @@ const ButtonLink: React.FunctionComponent<IProps> = ({ text, icon, href, target 
     })}
     to={href}
     target={target}
-    rel={target == '_blank' ? 'noopener nofollow' : undefined}>
+    rel={target === '_blank' ? 'noopener nofollow noreferrer' : undefined}>
     <span>{text}</span>
     {icon && <FontAwesomeIcon icon={icon} className={cx('button__icon')} />}
     {console.log(href)}

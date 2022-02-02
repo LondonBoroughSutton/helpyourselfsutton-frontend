@@ -13,7 +13,7 @@ import Logo from '../../assets/logo/logo-footer.png';
 
 import CMSStore from '../../stores/CMSStore';
 import UIStore from '../../stores/uiStore';
-import ButtonLink from '../Button/ButtonLink';
+
 interface IProps {
   cmsStore?: CMSStore;
   uiStore?: UIStore;
@@ -92,7 +92,7 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
                 className="button button__link"
                 href={membersAreaURL}
                 target="_blank"
-                rel="noopener nofollow">
+                rel="noopener nofollow noreferrer">
                 <span>Members Area</span>
               </a>
               <img src={Logo} alt="London Borough of Sutton" className="footer-logo" />
