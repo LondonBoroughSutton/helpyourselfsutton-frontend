@@ -12,6 +12,8 @@ import servicesIllo2 from '../../assets/images/aeroplane-flying.svg';
 import ButtonLink from '../../components/Button/ButtonLink';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 
+import { ICategory, IPage } from '../../types/types';
+
 function LandingPage(props: any) {
   return (
     <main className="landing-page">
@@ -82,7 +84,7 @@ function LandingPage(props: any) {
               )}
             </div>
             <div className="flex-col flex-col--12 landing-page__pages">
-              {props.content.children.map((page: { id: string; title: string; }) => {
+              {props.content.children.filter((child: IPage) => child.enabled).map((page: { id: string; title: string; }) => {
                 return (
                   <ButtonLink
                     href={'/' + page.id}
@@ -112,7 +114,7 @@ function LandingPage(props: any) {
               )}
             </div>
             <div className="flex-col flex-col--12 landing-page__collections">
-              {props.content.collection_categories.map((page: { id: string; name: string; icon: IconName; }) => {
+              {props.content.collection_categories.filter((category: ICategory) => category.enabled).map((page: { id: string; name: string; icon: IconName; }) => {
                 return (
                   <ButtonLink
                     href={'/results?category=' + page.id}

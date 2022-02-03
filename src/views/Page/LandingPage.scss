@@ -98,6 +98,11 @@
   p {
     @include body-l;
   }
+
+  a {
+    @include body-l;
+    text-decoration: underline;
+  }
 }
 
 .landing-page__image {
