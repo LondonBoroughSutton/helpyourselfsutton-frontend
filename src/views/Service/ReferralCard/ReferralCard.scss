@@ -16,14 +16,16 @@
   }
   
   .button {
-    margin-bottom: space(24);
+    @include for-tablet-portrait-up {
+      margin-bottom: space(24);
+    }
   }
 }
 
 .service__refer-disclaimer {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
 
   svg {
     margin-right: space(12);

@@ -230,6 +230,18 @@
     }
   }
 
+  h1 {
+    @include heading-l;
+  }
+
+  h2 {
+    @include heading-m;
+  }
+
+  h3 {
+    @include heading-s;
+  }
+
   a {
     font-size: inherit;
   }
@@ -292,13 +304,12 @@
 }
 
 .service__social-icon-container {
-  text-align: center;
-
   > a {
-    margin: 0 space(4);
+    margin-right: space(8);
 
     svg {
       @include body-l;
+      margin-right: 0 !important;
     }
   }
 }

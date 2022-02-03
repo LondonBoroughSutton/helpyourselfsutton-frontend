@@ -33,14 +33,8 @@ const ReferralCard: React.FunctionComponent<IProps> = ({ history, service }) => 
     </div>
     <div className="flex-col flex-col--12">
       <div className="service__refer-disclaimer">
-        <div className="flex-col">
-          <FontAwesomeIcon icon="info-circle" size="lg" />
-        </div>
-        <div className="flex-col">
-          <p>
-            It can take up to <strong>2 weeks</strong> to receive a reply
-          </p>
-        </div>
+        <FontAwesomeIcon icon="info-circle" size="lg" />
+        <p>It can take up to <strong>2 weeks</strong> to receive a reply</p>
       </div>
     </div>
   </div>
