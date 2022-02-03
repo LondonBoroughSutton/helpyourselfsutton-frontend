@@ -438,7 +438,7 @@ class Service extends Component<IProps> {
 
                   {service.referral_method !== 'none' && (
                     <div className="service__section mobile-show">
-                      <ReferralCard id={service.id} />
+                      <ReferralCard service={service} />
                     </div>
                   )}
 
@@ -542,7 +542,7 @@ class Service extends Component<IProps> {
                   </div>
                   {service.referral_method !== 'none' && (
                     <div className="service__section service__referral--desktop">
-                      <ReferralCard id={service.id} />
+                      <ReferralCard service={service} />
                     </div>
                   )}
                 </div>
