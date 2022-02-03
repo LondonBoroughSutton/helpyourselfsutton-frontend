@@ -206,8 +206,8 @@ class Service extends Component<IProps> {
           ]}
         />
         <section className="service__header">
-          <div className="flex-container flex-container--no-wrap">
-            <div className="flex-col flex-col--mobile--4">
+          <div className="flex-container">
+            <div className="flex-col">
               <div className="service__header__logo">
                 <img
                   src={getImg(service)}
@@ -518,14 +518,6 @@ class Service extends Component<IProps> {
                       })}
                     </Accordian>
                   )}
-                </div>
-                <div className="service__section mobile-show">
-                  <div className=" flex-col flex-col--12 flex-container flex-container--justify ">
-                    <p>
-                      Page last updated{' '}
-                      <strong>{moment(service!.updated_at).format('Do MMMM YYYY')}</strong>
-                    </p>
-                  </div>
                 </div>
               </article>
               <aside className="service__sidebar">

@@ -89,8 +89,8 @@ const LocationCard: React.FunctionComponent<IProps> = ({ location, className, de
                   )
                 )}
               </div>
-              <div className="flex-col flex-col--12 flex-col--mobile--12 location__opening-times--list">
-                {!!location.holiday_opening_hours.length && (
+              {location.holiday_opening_hours.length > 0 && (
+                <div className="flex-col flex-col--12 flex-col--mobile--12 location__opening-times--list">
                   <Accordian title="Bank holiday times" className="location__holiday-times">
                     {formatHolidayTimes(location.holiday_opening_hours).map(
                       (time: string) => (
@@ -98,8 +98,8 @@ const LocationCard: React.FunctionComponent<IProps> = ({ location, className, de
                       )
                     )}
                   </Accordian>
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </div>
         )}

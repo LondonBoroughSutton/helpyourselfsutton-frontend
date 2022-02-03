@@ -13,7 +13,6 @@
   background: $white;
 
   @include for-tablet-landscape-down {
-    margin-top: space(32);
     padding: space(20);
   }
 
