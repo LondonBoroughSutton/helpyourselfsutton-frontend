@@ -124,13 +124,13 @@ class Results extends Component<IProps, IState> {
               <h2 className="results__info-boxes__heading">Here's some information you might find useful</h2>
               <div className="results__info-boxes__items">
                 {map(resultsStore.pages.slice(0, 3), (page: IPage) => {
-                  return <ButtonLink text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
+                  return <ButtonLink key={page.id} text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
                 })}
               </div>
               {(resultsStore.pages.length > 3 && showMoreInfo) && (
                 <div className="results__info-boxes__more-items">
                   {map(resultsStore.pages.slice(3, 11), (page: IPage) => {
-                    return <ButtonLink text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
+                    return <ButtonLink key={page.id} text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
                   })}
                 </div>
               )}

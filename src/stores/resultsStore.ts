@@ -446,7 +446,6 @@ export default class ResultsStore {
         }
       );
       this.pages = get(results, 'data.data', []);
-      console.log(this.pages);
     } catch (e) {
       this.pages = [];
       this.loading = false;
