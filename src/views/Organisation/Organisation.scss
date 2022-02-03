@@ -10,6 +10,10 @@
   list-style: none;
   padding: 0;
   margin: 0;
+
+  > li {
+    margin: 0 0 space(8);
+  }
 }
 
 .organisation__header {
@@ -35,13 +39,22 @@
   }
 }
 
+.organisation__header__content {
+  max-width: 700px;
+}
+
 .organisation__header__sub {
-  @include heading-xs;
-  display: block;
+  @include body-regular;
+  display: inline-block;
   margin-bottom: space(8);
+  padding: space(4) space(8);
+  border-radius: 4px;
+  background-color: $black;
+  color: $white;
 
   @include for-tablet-portrait-down {
-    font-size: pxtorem(16px)
+    font-size: pxtorem(16px);
+    margin-bottom: space(12);
   }
 }
 
@@ -81,6 +94,10 @@
   }
 }
 
+.organisation__header__description {
+  max-width: 800px;
+}
+
 .organisation__header__contact-details {
   list-style: none;
   margin-top: space(32);
@@ -100,9 +117,8 @@
       margin-bottom: space(16);
     }
 
-    strong {
-      display: block;
-      font-weight: bold;
+    p {
+      margin-bottom: space(4);
     }
 
     a {
@@ -114,8 +130,16 @@
 }
 
 .organisation__services {
-  padding: space(40) 0 space(56);
+  padding: space(80) 0 space(120);
   background: $botticelli;
+
+  @include for-tablet-landscape-down {
+    padding: space(56) 0 space(80);
+  }
+
+  @include for-phone-only {
+    padding: space(40) 0 space(56);
+  }
 }
 
 .organisation__services__heading {
