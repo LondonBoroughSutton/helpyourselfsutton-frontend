@@ -55,6 +55,10 @@
       margin-right: space(12);
       font-size: pxtorem(18);
     }
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 

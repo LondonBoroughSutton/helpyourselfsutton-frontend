@@ -32,7 +32,7 @@ const ReferralCard: React.FunctionComponent<IProps> = ({ history, service }) => 
       )}
     </div>
     <div className="flex-col flex-col--12">
-      <div className="flex-container flex-container--no-wrap flex-container--no-padding flex-container--align-center service__refer-disclaimer">
+      <div className="service__refer-disclaimer">
         <div className="flex-col">
           <FontAwesomeIcon icon="info-circle" size="lg" />
         </div>

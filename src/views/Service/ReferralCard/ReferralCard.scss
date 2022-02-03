@@ -20,6 +20,12 @@
   }
 }
 
-.service__refer-disclaimer svg {
-  margin-right: space(12);
+.service__refer-disclaimer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  svg {
+    margin-right: space(12);
+  }
 }
