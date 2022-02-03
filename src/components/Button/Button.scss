@@ -32,11 +32,6 @@
     box-shadow: 0 2px 4px 0 rgba(56, 56, 56, 0.5);
   }
 
-  &:focus, &:active {
-    outline: 0;
-    box-shadow: 0 0 0pt $formControlOutlineWidth $cerulean-blue;
-  }
-
   &:disabled {
     background-color: $gray;
     border: 2px solid $gray;
@@ -99,6 +94,11 @@
       font-size: pxtorem(32);
     }
   }
+}
+
+.button__link .button__image {
+  max-width: 90px;
+  max-height: auto;
 }
 
 .button--small {

@@ -42,7 +42,7 @@ class Favourites extends Component<IProps> {
     return (
       <main className="favourites">
         <Helmet>
-          <title>Favourites | Help Yourself Sutton</title>
+          <title>Favourites | Sutton Information Hub</title>
         </Helmet>
 
         <Breadcrumb

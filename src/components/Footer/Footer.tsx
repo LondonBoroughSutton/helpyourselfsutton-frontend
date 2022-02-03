@@ -9,18 +9,17 @@ import { membersAreaURL } from '../../config/externalUrls';
 
 import './Footer.scss';
 
-import Logo from '../../assets/logo/logo-footer.png';
+import Logo from '../../assets/logo/logo-footer.svg';
 
 import CMSStore from '../../stores/CMSStore';
 import UIStore from '../../stores/uiStore';
-import ButtonLink from '../Button/ButtonLink';
+
 interface IProps {
-  mobileMenu?: boolean;
   cmsStore?: CMSStore;
   uiStore?: UIStore;
 }
 
-const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore }) => {
+const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
   if (!uiStore || !cmsStore) {
     return null;
   }
@@ -57,7 +56,7 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
                   target="_blank"
                   rel="noopener noreferrer"
                   role="menuitem"
-                  aria-label="Link to Help Yourself Sutton Facebook"
+                  aria-label="Link to Sutton Information Hub Facebook"
                   className="footer__link"
                 >
                   <FontAwesomeIcon icon={['fab', 'facebook']} className="footer__social-icons" />
@@ -67,7 +66,7 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
                   target="_blank"
                   rel="noopener noreferrer"
                   role="menuitem"
-                  aria-label="Link to Help Yourself Sutton Twitter"
+                  aria-label="Link to Sutton Information Hub Twitter"
                   className="footer__link"
                 >
                   <FontAwesomeIcon icon={['fab', 'twitter']} className="footer__social-icons" />
@@ -89,7 +88,13 @@ const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore
             </div>
 
             <div className="flex-col flex-col--4 flex-col--tablet--12 footer__members">
-              <ButtonLink href={membersAreaURL} text="Members Area" target="_blank" />
+              <a
+                className="button button__link"
+                href={membersAreaURL}
+                target="_blank"
+                rel="noopener nofollow noreferrer">
+                <span>Members Area</span>
+              </a>
               <img src={Logo} alt="London Borough of Sutton" className="footer-logo" />
             </div>
           </div>

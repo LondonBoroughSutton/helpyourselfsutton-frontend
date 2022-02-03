@@ -70,7 +70,7 @@ class InstructionModal extends Component<any> {
 
           <div className="instruction-modal__content">
             <p>
-              <strong>Help Yourself Sutton</strong>
+              <strong>Sutton Information Hub</strong>
               <br />
               https://helpyourselfsutton.org
             </p>

@@ -16,10 +16,10 @@ function InformationPage(props: any) {
     <main className="information-page">
       <Helmet>
         {props.content.title && (
-          <title>{`${props.content.title} | Help Yourself Sutton`}</title>
+          <title>{`${props.content.title} | Sutton Information Hub`}</title>
         )}
         {!props.content.title && (
-          <title>Information Page | Help Yourself Sutton</title>
+          <title>Information Page | Sutton Information Hub</title>
         )}
       </Helmet>
       <Breadcrumb

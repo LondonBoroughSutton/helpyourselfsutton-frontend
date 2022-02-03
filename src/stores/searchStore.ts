@@ -60,7 +60,7 @@ class SearchStore {
       const personas = await axios.get(`${apiBase}/collections/personas`);
       let personasList = get(personas, 'data.data', []);
       runInAction(() => {
-        this.personas = personasList;
+        this.personas = personasList.filter((persona: IPersona) => persona.enabled);
       });
     } catch (e) {
       console.error(e);

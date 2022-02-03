@@ -6,6 +6,7 @@
 @import './grid.scss';
 @import './translate.scss';
 @import './leaflet.scss';
+@import './variables.scss';
 
 .flex-container {
   max-width: 1260px;
@@ -32,6 +33,11 @@ a {
   color: $black;
   font-weight: 700;
   cursor: pointer;
+
+  &:focus, &:active {
+    outline: 0;
+    box-shadow: 0 0 0pt $formControlOutlineWidth $cerulean-blue;
+  }
 }
 
 button {

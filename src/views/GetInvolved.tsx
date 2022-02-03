@@ -19,7 +19,7 @@ const GetInvolved: React.FunctionComponent<IProps> = ({ cmsStore }) => {
   return (
     <CMSPage title={get(cmsStore, 'get_involved.title')} breadcrumb="Get Involved">
       <Helmet>
-        <title>Get Involved | Help Yourself Sutton</title>
+        <title>Get Involved | Sutton Information Hub</title>
       </Helmet>
 
       <ReactMarkdown children={get(cmsStore, 'get_involved.content')} />
