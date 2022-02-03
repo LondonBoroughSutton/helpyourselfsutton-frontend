@@ -27,11 +27,11 @@
   border-radius: 40px;
 
   @include for-tablet-portrait-down {
-    padding: space(32);
+    padding: space(40);
   }
 
   @include for-phone-only {
-    padding: space(24);
+    padding: space(32);
   }
 
   &--active {

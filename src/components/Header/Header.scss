@@ -80,6 +80,7 @@
       transition-timing-function: ease;
 
       @include for-tablet-landscape-down {
+        height: 3px;
         transform: translateY(12px);
       }
     }
@@ -91,7 +92,7 @@
         opacity: 1;
         
         @include for-tablet-landscape-down {
-          transform: translateY(8px);
+          transform: translateY(4px);
         }
       }
     }
