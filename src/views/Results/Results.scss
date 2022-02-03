@@ -155,7 +155,8 @@
 
   &.disabled {
     .pagination__link {
-      color: rgba($black, 0.5);
+      opacity: 0.5;
+      cursor: not-allowed;
     }
   }
 }
@@ -186,6 +187,10 @@
   background: $white;
   color: $black;
 
+  .pagination__link {
+    color: $black;
+  }
+
   svg {
     margin-right: space(16);
 
@@ -205,7 +210,11 @@
   margin-left: auto;
   padding: 0 space(8);
   border-radius: 4px;
-  color: $black;
+  background: $white;
+
+  .pagination__link {
+    color: $black;
+  }
 
   svg {
     margin-left: space(16);
