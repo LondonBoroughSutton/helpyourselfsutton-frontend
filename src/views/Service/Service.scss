@@ -21,6 +21,14 @@
     margin-top: 0;
     margin-bottom: space(24);
   }
+
+  > .flex-container {
+    flex-wrap: nowrap;
+
+    @include for-tablet-portrait-down {
+      flex-wrap: wrap;
+    }
+  }
 }
 
 .service__header__logo {

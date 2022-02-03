@@ -6,13 +6,16 @@
   background-color: $white;
   padding: space(32);
   border-radius: 20px;
-  
-  @include for-tablet-landscape-down {
-    padding: space(24);
-  }
 
-  @include for-phone-only {
-    padding: space(16);
+  @include for-tablet-landscape-down {
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    text-align: center;
+
+    > .flex-col {
+      margin-bottom: space(12);
+    }
   }
   
   .button {
@@ -26,6 +29,10 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  
+  @include for-tablet-landscape-down {    
+    justify-content: center;
+  }
 
   svg {
     margin-right: space(12);
