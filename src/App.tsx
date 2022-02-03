@@ -5,7 +5,6 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider, observer } from 'mobx-react';
-import useGaTracker from './hooks/useGaTracker';
 
 import Footer from './components/Footer/Footer';
 import Header from './components/Header';
@@ -28,6 +27,16 @@ import HomeScreenPrompt from './components/HomeScreenPrompt';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import CookieBanner from './components/CookieBanner';
 import Loading from './components/Loading';
+
+// React GA
+import ReactGA from "react-ga";
+import RouteChangeTracker from './components/RouteChangeTracker';
+
+if (!window.location.href.includes("localhost")) {
+  ReactGA.initialize([{
+    trackingId: "UA-218218288-1"
+  }]);
+}
 
 // add all free font awesome icons to project
 library.add(fas, fab);
@@ -60,7 +69,6 @@ const Page = lazy(() => import('./views/Page/Page'));
 
 const App = () => {
   windowSizeStore.setWindow();
-  useGaTracker();
 
   return (
     <Provider
@@ -75,6 +83,7 @@ const App = () => {
       pageStore={pageStore}
     >
       <Router>
+        <RouteChangeTracker />
         <ScrollToTop>
           <Header />
           <Suspense fallback={<Loading />}>

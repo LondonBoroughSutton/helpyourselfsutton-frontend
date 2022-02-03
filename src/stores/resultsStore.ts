@@ -1,4 +1,4 @@
-import { makeObservable, observable, action, computed } from 'mobx';
+import { makeObservable, observable, action, computed, runInAction } from 'mobx';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import size from 'lodash/size';
@@ -417,8 +417,11 @@ export default class ResultsStore {
         `${apiBase}/search?page=${this.currentPage}&per_page=${this.itemsPerPage}`,
         this.getPostParams()
       );
-      this.results = get(results, 'data.data', []);
-      this.totalItems = get(results, 'data.meta.total', 0);
+
+      runInAction(() => {
+        this.results = get(results, 'data.data', []);
+        this.totalItems = get(results, 'data.meta.total', 0);
+      })
 
       forEach(this.results, (service: IService) => {
         // @ts-ignore
@@ -435,7 +438,10 @@ export default class ResultsStore {
 
   @action
   fetchPages = async (perPage: number) => {
-    this.loading = true;
+    runInAction(() => {
+      this.loading = true;
+    });
+
     try {
       const results = await axios.post(
         `${apiBase}/search/pages`,
@@ -445,10 +451,14 @@ export default class ResultsStore {
           query: this.keyword
         }
       );
-      this.pages = get(results, 'data.data', []);
+      runInAction(() => {
+        this.pages = get(results, 'data.data', []);
+      });
     } catch (e) {
-      this.pages = [];
-      this.loading = false;
+      runInAction(() => {
+        this.pages = [];
+        this.loading = false;
+      });
     }
   };
 

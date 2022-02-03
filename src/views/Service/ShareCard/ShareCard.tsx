@@ -45,7 +45,6 @@ const ShareCard: React.FunctionComponent<IProps> = ({ serviceStore }) => {
           >
             <FontAwesomeIcon icon="link" />
           </a>
-          {console.log(serviceStore)}
           <a
             href={`mailto:?subject=Sutton Information Hub: ${serviceStore.service?.name}&body=${window.location.href}"`}
             aria-label="Email service link"
