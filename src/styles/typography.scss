@@ -283,7 +283,26 @@ blockquote {
 }
 
 .markdown {
+  display: flex;
+  flex-direction: column;
+
   > * {
+    display: block;
     margin-bottom: space(16);
+  }
+
+  h1, h2, h3, h4 {
+    margin-top: space(20);
+  }
+
+  li {
+    display: flex;
+
+    &::before {
+      content: "\00B7";
+      margin-top: space(8);
+      margin-right: space(20);
+      font-size: pxtorem(48);
+    }
   }
 }

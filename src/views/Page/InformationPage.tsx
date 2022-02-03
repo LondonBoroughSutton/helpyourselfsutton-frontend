@@ -45,7 +45,7 @@ function InformationPage(props: any) {
             <div className="flex-col flex-col--12">
               <ReactMarkdown
                 children={props.content.content.introduction.copy[0]}
-                className="information-page__content"
+                className="information-page__content markdown"
               />
             </div>
           )}
@@ -59,7 +59,7 @@ function InformationPage(props: any) {
         </div>
       </section>
       
-      {props.content.children.length && (
+      {props.content.children.length > 0 && (
         <section className="information-page__other">
           <div className="flex-container">
             <div className="flex-col flex-col--12">
