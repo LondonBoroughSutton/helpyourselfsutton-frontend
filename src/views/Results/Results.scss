@@ -108,7 +108,8 @@
 }
 
 .results__search-filter-location {
-  width: auto;
+  width: 208px;
+  max-width: 100%;
 }
 
 .results__search-filter-location--label {
@@ -261,6 +262,15 @@
       margin-right: space(16);
       font-size: pxtorem(20);
       font-weight: 700;
+
+      @include for-phone-only {
+        margin-right: space(12);
+        font-size: pxtorem(16);
+      }
+    }
+
+    select {
+      max-width: 120px;
     }
   }
 
@@ -382,7 +392,8 @@
   }
 
   .results__search-box-keyword {
-    width: auto;
+    width: 310px;
+    max-width: 100%;
   }
 }
 
@@ -621,7 +632,6 @@
 }
 
 .results__info-boxes__heading {
-  @include heading-s;
   margin-bottom: space(24);
 }
 

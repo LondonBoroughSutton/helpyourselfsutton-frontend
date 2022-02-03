@@ -340,6 +340,10 @@ export default class ResultsStore {
     if (search) {
       await this.fetchResults();
     }
+
+    if(this.isKeywordSearch) {
+      await this.fetchPages(12);
+    }
   };
 
   getPostParams = () => {

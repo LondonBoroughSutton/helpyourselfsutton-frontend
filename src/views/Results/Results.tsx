@@ -48,10 +48,6 @@ class Results extends Component<IProps, IState> {
     const { resultsStore } = this.props;
 
     resultsStore.getSearchTerms();
-
-    if(resultsStore.isKeywordSearch) {
-      resultsStore.fetchPages(12);
-    }
   }
 
   hasCategories = () => {
@@ -131,19 +127,21 @@ class Results extends Component<IProps, IState> {
                   return <ButtonLink text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
                 })}
               </div>
-              {showMoreInfo && (
+              {(resultsStore.pages.length > 3 && showMoreInfo) && (
                 <div className="results__info-boxes__more-items">
-                  {map(resultsStore.pages.slice(3, 12), (page: IPage) => {
+                  {map(resultsStore.pages.slice(3, 11), (page: IPage) => {
                     return <ButtonLink text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
                   })}
                 </div>
               )}
-              <div className="results__info-boxes__show-more">
-                <Button
-                  text={`Show ${showMoreInfo ? 'less' : 'more'}`}
-                  icon={showMoreInfo ? 'caret-up' : 'caret-down'}
-                  onClick={() => this.toggleMoreInfo()} />
-              </div>
+              {resultsStore.pages.length > 3 &&
+                <div className="results__info-boxes__show-more">
+                  <Button
+                    text={`Show ${showMoreInfo ? 'less' : 'more'}`}
+                    icon={showMoreInfo ? 'caret-up' : 'caret-down'}
+                    onClick={() => this.toggleMoreInfo()} />
+                </div>
+              }
             </div>
           </section>
         )}
