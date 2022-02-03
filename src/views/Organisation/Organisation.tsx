@@ -84,17 +84,19 @@ class Organisation extends Component<IProps> {
                   <img src={getImg(organisation)} alt={`${organisation.name} logo`} />
                 </div>
               )}
-              <div className="organisation__header__content flex-col flex-col--tablet--9">
+              <div className="organisation__header__content">
                 <p className="organisation__header__sub">Organisation</p>
                 <h1>{get(organisation, 'name')}</h1>
                 {get(organisation, 'description') && (
-                  <ReactMarkdown className="" children={get(organisation, 'description')} />
+                  <div className="organisation__header__description">
+                    <ReactMarkdown className="" children={get(organisation, 'description')} />
+                  </div>
                 )}
 
                 <ul className="organisation__header__contact-details">
                   {get(organisation, 'phone') && (
                     <li key={`key_${get(organisation, 'phone')}`}>
-                      <strong>Phone</strong>
+                      <p className="h5">Phone</p>
                       <a href={`tel:${get(organisation, 'phone')}`}>
                         {get(organisation, 'phone')}
                       </a>
@@ -102,7 +104,7 @@ class Organisation extends Component<IProps> {
                   )}
                   {get(organisation, 'url') && (
                     <li key={`key_${get(organisation, 'url')}`}>
-                      <strong>Website</strong>
+                      <p className="h5">Website</p>
                       <a href={`${get(organisation, 'url')}`} target="_blank" rel="noreferrer">
                         {get(organisation, 'url')}
                       </a>
@@ -110,7 +112,7 @@ class Organisation extends Component<IProps> {
                   )}
                   {get(organisation, 'email') && (
                     <li key={`key_${get(organisation, 'email')}`}>
-                      <strong>Email</strong>
+                      <p className="h5">Email</p>
                       <a href={`mailto:${get(organisation, 'email')}`}>
                         {get(organisation, 'email')}
                       </a>
@@ -118,7 +120,7 @@ class Organisation extends Component<IProps> {
                   )}
                   {organisationStore.hasSocials && (
                     <li key="key_organisation_social">
-                      <strong>Social media</strong>
+                      <p className="h5">Social media</p>
                       <SocialLinks organisationStore={organisationStore} />
                     </li>
                   )}
@@ -132,7 +134,7 @@ class Organisation extends Component<IProps> {
             <section className="organisation__services">
               <div className="flex-container">
                 <div className="flex-col flex-col--12">
-                  <h2 className="organisation__services__heading">
+                  <h2 className="organisation__services__heading h3">
                     Services provided by {get(organisation, 'name')}
                   </h2>
                 </div>

@@ -4,21 +4,15 @@
 @import '../../../styles/breakpoints.scss';
 
 .location {
-  padding: space(40);
-  background-color: $white;
-  border-radius: 40px;
-
-  @include for-tablet-landscape-down {
+  @include for-tablet-portrait-up {
     padding: space(32);
-  }
-
-  @include for-phone-only {
-    padding: space(24);
+    border-radius: 40px;
+    background-color: $white;
   }
 }
 
 .location__address {
-  @include body-l;
+  @include body-m;
 }
 
 .location__image {
@@ -32,7 +26,7 @@
   }
 
   @include for-tablet-portrait-down {
-    margin-top: space(24) !important;
+    margin-top: space(20);
   }
 }
 
@@ -49,17 +43,25 @@
 
 .location__google-maps {
   display: flex;
+  flex-wrap: wrap;
   margin-top: space(12);
 
   .link {
+    @include body-m;
     margin-right: space(16);
+    margin-bottom: space(4);
   }
 }
 
 .location__opening-times {
   margin-top: space(32);
 
+  @include for-phone-only {
+    margin-top: space(20)
+  }
+
   &--header {
+    @extend .h4;
     margin-bottom: space(8);
 
     svg {
@@ -69,7 +71,7 @@
 
   &--list {
     p {
-      @include body-l;
+      @include body-m;
       margin-bottom: space(8);
     }
   }

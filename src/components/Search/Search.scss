@@ -46,6 +46,10 @@
     padding-left: space(20);
     padding-right: space(20);
   }
+
+  > * {
+    margin: space(8) 0;
+  }
 }
 
 .search__input {
@@ -70,12 +74,11 @@
 
   @include for-phone-only {
     margin-right: 0;
-    margin-bottom: space(24);
   }
 }
 
 .search__filter-location__label {
-  @include body-m;
+  @include heading-xs;
   padding: 0 space(20);
   margin: auto;
 
@@ -90,13 +93,13 @@
 
 .search__heading {
   display: block;
-  margin-bottom: space(40);
+  margin-bottom: space(32);
 
   @include for-tablet-landscape-down {
-    margin-bottom: space(32);
+    margin-bottom: space(24);
   }
 
   @include for-phone-only {
-    margin-bottom: space(24);
+    margin-bottom: space(16);
   }
 }

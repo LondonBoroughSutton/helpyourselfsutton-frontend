@@ -20,7 +20,7 @@
   box-sizing: border-box;
 
   @include for-tablet-landscape-down {
-    padding: 6px space(8) !important;
+    padding: space(8) !important;
     font-size: pxtorem(16) !important;
     line-height: pxtorem(16) !important;
   }

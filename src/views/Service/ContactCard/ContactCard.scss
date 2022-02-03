@@ -1,6 +1,7 @@
 @import '../../../styles/mixins.scss';
 @import '../../../styles/colors.scss';
 @import '../../../styles/breakpoints.scss';
+@import '../../../styles/typography.scss';
 
 .service__contact-card {
   padding: space(32);
@@ -12,7 +13,7 @@
   }
 
   @include for-phone-only {
-    padding: space(16);
+    padding: space(20);
   }
 
   .flex-col {
@@ -37,6 +38,7 @@
   }
 
   a {
+    @include body-m;
     text-decoration: none;
 
     &:hover {
@@ -45,6 +47,7 @@
   }
 
   h3 {
+    @include heading-xs;
     margin-bottom: space(8);
   }
 

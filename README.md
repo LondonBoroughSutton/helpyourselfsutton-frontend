@@ -1,6 +1,6 @@
-# Help Yourself Sutton - Frontend
+# Sutton Information Hub - Frontend
 
-The frontend website component to the [API](https://github.com/LondonBoroughSutton/helpyourselfsutton-frontend).
+The frontend website component to the [API](https://github.com/LondonBoroughSutton/suttoninformationhub-frontend).
 
 ## Getting started
 
@@ -9,7 +9,7 @@ development and testing purposes.
 
 ### Prerequisites
 
-- [Help Yourself Sutton - API](https://github.com/LondonBoroughSutton/helpyourselfsutton-api)
+- [Sutton Information Hub - API](https://github.com/LondonBoroughSutton/suttoninformationhub-api)
 - [Docker](https://www.docker.com)
 - [Yarn](https://yarnpkg.com/en/docs/install)
 
@@ -40,5 +40,5 @@ This project is intended to be deployed onto AWS to a S3 bucket.
 
 - [Ayup Digital](https://ayup.agency/)
 
-See also the list of [contributors](https://github.com/LondonBoroughSutton/helpyourselfsutton-frontend/graphs/contributors) who
+See also the list of [contributors](https://github.com/LondonBoroughSutton/suttoninformationhub-frontend/graphs/contributors) who
 participated in this project.
