@@ -25,6 +25,8 @@ import CategoryList from '../../components/CategoryList';
 import Button from '../../components/Button/Button';
 import ButtonLink from '../../components/Button/ButtonLink';
 
+import resultsImage from '../../assets/images/mother-and-son-walking.svg';
+
 interface IProps {
   location: Location;
   resultsStore: ResultStore;
@@ -225,6 +227,9 @@ class Results extends Component<IProps, IState> {
                   </div>
                 </div>
               )}
+            </div>
+            <div className="results__image flex-container flex-container--large">
+              <img src={resultsImage} className="image" alt="Mother and son walking" />
             </div>
           </section>
         )}

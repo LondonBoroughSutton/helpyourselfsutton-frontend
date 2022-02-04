@@ -116,16 +116,39 @@
   }
 }
 
-.service__info {
-  padding: space(64) 0;
-  background-color: $botticelli;
+.service__image {
+  margin-top: -160px;
+  transform: translateX(-88px) translateY(8px);
 
   @include for-tablet-landscape-down {
-    padding: space(48) 0 space(80) 0;
+    margin-top: 0;
+    transform: translateX(-40px) translateY(8px);
+
+    .image {
+      max-height: 200px;
+    }
   }
 
   @include for-phone-only {
-    padding: space(40) 0 space(56) 0;
+    margin-top: 20px;
+    
+
+    .image {
+      max-height: 140px;
+    }
+  }
+}
+
+.service__info {
+  padding-top: space(64);
+  background-color: $botticelli;
+
+  @include for-tablet-landscape-down {
+    padding-top: space(48);
+  }
+
+  @include for-phone-only {
+    padding-top: space(40);
   }
 
   > .flex-container {

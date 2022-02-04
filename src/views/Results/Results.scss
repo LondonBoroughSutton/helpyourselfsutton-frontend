@@ -9,8 +9,13 @@
 }
 
 .results__wrapper {
-  padding: space(48) 0 space(88);
+  padding-top: space(48);
   background-color: $botticelli;
+}
+
+.results__image .image {
+  margin-top: -160px;
+  transform: translateX(-88px) translateY(8px);
 }
 
 .results__container {

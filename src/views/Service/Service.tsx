@@ -50,6 +50,8 @@ import ServiceDisabled from './ServiceDisabled';
 import LinkButton from '../../components/LinkButton';
 import Button from '../../components/Button';
 
+import serviceImage from '../../assets/images/teenagers-hanging-out.svg';
+
 interface RouteParams {
   service: string;
 }
@@ -556,6 +558,9 @@ class Service extends Component<IProps> {
                   </p>
                 </div>
               </aside>
+            </div>
+            <div className="service__image flex-container flex-container--right flex-container--large">
+              <img src={serviceImage} className="image" alt="Mother and son walking" />
             </div>
           </section>
         )}
