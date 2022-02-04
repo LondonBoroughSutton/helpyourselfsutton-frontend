@@ -386,7 +386,7 @@ class Service extends Component<IProps> {
 
                     <ReactMarkdown
                       children={service.description}
-                      className={cx('service__markdown service__markdown--description mobile-hide', {
+                      className={cx('markdown service__markdown service__markdown--description mobile-hide', {
                         'service__markdown--description--tight': !service.offerings.length,
                       })}
                     />
@@ -462,7 +462,7 @@ class Service extends Component<IProps> {
                     )}
                     <ReactMarkdown
                       children={service.description}
-                      className={cx('service__markdown service__markdown--description', {
+                      className={cx('markdown service__markdown service__markdown--description', {
                         'service__markdown--description--tight': !service.offerings.length,
                       })}
                     />

@@ -241,10 +241,6 @@
   &--description {
     word-break: break-word;
 
-    @media(max-width: 600px) {
-      margin-top: space(32);
-    }
-
     li > p {
       display: inline;
       hyphens: auto;
@@ -402,14 +398,6 @@
 
   p {
     @include body-m;
-  }
-
-  p, ul {
-    margin-bottom: space(24);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 
   ul {
