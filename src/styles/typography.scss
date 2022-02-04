@@ -293,6 +293,10 @@ blockquote {
 
   h1, h2, h3, h4 {
     margin-top: space(20);
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   li {
