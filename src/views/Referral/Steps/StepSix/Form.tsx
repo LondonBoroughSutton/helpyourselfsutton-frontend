@@ -5,6 +5,8 @@ import ReferralStore from '../../../../stores/referralStore';
 import Input from '../../../../components/Input';
 import { observer } from 'mobx-react';
 import get from 'lodash/get';
+import html from '../../../../components/Html';
+import Button from '../../../../components/Button';
 
 interface IProps {
   referralStore: ReferralStore;
@@ -138,6 +140,7 @@ class Form extends Component<IProps, IState> {
                 }
                 className="referral__step-container--input"
                 placeholder="01234 567 890"
+                required={true}
                 onBlur={() => this.handleBlur('referee_phone')}
                 error={errors.referee_phone}
                 errorMessage="Please enter a telephone number in the correct format - 11 characters"
@@ -146,6 +149,7 @@ class Form extends Component<IProps, IState> {
 
             <div className="referral__form__field">
               <button
+                type="button"
                 aria-label="Select if you can't provide these details"
                 onClick={() => this.toggleNoContactDetails()}
                 className={cx('referral__step-container--other-contact--toggle', {
@@ -176,6 +180,24 @@ class Form extends Component<IProps, IState> {
                 </div>
               </div>
             )}
+
+            <div className="referral__actions">
+              <div className="flex-container flex-container--no-padding flex-container--column flex-container--align-start">
+                <Button
+                  text="Continue"
+                  type="submit"
+                  icon="chevron-right"
+                  onClick={(e: React.FormEvent) => {
+                    e.preventDefault();
+                    referralStore.nextStep();
+                  }}
+                  disabled={!(referralStore.referral.referee_name && referralStore.referral.referee_phone)}
+                />
+                <p
+                  dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
+                  className="body--s" />
+              </div>
+            </div>
           </form>
         </div>
       </Fragment>

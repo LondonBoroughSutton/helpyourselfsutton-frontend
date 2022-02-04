@@ -3,8 +3,6 @@ import { inject, observer } from 'mobx-react';
 import get from 'lodash/get';
 
 import ReferralStore from '../../../../stores/referralStore';
-import Button from '../../../../components/Button';
-import html from '../../../../components/Html';
 import Form from './Form';
 
 interface IProps {
@@ -51,23 +49,6 @@ const StepFive: React.FunctionComponent<IProps> = ({ referralStore }) => {
   return (
     <Fragment>
       {chooseForm(referralStore)}
-      <div className="referral__actions">
-        <div className="flex-container flex-container--no-padding flex-container--column flex-container--align-start">
-          <Button
-            text="Continue"
-            type="submit"
-            icon="chevron-right"
-            onClick={(e: React.FormEvent) => {
-              e.preventDefault();
-              referralStore.nextStep();
-            }}
-            disabled={!referralStore.referral.referee_name}
-          />
-          <p
-            dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
-            className="body--s" />
-        </div>
-      </div>
     </Fragment>
   );
 };

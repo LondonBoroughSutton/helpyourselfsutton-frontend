@@ -4,6 +4,8 @@ import get from 'lodash/get';
 import cx from 'classnames';
 
 import ReferralStore from '../../../../stores/referralStore';
+import Button from '../../../../components/Button';
+import html from '../../../../components/Html';
 import Input from '../../../../components/Input';
 import Autocomplete from '../../../../components/Autocomplete';
 
@@ -40,54 +42,57 @@ class Form extends Component<IProps, IState> {
     const { heading, subtitle, label, referralStore, showPartnerOrgs } = this.props;
     const { open } = this.state;
     return (
-      <div className="referral__step-container">
-        <div className="flex-col flex-col--12">
-          <p className="body--s">{`Step 1 of ${referralStore.totalSteps}`}</p>
-          <h2 className="referral__step-container__question">{heading}</h2>
-          {subtitle && <p className="referral__step-container__subtitle">{subtitle}</p>}
-        </div>
-        <form className="referral__form">
-          <div className="referral__form__field">
-            <label className="referral__form__label" htmlFor="name">{label}</label>
-            <Input
-              id="name"
-              value={get(referralStore, 'referral.referee_name') || ''}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                referralStore.handleInput('referee_name', e.target.value)
-              }
-              className="referral__step-container--input"
-              placeholder="John Smith"
-              required={true}
-            />
+      <form className="referral__form">
+        <div className="referral__step-container">
+          <div className="flex-col flex-col--12">
+            <p className="body--s">{`Step 1 of ${referralStore.totalSteps}`}</p>
+            <h2 className="referral__step-container__question">{heading}</h2>
+            {subtitle && <p className="referral__step-container__subtitle">{subtitle}</p>}
           </div>
-          {showPartnerOrgs && (
-            <Fragment>
-              <div className="referral__form__field">
-                <label className="referral__form__label" htmlFor="orderBy">Do you work for one of our partner organisations?</label>
-                <div className="input--container">
-                  <Autocomplete
-                    storeTextField="organisation"
-                    defaultText={get(referralStore, 'referral.organisation')}
-                    defaultValue={get(referralStore, 'referral.organisation')}
-                    store={referralStore}
-                    endpointEntity="organisations"
-                  />
+          <div>
+            <div className="referral__form__field">
+              <label className="referral__form__label" htmlFor="name">{label}</label>
+              <Input
+                id="name"
+                value={get(referralStore, 'referral.referee_name') || ''}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  referralStore.handleInput('referee_name', e.target.value)
+                }
+                className="referral__step-container--input"
+                placeholder="John Smith"
+                required={true}
+              />
+            </div>
+            {showPartnerOrgs && (
+              <Fragment>
+                <div className="referral__form__field">
+                  <label className="referral__form__label" htmlFor="orderBy">Do you work for one of our partner organisations?</label>
+                  <div className="input--container">
+                    <Autocomplete
+                      storeTextField="organisation"
+                      defaultText={get(referralStore, 'referral.organisation')}
+                      defaultValue={get(referralStore, 'referral.organisation')}
+                      store={referralStore}
+                      endpointEntity="organisations"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex-col flex-col--12 referral__form">
-                <button
-                  aria-label="Select if you can't provide these details"
-                  onClick={() => this.toggleOrganisation()}
-                  className={cx('referral__step-container--other-contact--toggle', {
-                    'referral__step-container--other-contact--toggle--open': !open,
-                  })}
-                  tabIndex={0}
-                  aria-pressed={open}
-                  onKeyDown={e => (e.key === 'Enter' ? this.toggleOrganisation() : null)}
-                >
-                  I can't see my organisation
-                </button>
+                <div className="flex-col flex-col--12 referral__form__field">
+                  <button
+                    type="button"
+                    aria-label="Select if you can't provide these details"
+                    onClick={() => this.toggleOrganisation()}
+                    className={cx('referral__step-container--other-contact--toggle', {
+                      'referral__step-container--other-contact--toggle--open': !open,
+                    })}
+                    tabIndex={0}
+                    aria-pressed={open}
+                    onKeyDown={e => (e.key === 'Enter' ? this.toggleOrganisation() : null)}
+                  >
+                    I can't see my organisation
+                  </button>
+                </div>
 
                 {open && (
                   <div className="referral__form__field">
@@ -102,11 +107,28 @@ class Form extends Component<IProps, IState> {
                     />
                   </div>
                 )}
-              </div>
-            </Fragment>
-          )}
-        </form>
-      </div>
+              </Fragment>
+            )}
+          </div>
+        </div>
+        <div className="referral__actions">
+          <div className="flex-container flex-container--no-padding flex-container--column flex-container--align-start">
+            <Button
+              text="Continue"
+              type="submit"
+              icon="chevron-right"
+              onClick={(e: React.FormEvent) => {
+                e.preventDefault();
+                referralStore.nextStep();
+              }}
+              disabled={!referralStore.referral.referee_name}
+            />
+            <p
+              dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
+              className="body--s" />
+          </div>
+        </div>
+      </form>
     );
   }
 }

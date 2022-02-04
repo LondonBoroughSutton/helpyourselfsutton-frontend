@@ -2,8 +2,6 @@ import React, { Fragment } from 'react';
 import { inject, observer } from 'mobx-react';
 import get from 'lodash/get';
 import ReferralStore from '../../../../stores/referralStore';
-import Button from '../../../../components/Button';
-import html from '../../../../components/Html';
 import Form from './Form';
 
 interface IProps {
@@ -57,20 +55,6 @@ const StepThree: React.FunctionComponent<IProps> = ({ referralStore }) => {
   return (
     <Fragment>
       {chooseForm(referralStore)}
-      <div className="referral__actions">
-        <div className="flex-container flex-container--no-padding flex-container--column flex-container--align-start">
-          <Button
-            text="Continue"
-            type="submit"
-            icon="chevron-right"
-            onClick={() => referralStore.nextStep()}
-            disabled={referralStore.step === 2 && !referralStore.whoFor}
-          />
-          <p
-            dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
-            className="body--s" />
-        </div>
-      </div>
     </Fragment>
   );
 };
