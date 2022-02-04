@@ -358,11 +358,6 @@ class Service extends Component<IProps> {
                         <GalleryCard gallery={service.gallery_items} />
                       </div>
                     )}
-                    {service.video_embed && (
-                      <div className="flex-container flex-container--mobile-no-padding mobile-show">
-                        <VideoCard video={service.video_embed} width="90vw" />
-                      </div>
-                    )}
                   </div>
 
                   <div className="flex-container flex-container--align-center service__section service__information">
@@ -530,20 +525,20 @@ class Service extends Component<IProps> {
                   <VideoCard video={service.video_embed} width="100%" />
                 )}
                 {!!locations.length && (
-                  <div className="service__section">
+                  <div className="service__section mobile-hide">
                     <h2 className="service__heading">{`Where is this ${service.type}?`}</h2>
                     <div className="service__map">
                       <MapCard iconType={service.type} locations={locations} />
                     </div>
                   </div>
                 )}
-                <div>
+                <div className="mobile-hide">
                   <h2 className="service__heading">{`How can I contact this ${service.type}?`}</h2>
                   <div className="service__section">
                     <ContactCard organisation={organisation} service={service} />
                   </div>
                   {service.referral_method !== 'none' && (
-                    <div className="service__section service__referral--desktop">
+                    <div className="service__section mobile-hide">
                       <ReferralCard service={service} />
                     </div>
                   )}
