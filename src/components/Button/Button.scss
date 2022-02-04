@@ -4,6 +4,14 @@
 @import '../../styles/breakpoints.scss';
 @import '../../styles/typography.scss';
 
+button {
+  &:focus,
+  &:active {
+    outline: 0;
+    box-shadow: 0 0 0pt $formControlOutlineWidth $cerulean-blue;
+  }
+}
+
 .button {
   display: inline-flex;
   align-items: center;

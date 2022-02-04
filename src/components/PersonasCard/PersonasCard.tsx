@@ -11,13 +11,10 @@ interface IProps {
 }
 
 const PersonasCard: React.FunctionComponent<IProps> = ({ persona, url }) => (
-  <div className="persona-card">
-    {url && (
-      <a
-        href={url}
-        className="persona-card__link"
-        aria-label={`Go to persona page: ${persona.name}`}><span className="sr-only">{`Go to persona page: ${persona.name}`}</span></a>
-    )}
+  <a
+    className="persona-card"
+    href={url}
+    aria-label={`Go to persona page: ${persona.name}`}>
     <div className="persona-card__image">
       <img
         src={`${apiBase}/collections/personas/${persona.id}/image.png?max_dimension=240`}
@@ -29,7 +26,7 @@ const PersonasCard: React.FunctionComponent<IProps> = ({ persona, url }) => (
       <h3 className="persona-card__header">{persona.name}</h3>
       <p className="persona-card__description">{persona.intro}</p>
     </div>
-  </div>
+  </a>
 );
 
 export default inject('windowSizeStore')(observer(PersonasCard));

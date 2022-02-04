@@ -1,5 +1,7 @@
+@import './variables.scss';
 @import './mixins.scss';
 @import './breakpoints.scss';
+@import './colors.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Outfit:wght@400;700&display=swap');
 
@@ -256,6 +258,14 @@ a,
 button,
 p {
   @include body-regular;
+}
+
+a {
+  &:focus,
+  &:active {
+    outline: 0;
+    box-shadow: 0 0 0pt $formControlOutlineWidth $cerulean-blue;
+  }
 }
 
 .body {
