@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import cx from 'classnames';
 
 import ReferralStore from '../../../../stores/referralStore';
@@ -113,14 +113,14 @@ class Form extends Component<IProps, IState> {
     const { open, errors } = this.state;
 
     return (
-      <Fragment>
+      <form className="referral__form">
         <div className="referral__step-container">
           <div className="flex-col flex-col--12">
             <p className="body--s">{`Step 1 of ${referralStore.totalSteps}`}</p>
             <h2 className="referral__step-container__question">{header}</h2>
             {subtitle && <p className="referral__step-container__subtitle">{subtitle}</p>}
           </div>
-          <form className="referral__form">
+          <div className="referral__form">
             <div className="referral__form__field">
               <label className="referral__form__label" htmlFor="email">{label1}</label>
               <Input
@@ -157,6 +157,7 @@ class Form extends Component<IProps, IState> {
 
             <div className="referral__form__field">
               <button
+                type="button"
                 aria-label="Select if you can't provide these details"
                 onClick={() => this.toggleNoContactDetails()}
                 className={cx('referral__step-container--other-contact--toggle', {
@@ -189,7 +190,7 @@ class Form extends Component<IProps, IState> {
                 </div>
               </div>
             )}
-          </form>
+          </div>
         </div>
         <div className="referral__actions">
           <div className="flex-container flex-container--no-padding flex-container--column flex-container--align-start">
@@ -201,13 +202,14 @@ class Form extends Component<IProps, IState> {
                 e.preventDefault();
                 this.handleSubmit();
               }}
+              disabled={referralStore.step === 4 && (!referralStore.referral.email && !referralStore.referral.phone)}
             />
             <p
               dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
               className="body--s" />
           </div>
         </div>
-      </Fragment>
+      </form>
     );
   }
 }

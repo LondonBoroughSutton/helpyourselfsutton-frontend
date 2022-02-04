@@ -247,7 +247,7 @@ class Filter extends Component<IProps, IState> {
                 />
               </div>
 
-              <div className="">
+              <div className="results__filters--primary__label">
                 <Checkbox
                   id="is_free"
                   label="Only show free"

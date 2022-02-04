@@ -4,6 +4,12 @@
 @import '../../../styles/breakpoints.scss';
 
 .location {
+  margin-bottom: space(24);
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
   @include for-tablet-portrait-up {
     padding: space(32);
     border-radius: 40px;

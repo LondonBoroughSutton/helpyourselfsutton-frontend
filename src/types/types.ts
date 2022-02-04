@@ -2,6 +2,7 @@ import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 export interface IPage {
   id: string;
+  enabled: boolean;
   page_type: string;
   title: string;
   image: string;
@@ -65,6 +66,7 @@ export interface IParams {
 
 export interface ICategory {
   id: string;
+  enabled: boolean;
   intro: string;
   name: string;
   icon: IconName | undefined;

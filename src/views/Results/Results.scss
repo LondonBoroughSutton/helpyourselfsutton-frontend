@@ -9,8 +9,13 @@
 }
 
 .results__wrapper {
-  padding: space(48) 0 space(88);
+  padding-top: space(48);
   background-color: $botticelli;
+}
+
+.results__image .image {
+  margin-top: -160px;
+  transform: translateX(-88px) translateY(8px);
 }
 
 .results__container {
@@ -108,7 +113,8 @@
 }
 
 .results__search-filter-location {
-  width: auto;
+  width: 208px;
+  max-width: 100%;
 }
 
 .results__search-filter-location--label {
@@ -154,7 +160,8 @@
 
   &.disabled {
     .pagination__link {
-      color: rgba($black, 0.5);
+      opacity: 0.5;
+      cursor: not-allowed;
     }
   }
 }
@@ -185,6 +192,10 @@
   background: $white;
   color: $black;
 
+  .pagination__link {
+    color: $black;
+  }
+
   svg {
     margin-right: space(16);
 
@@ -204,7 +215,11 @@
   margin-left: auto;
   padding: 0 space(8);
   border-radius: 4px;
-  color: $black;
+  background: $white;
+
+  .pagination__link {
+    color: $black;
+  }
 
   svg {
     margin-left: space(16);
@@ -261,6 +276,15 @@
       margin-right: space(16);
       font-size: pxtorem(20);
       font-weight: 700;
+
+      @include for-phone-only {
+        margin-right: space(12);
+        font-size: pxtorem(16);
+      }
+    }
+
+    select {
+      max-width: 120px;
     }
   }
 
@@ -382,7 +406,8 @@
   }
 
   .results__search-box-keyword {
-    width: auto;
+    width: 310px;
+    max-width: 100%;
   }
 }
 
@@ -621,7 +646,6 @@
 }
 
 .results__info-boxes__heading {
-  @include heading-s;
   margin-bottom: space(24);
 }
 

@@ -20,4 +20,9 @@ select,
   background-size: pxtorem(35);
   color: $black;
   -webkit-appearance: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }

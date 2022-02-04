@@ -25,6 +25,8 @@ import CategoryList from '../../components/CategoryList';
 import Button from '../../components/Button/Button';
 import ButtonLink from '../../components/Button/ButtonLink';
 
+import resultsImage from '../../assets/images/mother-and-son-walking.svg';
+
 interface IProps {
   location: Location;
   resultsStore: ResultStore;
@@ -48,10 +50,6 @@ class Results extends Component<IProps, IState> {
     const { resultsStore } = this.props;
 
     resultsStore.getSearchTerms();
-
-    if(resultsStore.isKeywordSearch) {
-      resultsStore.fetchPages(12);
-    }
   }
 
   hasCategories = () => {
@@ -128,22 +126,24 @@ class Results extends Component<IProps, IState> {
               <h2 className="results__info-boxes__heading">Here's some information you might find useful</h2>
               <div className="results__info-boxes__items">
                 {map(resultsStore.pages.slice(0, 3), (page: IPage) => {
-                  return <ButtonLink text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
+                  return <ButtonLink key={page.id} text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
                 })}
               </div>
-              {showMoreInfo && (
+              {(resultsStore.pages.length > 3 && showMoreInfo) && (
                 <div className="results__info-boxes__more-items">
-                  {map(resultsStore.pages.slice(3, 12), (page: IPage) => {
-                    return <ButtonLink text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
+                  {map(resultsStore.pages.slice(3, 11), (page: IPage) => {
+                    return <ButtonLink key={page.id} text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
                   })}
                 </div>
               )}
-              <div className="results__info-boxes__show-more">
-                <Button
-                  text={`Show ${showMoreInfo ? 'less' : 'more'}`}
-                  icon={showMoreInfo ? 'caret-up' : 'caret-down'}
-                  onClick={() => this.toggleMoreInfo()} />
-              </div>
+              {resultsStore.pages.length > 3 &&
+                <div className="results__info-boxes__show-more">
+                  <Button
+                    text={`Show ${showMoreInfo ? 'less' : 'more'}`}
+                    icon={showMoreInfo ? 'caret-up' : 'caret-down'}
+                    onClick={() => this.toggleMoreInfo()} />
+                </div>
+              }
             </div>
           </section>
         )}
@@ -227,6 +227,9 @@ class Results extends Component<IProps, IState> {
                   </div>
                 </div>
               )}
+            </div>
+            <div className="results__image flex-container flex-container--large">
+              <img src={resultsImage} className="image" alt="Mother and son walking" />
             </div>
           </section>
         )}

@@ -43,10 +43,7 @@ const Confirmation: React.FunctionComponent<IProps> = ({ referralStore }) => {
             <li>You will be kept up to date with the progress of the connection</li>
           </ul>
 
-          <p>
-            If you have any questions or issues, please contact the admin team at{' '}
-            <a href="mailto:info@helpyourselfsutton.org">info@helpyourselfsutton.org</a>
-          </p>
+          <p>If you have any questions or issues, please contact the admin team at <a href="mailto:ia.hub@sutton.gov.uk">ia.hub@sutton.gov.uk</a></p>
         </div>
       </div>
     </main>

@@ -122,6 +122,16 @@ const ContactCard: React.FunctionComponent<IProps> = ({ service, accordian, orga
             <FontAwesomeIcon icon={['fab', 'youtube']} className="service__social-icon" />
           </a>
         )}
+        {find(organisation.social_medias, { type: 'other' }) && (
+          <a
+            href={getSocialUrl(find(organisation.social_medias, { type: 'other' }))}
+            aria-label={`Link to ${organisation.name} other`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon="link" className="service__social-icon" />
+          </a>
+        )}
       </div>
     )}
   </div>
