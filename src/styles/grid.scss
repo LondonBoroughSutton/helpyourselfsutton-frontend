@@ -341,35 +341,70 @@ body {
 @include for-tablet-landscape-down {
   .tablet--large-hide {
     display: none !important;
+
+    @media print {
+      display: block !important;
+    }
   }
+
   .tablet--large-show {
     display: block !important;
+
+    @media print {
+      display: none !important;
+    }
   }
 }
 
 @include for-tablet-portrait-down {
   .tablet-hide {
     display: none !important;
+
+    @media print {
+      display: block !important;
+    }
   }
   .tablet-show {
     display: block !important;
+
+    @media print {
+      display: none !important;
+    }
   }
 }
 
 @include for-phone-only {
   .mobile-hide {
     display: none !important;
+
+    @media print {
+      display: block !important;
+    }
   }
+
   .mobile-show {
     display: block !important;
+
+    @media print {
+      display: none !important;
+    }
   }
 }
 
 @include for-tablet-landscape-down {
   .medium-hide {
     display: none !important;
+
+    @media print {
+      display: block !important;
+    }
   }
+
   .medium-show {
     display: block !important;
+
+    @media print {
+      display: none !important;
+    }
   }
 }

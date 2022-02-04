@@ -104,7 +104,7 @@ class Results extends Component<IProps, IState> {
             { text: !resultsStore.isKeywordSearch ? (resultsStore.category?.name ? resultsStore.category?.name : '') : 'Search results', url: '' },
           ]}
         />
-        <div className="results__search-box">
+        <section className="results__search-box">
           <div className="flex-container">
             <div
               className={
@@ -118,7 +118,7 @@ class Results extends Component<IProps, IState> {
               <ParamsFilter />
             </div>
           </div>
-        </div>
+        </section>
 
         {resultsStore.pages.length > 0 && (
           <section className="results__info-boxes">

@@ -559,7 +559,7 @@ class Service extends Component<IProps> {
             </div>
           </section>
         )}
-        {relatedServices && <RelatedServices relatedServices={relatedServices} />}
+        {relatedServices && relatedServices.length > 0 && <RelatedServices relatedServices={relatedServices} />}
       </main>
     );
   }
