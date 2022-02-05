@@ -117,7 +117,7 @@
 }
 
 .service__image {
-  margin-top: -160px;
+  margin-top: 20px;
   transform: translateX(-88px) translateY(8px);
 
   @include for-tablet-landscape-down {
@@ -131,7 +131,6 @@
 
   @include for-phone-only {
     margin-top: 20px;
-    
 
     .image {
       max-height: 140px;
@@ -204,7 +203,6 @@
   &--intro {
     border-left: 4px solid $black;
     padding-left: space(20);
-    
 
     @media(min-width: 601px) {
       margin-bottom: space(40);
@@ -231,6 +229,7 @@
     li > p {
       display: inline;
       hyphens: auto;
+      margin: 0;
     }
 
     li {
@@ -244,16 +243,11 @@
     li > p {
       display: inline;
       hyphens: auto;
+      margin: 0 !important;
     }
 
-    &--tight {
-      @include for-tablet-portrait-up {
-        p {
-          &:first-of-type {
-            margin-top: space(24);
-          }
-        }
-      }
+    li::before {
+      margin-top: 0 !important;
     }
   }
 

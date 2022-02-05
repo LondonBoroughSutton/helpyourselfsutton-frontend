@@ -1,0 +1,37 @@
+/* PRINT STYLES */
+
+@media print {
+  .header,
+  .footer,
+  .breadcrumb,
+  .button,
+  .results__info-boxes,
+  .results__filters form,
+  .results__info,
+  .results__image,
+  .results__pagination,
+  .search-result-card__footer,
+  .related-services-card .link,
+  .service__image,
+  .service__share-card,
+  .landing-page__illustrations,
+  .landing-page__information,
+  .landing-page__services,
+  .information-page__more,
+  .information-page__other {
+    display: none !important;
+  }
+
+  .results__search-box,
+  .results__wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .search-result-card,
+  .related-services-card {
+    padding: 0 0 space(24) 0 !important;
+    border-radius: 0 !important;
+    border-bottom: 2px solid black !important;
+  }
+}
