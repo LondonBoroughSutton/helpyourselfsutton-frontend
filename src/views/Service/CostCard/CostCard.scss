@@ -36,9 +36,6 @@
 }
 
 .service__cost-card__description {
-  font-size: pxtorem(24);
-
-  @include for-tablet-landscape-down {
-    font-size: pxtorem(20);
-  }
+  margin-bottom: space(12);
+  font-weight: 700;
 }

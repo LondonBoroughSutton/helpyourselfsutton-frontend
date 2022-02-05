@@ -364,7 +364,7 @@ class Service extends Component<IProps> {
                     <div className="flex-col flex-col--12 flex-col--mobile--12">
                       <ReactMarkdown
                         children={service.intro}
-                        className="service__markdown service__markdown--intro"
+                        className="markdown service__markdown service__markdown--intro"
                       />
                     </div>
 
@@ -559,7 +559,7 @@ class Service extends Component<IProps> {
             </div>
           </section>
         )}
-        {relatedServices && <RelatedServices relatedServices={relatedServices} />}
+        {relatedServices && relatedServices.length > 0 && <RelatedServices relatedServices={relatedServices} />}
       </main>
     );
   }
