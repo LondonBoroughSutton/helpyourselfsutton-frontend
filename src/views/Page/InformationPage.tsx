@@ -61,7 +61,7 @@ function InformationPage(props: any) {
         </div>
       </section>
       
-      {props.content.children.length > 0 && (
+      {props.content.children.filter((child: IPage) => child.enabled).length > 0 && (
         <section className="information-page__other">
           <div className="flex-container">
             <div className="flex-col flex-col--12">
