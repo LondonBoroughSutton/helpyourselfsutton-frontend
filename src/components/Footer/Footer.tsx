@@ -46,7 +46,7 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
         </div>
         <div className="flex-col flex-col--6 flex-col--tablet--12">
           <div className="flex-container flex-container--no-padding">
-            <div className="flex-col flex-col--6 flex-col--tablet--12">
+            <div className="flex-col flex-col--6 flex-col--tablet--12 footer__contact">
               <h5 className="footer__header">
                 Get in touch with<br />Sutton Information Hub
               </h5>
