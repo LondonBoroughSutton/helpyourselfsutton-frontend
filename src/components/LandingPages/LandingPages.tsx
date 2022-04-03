@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 
+import { apiBase } from '../../config/api';
+
 import ButtonLink from '../Button/ButtonLink';
 
 import './LandingPages.scss';
@@ -26,6 +28,10 @@ class LandingPages extends Component<IProps> {
       return null;
     }
 
+    const getImg = (pageId: string) => {
+      return `${apiBase}/pages/${pageId}/image.png?max_dimension=120`;
+    };
+
     return (
       <section className="landing-pages">
         <div className="flex-container">
@@ -36,7 +42,7 @@ class LandingPages extends Component<IProps> {
                 <ButtonLink
                   href={'/' + page.id}
                   text={page.title}
-                  image={page.image}
+                  image={page.image ? getImg(page.id) : ""}
                   key={page.id}
                   category={true}
                 />

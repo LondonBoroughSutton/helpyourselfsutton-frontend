@@ -2,6 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 
+import { apiBase } from '../../config/api';
+
 import './LandingPage.scss';
 
 import Breadcrumb from '../../components/Breadcrumb';
@@ -15,6 +17,10 @@ import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { ICategory, IPage } from '../../types/types';
 
 function LandingPage(props: any) {
+  const getImg = (pageId: string) => {
+    return `${apiBase}/pages/${pageId}/image.png?max_dimension=900`;
+  };
+
   return (
     <main className="landing-page">
       <Helmet>
@@ -44,9 +50,9 @@ function LandingPage(props: any) {
               />
             )}
           </div>
-          <div className="flex-col flex-col--12">
+          <div className="flex-col flex-col--5">
             {props.content.image && (
-              <img alt={props.content.title ? props.content.title : ''} className="landing-page__image" src={props.content.image} />
+              <img alt={props.content.title ? props.content.title : ''} className="landing-page__image" src={getImg(props.content.id)} />
             )}
           </div>
           
