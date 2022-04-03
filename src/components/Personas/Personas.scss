@@ -24,7 +24,7 @@
     }
 
     @include for-phone-only {
-      margin-left: 0;
+      margin-left: space(32);
       margin-bottom: space(24);
     }
   }

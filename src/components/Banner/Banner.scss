@@ -9,16 +9,16 @@
   background-color: $link-water;
 
   &__content {
-    max-width: 908px;
+    max-width: 940px;
     margin: 0 auto;
     padding: space(88) 0 0;
 
     @include for-tablet-portrait-down {
-      padding: space(64) 0 space(48);
+      padding: space(64) space(32) space(48);
     }
 
     @include for-phone-only {
-      padding: space(40) space(16) space(24);
+      padding: space(40) space(32) space(24);
     }
   }
 
