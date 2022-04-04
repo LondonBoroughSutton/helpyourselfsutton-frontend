@@ -15,7 +15,7 @@
   }
 
   &__heading {
-    margin-left: space(72);
+    margin-left: space(56);
     margin-bottom: space(48);
 
     @include for-tablet-landscape-down {
@@ -24,7 +24,7 @@
     }
 
     @include for-phone-only {
-      margin-left: 0;
+      margin-left: space(32);
       margin-bottom: space(24);
     }
   }
