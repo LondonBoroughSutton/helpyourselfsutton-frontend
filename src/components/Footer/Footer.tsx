@@ -24,6 +24,9 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
     return null;
   }
 
+  const facebookHandle = cmsStore?.global?.facebook_handle;
+  const twitterHandle = cmsStore?.global?.twitter_handle;
+
   return (
     <footer className="footer">
       <div className="flex-container flex-container--large">
@@ -51,26 +54,30 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
                 Get in touch with<br />Sutton Information Hub
               </h5>
               <nav className="footer__social-links" role="menu" aria-label="Social Media Links">
-                <a
-                  href={`https://facebook.com/${get(cmsStore, 'global.facebook_handle')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  role="menuitem"
-                  aria-label="Link to Sutton Information Hub Facebook"
-                  className="footer__link"
-                >
-                  <FontAwesomeIcon icon={['fab', 'facebook']} className="footer__social-icons" />
-                </a>
-                <a
-                  href={`https://twitter.com/${get(cmsStore, 'global.twitter_handle')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  role="menuitem"
-                  aria-label="Link to Sutton Information Hub Twitter"
-                  className="footer__link"
-                >
-                  <FontAwesomeIcon icon={['fab', 'twitter']} className="footer__social-icons" />
-                </a>
+                {facebookHandle !== "#" && (
+                  <a
+                    href={`https://facebook.com/${facebookHandle}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    role="menuitem"
+                    aria-label="Link to Sutton Information Hub Facebook"
+                    className="footer__link"
+                  >
+                    <FontAwesomeIcon icon={['fab', 'facebook']} className="footer__social-icons" />
+                  </a>
+                )}
+                {twitterHandle !== "#" && (
+                  <a
+                    href={`https://twitter.com/${twitterHandle}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    role="menuitem"
+                    aria-label="Link to Sutton Information Hub Twitter"
+                    className="footer__link"
+                  >
+                    <FontAwesomeIcon icon={['fab', 'twitter']} className="footer__social-icons" />
+                  </a>
+                )}
               </nav>
               <nav className="footer__contact-links">
                 <Link
