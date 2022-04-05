@@ -20,7 +20,7 @@ export default class PageStore {
     try {
       const pagesData = await axios.get(`${apiBase}/pages?filter[page_type]=landing`);
       runInAction(() => {
-        this.pages = get(pagesData, 'data.data');
+        this.pages = get(pagesData, 'data.data').sort((a: { order: number; }, b: { order: number; }) => a.order - b.order);
       });
     } catch (error) {
       this.loading = false;

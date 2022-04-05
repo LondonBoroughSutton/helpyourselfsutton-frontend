@@ -3,6 +3,7 @@ import { IconName } from '@fortawesome/fontawesome-svg-core';
 export interface IPage {
   id: string;
   enabled: boolean;
+  order: number; 
   page_type: string;
   title: string;
   image: string;

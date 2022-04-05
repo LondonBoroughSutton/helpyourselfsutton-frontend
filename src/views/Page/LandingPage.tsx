@@ -90,7 +90,10 @@ function LandingPage(props: any) {
               )}
             </div>
             <div className="flex-col flex-col--12 landing-page__pages">
-              {props.content.children.filter((child: IPage) => child.enabled).map((page: { id: string; title: string; }) => {
+              {console.log(props.content.children)}
+              {props.content.children.filter((child: IPage) => child.enabled)
+                .sort((a: { order: number; }, b: { order: number; }) => a.order - b.order)
+                .map((page: { id: string; title: string; }) => {
                 return (
                   <ButtonLink
                     href={'/' + page.id}
