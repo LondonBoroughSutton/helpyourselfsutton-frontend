@@ -65,7 +65,7 @@ class Header extends Component<IProps> {
               <img
                 src={Logo}
                 className="logo"
-                alt="Sutton Information Hub" />
+                alt="Sutton Information Hub Logo - Mother in a hi-jab with their son, a teenage girl using a guide dog and an older person using a walking stick" />
             </RouterLink>
           </figure>
 
