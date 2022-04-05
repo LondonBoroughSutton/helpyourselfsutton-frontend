@@ -31,7 +31,7 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
     <footer className="footer">
       <div className="flex-container flex-container--large">
         <div className="flex-col flex-col--5 flex-col--tablet--12">
-          <h5 className="footer__header">{get(cmsStore, 'global.footer_title')}</h5>
+          <h2 className="footer__header h5">{get(cmsStore, 'global.footer_title')}</h2>
           <ReactMarkdown
             className="footer__content"
             children={get(cmsStore, 'global.footer_content')}
@@ -50,9 +50,9 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
         <div className="flex-col flex-col--6 flex-col--tablet--12">
           <div className="flex-container flex-container--no-padding">
             <div className="flex-col flex-col--6 flex-col--tablet--12 footer__contact">
-              <h5 className="footer__header">
+              <h2 className="footer__header h5">
                 Get in touch with<br />Sutton Information Hub
-              </h5>
+              </h2>
               <nav className="footer__social-links" role="menu" aria-label="Social Media Links">
                 {facebookHandle !== "#" && (
                   <a

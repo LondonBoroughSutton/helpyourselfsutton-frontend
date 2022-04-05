@@ -35,7 +35,7 @@ class LandingPages extends Component<IProps> {
     return (
       <section className="landing-pages">
         <div className="flex-container">
-          <h2 className="landing-pages__heading h4">Browse area of interest</h2>
+          <h2 className="landing-pages__heading">Browse area of interest</h2>
           <div className="landing-pages__items">
             {pageStore.pages?.map((page: IPage) => {
               return (
