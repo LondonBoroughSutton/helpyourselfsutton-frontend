@@ -17,6 +17,9 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
     return null;
   }
 
+  const facebookHandle = cmsStore?.global?.facebook_handle;
+  const twitterHandle = cmsStore?.global?.twitter_handle;
+
   return (
     <CMSPage title={get(cmsStore, 'contact.title')} twoColumn={true} breadcrumb="Contact">
       <Helmet>
@@ -47,22 +50,28 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
             </a>
           </div>
           <div className="flex-col flex-col--12 cms--contact-card--socials service__contact-card--row">
-            <a
-              href={`https://facebook.com/${get(cmsStore, 'global.facebook_handle')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Sutton Information Hub Facbook"
-            >
-              <FontAwesomeIcon icon={['fab', 'facebook']} className="service__social-icon" />
-            </a>
-            <a
-              href={`https://twitter.com/${get(cmsStore, 'global.twitter_handle')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Sutton Information Hub Twitter"
-            >
-              <FontAwesomeIcon icon={['fab', 'twitter']} className="service__social-icon" />
-            </a>
+            {facebookHandle !== "#" && (
+              <a
+                href={`https://facebook.com/${facebookHandle}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                role="menuitem"
+                aria-label="Link to Sutton Information Hub Facebook"
+              >
+                <FontAwesomeIcon icon={['fab', 'facebook']} className="service__social-icon" />
+              </a>
+            )}
+            {twitterHandle !== "#" && (
+              <a
+                href={`https://twitter.com/${twitterHandle}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                role="menuitem"
+                aria-label="Link to Sutton Information Hub Twitter"
+              >
+                <FontAwesomeIcon icon={['fab', 'twitter']} className="service__social-icon" />
+              </a>
+            )}
           </div>
         </div>
       </div>
