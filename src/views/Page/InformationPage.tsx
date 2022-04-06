@@ -68,7 +68,9 @@ function InformationPage(props: any) {
               <h2 className="information-page__sub-heading">Other pages in this section</h2>
             </div>
             <div className="flex-col flex-col--12 information-page__pages">
-              {props.content.children.filter((child: IPage) => child.enabled).map((page: { id: string; title: string; icon: IconName; }) => {
+              {props.content.children.filter((child: IPage) => child.enabled)
+                .sort((a: { order: number; }, b: { order: number; }) => a.order - b.order)
+                .map((page: { id: string; title: string; icon: IconName; }) => {
                 return (
                   <ButtonLink
                     href={'/' + page.id}
