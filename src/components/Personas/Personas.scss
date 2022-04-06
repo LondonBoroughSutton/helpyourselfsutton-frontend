@@ -11,11 +11,10 @@
   &__content {
     position: relative;
     z-index: 1;
-    max-width: 1050px;
   }
 
   &__intro {
-    margin-left: space(72);
+    margin-left: space(56);
     margin-bottom: space(48);
 
     @include for-tablet-landscape-down {
