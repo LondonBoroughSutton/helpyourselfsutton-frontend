@@ -21,8 +21,12 @@ if [[ $# -gt 0  ]]; then
             ${DOCKER} run --rm ${TTY} \
                 -v `pwd`:/var/www/html \
                 -w /var/www/html \
-                -e CF_SECRET_SERVICE=${CF_SECRET_SERVICE:-''} \
-                -e CF_SECRET_SERVICE_KEY=${CF_SECRET_SERVICE_KEY:-''} \
+                -e CF_ENV_SERVICE=${CF_ENV_SERVICE:-''} \
+                -e CF_ENV_SERVICE_KEY=${CF_ENV_SERVICE_KEY:-''} \
+                -e CF_USERNAME=${CF_USERNAME:-''} \
+                -e CF_PASSWORD=${CF_PASSWORD:-''} \
+                -e CF_ORGANISATION=${CF_ORGANISATION:-''} \
+                -e CF_SPACE=${CF_SPACE:-''} \
                 ubuntu:latest \
                 bash .cloudfoundry/store.sh
             ;;
@@ -32,6 +36,8 @@ if [[ $# -gt 0  ]]; then
             ${DOCKER} run --rm ${TTY} \
                 -v `pwd`:/var/www/html \
                 -w /var/www/html \
+                -e ENVIRONMENT=${ENVIRONMENT:-'staging'} \
+                -e CI=${CI:-false} \
                 node:14 \
                 bash .travis/deploy.sh
             ;;
