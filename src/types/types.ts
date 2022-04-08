@@ -117,6 +117,7 @@ export interface IService {
   slug: string;
   social_medias: [];
   status: string;
+  tags: [];
   testimonial: null | string;
   type: string;
   updated_at: string;

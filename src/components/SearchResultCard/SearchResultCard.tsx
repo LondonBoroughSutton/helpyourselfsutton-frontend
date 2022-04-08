@@ -116,6 +116,15 @@ class SearchResultCard extends React.Component<IProps> {
 
                 {result.is_free ? 'Free' : 'Cost'}
               </div>
+              {result.tags.map(tag => (
+                <div
+                  className={cx('search-result-card__tag', `search-result-card__tag--tag`)}
+                  aria-label={`This ${result.type} is tagged with ${tag}`}
+                >
+                  <FontAwesomeIcon icon="tag" className="search-result-card__tag--icon" />
+                  {tag}
+                </div>
+              ))}
             </div>
             {!!locations.length && (
               <div

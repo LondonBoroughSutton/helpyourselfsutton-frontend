@@ -231,6 +231,19 @@ class Service extends Component<IProps> {
                   . View their organisation details and other listed services.
                 </p>
               )}
+              <div className="service__header__tags">
+                {map(service.tags, (tag: any) => (
+                  <Fragment key={tag.id}>
+                    <span
+                      className="service__header__tag"
+                      aria-label={`This ${service.type} is tagged with ${tag}`}
+                    >
+                      <FontAwesomeIcon icon="tag" className="service__header__tag--icon" />
+                      {tag.label}
+                    </span>
+                  </Fragment>
+                ))}
+              </div>
               <div className="service__header__actions">
                 {organisation && organisation.slug && (
                   <LinkButton

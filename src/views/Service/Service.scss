@@ -57,6 +57,28 @@
   }
 }
 
+.service__header__tags {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: space(8) 0;
+}
+
+.service__header__tag {
+  margin-right: space(16);
+  margin-bottom: space(16);
+  padding: space(4) space(8);
+  @include body-s;
+  font-weight: 600;
+  background-color: $casablanca;
+  color: $black;
+  border-radius: 4px;
+
+  svg {
+    margin-right: space(4)
+  }
+}
+
 .service__header__label {
   @include heading-xs;
   margin-bottom: space(8);
