@@ -24,7 +24,7 @@ class LandingPages extends Component<IProps> {
   render() {
     const { pageStore } = this.props;
 
-    if (!pageStore) {
+    if (!pageStore || !pageStore?.pages?.length) {
       return null;
     }
 
