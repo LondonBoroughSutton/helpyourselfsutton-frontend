@@ -61,22 +61,27 @@
 
 .search-result-card__tags {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   width: 100%;
+  margin-bottom: space(8);
 }
 
 .search-result-card__tag {
-  margin-right: space(16);
-  margin-bottom: space(16);
-  padding: space(8);
-  @include body-regular;
+  margin-right: space(8);
+  margin-bottom: space(8);
+  padding: space(4) space(8);
+  @include body-s;
+  font-size: pxtorem(12);
+  font-weight: 600;
   background-color: $casablanca;
   color: $black;
   border-radius: 4px;
 }
 
 .search-result-card__tag--icon {
-  margin-right: space(8);
+  font-size: pxtorem(12);
+  margin-right: space(4);
 }
 
 .search-result-card__location {

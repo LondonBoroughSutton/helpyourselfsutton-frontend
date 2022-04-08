@@ -65,10 +65,11 @@
 }
 
 .service__header__tag {
-  margin-right: space(16);
-  margin-bottom: space(16);
+  margin-right: space(8);
+  margin-bottom: space(8);
   padding: space(4) space(8);
   @include body-s;
+  font-size: pxtorem(12);
   font-weight: 600;
   background-color: $casablanca;
   color: $black;
