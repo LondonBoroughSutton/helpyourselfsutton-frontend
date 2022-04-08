@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { observer, inject } from 'mobx-react';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,6 +16,7 @@ import Accordian from '../Accordian';
 import { getLocationName } from '../../utils/utils';
 import FallBackLogo from '../../assets/images/logo-fallback.png';
 import ResultsStore from '../../stores/resultsStore';
+import { map } from 'lodash';
 
 interface IProps extends RouteComponentProps {
   resultsStore: ResultsStore;
@@ -116,14 +117,16 @@ class SearchResultCard extends React.Component<IProps> {
 
                 {result.is_free ? 'Free' : 'Cost'}
               </div>
-              {result.tags.map(tag => (
-                <div
-                  className={cx('search-result-card__tag', `search-result-card__tag--tag`)}
-                  aria-label={`This ${result.type} is tagged with ${tag}`}
-                >
-                  <FontAwesomeIcon icon="tag" className="search-result-card__tag--icon" />
-                  {tag}
-                </div>
+              {map(result.tags, (tag: any) => (
+                <Fragment key={tag.id}>
+                  <div
+                    className={cx('search-result-card__tag', `search-result-card__tag--tag`)}
+                    aria-label={`This ${result.type} is tagged with ${tag}`}
+                  >
+                    <FontAwesomeIcon icon="tag" className="search-result-card__tag--icon" />
+                    {tag.label}
+                  </div>
+                </Fragment>
               ))}
             </div>
             {!!locations.length && (
