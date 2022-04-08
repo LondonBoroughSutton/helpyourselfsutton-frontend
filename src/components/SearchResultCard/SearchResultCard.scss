@@ -28,6 +28,7 @@
 .search-result-card__title {
   flex: 1;
   padding-right: space(16);
+  word-break: break-word;
 }
 
 .search-result-card__organisation {
