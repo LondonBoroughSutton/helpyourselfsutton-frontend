@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import find from 'lodash/find';
 import size from 'lodash/size';
 
+import './ContactCard.scss';
+
 import { IOrganisation, IService } from '../../../types/types';
 
 interface IProps {
@@ -118,6 +120,16 @@ const ContactCard: React.FunctionComponent<IProps> = ({ service, accordian, orga
             rel="noopener noreferrer"
           >
             <FontAwesomeIcon icon={['fab', 'youtube']} className="service__social-icon" />
+          </a>
+        )}
+        {find(organisation.social_medias, { type: 'other' }) && (
+          <a
+            href={getSocialUrl(find(organisation.social_medias, { type: 'other' }))}
+            aria-label={`Link to ${organisation.name} other`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon="link" className="service__social-icon" />
           </a>
         )}
       </div>

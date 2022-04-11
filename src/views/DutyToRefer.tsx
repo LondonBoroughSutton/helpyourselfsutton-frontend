@@ -1,5 +1,5 @@
 import React from 'react';
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet';
 import { observer } from 'mobx-react';
 
 import Housing from '../assets/images/duty-to-refer/housing.png';
@@ -15,7 +15,7 @@ const DutyToRefer: React.FunctionComponent = () => {
   return (
     <CMSPage title="Duty to refer" breadcrumb="Duty to refer">
       <Helmet>
-        <title>Duty to refer | Hounslow Connect</title>
+        <title>Duty to refer | Sutton Information Hub</title>
       </Helmet>
 
       <section>
@@ -27,8 +27,8 @@ const DutyToRefer: React.FunctionComponent = () => {
                 please take a minute to see if a service may be able to make a more immediate
                 impact. Your intervention could keep the roof over someone’s head.
               </p>
-              <a href="mailto:dutytorefer@Hounslow.gov.uk">
-                Click to report <i className="fas fa-envelope" aria-hidden={true}/>
+              <a href="mailto:dutytorefer@sutton.gov.uk">
+                Click to report <i className="fas fa-envelope" aria-hidden={true} />
               </a>
             </div>
           </div>

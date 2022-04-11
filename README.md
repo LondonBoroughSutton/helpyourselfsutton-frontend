@@ -1,6 +1,6 @@
-# Hounslow Connect - Frontend
+# Sutton Information Hub - Frontend
 
-The frontend website component to the [API](https://github.com/LBHounslow/hounslow-connect-api).
+The frontend website component to the [API](https://github.com/LondonBoroughSutton/suttoninformationhub-frontend).
 
 ## Getting started
 
@@ -9,7 +9,7 @@ development and testing purposes.
 
 ### Prerequisites
 
-- [Hounslow Connect - API](https://github.com/LBHounslow/hounslow-connect-api)
+- [Sutton Information Hub - API](https://github.com/LondonBoroughSutton/suttoninformationhub-api)
 - [Docker](https://www.docker.com)
 - [Yarn](https://yarnpkg.com/en/docs/install)
 
@@ -40,5 +40,5 @@ This project is intended to be deployed onto AWS to a S3 bucket.
 
 - [Ayup Digital](https://ayup.agency/)
 
-See also the list of [contributors](https://github.com/LBHounslow/hounslow-connect-frontend/contributors) who
+See also the list of [contributors](https://github.com/LondonBoroughSutton/suttoninformationhub-frontend/graphs/contributors) who
 participated in this project.

@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
 import { inject, observer } from 'mobx-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -10,87 +9,100 @@ import { membersAreaURL } from '../../config/externalUrls';
 
 import './Footer.scss';
 
-import HounslowLogo from '../../assets/images/london-borough-of-hounslow.png';
+import Logo from '../../assets/logo/logo-footer.svg';
 
 import CMSStore from '../../stores/CMSStore';
 import UIStore from '../../stores/uiStore';
-import ButtonLink from '../Button/ButtonLink';
+
 interface IProps {
-  mobileMenu?: boolean;
   cmsStore?: CMSStore;
   uiStore?: UIStore;
 }
 
-const Footer: React.FunctionComponent<IProps> = ({ mobileMenu, cmsStore, uiStore }) => {
+const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
   if (!uiStore || !cmsStore) {
     return null;
   }
 
-  return (
-    <footer
-      className={cx('footer', {
-        'footer-mobile-menu': mobileMenu,
-      })}
-    >
-      <div className="flex-container footer--inner-container">
-        <div className="flex-col flex-col--5 flex-col--tablet--12">
-          <p className="footer__heading">{get(cmsStore, 'global.footer_title')}</p>
-          <ReactMarkdown
-            className="body--xs footer__content"
-            source={get(cmsStore, 'global.footer_content')}
-          />
+  const facebookHandle = cmsStore?.global?.facebook_handle;
+  const twitterHandle = cmsStore?.global?.twitter_handle;
 
-          <Link to="/privacy-policy" className="body--xs">
+  return (
+    <footer className="footer">
+      <div className="flex-container flex-container--large">
+        <div className="flex-col flex-col--5 flex-col--tablet--12">
+          <h2 className="footer__header h5">{get(cmsStore, 'global.footer_title')}</h2>
+          <ReactMarkdown
+            className="footer__content"
+            children={get(cmsStore, 'global.footer_content')}
+          />
+          <Link
+            className="footer__link"
+            to="/privacy-policy">
             Privacy Policy
           </Link>
-          &nbsp;&nbsp;
-          <Link to="/terms-and-conditions" className="body--xs">
+          <Link
+            className="footer__link"
+            to="/terms-and-conditions">
             Terms and Conditions
           </Link>
         </div>
-        <div className="flex-col flex-col--6 flex-col--tablet--12 footer__section">
+        <div className="flex-col flex-col--6 flex-col--tablet--12">
           <div className="flex-container flex-container--no-padding">
-            <div className="flex-col flex-col--5 flex-col--mobile--12">
-              <p className="footer__heading">
-                Get in touch with <br />
-                <span className="highlight">Hounslow</span> Connect
-              </p>
+            <div className="flex-col flex-col--6 flex-col--tablet--12 footer__contact">
+              <h2 className="footer__header h5">
+                Get in touch with<br />Sutton Information Hub
+              </h2>
               <nav className="footer__social-links" role="menu" aria-label="Social Media Links">
-                <a
-                  href={`https://facebook.com/${get(cmsStore, 'global.facebook_handle')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  role="menuitem"
-                  aria-label="Link to Hounslow Connect Facebook"
-                >
-                  <FontAwesomeIcon icon={['fab', 'facebook-f']} className="footer__social-icons" />
-                </a>
-                <a
-                  href={`https://twitter.com/${get(cmsStore, 'global.twitter_handle')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  role="menuitem"
-                  aria-label="Link to Hounslow Connect Twitter"
-                >
-                  <FontAwesomeIcon icon={['fab', 'twitter']} className="footer__social-icons" />
-                </a>
+                {facebookHandle !== "#" && (
+                  <a
+                    href={`https://facebook.com/${facebookHandle}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    role="menuitem"
+                    aria-label="Link to Sutton Information Hub Facebook"
+                    className="footer__link"
+                  >
+                    <FontAwesomeIcon icon={['fab', 'facebook']} className="footer__social-icons" />
+                  </a>
+                )}
+                {twitterHandle !== "#" && (
+                  <a
+                    href={`https://twitter.com/${twitterHandle}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    role="menuitem"
+                    aria-label="Link to Sutton Information Hub Twitter"
+                    className="footer__link"
+                  >
+                    <FontAwesomeIcon icon={['fab', 'twitter']} className="footer__social-icons" />
+                  </a>
+                )}
               </nav>
-              <div className="flex-col flex-col--12">
-                <Link to={'/contact'} className="body--xs footer-contact-links">
+              <nav className="footer__contact-links">
+                <Link
+                  className="footer__link"
+                  to={'/contact'}>
                   Contact us
                 </Link>
                 <button
-                  className="body--xs footer-contact-links"
+                  className="footer__link"
                   onClick={() => uiStore.toggleFeedbackModal()}
                 >
                   Give feedback
                 </button>
-              </div>
+              </nav>
             </div>
 
-            <div className="flex-col flex-col--6 flex-col--mobile--12 flex-col--tablet--12 footer__button">
-              <ButtonLink href={membersAreaURL} text="Members Area" target="_blank" />
-              <img src={HounslowLogo} alt="London Borough of Hounslow" className="footer-hounslow-logo" />
+            <div className="flex-col flex-col--4 flex-col--tablet--12 footer__members">
+              <a
+                className="button button__link"
+                href={membersAreaURL}
+                target="_blank"
+                rel="noopener nofollow noreferrer">
+                <span>Members Area</span>
+              </a>
+              <img src={Logo} alt="London Borough of Sutton" className="footer-logo" />
             </div>
           </div>
         </div>

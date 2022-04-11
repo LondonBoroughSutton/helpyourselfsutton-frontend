@@ -34,25 +34,23 @@ const Button: React.FunctionComponent<IProps> = ({
   light = false,
   onClick,
   covid = false,
-  image
+  image,
 }) => (
   <button
     className={cx('button', `button--${size}`, {
       button__alt: alt,
-      [`button__alt--${size}`]: alt,
-      'button__category button__alt button__alt--medium': category,
+      [`button--alt`]: alt,
+      'button__category button__alt': category,
       button__header: header,
       'buton__burger-menu': burgerMenu,
-      'button--light': light,
+      'button__light': light,
       'button button--black': covid,
     })}
     disabled={disabled}
     type={type}
     onClick={onClick}
   >
-    {image && (
-      <img src={image} alt={text} className="button__image" />
-    )}
+    {image && <img src={image} alt={text} className="button__image" />}
     {text}
     {icon && (
       <FontAwesomeIcon

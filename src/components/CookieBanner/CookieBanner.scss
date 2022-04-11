@@ -1,8 +1,18 @@
 @import '../../styles/colors.scss';
+@import '../../styles/typography.scss';
+
+.wpcc-pushdown-wrap {
+  max-height: none !important;
+}
 
 .wpcc-container.wpcc-banner {
   background-color: $gray !important;
   margin: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
+}
+
+.wpcc-message,
+.wpcc-message a {
+  @include body-s;
 }

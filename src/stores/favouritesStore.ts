@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { makeObservable, observable, action } from 'mobx';
 import axios from 'axios';
 import get from 'lodash/get';
 import remove from 'lodash/remove';
@@ -11,6 +11,10 @@ class FavouritesStore {
   @observable favouritesList: string[] | null = [];
   @observable organisations: IOrganisation[] = [];
   @observable serviceLocations: IServiceLocation[] = [];
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action
   setFavourites = (favourites: string) => {

@@ -1,0 +1,60 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/colors.scss';
+@import '../../../styles/breakpoints.scss';
+@import '../../../styles/typography.scss';
+
+.service__contact-card {
+  padding: space(32);
+  background-color: $white;
+  border-radius: 20px;
+
+  @include for-tablet-landscape-down {
+    padding: space(24);
+  }
+
+  @include for-phone-only {
+    padding: space(20);
+  }
+
+  .flex-col {
+    margin-bottom: space(24);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &--accordian {
+    h3 {
+      margin-bottom: space(8);
+    }
+
+    .service__social-icon-container {
+      padding-bottom: 0;
+    }
+  }
+
+  a {
+    @include body-m;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  h3 {
+    @include heading-xs;
+    margin-bottom: space(8);
+  }
+
+  &--row {
+    svg {
+      margin-right: space(8);
+      color: $black;
+    }
+  }
+}

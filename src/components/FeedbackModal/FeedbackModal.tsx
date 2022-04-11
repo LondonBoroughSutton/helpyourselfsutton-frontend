@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal';
+import ReactModal from 'react-modal';
 import { inject, observer } from 'mobx-react';
 import UIStore from '../../stores/uiStore';
 import feedbackStore from '../../stores/feedbackStore';
@@ -66,29 +66,31 @@ class FeedbackModal extends Component<IProps, any> {
     }
 
     return (
-      <Modal
+      <ReactModal
         isOpen={uiStore.feedbackModalOpen}
         className="modal"
+        onRequestClose={uiStore.toggleFeedbackModal}
         shouldCloseOnEsc={true}
         shouldCloseOnOverlayClick={true}
       >
         <div className="flex-container">
           <div className="flex-col flex-col--12 modal__close">
             <button onClick={() => uiStore.toggleFeedbackModal()} aria-label="Close modal">
-              <p>
-                Close <FontAwesomeIcon icon="times" />
-              </p>
+              Close <FontAwesomeIcon icon="times" />
             </button>
           </div>
-          <div className="flex-col flex-col--12 ">
-            <h1>{feedbackStore.submitted ? 'Thank you' : 'Submit your feedback'}</h1>
-            <p className="body-l modal__question">We would really like to hear your views about the information on this page. Your feedback goes to the Hounslow Connect team and all feedback is private.</p>
+          <div className="flex-col flex-col--12  modal__header">
+            <h2 className="modal__title">{feedbackStore.submitted ? 'Thank you' : 'Submit your feedback'}</h2>
+            <p className="modal__question">
+              We would really like to hear your views about the information on this page. Your
+              feedback goes to the Sutton Information Hub team and all feedback is private.
+            </p>
           </div>
 
           {feedbackStore.submitted ? (
             <div className="flex-container">
-              <p className="body-l modal__question">
-                Your feedback has been submitted to the Hounslow Connect admin team.
+              <p className="modal__question">
+                Your feedback has been submitted to the Sutton Information Hub admin team.
               </p>
             </div>
           ) : (
@@ -149,7 +151,7 @@ class FeedbackModal extends Component<IProps, any> {
                   <p className={'input__error-message--show'}>Please enter your feedback</p>
                 )}
               </div>
-              <p>
+              <p className="modal__question">
                 By submitting the above information, you consent to your data being used in
                 accordance with our <Link to="/privacy-policy">privacy policy</Link>.
               </p>
@@ -164,11 +166,11 @@ class FeedbackModal extends Component<IProps, any> {
             </form>
           )}
         </div>
-      </Modal>
+      </ReactModal>
     );
   }
 }
 
-Modal.setAppElement('#root');
+ReactModal.setAppElement('#root');
 
 export default inject('uiStore')(observer(FeedbackModal));

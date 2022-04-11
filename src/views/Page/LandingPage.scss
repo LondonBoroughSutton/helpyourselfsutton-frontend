@@ -1,0 +1,126 @@
+@import '../../styles/breakpoints.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/typography.scss';
+
+/* Section styles */
+
+.landing-page__overview {
+  padding: space(40) 0;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(24);
+  }
+}
+
+.landing-page__information {
+  padding: space(56) 0;
+  background-color: $casablanca;
+}
+
+.landing-page__services {
+  padding-top: space(56);
+  background-color: $bermuda;
+}
+
+.landing-page__pages,
+.landing-page__collections {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+
+  @media(max-width: 992px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include for-phone-only {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+.landing-page__illustrations {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+
+  .image {
+    @include for-tablet-landscape-down {
+      max-width: 20%;
+      height: auto;
+    }
+  }
+}
+
+/* Base content styles */
+
+.landing-page__heading {
+  margin-bottom: space(32);
+  @include heading-xl;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(24);
+  }
+
+  @include for-phone-only {
+    margin-bottom: space(16);
+  }
+}
+
+.landing-page__sub-heading {
+  margin-bottom: space(32);
+  @include heading-l;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(24);
+  }
+
+  @include for-phone-only {
+    margin-bottom: space(16);
+  }
+}
+
+.landing-page__content {
+  margin-bottom: space(48);
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(32);
+  }
+
+  @include for-phone-only {
+    margin-bottom: space(24);
+  }
+
+  p {
+    @include body-l;
+  }
+
+  a {
+    @include body-l;
+    text-decoration: underline;
+  }
+}
+
+.landing-page__image {
+  width: 100%;
+  height: auto;
+  margin-bottom: space(32);
+  border-radius: 40px;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(24);
+  }
+}
+
+.landing-page__intro,
+.landing-page__about {
+  padding-right: space(40);
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(32);
+  }
+
+  @include for-phone-only {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,106 @@
+@import '../../styles/breakpoints.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/typography.scss';
+
+.banner-slider {
+  padding: space(40);
+  background-color: $botticelli;
+
+  > .flex-container {
+    position: relative;
+  }
+
+  @include for-tablet-portrait-down {
+    padding: space(32) 0;
+  }
+}
+
+.banner-slider__items {
+  position: relative;
+}
+
+.banner-slider__item {
+  display: none;
+  padding: space(48);
+  background-color: $white;
+  border-radius: 40px;
+
+  @include for-tablet-portrait-down {
+    padding: space(40);
+  }
+
+  @include for-phone-only {
+    padding: space(32);
+  }
+
+  &--active {
+    display: block;
+  }
+
+  &__title {
+    margin-bottom: space(16);
+  }
+
+  &__description {
+    p {
+      @include body-l;
+    }
+  }
+
+  &__cta {
+    margin-top: space(24);
+  }
+}
+
+.banner-slider__arrows {
+  @include for-tablet-portrait-down {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: space(20);
+  }
+}
+
+.banner-slider__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  padding: space(12);
+  background-color: $black;
+  color: $white;
+  border-radius: 8px;
+
+  &.arrow-left {
+    left: -8px;
+
+    @include for-tablet-portrait-down {
+      left: auto;
+    }
+  }
+  
+  &.arrow-right {
+    right: -16px;
+
+    @include for-tablet-portrait-down {
+      right: auto;
+      margin-left: space(12);
+    }
+  }
+
+  @include for-tablet-portrait-down {
+    position: relative;
+    top: auto;
+    transform: none;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

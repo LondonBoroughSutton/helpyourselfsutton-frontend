@@ -1,82 +1,13 @@
 @import './reset.scss';
+@import './print.scss';
 @import './mixins.scss';
-@import './fonts.scss';
-@import './colors.scss';
 @import './breakpoints.scss';
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
-}
-
-html {
-  height: 100%;
-}
-
-h1 {
-  @include heading-xl;
-}
-
-h2 {
-  @include heading-l;
-}
-
-h3 {
-  @include heading-m;
-}
-
-h4 {
-  @include heading-s;
-}
-
-h5,
-h6,
-a,
-button,
-p {
-  @include body-m;
-}
-
-.body {
-  &--l {
-    @include body-l;
-  }
-
-  &--m-tertiary {
-    @include body-m-tertiary;
-  }
-
-  &--m-secondary {
-    @include body-m-secondary;
-  }
-
-  &--m {
-    @include body-m;
-  }
-
-  &--s {
-    @include body-s;
-  }
-
-  &--s-secondary {
-    @include body-s-secondary;
-  }
-
-  &--s-tertiary {
-    @include body-s-tertiary;
-  }
-
-  &--xs {
-    @include body-xs;
-  }
-
-  &--alt {
-    @include body-alt;
-  }
-}
+@import './typography.scss';
+@import './colors.scss';
+@import './grid.scss';
+@import './translate.scss';
+@import './leaflet.scss';
+@import './variables.scss';
 
 .flex-container {
   max-width: 1260px;
@@ -85,7 +16,7 @@ p {
 ul {
   list-style-type: disc;
   list-style-position: inside;
-  @include body-s;
+  @include body-regular;
   color: inherit;
 }
 
@@ -103,89 +34,14 @@ a {
   color: $black;
   font-weight: 700;
   cursor: pointer;
+
+  &:focus, &:active {
+    outline: 0;
+    box-shadow: 0 0 0pt $formControlOutlineWidth $cerulean-blue;
+  }
 }
 
 button {
   border: none;
   background: none;
-}
-
-// Google translate overrides
-
-#google_translate_element {
-  display: inline-block;
-}
-
-.goog-te-gadget-simple {
-  background-color: $white;
-  border-radius: 4px;
-  border: none !important;
-  font-size: pxtorem(20px) !important;
-  line-height: 2rem !important;
-  height: auto !important;
-  display: inline-block;
-  cursor: pointer;
-  zoom: 1;
-  padding: 7px space(12) !important;
-  margin: 0;
-  font-weight: normal;
-  box-sizing: border-box;
-
-  @include for-tablet-landscape-down {
-    padding: 6px space(8) !important;
-    font-size: pxtorem(16px) !important;
-    line-height: pxtorem(16px) !important;
-    color: $black;
-  }
-
-  &:hover {
-    background-color: $black;
-
-    span .goog-te-menu-value:before,
-    span .goog-te-menu-value:after, {
-      color: $white !important;
-    }
-  }
-}
-
-.goog-te-menu2 {
-  max-width: 100%;
-}
-
-.goog-te-gadget-icon {
-  display: none;
-}
-
-.goog-te-menu-value {
-  span {
-    display: none;
-  }
-
-  span &:before {
-    color: $black;
-    content: 'Translate';
-    font-family: 'Museo Sans 500', sans-serif;
-    font-size: pxtorem(20px) !important;
-    font-weight: 400;
-
-    @include for-tablet-landscape-down {
-      font-size: pxtorem(16px) !important;
-    }
-  }
-
-  span &:after {
-    content: '\f1ab';
-    font-size: pxtorem(20px) !important;
-    font-family: 'Font Awesome 5 Brands', 'Font Awesome 5 Free';
-    font-weight: 900;
-    color: $black;
-
-    @include for-tablet-landscape-down {
-      font-size: pxtorem(16px) !important;
-    }
-  }
-}
-
-.relative {
-  position: relative;
 }

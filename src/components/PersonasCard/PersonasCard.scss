@@ -1,122 +1,49 @@
 @import '../../styles/colors.scss';
 @import '../../styles/mixins.scss';
 @import '../../styles/breakpoints.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
-.card {
-  position: relative;
+.persona-card {
   display: flex;
-  flex-wrap: nowrap;
-  align-content: center;
-  width: 100%;
-  min-height: 150px;
-  background-color: $yellow;
-  font-family: $font-primary;
-  cursor: pointer;
+  flex-direction: column;
+  height: fit-content;
+  background-color: $white;
+  border: 3px solid transparent;
+  border-radius: 40px;
+  overflow: hidden;
+  transition: border 0.25s ease-in-out;
 
-  &:nth-child(2) {
-    background-color: $turquoise;
-
-    .card__image::before {
-      background-color: $turquoise;
-
-      @include for-tablet-portrait-up {
-        left: -1px;
-        right: auto;
-        transform: rotate(180deg);
-      }
-    }
-  }
-
-  &:nth-child(3) {
-    background-color: $pink;
-
-    .card__image::before {
-      background-color: $pink;
-    }
-
-    @include for-tablet-portrait-up {
-      .card__image {
-        width: 100%;
-        max-height: 230px;
-
-        &::before {
-          top: auto;
-          bottom: -1px;
-          right: auto;
-          width: 100%;
-          height: 32px;
-          clip-path: polygon(70% 90%, 60% 0, 0 0, 0 100%, 100% 100%, 100% 0%, 80% 0);
-        }
-      }
-
-      .card__content {
-        padding: space(16) space(32);
-      }
-    }
+  @include for-phone-only {
+    margin-bottom: space(24);
   }
 
   &:hover {
-    .card__image img {
-      transform: scale(1.05);
+    border-color: $black;
+  }
+
+  &__image {
+    height: 240px;
+
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
-}
 
-.card__image {
-  position: relative;
-  flex: 1 0 auto;
-  width: 40%;
-  overflow: hidden;
+  &__content {
+    padding: space(40) space(24);
 
-  img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.2s ease-in-out;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: -1px;
-    height: 100%;
-    width: 32px;
-    clip-path: polygon(90% 70%, 0 60%, 0 0, 100% 0, 100% 100%, 0 100%, 0 80%);
-    background-color: $yellow;
-    z-index: 10;
+    @include for-tablet-portrait-down {
+      padding: space(32) space(20);
+    }
 
     @include for-phone-only {
-      clip-path: polygon(90% 70%, 0 55%, 0 0, 100% 0, 100% 100%, 0 100%, 0 85%) !important;
+      padding: space(24) space(16);
     }
   }
-}
 
-.card__content {
-  flex: 0 1 auto;
-  padding: space(48);
-
-  @include for-phone-only {
-    padding: space(24) space(24) space(24) space(16);
-  }
-}
-
-.card__header {
-  margin-bottom: space(16);
-}
-
-.card__description {
-  @include for-phone-only {
-    overflow:hidden;
-    line-height: 1.25rem;
-    max-height: 4rem;
-    -webkit-box-orient: vertical;
-    display: block;
-    display: -webkit-box;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
+  &__header {
+    margin-bottom: space(16);
   }
 }

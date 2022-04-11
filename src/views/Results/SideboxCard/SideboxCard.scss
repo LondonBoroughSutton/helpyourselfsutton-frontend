@@ -1,40 +1,32 @@
 @import '../../../styles/mixins.scss';
 @import '../../../styles/colors.scss';
-@import '../../../styles/fonts.scss';
+@import '../../../styles/typography.scss';
 @import '../../../styles/breakpoints.scss';
 
-.sidebox {
-  height: 100%;
-  padding: space(24) !important;
+.sidebox-card {
+  height: fit-content;
+  padding: space(20);
   border-radius: 20px;
-  background: $pink;
+  background: $white;
+  color: $black;
 
-  &:nth-child(2) {
-    background-color: $turquoise;
-  }
+  &:first-child {
+    background-color: $black;
+    color: $white;
 
-  &:nth-child(3) {
-    background-color: $yellow;
-  }
-
-  h3 {
-    color: $black;
-  }
-
-  p {
-    @include body-s;
-    color: $black;
-    margin: space(8) 0;
-  }
-
-  a {
-    @include body-s;
-    color: $black;
-  }
-
-  &--container {
-    @include for-tablet-portrait-down {
-      margin-bottom: space(16) !important;
+    .sidebox-card__content a {
+      color: $white;
     }
+  }
+}
+
+.sidebox-card__heading {
+  @include heading-s;
+  margin-bottom: space(12);
+}
+
+.sidebox-card__content {
+  a {
+    text-decoration: underline;
   }
 }

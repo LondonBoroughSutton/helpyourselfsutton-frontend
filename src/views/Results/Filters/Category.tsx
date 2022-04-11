@@ -6,7 +6,11 @@ import { apiBase } from '../../../config/api';
 import ResultsStore from '../../../stores/resultsStore';
 import '../Results.scss';
 
-const requestImageFile = require.context("../../../assets/images/category-images/", true, /^\.\/.*\.svg$/);
+const requestImageFile = require.context(
+  '../../../assets/images/category-images/',
+  true,
+  /^\.\/.*\.svg$/
+);
 
 interface IProps {
   resultsStore?: ResultsStore;
@@ -22,23 +26,33 @@ const Category: React.FunctionComponent<IProps> = ({ resultsStore }) => {
       {(resultsStore.category || resultsStore.persona) && (
         <div className="results__overview__content">
           <div className="results__overview__image">
-            {(resultsStore && resultsStore.category) ? (
+            {resultsStore && resultsStore.category ? (
               <img
-              src={requestImageFile(`./${get(resultsStore, 'category.name').replace(/[, ]+/g, '-').toLowerCase()}.svg`).default}
-              alt={get(resultsStore, 'category.name').replace('COVID-19:', '')} />
+                src={
+                  requestImageFile(
+                    `./${get(resultsStore, 'category.name')
+                      .replace(/[, ]+/g, '-')
+                      .toLowerCase()}.svg`
+                  ).default
+                }
+                alt={get(resultsStore, 'category.name').replace('COVID-19:', '')}
+              />
             ) : (
               <img
-                src={`${apiBase}/collections/personas/${get(resultsStore, 'persona.id')}/image.png?max_dimension=600`}
+                src={`${apiBase}/collections/personas/${get(
+                  resultsStore,
+                  'persona.id'
+                )}/image.png?max_dimension=600`}
                 alt={`${get(resultsStore, 'persona.name')}`}
               />
             )}
           </div>
           <div className="results__overview__info">
-            <h2>
+            <h1>
               {resultsStore && resultsStore.category
                 ? get(resultsStore, 'category.name').replace('COVID-19:', '')
                 : get(resultsStore, 'persona.name')}
-            </h2>
+            </h1>
             <div>
               <p className="results__overview__intro">
                 {resultsStore && resultsStore.category

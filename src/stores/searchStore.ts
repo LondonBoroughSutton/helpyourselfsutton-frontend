@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { makeObservable, observable, runInAction, action } from 'mobx';
 import axios from 'axios';
 import get from 'lodash/get';
 import partition from 'lodash/partition';
@@ -15,6 +15,7 @@ class SearchStore {
   @observable covidCategories: ICategory[] = [];
 
   constructor() {
+    makeObservable(this);
     this.getCategories();
     this.getPersonas();
   }
@@ -34,7 +35,7 @@ class SearchStore {
     try {
       const categories = await axios.get(`${apiBase}/collections/categories/all`);
       let categoryList = get(categories, 'data.data', []);
-      categoryList = categoryList.filter((category: any) => { return category.enabled === true })
+      categoryList = categoryList.filter((category: any) => category.enabled === true);
 
       // temp addition for COVID-19
       const [covidCategories, normalCategories] = partition(categoryList, category =>
@@ -44,8 +45,10 @@ class SearchStore {
       // sanitize category names by removing keyword for sorting
       covidCategories.forEach(category => (category.name = category.name.replace('COVID-19:', '')));
 
-      this.categories = normalCategories;
-      this.covidCategories = covidCategories;
+      runInAction(() => {
+        this.categories = normalCategories;
+        this.covidCategories = covidCategories;
+      });
     } catch (e) {
       console.error(e);
     }
@@ -56,20 +59,20 @@ class SearchStore {
     try {
       const personas = await axios.get(`${apiBase}/collections/personas`);
       let personasList = get(personas, 'data.data', []);
-      personasList = personasList.filter((persona: any) => { return persona.enabled === true }).splice(0, 3)
-
-      this.personas = personasList
+      runInAction(() => {
+        this.personas = personasList.filter((persona: IPersona) => persona.enabled);
+      });
     } catch (e) {
       console.error(e);
     }
   };
 
   @action onChange = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
-    if(type === 'postcode') {
+    if (type === 'postcode') {
       this.postcode = e.target.value;
     }
-    
-    if(type === 'search') {
+
+    if (type === 'search') {
       this.search = e.target.value;
     }
   };

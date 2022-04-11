@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx';
+import { makeObservable, observable, action, computed, runInAction } from 'mobx';
 import axios from 'axios';
 import { apiBase } from '../config/api';
 import get from 'lodash/get';
@@ -15,6 +15,10 @@ export default class ServiceStore {
   @observable organisationId: string = '';
   @observable serviceEligibilityTaxonomies: IServiceTaxonomy[] | null = null;
 
+  constructor() {
+    makeObservable(this);
+  }
+
   checkIfFavorited = () => {
     const favourites = localStorage.getItem('favourites');
 
@@ -28,7 +32,12 @@ export default class ServiceStore {
   @computed
   get hasCriteria() {
     if (this.service) {
-      return ((this.service.eligibility_types && this.service.eligibility_types.taxonomies && this.service.eligibility_types.taxonomies.length) || !every(this.service.eligibility_types.custom, criteria => criteria === null) ? true : false)
+      return (this.service.eligibility_types &&
+        this.service.eligibility_types.taxonomies &&
+        this.service.eligibility_types.taxonomies.length) ||
+        !every(this.service.eligibility_types.custom, criteria => criteria === null)
+        ? true
+        : false;
     }
 
     return false;
@@ -36,19 +45,26 @@ export default class ServiceStore {
 
   @action
   fetchService = async (name: string) => {
-    this.loading = true;
+    runInAction(() => {
+      this.loading = true;
+    });
     const serviceData = await axios.get(`${apiBase}/services/${name}?include=organisation`);
-    this.service = get(serviceData, 'data.data');
 
-    if(this.service?.organisation_id) {
-      this.organisationId = this.service?.organisation_id
+    runInAction(() => {
+      this.service = get(serviceData, 'data.data');
+    });
+
+    if (this.service?.organisation_id) {
+      this.organisationId = this.service?.organisation_id;
       await this.getOrganisation();
     }
 
     this.getServiceLocations();
     this.getRelatedServices(name);
 
-    if(this.service && this.service.organisation_id)  this.fetchOrganisation(this.service.organisation_id);
+    if (this.service && this.service.organisation_id) {
+      this.fetchOrganisation(this.service.organisation_id);
+    }
 
     this.checkIfFavorited();
   };
@@ -57,13 +73,15 @@ export default class ServiceStore {
   fetchServiceEligibilities = async () => {
     const data = await axios.get(`${apiBase}/taxonomies/service-eligibilities`);
     this.serviceEligibilityTaxonomies = get(data, 'data.data');
-  }
-  
+  };
+
   @action
   fetchOrganisation = async (id: string) => {
     try {
       const organisationData = await axios.get(`${apiBase}/organisations/${id}`);
-      this.organisation = get(organisationData, 'data.data');
+      runInAction(() => {
+        this.organisation = get(organisationData, 'data.data');
+      });
     } catch (error) {}
   };
 
@@ -73,8 +91,10 @@ export default class ServiceStore {
       const locationData = await axios.get(
         `${apiBase}/service-locations?filter[service_id]=${this.service.id}&include=location`
       );
-
-      this.locations = get(locationData, 'data.data');
+      
+      runInAction(() => {
+        this.locations = get(locationData, 'data.data');
+      });
     }
   };
 
@@ -82,7 +102,9 @@ export default class ServiceStore {
   getOrganisation = async () => {
     try {
       const organisation = await axios.get(`${apiBase}/organisations/${this.organisationId}`);
-      this.organisation = get(organisation, 'data.data', '');
+      runInAction(() => {
+        this.organisation = get(organisation, 'data.data', '');
+      });
     } catch (e) {}
   };
 
@@ -90,9 +112,13 @@ export default class ServiceStore {
   getRelatedServices = async (name: string) => {
     const relatedServicesData = await axios.get(`${apiBase}/services/${name}/related`);
 
-    this.relatedServices = get(relatedServicesData, 'data.data');
+    runInAction(() => {
+      this.relatedServices = get(relatedServicesData, 'data.data');
+    });
 
-    this.loading = false;
+    runInAction(() => {
+      this.loading = false;
+    });
   };
 
   addToFavourites = () => {

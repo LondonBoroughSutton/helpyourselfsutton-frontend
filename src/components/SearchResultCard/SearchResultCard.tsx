@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { observer, inject } from 'mobx-react';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,6 +16,7 @@ import Accordian from '../Accordian';
 import { getLocationName } from '../../utils/utils';
 import FallBackLogo from '../../assets/images/logo-fallback.png';
 import ResultsStore from '../../stores/resultsStore';
+import { map } from 'lodash';
 
 interface IProps extends RouteComponentProps {
   resultsStore: ResultsStore;
@@ -66,22 +67,22 @@ class SearchResultCard extends React.Component<IProps> {
           'is-active': isActive,
         })}
         onClick={() => {
-          resultsStore.view === 'map'  ?
-          this.props.activeIdHandler(result.id) :
-          history.push(`/services/${result.slug}`);
+          resultsStore.view === 'map'
+            ? this.props.activeIdHandler(result.id)
+            : history.push(`/services/${result.slug}`);
         }}
         tabIndex={0}
       >
         <div className="search-result-card__content">
           <div className="search-result-card__top-row">
             <div className="search-result-card__title">
-              <h3>{result.name}</h3>
-              {organisation &&
+              <h3 className="h4">{result.name}</h3>
+              {organisation && (
                 <h4 className="search-result-card__organisation">
                   <span className="sr-only">{`This ${result.type} is ran by`}</span>
                   {organisation.name}
                 </h4>
-              }
+              )}
             </div>
 
             <div className="search-result-card__logo">
@@ -112,16 +113,27 @@ class SearchResultCard extends React.Component<IProps> {
                 className={cx('search-result-card__tag', `search-result-card__tag--cost`)}
                 aria-label={`This ${result.type} ${result.is_free ? 'is free' : 'has a cost'}`}
               >
-                <FontAwesomeIcon
-                  icon="pound-sign"
-                  className="search-result-card__tag--icon"
-                />
+                <FontAwesomeIcon icon="pound-sign" className="search-result-card__tag--icon" />
 
                 {result.is_free ? 'Free' : 'Cost'}
               </div>
+              {map(result.tags, (tag: any) => (
+                <Fragment key={tag.id}>
+                  <div
+                    className={cx('search-result-card__tag', `search-result-card__tag--tag`)}
+                    aria-label={`This ${result.type} is tagged with ${tag}`}
+                  >
+                    <FontAwesomeIcon icon="tag" className="search-result-card__tag--icon" />
+                    {tag.label}
+                  </div>
+                </Fragment>
+              ))}
             </div>
             {!!locations.length && (
-              <div className="search-result-card__location" onClick={(e: any) => e.stopPropagation()}>
+              <div
+                className="search-result-card__location"
+                onClick={(e: any) => e.stopPropagation()}
+              >
                 <span className="sr-only">{`This ${result.type} is located at`}</span>
 
                 <FontAwesomeIcon icon="map-marker-alt" />
@@ -140,11 +152,11 @@ class SearchResultCard extends React.Component<IProps> {
               </div>
             )}
           </div>
-          {result.intro &&
+          {result.intro && (
             <div className="search-result-card__intro">
               <p className="body--s">{result.intro}</p>
             </div>
-          }
+          )}
         </div>
         <div
           className="search-result-card__footer"
@@ -157,8 +169,8 @@ class SearchResultCard extends React.Component<IProps> {
           </Link>
         </div>
       </article>
-    )
+    );
   }
-};
+}
 
 export default withRouter(SearchResultCard);

@@ -3,47 +3,44 @@
 @import '../../styles/mixins.scss';
 
 .category-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  width: 1030px;
-  max-width: 100%;
-  padding: 0 space(56);
+  padding: space(40) 0 space(80);
+  background-color: $botticelli;
 
-  @media(max-width: 992px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding: 0;
+  @include for-tablet-landscape-down {
+    padding: space(32) 0 space(64);
   }
 
   @include for-phone-only {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    padding: space(32) 0;
   }
 
   &__heading {
-    grid-column: span 1;
-    display: inline-block;
-    padding: space(16);
-    background-color: $turquoise;
-    border-radius: 20px;
-    margin-bottom: space(24);
+    margin-left: space(56);
+    margin-bottom: space(48);
 
     @include for-tablet-landscape-down {
-      grid-column: span 2;
+      margin-left: space(40);
+      margin-bottom: space(32);
+    }
+
+    @include for-phone-only {
+      margin-left: space(32);
+      margin-bottom: space(24);
     }
   }
 
   &__items {
-    grid-column: span 3;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 26px;
+    grid-auto-rows: 1fr;
+    gap: 20px;
+    width: 100%;
 
-    @media(max-width: 992px) {
-      grid-column: span 2;
+    @include for-tablet-landscape-down {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     @include for-phone-only {
-      grid-column: span 1;
       grid-template-columns: repeat(1, minmax(0, 1fr));
     }
   }

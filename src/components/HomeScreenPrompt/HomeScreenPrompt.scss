@@ -2,7 +2,7 @@
 @import '../../styles/grid.scss';
 @import '../../styles/mixins.scss';
 @import '../../styles/breakpoints.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
 .home-screen-prompt {
   position: fixed;
@@ -49,20 +49,12 @@
 
     .button {
       margin-right: space(12);
-      font-size: pxtorem(16px);
-      padding: space(8) space(12);
-      height: 2.5em;
+      font-size: pxtorem(14);
     }
   }
 
   &__title {
     margin-bottom: space(8);
-    font-size: $font-heading-s;
-    color: $black;
-  }
-
-  &__description {
-    font-size: $font-body-xs;
   }
 }
 

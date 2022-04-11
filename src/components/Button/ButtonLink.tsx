@@ -8,12 +8,21 @@ import './Button.scss';
 interface IProps {
   text: string;
   icon?: IconName;
+  image?: string;
   href: string;
   target?: string;
+  category?: boolean;
 }
 
-const ButtonLink: React.FunctionComponent<IProps> = ({ text, icon, href, target = '_self' }) => (
-  <a className={cx('button', 'button__link')} href={href} target={target}>
+const ButtonLink: React.FunctionComponent<IProps> = ({ text, icon, image, href, target = '_self', category }) => (
+  <a
+    className={cx('button', 'button__link', {
+      'button__category': category,
+    })}
+    href={href}
+    target={target}
+    rel={target === '_blank' ? 'noopener nofollow noreferrer' : undefined}>
+    {image && <img src={image} alt={text} className="button__image" />}
     <span>{text}</span>
     {icon && <FontAwesomeIcon icon={icon} className={cx('button__icon')} />}
   </a>

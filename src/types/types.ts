@@ -1,6 +1,39 @@
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 
+export interface IPage {
+  id: string;
+  enabled: boolean;
+  order: number; 
+  page_type: string;
+  title: string;
+  image: string;
+  introduction: {
+    copy: string[]
+  },
+  content: {
+    about: null | {
+      copy: string[]
+    },
+    info_pages: null | {
+      copy: string[],
+      title: string
+    },
+    collections: null | {
+      copy: string[],
+      title: string
+    },
+    introduction: null | {
+      copy: string[]
+    },
+  },
+  parent: [],
+  children: [],
+  collections_categories: []
+  collections_personas: []
+}
+
 export interface IPersona {
+  enabled: boolean;
   created_at: string;
   id: string;
   intro: string;
@@ -8,6 +41,7 @@ export interface IPersona {
   sideboxes: ISidebox[];
   subtitle: string;
   updated_at: string;
+  homepage: boolean;
 }
 
 export interface IParams {
@@ -33,10 +67,12 @@ export interface IParams {
 
 export interface ICategory {
   id: string;
+  enabled: boolean;
   intro: string;
   name: string;
   icon: IconName | undefined;
   sideboxes: ISidebox[];
+  homepage: boolean;
 }
 
 export interface IOrganisation {
@@ -81,6 +117,7 @@ export interface IService {
   slug: string;
   social_medias: [];
   status: string;
+  tags: [];
   testimonial: null | string;
   type: string;
   updated_at: string;
@@ -93,7 +130,7 @@ export interface IServiceTaxonomy {
   id: string;
   parent_id: string;
   name: string;
-  order: number; 
+  order: number;
   children: [];
   created_at: string;
   updated_at: string;
@@ -180,13 +217,13 @@ export interface ICriteria {
 }
 export interface IEligibility {
   custom: {
-    age_group: string,
-    disability: string,
-    ethnicity: string,
-    gender: string,
-    income: string,
-    language: string,
-    other: string
+    age_group: string;
+    disability: string;
+    ethnicity: string;
+    gender: string;
+    income: string;
+    language: string;
+    other: string;
   };
   taxonomies: [];
 }
@@ -210,5 +247,5 @@ export interface IEligibilityFilters {
 }
 
 export enum Events {
-  SET_TITLE = 'set_title'
+  SET_TITLE = 'set_title',
 }

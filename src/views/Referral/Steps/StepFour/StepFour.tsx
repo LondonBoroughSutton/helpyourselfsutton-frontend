@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { inject } from 'mobx-react';
 import { observer } from 'mobx-react-lite';
 import get from 'lodash/get';
@@ -64,12 +64,9 @@ const StepFour: React.FunctionComponent<IProps> = ({ referralStore }) => {
   }
 
   return (
-    <form
-      className="flex-col flex-col--7 flex-col--mobile--12 flex-col--tablet--12 flex-col--tablet-large--6"
-      style={{ margin: '24px 0' }}
-    >
+    <Fragment>
       {chooseForm(referralStore)}
-    </form>
+    </Fragment>
   );
 };
 

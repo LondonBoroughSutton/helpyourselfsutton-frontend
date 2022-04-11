@@ -3,9 +3,10 @@ import cx from 'classnames';
 
 import ReferralStore from '../../../../stores/referralStore';
 import Input from '../../../../components/Input';
-import Button from '../../../../components/Button';
 import { observer } from 'mobx-react';
 import get from 'lodash/get';
+import html from '../../../../components/Html';
+import Button from '../../../../components/Button';
 
 interface IProps {
   referralStore: ReferralStore;
@@ -101,22 +102,18 @@ class Form extends Component<IProps, IState> {
 
     return (
       <Fragment>
-        <div className="flex-container flex-container--mobile-no-padding referral--intro--no-padding">
-          <div className="flex-col flex-col--12 flex-col--mobile--12 referral__step-container--intro">
-            <p className="referral__step-container--steps">{`Step 4 of ${referralStore.totalSteps}`}</p>
-            <h1>About You</h1>
-            <p className="referral__step-container--subtitle">{`How you will be notified when ${get(
+        <div className="referral__step-container">
+          <div className="flex-col flex-col--12">
+            <p className="body--s">{`Step 4 of ${referralStore.totalSteps}`}</p>
+            <h2 className="referral__step-container__question">About You</h2>
+            <p className="referral__step-container__subtitle">{`How you will be notified when ${get(
               referralStore,
               'service.name'
             )} makes contact with ${get(referralStore, 'referral.name')}`}</p>
           </div>
-          <div className="flex-container referral--intro--no-padding referral__step-container referral__step-container--full-width">
-            <div className="flex-col flex-col--12 flex-col--mobile--12 referral__step-container--form referral__form">
-              <label htmlFor="referee_email">
-                <p className="referral__step-container--question--large referral__step-container--label">
-                  Your email address (if you have one)
-                </p>
-              </label>
+          <form className="referral__form">
+            <div className="referral__form__field">
+              <label className="referral__form__label" htmlFor="referee_email">Your email address (if you have one)</label>
               <Input
                 id="referee_email"
                 type="email"
@@ -132,12 +129,8 @@ class Form extends Component<IProps, IState> {
                 errorMessage="Please enter a valid email adress"
               />
             </div>
-            <div className="flex-col flex-col--12 flex-col--mobile--12 referral__step-container--form referral__form">
-              <label htmlFor="referee_phone">
-                <p className="referral__step-container--question--large referral__step-container--label">
-                  Your UK mobile number
-                </p>
-              </label>
+            <div className="referral__form__field">
+              <label className="referral__form__label" htmlFor="referee_phone">Your UK mobile number</label>
               <Input
                 id="referee_phone"
                 type="tel"
@@ -147,15 +140,16 @@ class Form extends Component<IProps, IState> {
                 }
                 className="referral__step-container--input"
                 placeholder="01234 567 890"
+                required={true}
                 onBlur={() => this.handleBlur('referee_phone')}
                 error={errors.referee_phone}
                 errorMessage="Please enter a telephone number in the correct format - 11 characters"
               />
             </div>
 
-            <div className="flex-col flex-col--12 referral__form">
-              <p
-                role="button"
+            <div className="referral__form__field">
+              <button
+                type="button"
                 aria-label="Select if you can't provide these details"
                 onClick={() => this.toggleNoContactDetails()}
                 className={cx('referral__step-container--other-contact--toggle', {
@@ -166,54 +160,45 @@ class Form extends Component<IProps, IState> {
                 onKeyDown={e => (e.key === 'Enter' ? this.toggleNoContactDetails() : null)}
               >
                 You can't provide an email address or telephone number
-              </p>
+              </button>
+            </div>
 
-              {open && (
-                <div className="flex-container flex-container--mobile-no-padding referral__step-container--other-contact">
-                  <div className="flex-col flex-col--12">
-                    <h3>Alternative way to contact you</h3>
-                    <label htmlFor="other_contact">
-                      <p>
-                        This could be your address, or an address where we can get in contact with
-                        you.
-                      </p>
-                    </label>
-                  </div>
-                  <div className="flex-col flex-col--12">
-                    <textarea
-                      id="other_contact"
-                      className="referral__step-container--text-area flex-col flex-col--12"
-                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                        referralStore.handleInput('other_contact', e.target.value)
-                      }
-                      placeholder={'Wood St\nHounslow\nKT1 1UJ'}
-                    />
-                  </div>
+            {open && ( 
+              <div className="referral__form__field">
+                <h3>Alternative way to contact you</h3>
+                <label className="referral__form__label" htmlFor="other_contact">This could be your address, or an address where we can get in contact with you.</label>
+                <div className="input--container">
+                  <textarea
+                    id="other_contact"
+                    className="input"
+                    style={{ height: 180 }}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                      referralStore.handleInput('other_contact', e.target.value)
+                    }
+                    placeholder={'Some St\nSutton\nKT1 1UJ'}
+                  />
                 </div>
-              )}
+              </div>
+            )}
+
+            <div className="referral__actions">
+              <div className="flex-container flex-container--no-padding flex-container--column flex-container--align-start">
+                <Button
+                  text="Continue"
+                  type="submit"
+                  icon="chevron-right"
+                  onClick={(e: React.FormEvent) => {
+                    e.preventDefault();
+                    referralStore.nextStep();
+                  }}
+                  disabled={!(referralStore.referral.referee_name && referralStore.referral.referee_phone)}
+                />
+                <p
+                  dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
+                  className="body--s" />
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="flex-col flex-col--12 flex-col--mobile--12">
-          <div className="flex-container referral--next-step referral--intro--no-padding">
-            <div className="flex-col flex-col--12 flex-col--mobile--12">
-              <Button
-                text="Continue"
-                type="submit"
-                icon="chevron-right"
-                onClick={(e: any) => {
-                  e.preventDefault();
-                  this.handleSubmit();
-                }}
-              />
-            </div>
-            <div className="flex-col flex-col--12 referral--step">
-              <span
-                className="body--s"
-                dangerouslySetInnerHTML={{ __html: referralStore.stepDescription }}
-              />
-            </div>
-          </div>
+          </form>
         </div>
       </Fragment>
     );

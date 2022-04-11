@@ -1,30 +1,47 @@
 @import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/typography.scss';
 
 .react-select {
- &__value-container {
-    padding: 18px 1.25rem !important;
- }   
+  &__value-container {
+    padding: space(12) !important;
+  }
 
- &__menu {
-   z-index: 999 !important;
- }
+  &__menu {
+    z-index: 999 !important;
+  }
 
- &__multi-value {
-   color: #fff !important;
-    background-color: $pink !important;
- }
+  &__multi-value {
+    color: #fff !important;
+    background-color: $cerulean-blue !important;
+  }
 
- &__multi-value , &__multi-value__label {
-  color: #fff !important;
- }
+  &__multi-value,
+  &__multi-value__label {
+    color: #fff !important;
+  }
 
- &__control {
-  border-color: hsl(0, 0%, 60%) !important;
- }
- &__indicator-separator  {
-  background-color: hsl(0, 0%, 60%) !important;
- }
- &__indicator  {
-  color: hsl(0, 0%, 60%) !important;
- }
+  &__multi-value__remove {
+    &:hover {
+      background-color: $black !important;
+      color: $white !important;
+      cursor: pointer;
+    }
+  }
+
+  &__control {
+    border-color: hsl(0, 0%, 60%) !important;
+  }
+
+  &__indicator-separator {
+    background-color: hsl(0, 0%, 60%) !important;
+  }
+
+  &__indicator {
+    color: hsl(0, 0%, 60%) !important;
+  }
+
+  &__placeholder {
+    @include body-m;
+  }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet';
 import { inject, observer } from 'mobx-react';
 import get from 'lodash/get';
 import ReactMarkdown from 'react-markdown';
@@ -19,10 +19,10 @@ const Terms: React.FunctionComponent<IProps> = ({ cmsStore }) => {
   return (
     <CMSPage title={get(cmsStore, 'terms_and_conditions.title')} breadcrumb="Terms & Conditions">
       <Helmet>
-        <title>Terms and Conditions | Hounslow Connect</title>
+        <title>Terms and Conditions | Sutton Information Hub</title>
       </Helmet>
 
-      <ReactMarkdown source={get(cmsStore, 'terms_and_conditions.content')} />
+      <ReactMarkdown className="markdown" children={get(cmsStore, 'terms_and_conditions.content')} />
     </CMSPage>
   );
 };

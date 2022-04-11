@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet';
 import Button from '../../components/Button';
 import { inject, observer } from 'mobx-react';
 import queryString from 'query-string';
@@ -40,35 +40,40 @@ class Favourites extends Component<IProps> {
     const { favouritesStore, cmsStore, history } = this.props;
 
     return (
-      <section className="favourites">
-         <Helmet>
-          <title>Favourites | Hounslow Connect</title>
+      <main className="favourites">
+        <Helmet>
+          <title>Favourites | Sutton Information Hub</title>
         </Helmet>
 
-        <Breadcrumb crumbs={[{ text: 'Home', url: '/' }, { text: 'Favourites', url: '' }]} />
-        <div className="favourites__header">
+        <Breadcrumb
+          crumbs={[
+            { text: 'Home', url: '/' },
+            { text: 'Favourites', url: '' },
+          ]}
+        />
+        <section className="favourites__header">
           <div className="flex-container flex-container--align-center">
-            <div className="flex-col flex-col--6 favourites__header--heading">
-              <h1>{get(cmsStore, 'favourites.title')}</h1>
+            <div className="flex-col flex-col--6">
+              <h1 className="favourites__title">{get(cmsStore, 'favourites.title')}</h1>
               <p>{get(cmsStore, 'favourites.content')}</p>
             </div>
-            <div className="flex-col flex-col--6 flex-col--tablet--12 mobile-hide tablet-hide favourites__header--header-container">
+            <div className="flex-col flex-col--tablet--12 mobile-hide tablet-hide">
               <FavouriteShare />
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className="flex-container flex-container--mobile-no-padding flex-container--align-center ">
-          {!!favouritesStore.favourites.length ? (
-            <Fragment>
-              <div className="flex-col flex-col--12 favourites__count">
-                <p>
-                  <strong>{`${favouritesStore.favourites.length} results found`}</strong>
-                </p>
-              </div>
+        <section className="favourites__content">
+          <div className="flex-container flex-container--large">
+            {!!favouritesStore.favourites.length ? (
+              <Fragment>
+                <div className="favourites__count">
+                  <p>
+                    <strong>{`${favouritesStore.favourites.length} results found`}</strong>
+                  </p>
+                </div>
 
-              <div className="flex-col flex-col--12">
-                <div className="results__container">
+                <div className="favourites__list">
                   {favouritesStore.favourites.map((favourite: IService) => {
                     return (
                       <FavouritesCard
@@ -80,28 +85,21 @@ class Favourites extends Component<IProps> {
                     );
                   })}
                 </div>
+              </Fragment>
+            ) : (
+              <div className="favourites__no-favourites">
+                <h2>No favourites saved</h2>
               </div>
+            )}
 
-              <div className="flex-container mobile-show tablet-show">
-                <FavouriteShare />
-              </div>
-            </Fragment>
-          ) : (
-            <div className="flex-container favourites__no-favourites">
-              <div className="flex-col flex-col--12">
-                <h3>No favourites saved</h3>
-              </div>
+            <div className="favourites__add-more">
+              <Link to="/">
+                <Button text="Add more" icon="plus" onClick={() => history.push('/')} />
+              </Link>
             </div>
-          )}
-        </div>
-        <div className="flex-container flex-container--justify">
-          <div className="favourites__add-more">
-            <Link to="/">
-              <Button text="Add more" icon="plus" onClick={() => history.push('/')} />
-            </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
     );
   }
 }

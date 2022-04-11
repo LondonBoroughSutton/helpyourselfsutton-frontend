@@ -1,15 +1,18 @@
 import React from 'react';
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet';
 import { inject, observer } from 'mobx-react';
-import Search from '../../components/Search';
 
 import './Home.scss';
 
 import SearchStore from '../../stores/searchStore';
 import CMSStore from '../../stores/CMSStore';
 
-import BannerSlider from '../../components/BannerSlider';
+import Banner from '../../components/Banner';
+import Search from '../../components/Search';
+import CategoryList from '../../components/CategoryList';
 import Personas from '../../components/Personas';
+import LandingPages from '../../components/LandingPages';
+import BannerSlider from '../../components/BannerSlider';
 
 interface IProps {
   cmsStore: CMSStore;
@@ -19,17 +22,32 @@ const Home: React.FunctionComponent<IProps> = ({ cmsStore }) => {
   if (!cmsStore) {
     return null;
   }
-  
+
+  const categories = SearchStore.categories.filter(category => category.homepage);
+  const personas = SearchStore.personas.filter(persona => persona.homepage);
+
   return (
     <main className="home">
       <Helmet>
-        <title>Home | Hounslow Connect</title>
+        <title>Home | Sutton Information Hub</title>
       </Helmet>
-      {cmsStore.home && cmsStore.home.banners && <BannerSlider header_content={cmsStore.banner} banners={cmsStore.home.banners} />}
+      {cmsStore.banner && (
+        <Banner banner={cmsStore.banner} />
+      )}
       <Search />
-      <Personas personas={SearchStore.personas} />
+      {cmsStore.home && (
+        <BannerSlider banners={cmsStore.home.banners} />
+      )}
+      <LandingPages />
+      {cmsStore.home && (
+        <CategoryList
+          categories={categories}
+          title={cmsStore.home.categories_title}
+        />
+      )}
+      <Personas personas={personas} />
     </main>
-  )
+  );
 };
 
-export default inject('cmsStore')(observer(Home));
+export default inject('cmsStore', 'pageStore')(observer(Home));

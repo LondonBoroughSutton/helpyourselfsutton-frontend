@@ -1,0 +1,64 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/colors.scss';
+@import '../../../styles/breakpoints.scss';
+@import  '../../../styles/typography.scss';
+
+.service__useful-info {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: space(32);
+  padding: 0 !important;
+  background-color: $white;
+  border-radius: 20px;
+  overflow: hidden;
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(24);
+  }
+
+  @include for-phone-only {
+    flex-wrap: wrap;
+    margin-bottom: space(16);
+    border-radius: 0;
+  }
+
+  a {
+    font-size: $font-base;
+  }
+}
+
+.service__useful-info__icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 80px;
+  background-color: $cerulean-blue;
+  color: $white;
+}
+
+.service__useful-info__title {
+  display: flex;
+  align-items: center;
+  @include heading-m;
+
+  @include for-tablet-portrait-up {
+    margin-bottom: space(16);
+  }
+
+  svg {
+    margin-right: space(12);
+    font-size: pxtorem(28);
+  }
+}
+
+.service__useful-info__content {
+  flex: 0 1 auto;
+  padding: space(32);
+
+  @include for-phone-only {
+    padding: 0;
+    margin: 0;
+  }
+}

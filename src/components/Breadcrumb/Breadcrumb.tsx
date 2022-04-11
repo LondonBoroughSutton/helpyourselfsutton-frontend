@@ -20,11 +20,11 @@ const Breadcrumb: FunctionComponent<IProps> = ({ crumbs }) => (
         {crumbs.map((crumb: ICrumb, i: number) => (
           <Fragment key={crumb.text}>
             {crumb.url ? (
-              <li>
+              <li className="breadcrumb__item">
                 <Link to={crumb.url}>{crumb.text}</Link>
               </li>
             ) : (
-              <li className="breadcrumb--active">{crumb.text}</li>
+              <li className="breadcrumb__item--active">{crumb.text}</li>
             )}
             {i !== crumbs.length - 1 && <FontAwesomeIcon icon="chevron-right" />}
           </Fragment>

@@ -1,7 +1,7 @@
 @import '../../styles/colors.scss';
 @import '../../styles/mixins.scss';
 @import '../../styles/breakpoints.scss';
-@import '../../styles/fonts.scss';
+@import '../../styles/typography.scss';
 
 .search-result-card {
   display: flex;
@@ -28,10 +28,11 @@
 .search-result-card__title {
   flex: 1;
   padding-right: space(16);
+  word-break: break-word;
 }
 
 .search-result-card__organisation {
-  @include heading-s-light;
+  @include body-m;
   font-weight: normal;
   margin-top: space(8);
 
@@ -41,18 +42,9 @@
 }
 
 .search-result-card__logo {
-  width: pxtorem(65px);
-  height: pxtorem(65px);
-  background-color: $white;
-  border-radius: 4px;
-  border: 1px solid $gray;
-
-  &:before {
-    content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
+  width: pxtorem(62);
+  height: pxtorem(62);
+  background-color: $gray;
 
   img {
     width: 100%;
@@ -70,36 +62,41 @@
 
 .search-result-card__tags {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   width: 100%;
+  margin-bottom: space(8);
 }
 
 .search-result-card__tag {
-  margin-right: space(16);
-  margin-bottom: space(16);
-  padding: space(8);
-  @include body-xs;
-  line-height: 0.875rem;
-  background-color: $yellow;
+  margin-right: space(8);
+  margin-bottom: space(8);
+  padding: space(4) space(8);
+  @include body-s;
+  font-size: pxtorem(12);
+  font-weight: 600;
+  background-color: $casablanca;
   color: $black;
   border-radius: 4px;
 }
 
 .search-result-card__tag--icon {
-  margin-right: space(8);
-}
-
-.search-result-card__tag--cost--free {
-  @include fontSize(7px);
+  font-size: pxtorem(12);
+  margin-right: space(4);
 }
 
 .search-result-card__location {
   display: flex;
+  align-items: center;
   margin-bottom: space(12);
+
+  > svg {
+    margin-right: space(8);
+  }
 
   h4 {
     margin-left: space(8);
-    font-size: $font-body-xs;
+    font-size: $font-body-regular;
   }
 }
 
@@ -125,19 +122,37 @@
 }
 
 .search-result-card__footer {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   align-self: flex-end;
 
   a {
     display: flex;
     align-items: center;
-    font-size: $font-body-m;
-    text-decoration: none;
+    @include heading-xs;
+    text-decoration: underline;
   }
 
   svg {
     font-size: pxtorem(24px);
     margin-left: space(12);
   }
+}
+
+.search-result-card__contact {
+  display: flex;
+  flex-direction: column;
+  margin-top: space(32);
+  margin-bottom: space(16);
+
+  > .flex-col {
+    margin-bottom: space(16);
+  }
+}
+
+.search-result-card__contact-heading {
+  @include heading-xs;
+  margin-bottom: space(8);
 }

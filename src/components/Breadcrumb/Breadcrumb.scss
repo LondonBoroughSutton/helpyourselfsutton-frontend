@@ -1,77 +1,81 @@
 @import '../../styles/mixins.scss';
-@import '../../styles/colors.scss';
 @import '../../styles/breakpoints.scss';
+@import '../../styles//typography.scss';
 
 .breadcrumb {
-  position: relative;
-  z-index: 10;
+  margin-top: space(32);
+  margin-bottom: space(32);
+
+  @include for-tablet-portrait-down {
+    margin-top: space(16);
+    margin-bottom: space(24);
+  }
+
   
-  > .flex-container {
-    max-width: 1260px;
-  }
-
-  &--active {
-    color: $black !important;
-  }
-
-  ul > li:first-child {
-    margin-left: 0 !important;
-  }
 
   ul {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     list-style-type: none;
-    white-space: nowrap;
     overflow: hidden;
-    padding: space(20) space(64);
     text-overflow: ellipsis;
+    font-size: pxtorem(20);
+    line-height: pxtorem(20);
 
-    @include for-tablet-portrait-down {
-      padding: space(16) 0;
-    }
-
-    svg {
-      font-size: pxtorem(20px);
-
-      @include for-phone-only {
-        font-size: pxtorem(16px);
-      }
-    }
-  }
-
-  li {
-    display: inline;
-    font-size: pxtorem(20px) !important;
-    margin: 0;
-
-    &:first-child {
-      margin-left: 0;
+    @include for-tablet-landscape-down {
+      font-size: pxtorem(18);
+      line-height: pxtorem(18);
     }
 
     @include for-phone-only {
-      font-size: pxtorem(16px) !important;
+      font-size: pxtorem(16);
+      line-height: pxtorem(16);
+    }
+  }
+
+  a {
+    font-size: pxtorem(20);
+    line-height: pxtorem(20);
+    font-weight: 700;
+
+    @include for-tablet-landscape-down {
+      font-size: pxtorem(18);
+      line-height: pxtorem(18);
     }
 
-    a {
-      font-size: pxtorem(20px) !important;
-      text-decoration: none;
+    @include for-phone-only {
+      font-size: pxtorem(16);
+      line-height: pxtorem(16);
+    }
+  }
 
-      @include for-phone-only {
-        font-size: pxtorem(16px) !important;
-      }
+  &__item {
+    > a {
+      font-weight: 700;
+    }
+
+    &--active {
+      font-weight: 400;
     }
   }
 
   svg {
-    margin-left: space(12);
-    margin-right: space(12);
-    font-size: pxtorem(16px) !important;
+    margin-left: space(16);
+    margin-right: space(16);
+    font-size: pxtorem(18);
+    line-height: pxtorem(18);
+    
+    @include for-tablet-landscape-down {
+      font-size: pxtorem(16);
+      line-height: pxtorem(16);
+    }
 
     @include for-phone-only {
-      margin-left: space(8);
-      margin-right: space(8);
-      font-size: pxtorem(14px) !important;
+      margin-left: space(12);
+      margin-right: space(12);
+      font-size: pxtorem(14);
+      line-height: pxtorem(14);
     }
   }
 }

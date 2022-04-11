@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet';
 import { inject, observer } from 'mobx-react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -42,12 +42,15 @@ import ContactCard from './ContactCard';
 import ShareCard from './ShareCard';
 import ReferralCard from './ReferralCard';
 import GalleryCard from './GalleryCard';
-import { UsefulInfoCardAccordian, UsefulInfoCard } from './UsefulInfoCard';
+import { UsefulInfoCard, UsefulInfoCardAccordian } from './UsefulInfoCard';
 import RelatedServices from './RelatedServices';
 import Breadcrumb from '../../components/Breadcrumb';
 import Loading from '../../components/Loading';
 import ServiceDisabled from './ServiceDisabled';
-import LinkButton from '../../components/LinkButton'
+import LinkButton from '../../components/LinkButton';
+import Button from '../../components/Button';
+
+import serviceImage from '../../assets/images/teenagers-hanging-out.svg';
 
 interface RouteParams {
   service: string;
@@ -103,57 +106,70 @@ class Service extends Component<IProps> {
 
   getAllTaxonomies = () => {
     const { serviceStore } = this.props;
-    return serviceStore.serviceEligibilityTaxonomies
-  }
+    return serviceStore.serviceEligibilityTaxonomies;
+  };
 
   getTaxonomyUUIDs = () => {
     const { serviceStore } = this.props;
     const { service } = serviceStore;
-   return (service && service.eligibility_types ? service.eligibility_types.taxonomies : null)
+    return service && service.eligibility_types ? service.eligibility_types.taxonomies : null;
     // return (service && service.eligibility_types ? null : null)
-  }
+  };
 
   // Takes in a string and returns associated concatenated string of taxonomies and custom eligibility if they exist
   getServiceEligibilityInfo = (name: string) => {
     const { serviceStore } = this.props;
     const { service } = serviceStore;
-    
+
     // Get UUIDS from service.elgibility.taxonomies array
-    const UUIDs:any = this.getTaxonomyUUIDs()
+    const UUIDs: any = this.getTaxonomyUUIDs();
 
     // Gets all taxonomies
     const taxonomies = this.getAllTaxonomies();
 
-    let relatedEligibilities:any = []
+    let relatedEligibilities: any = [];
 
-    if(UUIDs && UUIDs.length && taxonomies) {
+    if (UUIDs && UUIDs.length && taxonomies) {
       // Traverse through UUIDS and then filter the array of taxonomies to find a match using the taxonomy ID
-      UUIDs.forEach((uuid:string) => {
-        const matchedTaxonomyParent = taxonomies.filter(taxonomy => taxonomy.name === name)[0]
-        
-        if(matchedTaxonomyParent && matchedTaxonomyParent.children) {
-          const matchedTaxonomy:any =find(matchedTaxonomyParent.children.filter((taxonomy: any) => taxonomy.id === uuid)) || null
-          if(matchedTaxonomy && matchedTaxonomy.name) relatedEligibilities.push(matchedTaxonomy)
+      UUIDs.forEach((uuid: string) => {
+        const matchedTaxonomyParent = taxonomies.filter(taxonomy => taxonomy.name === name)[0];
+
+        if (matchedTaxonomyParent && matchedTaxonomyParent.children) {
+          const matchedTaxonomy: any =
+            find(matchedTaxonomyParent.children.filter((taxonomy: any) => taxonomy.id === uuid)) ||
+            null;
+          if (matchedTaxonomy && matchedTaxonomy.name) {
+            relatedEligibilities.push(matchedTaxonomy);
+          }
         }
-      })
+      });
     }
 
-    const orderEligibilities = _orderBy(relatedEligibilities, 'order', 'asc')
-    relatedEligibilities = orderEligibilities.map((eligibility: any) => eligibility.name)
-    
+    const orderEligibilities = _orderBy(relatedEligibilities, 'order', 'asc');
+    relatedEligibilities = orderEligibilities.map((eligibility: any) => eligibility.name);
+
     // Check service.elgibility.custom to see if there is a value for the passed in name
-    if(service && service.eligibility_types.custom) {
-      const customEligibility = get(service.eligibility_types.custom, `${name.split(' ').join('_').toLowerCase()}`)
+    if (service && service.eligibility_types.custom) {
+      const customEligibility = get(
+        service.eligibility_types.custom,
+        `${name
+          .split(' ')
+          .join('_')
+          .toLowerCase()}`
+      );
 
-      if(customEligibility) relatedEligibilities.push(customEligibility)
+      if (customEligibility) {
+        relatedEligibilities.push(customEligibility);
+      }
     }
-    
-    return (relatedEligibilities.length ? relatedEligibilities.join(', ') : null)
-  }
+
+    return relatedEligibilities.length ? relatedEligibilities.join(', ') : null;
+  };
 
   render() {
     const { serviceStore } = this.props;
     const { service, locations, relatedServices, organisation } = serviceStore;
+
     if (!service) {
       return null;
     }
@@ -164,15 +180,22 @@ class Service extends Component<IProps> {
     }
 
     return (
-      <main>
+      <main className="service">
         <Helmet>
-          {get(service, 'name') && <title>{`${get(service, 'name')} | Hounslow Connect`}</title>}
-          {!get(service, 'name') && <title>Service | Hounslow Connect</title>}
+          {get(service, 'name') && (
+            <title>{`${get(service, 'name')} | Sutton Information Hub`}</title>
+          )}
+          {!get(service, 'name') && <title>Service | Sutton Information Hub</title>}
 
-          {get(service, 'intro') &&  <meta name="description" content={get(service, 'intro')} />}
-      
+          {get(service, 'intro') && <meta name="description" content={get(service, 'intro')} />}
+
           {get(service, 'name') && <meta property="og:title" content={`${get(service, 'name')}`} />}
-          {get(service, 'slug') && <meta property="og:url" content={`${process.env.REACT_APP_FRONTEND_URL}/${get(service, 'slug')}`} />}
+          {get(service, 'slug') && (
+            <meta
+              property="og:url"
+              content={`${process.env.REACT_APP_FRONTEND_URL}/${get(service, 'slug')}`}
+            />
+          )}
           {getImg(service) && <meta property="og:image" content={getImg(service)} />}
           <meta property="og:type" content="website" />
         </Helmet>
@@ -184,37 +207,79 @@ class Service extends Component<IProps> {
             { text: service.name, url: '' },
           ]}
         />
-        <div className={`service__header service__header--${get(service, 'type')}`}>
+        <section className="service__header">
           <div className="flex-container">
-            <div className="service__header__wrapper">
+            <div className="flex-col">
               <div className="service__header__logo">
-                <img src={getImg(service)} alt={`${service.name} logo`} />
+                <img
+                  src={getImg(service)}
+                  alt={`${service.name} logo`} />
               </div>
-              <div className="flex-col flex-col--tablet--9">
-                <span className="organisation__header__sub">Service</span>
-                <h1>{get(service, 'name')}</h1>
-                {organisation && organisation.slug && <p className="service__header__desc">This service is run by the organisation <Link to={`/organisations/${organisation.slug}`} aria-label="Home Link">{organisation.name}</Link>. View their organisation details and other listed services.</p> }
-                <div className="flex-container flex-container--no-padding flex-container--left">
-                  {organisation && organisation.slug && <div className="flex-col--mobile--12"><LinkButton alt={false} accent={true} text="View organisation" to={`/organisations/${organisation.slug}`}  /></div>}
-                </div>
+            </div>
+            <div className="flex-col">
+              <p className="service__header__label">Service</p>
+              <h1 className="service__header__heading">{get(service, 'name')}</h1>
+              {organisation && organisation.slug && (
+                <p className="service__header__description">
+                  This service is run by the organisation{' '}
+                  <Link
+                    to={`/organisations/${organisation.slug}`}
+                    aria-label="Home Link"
+                    className="service__header__description__link">
+                    {organisation.name}
+                  </Link>
+                  . View their organisation details and other listed services.
+                </p>
+              )}
+              <div className="service__header__tags">
+                {map(service.tags, (tag: any) => (
+                  <Fragment key={tag.id}>
+                    <span
+                      className="service__header__tag"
+                      aria-label={`This ${service.type} is tagged with ${tag}`}
+                    >
+                      <FontAwesomeIcon icon="tag" className="service__header__tag--icon" />
+                      {tag.label}
+                    </span>
+                  </Fragment>
+                ))}
+              </div>
+              <div className="service__header__actions">
+                {organisation && organisation.slug && (
+                  <LinkButton
+                    alt={true}
+                    accent={true}
+                    text="View organisation"
+                    to={`/organisations/${organisation.slug}`}
+                  />
+                )}
+                <Button
+                  size="small"
+                  text={serviceStore.favourite ? 'In your favourites' : 'Add to favourites'}
+                  icon="star"
+                  onClick={() => {
+                    serviceStore.addToFavourites();
+                  }}
+                  disabled={serviceStore.favourite}
+                />
               </div>
             </div>
           </div>
-        </div>
+        </section>
         {serviceStore.loading ? (
           <Loading />
         ) : (
           <section className="service__info">
-            <div className="flex-container flex-container--justify">
-              <div className="flex-col flex-col--8 flex-col--mobile--12 flex-col--tablet--12 service__left-column">
-                <div className="flex-container flex-container--align-center flex-container--no-padding service__section service__section--no-padding">
+            <div className="flex-container">
+              <article className="service__info__content">
+                <div className="flex-container flex-container--align-center flex-container--no-padding service__section">
                   {serviceStore.hasCriteria && (
                     <div className="flex-col flex-col--12 flex-col--mobile--12 service__criteria">
                       <h2 className="service__heading">Who is it for?</h2>
                     </div>
                   )}
                   <div
-                    className="criteria-cards service__section service__section--no-padding"
+                    className="criteria-cards service__section"
                     style={{ alignItems: 'stretch' }}
                   >
                     {this.getServiceEligibilityInfo('Age Group') && (
@@ -282,7 +347,11 @@ class Service extends Component<IProps> {
                     )}
 
                     {this.getServiceEligibilityInfo('Other') && (
-                      <CriteriaCard svg={Other} title="Other" info={this.getServiceEligibilityInfo('Other')} />
+                      <CriteriaCard
+                        svg={Other}
+                        title="Other"
+                        info={this.getServiceEligibilityInfo('Other')}
+                      />
                     )}
 
                     <div className="flex-col flex-col--tablet--12 mobile-show tablet-show  service__info__cost">
@@ -290,27 +359,25 @@ class Service extends Component<IProps> {
                     </div>
                   </div>
 
-                  <div className="flex-container flex-container--align-center flex-container--no-padding service__media service__section--no-padding">
+                  <div className="flex-container flex-container--align-center flex-container--no-padding service__media">
                     <div className="flex-col flex-col--mobile--12">
-                      <h2 className="service__heading">{`What is this ${get(service, 'type')}?`}</h2>
+                      <h2 className="service__heading">{`What is this ${get(
+                        service,
+                        'type'
+                      )}?`}</h2>
                     </div>
                     {!!service.gallery_items.length && (
                       <div className="flex-container flex-container--mobile-no-padding service__gallery">
                         <GalleryCard gallery={service.gallery_items} />
                       </div>
                     )}
-                    {service.video_embed && (
-                      <div className="flex-container flex-container--mobile-no-padding mobile-show">
-                        <VideoCard video={service.video_embed} width="90vw" />
-                      </div>
-                    )}
                   </div>
 
-                  <div className="flex-container flex-container--align-center service__section service__section--no-padding service__information">
+                  <div className="flex-container flex-container--align-center service__section service__information">
                     <div className="flex-col flex-col--12 flex-col--mobile--12">
                       <ReactMarkdown
-                        source={service.intro}
-                        className="service__markdown service__markdown--intro"
+                        children={service.intro}
+                        className="markdown service__markdown service__markdown--intro"
                       />
                     </div>
 
@@ -330,14 +397,12 @@ class Service extends Component<IProps> {
                       </div>
                     )}
 
-                    <div className="flex-col service__section mobile-hide">
-                      <ReactMarkdown
-                        source={service.description}
-                        className={cx('service__markdown service__markdown--description', {
-                          'service__markdown--description--tight': !service.offerings.length,
-                        })}
-                      />
-                    </div>
+                    <ReactMarkdown
+                      children={service.description}
+                      className={cx('markdown service__markdown service__markdown--description mobile-hide', {
+                        'service__markdown--description--tight': !service.offerings.length,
+                      })}
+                    />
                   </div>
 
                   {service.testimonial && (
@@ -347,16 +412,9 @@ class Service extends Component<IProps> {
                           <h2 className="service__heading">What people say</h2>
                         </div>
 
-                        <div className="flex-col flex-col--12 service__testimonial">
-                          <div className="flex-container flex-container--align-center flex-container--justify flex-container--no-padding">
-                            <div className="flex-col--1 flex-col--tablet-large--2 flex-col--tablet--2">
-                              <FontAwesomeIcon icon="comment" />
-                            </div>
-                            <div className="flex-col--9 flex-col--tablet--9">
-                              <p>{this.formatTestimonial(service.testimonial)}</p>
-                            </div>
-                          </div>
-                        </div>
+                        <figure className="flex-col flex-col--12 service__testimonial">
+                          <blockquote className="body--xl">{this.formatTestimonial(service.testimonial)}</blockquote>
+                        </figure>
                       </div>
                     </div>
                   )}
@@ -369,7 +427,7 @@ class Service extends Component<IProps> {
                         <LocationCard
                           location={location}
                           key={location.id}
-                          className="service__accordian-inner"
+                          className=""
                           desktop={true}
                         />
                       ))}
@@ -389,8 +447,8 @@ class Service extends Component<IProps> {
                   )}
 
                   {service.referral_method !== 'none' && (
-                    <div className="mobile-show">
-                      <ReferralCard id={service.id} />
+                    <div className="service__section mobile-show">
+                      <ReferralCard service={service} />
                     </div>
                   )}
 
@@ -400,15 +458,12 @@ class Service extends Component<IProps> {
                       className="service__accordian mobile-show"
                     >
                       <div className="service__map">
-                        <MapCard iconType={get(service, 'type')} locations={locations} />
+                        <MapCard iconType={service.type} locations={locations} />
                       </div>
                     </Accordian>
                   )}
 
-                  <Accordian
-                    title={`What we offer?`}
-                    className="service__accordian mobile-show"
-                  >
+                  <Accordian title={`What we offer?`} className="service__accordian mobile-show">
                     {!!service.offerings.length && (
                       <ul>
                         {map(service.offerings, (offering: any, i) => (
@@ -419,8 +474,8 @@ class Service extends Component<IProps> {
                       </ul>
                     )}
                     <ReactMarkdown
-                      source={service.description}
-                      className={cx('service__markdown service__markdown--description', {
+                      children={service.description}
+                      className={cx('markdown service__markdown service__markdown--description', {
                         'service__markdown--description--tight': !service.offerings.length,
                       })}
                     />
@@ -474,61 +529,50 @@ class Service extends Component<IProps> {
                     </Accordian>
                   )}
                 </div>
-                <br /><br />
-                <div className="mobile-show">
-                  <div className=" flex-col flex-col--12 flex-container flex-container--justify ">
-                    <p>
-                      Page last updated <strong>{moment(service!.updated_at).format('Do MMMM YYYY')}</strong>
-                    </p>
-                  </div>
+              </article>
+              <aside className="service__sidebar">
+                <div className="service__section tablet-hide">
+                  <CostCard service={service} />
                 </div>
-                
-              </div>
-              <div className="flex-col flex-col--4 flex-col--tablet--12  ">
-                <div className="flex-container service__right-column mobile-hide">
-                  <div className="tablet-hide flex-col flex-col--12 service__info__cost service__section">
-                    <CostCard service={service} />
+                {service.video_embed && (
+                  <VideoCard video={service.video_embed} width="100%" />
+                )}
+                {!!locations.length && (
+                  <div className="service__section mobile-hide">
+                    <h2 className="service__heading">{`Where is this ${service.type}?`}</h2>
+                    <div className="service__map">
+                      <MapCard iconType={service.type} locations={locations} />
+                    </div>
                   </div>
-                  {service.video_embed && (
-                    <div className="flex-container flex-container--mobile-no-padding mobile-hide service__video">
-                      <VideoCard video={service.video_embed} width="100%" />
+                )}
+                <div className="mobile-hide">
+                  <h2 className="service__heading">{`How can I contact this ${service.type}?`}</h2>
+                  <div className="service__section">
+                    <ContactCard organisation={organisation} service={service} />
+                  </div>
+                  {service.referral_method !== 'none' && (
+                    <div className="service__section mobile-hide">
+                      <ReferralCard service={service} />
                     </div>
                   )}
-                  {!!locations.length && (
-                    <div className="flex-col flex-col--12">
-                      <h2 className="service__heading">{`Where is this ${service.type}?`}</h2>
-                      <div className="service__section service__map">
-                        <MapCard iconType={get(service, 'type')} locations={locations} />
-                      </div>
-                    </div>
-                  )}
-                  <div className="flex-col flex-col--12">
-                    <h2 className="service__heading">{`How can I contact this ${service.type}?`}</h2>
-                    <div className="service__section">
-                      <ContactCard organisation={organisation} service={service} />
-                    </div>
-                    {service.referral_method !== 'none' && (
-                      <div className="service__section service__referral--desktop">
-                        <ReferralCard id={service.id} />
-                      </div>
-                    )}
-                  </div>
                 </div>
-                <div className="flex-container service__right-column">
-                  <div className="flex-col flex-col--12">
-                    <ShareCard serviceStore={serviceStore} />
-                  </div>
-                  <div className="flex-col flex-col--12 flex-container flex-container--justify flex-container--no-padding">
-                    <p>
-                      Page last updated <strong>{moment(service!.updated_at).format('Do MMMM YYYY')}</strong>
-                    </p>
-                  </div>
+                <div className="service__section">
+                  <ShareCard serviceStore={serviceStore} />
                 </div>
-              </div>
+                <div className="flex-container flex-container--justify flex-container--no-padding">
+                  <p>
+                    Page last updated{' '}
+                    <strong>{moment(service!.updated_at).format('Do MMMM YYYY')}</strong>
+                  </p>
+                </div>
+              </aside>
+            </div>
+            <div className="service__image flex-container flex-container--right flex-container--large">
+              <img src={serviceImage} className="image" alt="Mother and son walking" />
             </div>
           </section>
         )}
-        {relatedServices && <RelatedServices relatedServices={relatedServices} />}
+        {relatedServices && relatedServices.length > 0 && <RelatedServices relatedServices={relatedServices} />}
       </main>
     );
   }

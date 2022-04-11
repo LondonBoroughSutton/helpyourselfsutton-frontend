@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ServiceStore from '../../../stores/serviceStore';
 
 import Button from '../../../components/Button';
+
+import './ShareCard.scss';
+
 interface IProps {
   serviceStore: ServiceStore;
 }
@@ -16,7 +19,7 @@ const ShareCard: React.FunctionComponent<IProps> = ({ serviceStore }) => {
     <div className="service__share-card service__section">
       <div className="service__share-card__social">
         <div className="flex-container flex-container--no-padding flex-container--left flex-container--align-center">
-          <h3>Share</h3>
+          <p>Share</p>
           <a
             href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
             target="_blank"
@@ -27,7 +30,7 @@ const ShareCard: React.FunctionComponent<IProps> = ({ serviceStore }) => {
           </a>
 
           <a
-            href={`http://twitter.com/share?text=Hounslow Connect&url=${window.location.href}`}
+            href={`http://twitter.com/share?text=Sutton Information Hub: ${serviceStore.service?.name}&url=${window.location.href}`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Share to Twitter"
@@ -43,7 +46,7 @@ const ShareCard: React.FunctionComponent<IProps> = ({ serviceStore }) => {
             <FontAwesomeIcon icon="link" />
           </a>
           <a
-            href={`mailto:?subject=Hounslow Connect&amp;body=${window.location.href}"`}
+            href={`mailto:?subject=Sutton Information Hub: ${serviceStore.service?.name}&body=${window.location.href}`}
             aria-label="Email service link"
           >
             <FontAwesomeIcon icon="envelope" />
@@ -51,27 +54,22 @@ const ShareCard: React.FunctionComponent<IProps> = ({ serviceStore }) => {
         </div>
       </div>
       <div className="flex-container flex-container--no-padding">
-        <div className="flex-col service__action-buttons">
-          <Button
-            size="small"
-            text="Print"
-            icon="print"
-            onClick={() => window.print()}
-          />
+        <div className="flex-col service__share-card__actions">
+          <Button size="small" text="Print" icon="print" onClick={() => window.print()} />
           <Button
             size="small"
             text={serviceStore.favourite ? 'In your favourites' : 'Add to favourites'}
             icon="star"
-            onClick={() =>  {
-              serviceStore.addToFavourites()
-              forceUpdate()
+            onClick={() => {
+              serviceStore.addToFavourites();
+              forceUpdate();
             }}
             disabled={serviceStore.favourite}
           />
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default ShareCard;

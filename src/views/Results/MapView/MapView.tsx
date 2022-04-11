@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, Marker, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import map from 'lodash/map';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { latLngBounds, LatLngBounds } from 'leaflet';
@@ -14,7 +14,7 @@ import {
   GroupMarker,
   HelplineMarker,
   InformationMarker,
-  ServiceMarker
+  ServiceMarker,
 } from './icons';
 import List from './../ListView/List';
 
@@ -32,7 +32,7 @@ interface IState {
   activeMarkerId: string;
 }
 
-const CENTRE_OF_Hounslow: [number, number] = [51.460729410758496, -0.3726421426363473];
+const CENTRE_OF_MAP: [number, number] = [51.460729410758496, -0.3726421426363473];
 const TOP_LEFT_CORNER: [number, number] = [51.50023670726737, -0.45281640857676737];
 const BOTTOM_RIGHT_CORNER: [number, number] = [51.425008878160575, -0.27232107871209366];
 
@@ -86,14 +86,14 @@ class MapView extends Component<IProps, IState> {
 
   setActiveService = (id: string) => {
     this.setState({
-      activeMarkerId: id
+      activeMarkerId: id,
     });
 
-    let activeSearchResultCard = document.querySelector('.search-result-card.is-active');
+    const activeSearchResultCard = document.querySelector('.search-result-card.is-active');
 
-    if(activeSearchResultCard) {
+    if (activeSearchResultCard) {
       activeSearchResultCard.scrollIntoView({
-        behavior: "smooth"
+        behavior: 'smooth',
       });
     }
   };
@@ -110,7 +110,7 @@ class MapView extends Component<IProps, IState> {
     return (
       <div className="flex-container flex-container--space flex-container--row-reverse map">
         <div className="flex-col--8 flex-col--tablet--12 map__map-container">
-          <Map centre={CENTRE_OF_Hounslow} attributionControl={false} bounds={this.state.bounds}>
+          <MapContainer centre={CENTRE_OF_MAP} attributionControl={false} bounds={this.state.bounds}>
             <TileLayer url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png" />
             {resultsStore.results.map((result: IService) => {
               if (result.service_locations) {
@@ -119,17 +119,20 @@ class MapView extends Component<IProps, IState> {
                     <Marker
                       key={serviceLocation.id}
                       position={[serviceLocation.location.lat, serviceLocation.location.lon]}
-                      icon={this.state.activeMarkerId === result.id ? this.getMarkerType('active') : this.getMarkerType(result.type)}
-                      onClick={() => this.setActiveService(result.id)}
-                    >
-                    </Marker>
+                      icon={this.getMarkerType('service')}
+                      eventHandlers={{
+                        click: () => {
+                          this.setActiveService(result.id)
+                        }
+                      }}
+                    />
                   );
                 });
               }
 
               return null;
             })}
-          </Map>
+          </MapContainer>
 
           <div className="map__key--container">
             <h4 className="map__key--heading">Map key</h4>
@@ -142,7 +145,10 @@ class MapView extends Component<IProps, IState> {
                 Activity
               </p>
               <p className="map__key--description">
-                <FontAwesomeIcon icon="clipboard" className="map__key-icon map__key-icon--service" />
+                <FontAwesomeIcon
+                  icon="clipboard"
+                  className="map__key-icon map__key-icon--service"
+                />
                 Service
               </p>
               <p className="map__key--description">

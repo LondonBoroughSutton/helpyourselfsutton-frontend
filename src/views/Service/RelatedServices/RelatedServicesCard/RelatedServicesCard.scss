@@ -1,46 +1,41 @@
 @import '../../../../styles/colors.scss';
-@import '../../../../styles/fonts.scss';
+@import '../../../../styles/typography.scss';
 @import '../../../../styles/mixins.scss';
 
 .related-services-card {
-  padding: space(20);
+  padding: space(20) space(20) space(32);
   background-color: $white;
   border-radius: 20px;
   text-align: left;
 
   @include for-tablet-portrait-down {
-    width: 100%;
-    margin-bottom: space(16);
-    padding: sapce(24) space(16) !important;
+    padding: space(16);
   }
 
   &__info {
+    font-size: $font-heading-xs;
     margin-top: space(24);
-    color: $lynch;
-    font-size: $font-body-xs;
-    line-height: 17px;
+
+    @include for-tablet-landscape-down {
+      font-size: $font-heading-mobile-xs;
+      margin-top: space(16);
+    }
   }
 
   &__logo {
     flex: 0 0 auto;
     width: pxtorem(60px);
     height: pxtorem(60px);
-    border: 1px solid $gray;
-    background-color: $white;
-
-    &:before {
-      content: '';
-      display: inline-block;
-      height: 100%;
-      vertical-align: middle;
-    }
+    background-color: $gray;
 
     img {
       width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
   }
 
   .link {
-    margin-top: space(12);
+    margin-top: space(20);
   }
 }

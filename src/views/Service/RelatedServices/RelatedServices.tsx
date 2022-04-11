@@ -34,10 +34,10 @@ class RelatedServices extends Component<IProps, IState> {
     });
   }
 
-  showMore = () => {
-    this.setState({
-      showMore: true,
-    });
+  toggleMore = () => {
+    this.setState(prevState => ({
+      showMore: !prevState.showMore,
+    }));
   };
 
   render() {
@@ -46,19 +46,18 @@ class RelatedServices extends Component<IProps, IState> {
     const relatedServices = showMore ? fullList : preview;
     return (
       <section className="related-services">
-        <div className="flex-container flex-container--justify-between flex-container--align-center">
-          <div className="flex-col flex-col--mobile--12">
+        <div className="related-services__header flex-container flex-container--justify-between flex-container--align-center">
+          <div className="flex-col">
             <h2>Other results you might be interested in</h2>
           </div>
-          <div className="flex-col flex-col--mobile--12">
-            {!showMore && (
-              <Button text="View more related services" onClick={() => this.showMore()} />
-            )}
-          </div>
+          <Button
+            text={`Show ${showMore ? 'less' : 'more'} related services`}
+            icon={showMore ? 'caret-up' : 'caret-down'}
+            onClick={() => this.toggleMore()} />
         </div>
-        
+
         <div className="flex-container">
-          <div className="related-services__container">
+          <div className="related-services__items">
             {relatedServices.map((service: IService) => (
               <RelatedServicesCard service={service} key={service.id} />
             ))}

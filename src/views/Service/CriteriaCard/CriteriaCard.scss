@@ -2,30 +2,41 @@
 @import '../../../styles/colors.scss';
 @import '../../../styles/breakpoints.scss';
 
-.criteria_card {
+.criteria-card {
   width: 100%;
+  margin-bottom: space(32);
   padding: space(20);
   background-color: $white;
+  border-radius: 20px;
 
-  &:nth-of-type(even) {
-    background-color: #E5E5E5;
+  @include for-tablet-portrait-down {
+    margin-bottom: space(24);
+    padding: space(16);
   }
 
-  @include for-tablet-portrait-up { 
-    display: flex;
+  @include for-phone-only { 
+    margin-bottom: space(16);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
-.criteria_card-img {
+.criteria-card-img {
   min-width: 86px;
   text-align: center;
 
   svg {
     width: pxtorem(36px);
   }
+
+  @include for-phone-only {
+    min-width: 64px;
+  }
 }
 
-.criteria_card-title {
+.criteria-card-title {
   font-size: pxtorem(14px) !important;
   font-weight: 900;
 
@@ -34,7 +45,7 @@
   }
 }
 
-.criteria_card-toggle {
+.criteria-card-toggle {
   text-align: right;
   padding-right: space(8);
 
@@ -43,7 +54,7 @@
   }
 }
 
-.criteria_card-content {
+.criteria-card-content {
   
   padding-left: space(16);
   flex: 1;
@@ -59,11 +70,9 @@
       font-size: pxtorem(16px);
     }
   }
-
 }
 
-.service__criteria {
-  @include for-tablet-portrait-down {
-    padding: 0 space(16) !important;
-  }
+
+.criteria-card--inner {
+  padding: 0 !important;
 }

@@ -1,17 +1,129 @@
-@import '../../../styles/mixins.scss';
 @import '../../../styles/colors.scss';
+@import '../../../styles/mixins.scss';
+@import '../../../styles/breakpoints.scss';
+@import '../../../styles/typography.scss';
 
 .service-card {
-    background: #fff;
-    padding: space(20);
-    border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: space(20);
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-color: $white;
+  color: $black;
+  cursor: pointer;
 
-    &:focus {
-        outline: 0;
-        box-shadow: 0 0 0 3px $pink;
-    }
+  &.is-active,
+  &:hover {
+    border-color: $black;
+  }
+}
 
-    p {
-        margin-bottom: space(16);
-    }
+.service-card--full-width {
+  width: 100%;
+  margin: 0;
+}
+
+.service-card__title {
+  flex: 1;
+  padding-right: space(16);
+}
+
+.service-card__organisation {
+  @include body-m;
+  font-weight: normal;
+  margin-top: space(8);
+
+  @include for-phone-only {
+    margin: space(8) 0 space(16) 0;
+  }
+}
+
+.service-card__logo {
+  width: pxtorem(62);
+  height: pxtorem(62);
+  background-color: $gray;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.service-card__top-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: space(12);
+}
+
+.service-card__tags {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.service-card__tag {
+  margin-right: space(16);
+  margin-bottom: space(16);
+  padding: space(8);
+  @include body-regular;
+  background-color: $casablanca;
+  color: $black;
+  border-radius: 4px;
+}
+
+.service-card__tag--icon {
+  margin-right: space(8);
+}
+
+.service-card__location {
+  display: flex;
+  margin-bottom: space(12);
+
+  h4 {
+    margin-left: space(8);
+    font-size: $font-body-regular;
+  }
+}
+
+.service-card__location-list {
+  margin-left: space(8);
+
+  button {
+    cursor: pointer;
+    @include link-medium;
+    border: none;
+    background: none;
+  }
+
+  h4 {
+    display: inline;
+    margin-left: 0;
+  }
+}
+
+.service-card__intro {
+  align-self: flex-start;
+  margin-bottom: space(12);
+}
+
+.service-card__footer {
+  display: block;
+  width: 100%;
+  align-self: flex-end;
+
+  a {
+    display: flex;
+    align-items: center;
+    @include heading-xs;
+    text-decoration: underline;
+  }
+
+  svg {
+    font-size: pxtorem(24px);
+    margin-left: space(12);
+  }
 }

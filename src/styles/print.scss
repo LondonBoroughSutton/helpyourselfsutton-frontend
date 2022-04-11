@@ -1,0 +1,62 @@
+/* PRINT STYLES */
+
+@media print {
+  .header,
+  .footer .footer__link,
+  .footer .footer__members,
+  .footer .footer__contact,
+  .breadcrumb,
+  .button,
+  .results__filters form,
+  .results__view-filter,
+  .results__image,
+  .results__pagination,
+  .search-result-card__footer,
+  .related-services-card .link,
+  .service__image,
+  .service__share-card,
+  .service__social-icon-container,
+  .landing-page__illustrations,
+  .landing-page__information,
+  .landing-page__services,
+  .information-page__more,
+  .information-page__other {
+    display: none !important;
+  }
+
+  .flex-col {
+    width: 100% !important;
+    margin-bottom: 16px !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0.25 0 !important;
+  }
+
+  .results__search-box,
+  .results__wrapper,
+  .criteria-card,
+  .service__cost-card,
+  .service__contact-card,
+  .service__useful-info,
+  .service__useful-info__content {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .search-result-card,
+  .related-services-card {
+    padding: 0 0 24px 0 !important;
+    border-radius: 0 !important;
+    border-bottom: 2px solid black !important;
+  }
+
+  .service__header {
+    margin: 0 !important;
+  }
+
+  .service__info,
+  .related-services {
+    break-before: always !important;
+  }
+}
