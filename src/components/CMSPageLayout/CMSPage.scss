@@ -29,6 +29,11 @@
     margin-bottom: space(16);
   }
 
+  a {
+    @include body-l;
+    line-height: 2.25rem;
+  }
+
   li p {
     display: inline;
   }
