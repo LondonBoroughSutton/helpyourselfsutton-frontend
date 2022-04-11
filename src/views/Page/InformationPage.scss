@@ -5,6 +5,10 @@
 
 /* Section styles */
 
+.information-page {
+  border-bottom: 2px solid $black;
+}
+
 .information-page__more {
   display: flex;
   justify-content: flex-end;
@@ -104,6 +108,8 @@
 }
 
 .information-page__illustration {
+  transform: translateY(6px);
+
   @include for-tablet-landscape-down {
     max-height: 200px;
   }

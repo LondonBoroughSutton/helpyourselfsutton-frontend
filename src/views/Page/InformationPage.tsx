@@ -15,7 +15,7 @@ import { IPage } from '../../types/types';
 
 function InformationPage(props: any) {
   return (
-    <main className="information-page">
+    <div className="information-page">
       <Helmet>
         {props.content.title && (
           <title>{`${props.content.title} | Sutton Information Hub`}</title>
@@ -85,7 +85,7 @@ function InformationPage(props: any) {
           </div>
         </section>
       )}
-    </main>
+    </div>
   )
 };
 
