@@ -4,6 +4,7 @@ import { isIOS } from 'react-device-detect';
 import './InstructionModal.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HomeScreenIcon from '../../../assets/images/icons/home-screen-icon.png';
+import AppleShareIcon from '../../../assets/images/icons/apple-share-icon.png';
 
 import Modal from 'react-modal';
 
@@ -14,7 +15,7 @@ class InstructionModal extends Component<any> {
         return (
           <p>
             You can add the launcher to your home screen by clicking the 'Share Options'{' '}
-            <FontAwesomeIcon icon="share-square" /> 'Add to home Screen' then{' '}
+            <img src={AppleShareIcon} className="apple-share-icon" alt="Share icon" /> 'Add to home Screen' then{' '}
             <FontAwesomeIcon icon="plus-square" /> 'Add
           </p>
         );
@@ -32,7 +33,7 @@ class InstructionModal extends Component<any> {
       if (isIOS) {
         return (
           <p>
-            Tap <FontAwesomeIcon icon="share-square" /> then 'Add to homescreen'
+            Tap <img src={AppleShareIcon} className="apple-share-icon" alt="Share icon" /> then 'Add to homescreen'
           </p>
         );
       } else {

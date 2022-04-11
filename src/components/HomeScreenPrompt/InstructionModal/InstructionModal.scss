@@ -78,4 +78,11 @@
       color: $black;
     }
   }
+
+  .apple-share-icon {
+    max-width: 14px;
+    height: auto;
+    margin: 0 space(4);
+    transform: translateY(2px);
+  }
 }
