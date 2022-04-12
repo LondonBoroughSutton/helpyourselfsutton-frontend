@@ -108,7 +108,7 @@ function LandingPage(props: any) {
         </section>
       )}
 
-      {props.content.collection_categories && (
+      {props.content.collection_categories.length > 0 && (
         <section className="landing-page__services">
           <div className="flex-container landing-page__services--wrapper">
             <div className="flex-col flex-col--12">
