@@ -2,6 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 
+import { apiBase } from '../../config/api';
+
 import './InformationPage.scss';
 
 import Breadcrumb from '../../components/Breadcrumb';
@@ -14,6 +16,10 @@ import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { IPage } from '../../types/types';
 
 function InformationPage(props: any) {
+  const getImg = (pageId: string) => {
+    return `${apiBase}/pages/${pageId}/image.png?max_dimension=900`;
+  };
+
   return (
     <main className="information-page">
       <Helmet>
@@ -39,8 +45,8 @@ function InformationPage(props: any) {
             </div>
           )}
           {props.content.image && (
-            <div className="flex-col flex-col--12">
-              <img alt={props.content.title} className="information-page__image" src={props.content.image} />
+            <div className="flex-col flex-col--12 information-page__image">
+              <img alt={props.content.title} className="image" src={getImg(props.content.id)} />
             </div>
           )}
           {props.content.content.introduction.copy && (
