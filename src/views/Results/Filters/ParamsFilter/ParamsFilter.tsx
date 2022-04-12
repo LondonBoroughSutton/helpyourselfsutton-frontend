@@ -152,7 +152,14 @@ class Filter extends Component<IProps, IState> {
           <div className={resultsStore.isKeywordSearch ? 'flex-col' : 'flex-col flex-col--12'}>
             <div className="results__filters--primary">
               {resultsStore.isKeywordSearch && (
-                <div className="">
+                <div>
+                  <label
+                    className="sr-only"
+                    htmlFor="keyword"
+                    aria-label="Search using a keyword"
+                  >
+                    Search using a keyword
+                  </label>
                   <Input
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       const target = e.target || null;
