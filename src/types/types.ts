@@ -93,6 +93,7 @@ export interface IService {
   contact_email: string;
   contact_name: string;
   contact_phone: string;
+  cqc_location_id: string;
   eligibility_types: IEligibility;
   created_at: string;
   description: string;
