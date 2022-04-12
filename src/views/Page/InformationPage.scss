@@ -98,12 +98,19 @@
 .information-page__image {
   width: 100%;
   height: auto;
-  margin-bottom: space(64);
+  margin-bottom: space(32);
   border-radius: 40px;
   overflow: hidden;
 
   @include for-tablet-landscape-down {
-    margin-bottom: space(32);
+    margin-bottom: space(16);
+  }
+
+  .image {
+    max-width: 280px;
+    max-height: 280px;
+    width: 100%;
+    height: auto;
   }
 }
 
