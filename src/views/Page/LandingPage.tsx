@@ -22,7 +22,7 @@ function LandingPage(props: any) {
   };
 
   return (
-    <main className="landing-page">
+    <div className="landing-page">
       <Helmet>
         {props.content.title && (
           <title>{`${props.content.title} | Sutton Information Hub`}</title>
@@ -150,7 +150,7 @@ function LandingPage(props: any) {
           </div>
         </section>
       )}
-    </main>
+    </div>
   )
 };
 
