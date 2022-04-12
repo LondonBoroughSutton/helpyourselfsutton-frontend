@@ -548,7 +548,7 @@ class Service extends Component<IProps> {
                     </div>
                   )}
                 </div>
-                {(service.cqc_location_id && service.cqc_location_id.match(/^\d\-\d+$/)) &&
+                {(service.cqc_location_id && service.cqc_location_id.match(/^\d-\d+$/)) &&
                   <div className="service__section">
                     <h2 className="service__heading">This {service.type}'s CQC Rating</h2>
                     <InnerHTML html={cqcWidget(service.cqc_location_id)} />
