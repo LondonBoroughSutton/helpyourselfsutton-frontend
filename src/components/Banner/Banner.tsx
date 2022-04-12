@@ -23,12 +23,14 @@ const Banner: FunctionComponent<IProps> = ({ banner, activeCarouselItem, bannerI
           <ReactMarkdown
             className="banner__description"
             children={banner.content} />
-          <div className="banner__cta">
-            <ButtonLink
-              text={banner.button_text}
-              icon="arrow-right"
-              href={banner.button_url} />
-          </div>
+          {banner.button_url !== "https://suttoninformationhub.org.uk" &&
+            <div className="banner__cta">
+              <ButtonLink
+                text={banner.button_text}
+                icon="arrow-right"
+                href={banner.button_url} />
+            </div>
+          }
         </div>
       </div>
       <div className="banner__image">
