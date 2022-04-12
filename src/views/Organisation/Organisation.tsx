@@ -78,7 +78,7 @@ class Organisation extends Component<IProps> {
           </Helmet>
 
           <section className={`organisation__header`}>
-            <div className="flex-container">
+            <div className="flex-container flex-container--no-space">
               {organisation && organisation.has_logo && (
                 <div className="organisation__header__logo">
                   <img src={getImg(organisation)} alt={`${organisation.name} logo`} />
@@ -96,7 +96,7 @@ class Organisation extends Component<IProps> {
                 <ul className="organisation__header__contact-details">
                   {get(organisation, 'phone') && (
                     <li key={`key_${get(organisation, 'phone')}`}>
-                      <p className="h5">Phone</p>
+                      <h2 className="h5">Phone</h2>
                       <a href={`tel:${get(organisation, 'phone')}`}>
                         {get(organisation, 'phone')}
                       </a>
@@ -104,7 +104,7 @@ class Organisation extends Component<IProps> {
                   )}
                   {get(organisation, 'url') && (
                     <li key={`key_${get(organisation, 'url')}`}>
-                      <p className="h5">Website</p>
+                      <h2 className="h5">Website</h2>
                       <a href={`${get(organisation, 'url')}`} target="_blank" rel="noreferrer">
                         {get(organisation, 'url')}
                       </a>
@@ -112,7 +112,7 @@ class Organisation extends Component<IProps> {
                   )}
                   {get(organisation, 'email') && (
                     <li key={`key_${get(organisation, 'email')}`}>
-                      <p className="h5">Email</p>
+                      <h2 className="h5">Email</h2>
                       <a href={`mailto:${get(organisation, 'email')}`}>
                         {get(organisation, 'email')}
                       </a>
@@ -120,7 +120,7 @@ class Organisation extends Component<IProps> {
                   )}
                   {organisationStore.hasSocials && (
                     <li key="key_organisation_social">
-                      <p className="h5">Social media</p>
+                      <h2 className="h5">Social media</h2>
                       <SocialLinks organisationStore={organisationStore} />
                     </li>
                   )}

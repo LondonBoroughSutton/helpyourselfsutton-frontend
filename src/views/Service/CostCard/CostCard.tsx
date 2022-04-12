@@ -13,7 +13,7 @@ const CostCard: React.FunctionComponent<IProps> = ({ service }) => (
   <div className="service__cost-card">
     <FontAwesomeIcon icon="credit-card" className="service__cost-card__icon" />
     <div className="service__cost-card__content">
-      <p className="service__cost-card__title">{!service.is_free ? 'Cost' : 'Free'}</p>
+      <h2 className="service__cost-card__title">{!service.is_free ? 'Cost' : 'Free'}</h2>
       <p className="service__cost-card__description">
         This {service.type} {service.is_free ? 'is free' : 'has a cost associated'}
       </p>
