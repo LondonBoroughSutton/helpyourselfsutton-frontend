@@ -32,7 +32,7 @@ const Banner: FunctionComponent<IProps> = ({ banner, activeCarouselItem, bannerI
         </div>
       </div>
       <div className="banner__image">
-        <img src={bannerIllo} alt="People doing activities, walking towards a house" />
+        <img src={bannerIllo} alt="Mother in a hi-jab with their son, a teenage girl using a guide dog and an older person using a walking stick" />
       </div>
     </section>
   );
