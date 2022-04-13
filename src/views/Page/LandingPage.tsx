@@ -50,6 +50,7 @@ function LandingPage(props: any) {
               />
             )}
           </div>
+          {console.log(props.content)}
           <div className="flex-col flex-col--5 landing-page__image">
             {props.content.image && (
               <img alt={props.content.title ? props.content.title : ''} className="image" src={getImg(props.content.id)} />
@@ -145,7 +146,7 @@ function LandingPage(props: any) {
               <img
                 src={servicesIllo2}
                 className="image"
-                alt="Lady walking a dog" />
+                alt="An aeroplane flying over power lines" />
             </div>
           </div>
         </section>

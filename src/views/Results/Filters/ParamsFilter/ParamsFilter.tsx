@@ -152,7 +152,14 @@ class Filter extends Component<IProps, IState> {
           <div className={resultsStore.isKeywordSearch ? 'flex-col' : 'flex-col flex-col--12'}>
             <div className="results__filters--primary">
               {resultsStore.isKeywordSearch && (
-                <div className="">
+                <div>
+                  <label
+                    className="sr-only"
+                    htmlFor="keyword"
+                    aria-label="Search using a keyword"
+                  >
+                    Search using a keyword
+                  </label>
                   <Input
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       const target = e.target || null;
@@ -266,7 +273,7 @@ class Filter extends Component<IProps, IState> {
                 className={'flex-container flex-container--align-center flex-container--no-padding'}
               >
                 <div className={'flex-col flex-col-medium-8'}>
-                  <h3 className="h4">Filter by</h3>
+                  <h2 className="h4">Filter by</h2>
                   <p className="body--m">You can get more personalised results</p>
                 </div>
                 <div className={'flex-col flex-col-medium-2'}>

@@ -19,7 +19,7 @@ const ShareCard: React.FunctionComponent<IProps> = ({ serviceStore }) => {
     <div className="service__share-card service__section">
       <div className="service__share-card__social">
         <div className="flex-container flex-container--no-padding flex-container--left flex-container--align-center">
-          <p>Share</p>
+          <h2 className="h5">Share</h2>
           <a
             href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
             target="_blank"

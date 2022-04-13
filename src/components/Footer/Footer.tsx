@@ -53,7 +53,7 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
               <h2 className="footer__header h5">
                 Get in touch with<br />Sutton Information Hub
               </h2>
-              <nav className="footer__social-links" role="menu" aria-label="Social Media Links">
+              <nav className="footer__social-links" aria-label="Social Media Links">
                 {facebookHandle !== "#" && (
                   <a
                     href={`https://facebook.com/${facebookHandle}`}
