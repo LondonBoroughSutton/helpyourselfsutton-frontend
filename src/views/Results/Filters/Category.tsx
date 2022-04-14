@@ -28,13 +28,7 @@ const Category: React.FunctionComponent<IProps> = ({ resultsStore }) => {
           <div className="results__overview__image">
             {resultsStore && resultsStore.category ? (
               <img
-                src={
-                  requestImageFile(
-                    `./${get(resultsStore, 'category.name')
-                      .replace(/[, ]+/g, '-')
-                      .toLowerCase()}.svg`
-                  ).default
-                }
+                src={`${apiBase}/collections/categories/${get(resultsStore, 'category.id')}/image.svg`}
                 alt={get(resultsStore, 'category.name').replace('COVID-19:', '')}
               />
             ) : (
