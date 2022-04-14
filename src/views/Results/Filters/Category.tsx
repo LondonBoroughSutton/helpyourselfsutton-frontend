@@ -6,12 +6,6 @@ import { apiBase } from '../../../config/api';
 import ResultsStore from '../../../stores/resultsStore';
 import '../Results.scss';
 
-const requestImageFile = require.context(
-  '../../../assets/images/category-images/',
-  true,
-  /^\.\/.*\.svg$/
-);
-
 interface IProps {
   resultsStore?: ResultsStore;
 }
