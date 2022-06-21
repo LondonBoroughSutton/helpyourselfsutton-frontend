@@ -6,11 +6,17 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider, observer } from 'mobx-react';
 
+// Helpers
+import { isStagingEnv } from './helpers';
+
+// Components
 import Footer from './components/Footer/Footer';
 import Header from './components/Header';
+import HeaderAlertBanner from './components/HeaderAlertBanner';
 
 import './styles/grid.scss';
 
+// Stores
 import WindowSizeStore from './stores/windowSizeStore';
 import UIStore from './stores/uiStore';
 import ResultsStore from './stores/resultsStore';
@@ -86,6 +92,7 @@ const App = () => {
         <RouteChangeTracker />
         <ScrollToTop>
           <Header />
+          {isStagingEnv() && <HeaderAlertBanner bannerContent={{ __html: "<p><strong>IMPORTANT:</strong> Please DO NOT make any changes to this site. This is a TEST environment used for demo purposes only. Any changes made here will not be reflected on the LIVE site viewed by the public. <a href='https://suttoninformationhub.org.uk'>Click HERE</a> to access the LIVE environment.</p>" }} />}
           <Suspense fallback={<Loading />}>
             <Switch>
               <Route path="/" exact={true} component={Home} />
