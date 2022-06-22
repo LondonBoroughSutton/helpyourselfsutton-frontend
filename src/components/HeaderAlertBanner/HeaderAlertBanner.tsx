@@ -3,7 +3,7 @@ import React from 'react';
 import './HeaderAlertBanner.scss';
 
 interface IProps {
-  bannerContent: { __html: string; };
+  bannerContent: { __html: string };
 }
 
 const HeaderAlertBanner: React.FC<IProps> = ({ bannerContent }) => (

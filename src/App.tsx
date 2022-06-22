@@ -92,7 +92,14 @@ const App = () => {
         <RouteChangeTracker />
         <ScrollToTop>
           <Header />
-          {isStagingEnv() && <HeaderAlertBanner bannerContent={{ __html: "<p><strong>IMPORTANT:</strong> Please DO NOT make any changes to this site. This is a TEST environment used for demo purposes only. Any changes made here will not be reflected on the LIVE site viewed by the public. <a href='https://suttoninformationhub.org.uk'>Click HERE</a> to access the LIVE environment.</p>" }} />}
+          {isStagingEnv() && (
+            <HeaderAlertBanner
+              bannerContent={{
+                __html:
+                  "<p><strong>IMPORTANT:</strong> Please DO NOT make any changes to this site. This is a TEST environment used for demo purposes only. Any changes made here will not be reflected on the LIVE site viewed by the public. <a href='https://suttoninformationhub.org.uk'>Click HERE</a> to access the LIVE environment.</p>",
+              }}
+            />
+          )}
           <Suspense fallback={<Loading />}>
             <Switch>
               <Route path="/" exact={true} component={Home} />
