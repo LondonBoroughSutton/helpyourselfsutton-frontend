@@ -34,14 +34,12 @@ const Autocomplete: React.FunctionComponent<IProps> = ({
   const autocompeleteInputField = useRef<HTMLInputElement>(null);
 
   const onSuggestionsFetchRequested = (inputValue: any, callback: any) => {
-    console.log('[onSuggestionsFetchRequested] --> inputValue: ', inputValue);
     toggleLoading(true);
 
     const suggestions: any = getSuggestions(inputValue);
 
     suggestions
       .then((res: any) => {
-        console.log('[onSuggestionsFetchRequested] --> suggestions then:', res);
         toggleLoading(false);
         setSuggestions(res);
         callback(res);
@@ -53,15 +51,12 @@ const Autocomplete: React.FunctionComponent<IProps> = ({
 
   const getSuggestions = (value: string) => {
     return new Promise<void>((resolve, reject) => {
-      const inputValue = value
-        .toString()
-        .trim()
-        .toLowerCase();
+      const inputValue = value.toString().trim().toLowerCase();
       const inputLength = inputValue.length;
 
       axios
         .get(`${apiBase}/${endpointEntity}?filter[${filterKey}]=${inputValue}`)
-        .then(res => {
+        .then((res) => {
           const suggestions = get(res, 'data.data', '');
           let result = [] as any;
 
@@ -77,15 +72,13 @@ const Autocomplete: React.FunctionComponent<IProps> = ({
           }
           resolve(result);
         })
-        .catch(err => {
+        .catch((err) => {
           reject();
         });
     });
   };
 
   const resetStoredAutocompleteData = () => {
-    console.log('[resetStoredAutocompleteData] -->');
-
     if (storeValueField) {
       store.handleInput(storeValueField, null);
     }
@@ -127,15 +120,6 @@ const Autocomplete: React.FunctionComponent<IProps> = ({
   }, []);
 
   const handleInputChange = (newValue: any, { action }: any) => {
-    console.log(
-      '[handleInputChange] --> newValue',
-      newValue,
-      'action type:',
-      action.toString(),
-      'value: ',
-      value
-    );
-
     if (action && action === 'select-option') {
       if (storeValueField) {
         setAutocompleKeywordValue(newValue.value);
@@ -159,17 +143,6 @@ const Autocomplete: React.FunctionComponent<IProps> = ({
   };
 
   const handleInputStates = (newValue: any, { action }: any) => {
-    console.log(
-      '[handleInputStates] --> newValue',
-      newValue,
-      'action type:',
-      action.toString(),
-      'defaultText value:',
-      defaultText,
-      'value: ',
-      value
-    );
-
     if (action && (action === 'input-blur' || action === 'input-change') && value === '') {
       resetStoredAutocompleteData();
       return;

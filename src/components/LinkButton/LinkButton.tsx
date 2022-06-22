@@ -56,7 +56,7 @@ const LinkButton: React.FunctionComponent<IProps> = ({
     })}
     disabled={disabled}
     type={type}
-    onClick={event => {
+    onClick={(event) => {
       onClick && onClick(event);
       history.push(to);
     }}

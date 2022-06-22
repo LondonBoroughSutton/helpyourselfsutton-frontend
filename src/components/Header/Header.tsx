@@ -44,7 +44,7 @@ class Header extends Component<IProps> {
         >
           <div className="flex-container">
             <div className="flex-col">
-              <div id="google_translate_element"></div>
+              <div id="google_translate_element" />
             </div>
             <div className="flex-col">
               <Button
@@ -65,7 +65,8 @@ class Header extends Component<IProps> {
               <img
                 src={Logo}
                 className="logo"
-                alt="Sutton Information Hub Logo - Mother in a hi-jab with their son, a teenage girl using a guide dog and an older person using a walking stick" />
+                alt="Sutton Information Hub Logo - Mother in a hi-jab with their son, a teenage girl using a guide dog and an older person using a walking stick"
+              />
             </RouterLink>
           </figure>
 
@@ -77,9 +78,7 @@ class Header extends Component<IProps> {
             aria-label="Show mobile menu"
           >
             <span className="nav-trigger--button" />
-            <FontAwesomeIcon
-              icon={burgerMenuOpen ? 'times' : 'bars'}
-            />
+            <FontAwesomeIcon icon={burgerMenuOpen ? 'times' : 'bars'} />
           </button>
 
           <nav
@@ -87,7 +86,8 @@ class Header extends Component<IProps> {
               'tablet-hide': !burgerMenuOpen,
             })}
             role="navigation"
-            aria-label="Primary Navigation">
+            aria-label="Primary Navigation"
+          >
             <RouterLink
               exact={true}
               to="/"

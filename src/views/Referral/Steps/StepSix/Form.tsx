@@ -72,7 +72,7 @@ class Form extends Component<IProps, IState> {
 
     await this.validate();
 
-    const canSubmit = Object.values(this.state.errors).every(error => error === false);
+    const canSubmit = Object.values(this.state.errors).every((error) => error === false);
 
     if (canSubmit) {
       referralStore.nextStep();
@@ -113,7 +113,9 @@ class Form extends Component<IProps, IState> {
           </div>
           <form className="referral__form">
             <div className="referral__form__field">
-              <label className="referral__form__label" htmlFor="referee_email">Your email address (if you have one)</label>
+              <label className="referral__form__label" htmlFor="referee_email">
+                Your email address (if you have one)
+              </label>
               <Input
                 id="referee_email"
                 type="email"
@@ -130,7 +132,9 @@ class Form extends Component<IProps, IState> {
               />
             </div>
             <div className="referral__form__field">
-              <label className="referral__form__label" htmlFor="referee_phone">Your UK mobile number</label>
+              <label className="referral__form__label" htmlFor="referee_phone">
+                Your UK mobile number
+              </label>
               <Input
                 id="referee_phone"
                 type="tel"
@@ -157,16 +161,18 @@ class Form extends Component<IProps, IState> {
                 })}
                 tabIndex={0}
                 aria-pressed={open}
-                onKeyDown={e => (e.key === 'Enter' ? this.toggleNoContactDetails() : null)}
+                onKeyDown={(e) => (e.key === 'Enter' ? this.toggleNoContactDetails() : null)}
               >
                 You can't provide an email address or telephone number
               </button>
             </div>
 
-            {open && ( 
+            {open && (
               <div className="referral__form__field">
                 <h3>Alternative way to contact you</h3>
-                <label className="referral__form__label" htmlFor="other_contact">This could be your address, or an address where we can get in contact with you.</label>
+                <label className="referral__form__label" htmlFor="other_contact">
+                  This could be your address, or an address where we can get in contact with you.
+                </label>
                 <div className="input--container">
                   <textarea
                     id="other_contact"
@@ -191,11 +197,14 @@ class Form extends Component<IProps, IState> {
                     e.preventDefault();
                     referralStore.nextStep();
                   }}
-                  disabled={!(referralStore.referral.referee_name && referralStore.referral.referee_phone)}
+                  disabled={
+                    !(referralStore.referral.referee_name && referralStore.referral.referee_phone)
+                  }
                 />
                 <p
-                  dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
-                  className="body--s" />
+                  dangerouslySetInnerHTML={{ __html: html(referralStore.stepDescription) }}
+                  className="body--s"
+                />
               </div>
             </div>
           </form>

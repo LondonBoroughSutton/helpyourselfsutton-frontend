@@ -23,27 +23,20 @@ const Home: React.FunctionComponent<IProps> = ({ cmsStore }) => {
     return null;
   }
 
-  const categories = SearchStore.categories.filter(category => category.homepage);
-  const personas = SearchStore.personas.filter(persona => persona.homepage);
+  const categories = SearchStore.categories.filter((category) => category.homepage);
+  const personas = SearchStore.personas.filter((persona) => persona.homepage);
 
   return (
     <main className="home">
       <Helmet>
         <title>Home | Sutton Information Hub</title>
       </Helmet>
-      {cmsStore.banner && (
-        <Banner banner={cmsStore.banner} />
-      )}
+      {cmsStore.banner && <Banner banner={cmsStore.banner} />}
       <Search />
-      {cmsStore.home && (
-        <BannerSlider banners={cmsStore.home.banners} />
-      )}
+      {cmsStore.home && <BannerSlider banners={cmsStore.home.banners} />}
       <LandingPages />
       {cmsStore.home && (
-        <CategoryList
-          categories={categories}
-          title={cmsStore.home.categories_title}
-        />
+        <CategoryList categories={categories} title={cmsStore.home.categories_title} />
       )}
       <Personas personas={personas} />
     </main>

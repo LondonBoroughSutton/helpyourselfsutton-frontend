@@ -36,14 +36,10 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
             className="footer__content"
             children={get(cmsStore, 'global.footer_content')}
           />
-          <Link
-            className="footer__link"
-            to="/privacy-policy">
+          <Link className="footer__link" to="/privacy-policy">
             Privacy Policy
           </Link>
-          <Link
-            className="footer__link"
-            to="/terms-and-conditions">
+          <Link className="footer__link" to="/terms-and-conditions">
             Terms and Conditions
           </Link>
         </div>
@@ -51,10 +47,12 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
           <div className="flex-container flex-container--no-padding">
             <div className="flex-col flex-col--6 flex-col--tablet--12 footer__contact">
               <h2 className="footer__header h5">
-                Get in touch with<br />Sutton Information Hub
+                Get in touch with
+                <br />
+                Sutton Information Hub
               </h2>
               <nav className="footer__social-links" role="menu" aria-label="Social Media Links">
-                {facebookHandle !== "#" && (
+                {facebookHandle !== '#' && (
                   <a
                     href={`https://facebook.com/${facebookHandle}`}
                     target="_blank"
@@ -66,7 +64,7 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
                     <FontAwesomeIcon icon={['fab', 'facebook']} className="footer__social-icons" />
                   </a>
                 )}
-                {twitterHandle !== "#" && (
+                {twitterHandle !== '#' && (
                   <a
                     href={`https://twitter.com/${twitterHandle}`}
                     target="_blank"
@@ -80,15 +78,10 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
                 )}
               </nav>
               <nav className="footer__contact-links">
-                <Link
-                  className="footer__link"
-                  to={'/contact'}>
+                <Link className="footer__link" to={'/contact'}>
                   Contact us
                 </Link>
-                <button
-                  className="footer__link"
-                  onClick={() => uiStore.toggleFeedbackModal()}
-                >
+                <button className="footer__link" onClick={() => uiStore.toggleFeedbackModal()}>
                   Give feedback
                 </button>
               </nav>
@@ -99,7 +92,8 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
                 className="button button__link"
                 href={membersAreaURL}
                 target="_blank"
-                rel="noopener nofollow noreferrer">
+                rel="noopener nofollow noreferrer"
+              >
                 <span>Members Area</span>
               </a>
               <img src={Logo} alt="London Borough of Sutton" className="footer-logo" />

@@ -50,7 +50,7 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
             </a>
           </div>
           <div className="flex-col flex-col--12 cms--contact-card--socials service__contact-card--row">
-            {facebookHandle !== "#" && (
+            {facebookHandle !== '#' && (
               <a
                 href={`https://facebook.com/${facebookHandle}`}
                 target="_blank"
@@ -61,7 +61,7 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
                 <FontAwesomeIcon icon={['fab', 'facebook']} className="service__social-icon" />
               </a>
             )}
-            {twitterHandle !== "#" && (
+            {twitterHandle !== '#' && (
               <a
                 href={`https://twitter.com/${twitterHandle}`}
                 target="_blank"

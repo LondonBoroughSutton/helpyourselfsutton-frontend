@@ -32,7 +32,7 @@ const Personas: React.FunctionComponent<IProps> = ({ personas, history, cmsStore
         </div>
 
         <div className="personas__list">
-          {personas.map(persona => (
+          {personas.map((persona) => (
             <PersonasCard
               key={persona.id}
               persona={persona}
@@ -42,10 +42,7 @@ const Personas: React.FunctionComponent<IProps> = ({ personas, history, cmsStore
         </div>
       </div>
       <div className="personas__image flex-container">
-        <img
-          src={personasImage}
-          className="image"
-          alt="A man walking" />
+        <img src={personasImage} className="image" alt="A man walking" />
       </div>
     </section>
   );

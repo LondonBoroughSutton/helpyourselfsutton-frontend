@@ -17,9 +17,7 @@ const FavouriteShare: React.FunctionComponent<IProps> = ({ favouritesStore }) =>
     <div className="favourites__share flex-container flex-container--no-padding flex-container--align-end">
       <div className="flex-col">
         <p>Share</p>
-        <nav
-          className="favourites__share__nav"
-          aria-label="Social Share">
+        <nav className="favourites__share__nav" aria-label="Social Share">
           <a
             href={`https://www.facebook.com/sharer/sharer.php?u=${
               window.origin

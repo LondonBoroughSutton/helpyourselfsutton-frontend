@@ -13,8 +13,8 @@ interface IProps {
 const BannerSlider: FunctionComponent<IProps> = ({ banners = [] }) => {
   const [activeCarouselItem, setActiveCarouselItem] = useState(0);
 
-  if(banners.length === 0) {
-    return null
+  if (banners.length === 0) {
+    return null;
   }
 
   return (
@@ -24,19 +24,23 @@ const BannerSlider: FunctionComponent<IProps> = ({ banners = [] }) => {
           {banners.map((banner, i) => (
             <div
               key={i}
-              className={'banner-slider__item' + (activeCarouselItem === i ? ' banner-slider__item--active' : '')}>
-              {banner.title && (
-                <h2 className="banner-slider__item__title">{banner.title}</h2>
-              )}
+              className={
+                'banner-slider__item' +
+                (activeCarouselItem === i ? ' banner-slider__item--active' : '')
+              }
+            >
+              {banner.title && <h2 className="banner-slider__item__title">{banner.title}</h2>}
               <ReactMarkdown
                 className="banner-slider__item__description"
-                children={banner.content} />
+                children={banner.content}
+              />
               {banner.button_url && (
                 <div className="banner-slider__item__cta">
                   <ButtonLink
                     text={banner.button_text}
                     icon="arrow-right"
-                    href={banner.button_url} />
+                    href={banner.button_url}
+                  />
                 </div>
               )}
             </div>
@@ -56,7 +60,7 @@ const BannerSlider: FunctionComponent<IProps> = ({ banners = [] }) => {
             </button>
             <button
               className="banner-slider__arrow arrow-right"
-              disabled={activeCarouselItem >= (banners.length - 1) ? true : false}
+              disabled={activeCarouselItem >= banners.length - 1 ? true : false}
               onClick={() => {
                 setActiveCarouselItem(activeCarouselItem + 1);
               }}

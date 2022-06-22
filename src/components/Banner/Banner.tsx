@@ -20,14 +20,9 @@ const Banner: FunctionComponent<IProps> = ({ banner, activeCarouselItem, bannerI
       <div className="flex-container">
         <div className="banner__content">
           <h1 className="banner__title">{banner.title}</h1>
-          <ReactMarkdown
-            className="banner__description"
-            children={banner.content} />
+          <ReactMarkdown className="banner__description" children={banner.content} />
           <div className="banner__cta">
-            <ButtonLink
-              text={banner.button_text}
-              icon="arrow-right"
-              href={banner.button_url} />
+            <ButtonLink text={banner.button_text} icon="arrow-right" href={banner.button_url} />
           </div>
         </div>
       </div>

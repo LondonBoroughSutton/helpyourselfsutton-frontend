@@ -11,10 +11,7 @@ interface IProps {
 }
 
 const PersonasCard: React.FunctionComponent<IProps> = ({ persona, url }) => (
-  <a
-    className="persona-card"
-    href={url}
-    aria-label={`Go to persona page: ${persona.name}`}>
+  <a className="persona-card" href={url} aria-label={`Go to persona page: ${persona.name}`}>
     <div className="persona-card__image">
       <img
         src={`${apiBase}/collections/personas/${persona.id}/image.png?max_dimension=240`}

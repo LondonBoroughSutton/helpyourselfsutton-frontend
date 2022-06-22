@@ -22,10 +22,7 @@ const CriteriaCard: React.FunctionComponent<IProps> = ({ svg, title, info }) => 
   const getInfo = () => {
     let infoText = info;
     if (shouldShowToggle()) {
-      infoText = info
-        .split(',')
-        .slice(0, 3)
-        .join(', ');
+      infoText = info.split(',').slice(0, 3).join(', ');
     }
     return infoText;
   };
@@ -34,10 +31,7 @@ const CriteriaCard: React.FunctionComponent<IProps> = ({ svg, title, info }) => 
 
     if (shouldShowToggle()) {
       const size = info.split(', ').length;
-      infoText = info
-        .split(',')
-        .slice(3, size)
-        .join(', ');
+      infoText = info.split(',').slice(3, size).join(', ');
     }
     return infoText;
   };

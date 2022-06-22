@@ -35,7 +35,7 @@ export default class ServiceStore {
       return (this.service.eligibility_types &&
         this.service.eligibility_types.taxonomies &&
         this.service.eligibility_types.taxonomies.length) ||
-        !every(this.service.eligibility_types.custom, criteria => criteria === null)
+        !every(this.service.eligibility_types.custom, (criteria) => criteria === null)
         ? true
         : false;
     }
@@ -91,7 +91,7 @@ export default class ServiceStore {
       const locationData = await axios.get(
         `${apiBase}/service-locations?filter[service_id]=${this.service.id}&include=location`
       );
-      
+
       runInAction(() => {
         this.locations = get(locationData, 'data.data');
       });

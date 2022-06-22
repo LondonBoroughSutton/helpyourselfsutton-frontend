@@ -25,7 +25,9 @@ const TermsAndConditions: React.FunctionComponent<IProps> = ({ referralStore }) 
           <h2 className="referral__step-container__question">How we will use this information</h2>
         </div>
         <div className="referral__terms">
-          <p className="referral__terms__section body--m">If you click <strong>I agree</strong> below, you are consenting to the following:</p>
+          <p className="referral__terms__section body--m">
+            If you click <strong>I agree</strong> below, you are consenting to the following:
+          </p>
 
           <ul className="referral__terms__section">
             <li>{`To have the information shared with ${get(referralStore, 'service.name')}`}</li>
@@ -50,7 +52,10 @@ const TermsAndConditions: React.FunctionComponent<IProps> = ({ referralStore }) 
           </ul>
 
           <p className="referral__terms__section body--s">
-            For further information, please view our <Link className="link" to="/privacy-policy">privacy policy</Link>
+            For further information, please view our{' '}
+            <Link className="link" to="/privacy-policy">
+              privacy policy
+            </Link>
           </p>
 
           <Checkbox
@@ -64,7 +69,10 @@ const TermsAndConditions: React.FunctionComponent<IProps> = ({ referralStore }) 
             onChange={() => referralStore.toggleConsent()}
           />
           <p className="referral__terms__section body--s">
-            I do not agree, please <Link className="link" to="/">take me back</Link>
+            I do not agree, please{' '}
+            <Link className="link" to="/">
+              take me back
+            </Link>
           </p>
         </div>
       </div>
@@ -81,8 +89,9 @@ const TermsAndConditions: React.FunctionComponent<IProps> = ({ referralStore }) 
             disabled={!referralStore.referral.referral_consented}
           />
           <p
-            dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
-            className="body--s" />
+            dangerouslySetInnerHTML={{ __html: html(referralStore.stepDescription) }}
+            className="body--s"
+          />
         </div>
       </div>
     </Fragment>

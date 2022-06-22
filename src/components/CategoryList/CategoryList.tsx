@@ -24,7 +24,9 @@ const CategoryList: React.FunctionComponent<IProps> = ({
       {title && <h2 className="category-list__heading">{title}</h2>}
       <div className="category-list__items">
         {categories.map(({ name, id }) => {
-          const image = require('../../assets/images/category-images/' + name.replace(/[, ]+/g, '-').toLowerCase() + '.svg');
+          const image = require('../../assets/images/category-images/' +
+            name.replace(/[, ]+/g, '-').toLowerCase() +
+            '.svg');
 
           return (
             <Button
