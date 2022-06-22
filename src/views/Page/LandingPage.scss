@@ -102,13 +102,20 @@
 }
 
 .landing-page__image {
-  width: 100%;
-  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: space(32);
-  border-radius: 40px;
 
   @include for-tablet-landscape-down {
     margin-bottom: space(24);
+  }
+
+  .image {
+    max-width: 280px;
+    max-height: 280px;
+    width: 100%;
+    height: auto;
   }
 }
 

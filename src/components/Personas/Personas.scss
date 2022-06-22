@@ -14,16 +14,14 @@
   }
 
   &__intro {
-    margin-left: space(56);
+    margin-left: space(8);
     margin-bottom: space(48);
 
     @include for-tablet-landscape-down {
-      margin-left: space(40);
       margin-bottom: space(32);
     }
 
     @include for-phone-only {
-      margin-left: space(32);
       margin-bottom: space(24);
     }
   }
@@ -59,19 +57,17 @@
   }
 
   &__image {
-    margin-top: -80px;
-    transform: translateX(-120px);
-
+    margin-top: 32px;
+    
     @include for-tablet-landscape-down {
-      transform: translateX(-80px);
-    }
-
-    @include for-phone-only {
-      margin-top: -16px;
-      transform: translateX(-16px);
+      margin-top: 16px;
     }
 
     .image {
+      max-width: 100%;
+      height: auto;
+      padding-left: 32px;
+
       @include for-tablet-landscape-down {
         max-height: 320px;
       }

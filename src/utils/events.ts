@@ -8,7 +8,7 @@ export const EventEmitter = {
       return;
     }
     // @ts-ignore
-    this._events[event].forEach(callback => callback(data));
+    this._events[event].forEach((callback) => callback(data));
   },
   subscribe(event: Events, callback: (data: any) => any) {
     // @ts-ignore

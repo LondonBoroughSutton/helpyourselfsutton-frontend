@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { inject, observer } from 'mobx-react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
+import InnerHTML from 'dangerously-set-html-content'
 import get from 'lodash/get';
 import map from 'lodash/map';
 import find from 'lodash/find';
@@ -132,7 +133,7 @@ class Service extends Component<IProps> {
     if (UUIDs && UUIDs.length && taxonomies) {
       // Traverse through UUIDS and then filter the array of taxonomies to find a match using the taxonomy ID
       UUIDs.forEach((uuid: string) => {
-        const matchedTaxonomyParent = taxonomies.filter(taxonomy => taxonomy.name === name)[0];
+        const matchedTaxonomyParent = taxonomies.filter((taxonomy) => taxonomy.name === name)[0];
 
         if (matchedTaxonomyParent && matchedTaxonomyParent.children) {
           const matchedTaxonomy: any =
@@ -152,10 +153,7 @@ class Service extends Component<IProps> {
     if (service && service.eligibility_types.custom) {
       const customEligibility = get(
         service.eligibility_types.custom,
-        `${name
-          .split(' ')
-          .join('_')
-          .toLowerCase()}`
+        `${name.split(' ').join('_').toLowerCase()}`
       );
 
       if (customEligibility) {
@@ -178,6 +176,10 @@ class Service extends Component<IProps> {
     if (service.status === 'inactive') {
       return <ServiceDisabled />;
     }
+
+    const cqcWidget = (locationId: string) => {
+      return `<script type="text/javascript" src="https://www.cqc.org.uk/sites/all/modules/custom/cqc_widget/widget.js?data-id=${locationId}&data-host=www.cqc.org.uk&type=location"></script>`;
+    };
 
     return (
       <main className="service">
@@ -211,9 +213,7 @@ class Service extends Component<IProps> {
           <div className="flex-container">
             <div className="flex-col">
               <div className="service__header__logo">
-                <img
-                  src={getImg(service)}
-                  alt={`${service.name} logo`} />
+                <img src={getImg(service)} alt={`${service.name} logo`} />
               </div>
             </div>
             <div className="flex-col">
@@ -225,7 +225,8 @@ class Service extends Component<IProps> {
                   <Link
                     to={`/organisations/${organisation.slug}`}
                     aria-label="Home Link"
-                    className="service__header__description__link">
+                    className="service__header__description__link"
+                  >
                     {organisation.name}
                   </Link>
                   . View their organisation details and other listed services.
@@ -399,9 +400,12 @@ class Service extends Component<IProps> {
 
                     <ReactMarkdown
                       children={service.description}
-                      className={cx('markdown service__markdown service__markdown--description mobile-hide', {
-                        'service__markdown--description--tight': !service.offerings.length,
-                      })}
+                      className={cx(
+                        'markdown service__markdown service__markdown--description mobile-hide',
+                        {
+                          'service__markdown--description--tight': !service.offerings.length,
+                        }
+                      )}
                     />
                   </div>
 
@@ -413,7 +417,9 @@ class Service extends Component<IProps> {
                         </div>
 
                         <figure className="flex-col flex-col--12 service__testimonial">
-                          <blockquote className="body--xl">{this.formatTestimonial(service.testimonial)}</blockquote>
+                          <blockquote className="body--xl">
+                            {this.formatTestimonial(service.testimonial)}
+                          </blockquote>
                         </figure>
                       </div>
                     </div>
@@ -534,9 +540,7 @@ class Service extends Component<IProps> {
                 <div className="service__section tablet-hide">
                   <CostCard service={service} />
                 </div>
-                {service.video_embed && (
-                  <VideoCard video={service.video_embed} width="100%" />
-                )}
+                {service.video_embed && <VideoCard video={service.video_embed} width="100%" />}
                 {!!locations.length && (
                   <div className="service__section mobile-hide">
                     <h2 className="service__heading">{`Where is this ${service.type}?`}</h2>
@@ -556,6 +560,12 @@ class Service extends Component<IProps> {
                     </div>
                   )}
                 </div>
+                {(service.cqc_location_id && service.cqc_location_id.match(/^\d-\d+$/)) &&
+                  <div className="service__section">
+                    <h2 className="service__heading">This {service.type}'s CQC Rating</h2>
+                    <InnerHTML html={cqcWidget(service.cqc_location_id)} />
+                  </div>
+                }
                 <div className="service__section">
                   <ShareCard serviceStore={serviceStore} />
                 </div>
@@ -572,7 +582,9 @@ class Service extends Component<IProps> {
             </div>
           </section>
         )}
-        {relatedServices && relatedServices.length > 0 && <RelatedServices relatedServices={relatedServices} />}
+        {relatedServices && relatedServices.length > 0 && (
+          <RelatedServices relatedServices={relatedServices} />
+        )}
       </main>
     );
   }

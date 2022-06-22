@@ -57,10 +57,15 @@ class Search extends React.Component<IProps> {
                 {cmsStore.home?.search_title && (
                   <h2 className="search__heading">{cmsStore.home.search_title}</h2>
                 )}
-                <form
-                  className="search__container__form"
-                >
+                <form className="search__container__form">
                   <div className="flex-col flex-col--mobile--12">
+                    <label
+                      className="sr-only"
+                      htmlFor="search"
+                      aria-label="Search for services, groups and activities"
+                    >
+                      Search for services, groups and activities
+                    </label>
                     <Input
                       placeholder="Search for services, groups and activities"
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

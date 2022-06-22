@@ -5,7 +5,7 @@
 
 .banner-slider {
   padding: space(40);
-  background-color: $botticelli;
+  background-color: $link-water;
 
   > .flex-container {
     position: relative;
@@ -44,7 +44,7 @@
 
   &__description {
     p {
-      @include body-l;
+      font-size: 1.2rem;
     }
   }
 

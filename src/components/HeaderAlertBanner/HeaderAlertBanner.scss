@@ -1,0 +1,32 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/typography.scss';
+@import '../../styles/colors.scss';
+
+
+.header-alert-banner {
+  padding: space(10) space(32);
+  background-color: $casablanca;
+
+  p {
+    @include body-s;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include for-tablet-portrait-up {
+      @include body-regular;
+    }
+
+    @include for-desktop-up {
+      max-width: 70vw;
+    }
+
+    @include for-big-desktop-up {
+      max-width: 60vw;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}

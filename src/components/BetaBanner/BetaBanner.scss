@@ -1,0 +1,17 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/typography.scss';
+
+.beta-banner {
+  padding: space(8) space(16);
+  background-color: $link-water;
+  text-align: center;
+  
+  p, a {
+    @include body-s;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}

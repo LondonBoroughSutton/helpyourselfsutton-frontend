@@ -21,7 +21,8 @@ const ReferralCard: React.FunctionComponent<IProps> = ({ history, service }) => 
           href={service.referral_url ? service.referral_url : ''}
           text="Make a connection"
           icon="arrow-right"
-          target="_blank" />
+          target="_blank"
+        />
       )}
       {service.referral_method === 'internal' && (
         <Button
@@ -34,7 +35,9 @@ const ReferralCard: React.FunctionComponent<IProps> = ({ history, service }) => 
     <div className="flex-col flex-col--12">
       <div className="service__refer-disclaimer">
         <FontAwesomeIcon icon="info-circle" size="lg" />
-        <p>It can take up to <strong>2 weeks</strong> to receive a reply</p>
+        <p>
+          It can take up to <strong>2 weeks</strong> to receive a reply
+        </p>
       </div>
     </div>
   </div>

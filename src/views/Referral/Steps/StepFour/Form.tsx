@@ -75,7 +75,7 @@ class Form extends Component<IProps, IState> {
 
     await this.validate();
 
-    const canSubmit = Object.values(this.state.errors).every(error => error === false);
+    const canSubmit = Object.values(this.state.errors).every((error) => error === false);
 
     if (canSubmit) {
       referralStore.nextStep();
@@ -122,7 +122,9 @@ class Form extends Component<IProps, IState> {
           </div>
           <div className="referral__form">
             <div className="referral__form__field">
-              <label className="referral__form__label" htmlFor="email">{label1}</label>
+              <label className="referral__form__label" htmlFor="email">
+                {label1}
+              </label>
               <Input
                 id="email"
                 type="email"
@@ -139,7 +141,9 @@ class Form extends Component<IProps, IState> {
               />
             </div>
             <div className="referral__form__field">
-              <label className="referral__form__label" htmlFor="phone">{label2}</label>
+              <label className="referral__form__label" htmlFor="phone">
+                {label2}
+              </label>
               <Input
                 id="phone"
                 type="tel"
@@ -165,7 +169,7 @@ class Form extends Component<IProps, IState> {
                 })}
                 tabIndex={0}
                 aria-pressed={open}
-                onKeyDown={e => (e.key === 'Enter' ? this.toggleNoContactDetails() : null)}
+                onKeyDown={(e) => (e.key === 'Enter' ? this.toggleNoContactDetails() : null)}
               >
                 {otherContactToggle}
               </button>
@@ -175,7 +179,9 @@ class Form extends Component<IProps, IState> {
               <div className="referral__form__field">
                 <h3>{otherContactHeading}</h3>
                 <div>
-                  <label className="referral__form__label" htmlFor="other_contact">{otherContactDescription}</label>
+                  <label className="referral__form__label" htmlFor="other_contact">
+                    {otherContactDescription}
+                  </label>
                   <div className="input--container">
                     <textarea
                       id="other_contact"
@@ -202,11 +208,16 @@ class Form extends Component<IProps, IState> {
                 e.preventDefault();
                 this.handleSubmit();
               }}
-              disabled={referralStore.step === 4 && (!referralStore.referral.email && !referralStore.referral.phone)}
+              disabled={
+                referralStore.step === 4 &&
+                !referralStore.referral.email &&
+                !referralStore.referral.phone
+              }
             />
             <p
-              dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
-              className="body--s" />
+              dangerouslySetInnerHTML={{ __html: html(referralStore.stepDescription) }}
+              className="body--s"
+            />
           </div>
         </div>
       </form>

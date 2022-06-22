@@ -3,7 +3,6 @@ import { observer } from 'mobx-react';
 
 import List from './List';
 
-
 import ResultsStore from '../../../stores/resultsStore';
 import { History } from 'history';
 import Loading from '../../../components/Loading';

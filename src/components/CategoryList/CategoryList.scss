@@ -5,6 +5,7 @@
 .category-list {
   padding: space(40) 0 space(80);
   background-color: $botticelli;
+  border-top: 3px solid $link-water;
 
   @include for-tablet-landscape-down {
     padding: space(32) 0 space(64);
@@ -15,16 +16,14 @@
   }
 
   &__heading {
-    margin-left: space(56);
+    margin-left: space(8);
     margin-bottom: space(48);
 
     @include for-tablet-landscape-down {
-      margin-left: space(40);
       margin-bottom: space(32);
     }
 
     @include for-phone-only {
-      margin-left: space(32);
       margin-bottom: space(24);
     }
   }

@@ -38,15 +38,11 @@ class Page extends Component<IProps> {
     return (
       page && (
         <main>
-          {page.page_type === 'landing' && (
-            <LandingPage content={page} />
-          )}
-          {page.page_type === 'information' && (
-            <InformationPage content={page} />
-          )}
+          {page.page_type === 'landing' && <LandingPage content={page} />}
+          {page.page_type === 'information' && <InformationPage content={page} />}
         </main>
       )
-    )
+    );
   }
 }
 

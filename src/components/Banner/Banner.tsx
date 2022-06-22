@@ -23,16 +23,18 @@ const Banner: FunctionComponent<IProps> = ({ banner, activeCarouselItem, bannerI
           <ReactMarkdown
             className="banner__description"
             children={banner.content} />
-          <div className="banner__cta">
-            <ButtonLink
-              text={banner.button_text}
-              icon="arrow-right"
-              href={banner.button_url} />
-          </div>
+          {banner.button_url !== "https://suttoninformationhub.org.uk" &&
+            <div className="banner__cta">
+              <ButtonLink
+                text={banner.button_text}
+                icon="arrow-right"
+                href={banner.button_url} />
+            </div>
+          }
         </div>
       </div>
       <div className="banner__image">
-        <img src={bannerIllo} alt="People doing activities, walking towards a house" />
+        <img src={bannerIllo} alt="Mother in a hi-jab with their son, a teenage girl using a guide dog and an older person using a walking stick" />
       </div>
     </section>
   );

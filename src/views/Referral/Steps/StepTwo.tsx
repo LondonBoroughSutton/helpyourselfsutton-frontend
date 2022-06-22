@@ -26,18 +26,14 @@ interface IButtonProps {
 const ReferButton: React.FunctionComponent<IButtonProps> = observer(
   ({ icon, text, setWho, active, subText, smallPadding, autoFocus }) => (
     <button
-      className={cx('referral__button',
-        {
-          'referral__button--active': active,
-        }
-      )}
+      className={cx('referral__button', {
+        'referral__button--active': active,
+      })}
       aria-label={`Connect ${text}`}
       onClick={() => setWho(text)}
       autoFocus={autoFocus}
     >
-      <FontAwesomeIcon
-        icon={icon}
-        className="referral__button__icon" />
+      <FontAwesomeIcon icon={icon} className="referral__button__icon" />
       <h4 className="referral__button__title">{text}</h4>
       <p className="referral__button__description">{subText}</p>
     </button>
@@ -89,8 +85,9 @@ const StepTwo: React.FunctionComponent<IProps> = ({ name, referralStore }) => {
             disabled={referralStore.step === 2 && !referralStore.whoFor}
           />
           <p
-            dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
-            className="body--s" />
+            dangerouslySetInnerHTML={{ __html: html(referralStore.stepDescription) }}
+            className="body--s"
+          />
         </div>
       </div>
     </div>

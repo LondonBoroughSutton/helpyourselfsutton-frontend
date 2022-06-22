@@ -48,7 +48,7 @@ class FeedbackModal extends Component<IProps, any> {
   handleSubmit = async () => {
     await this.validate();
 
-    const canSubmit = Object.values(this.state.errors).every(error => error === false);
+    const canSubmit = Object.values(this.state.errors).every((error) => error === false);
 
     if (canSubmit) {
       feedbackStore.submitFeedback();
@@ -80,7 +80,9 @@ class FeedbackModal extends Component<IProps, any> {
             </button>
           </div>
           <div className="flex-col flex-col--12  modal__header">
-            <h2 className="modal__title">{feedbackStore.submitted ? 'Thank you' : 'Submit your feedback'}</h2>
+            <h2 className="modal__title">
+              {feedbackStore.submitted ? 'Thank you' : 'Submit your feedback'}
+            </h2>
             <p className="modal__question">
               We would really like to hear your views about the information on this page. Your
               feedback goes to the Sutton Information Hub team and all feedback is private.

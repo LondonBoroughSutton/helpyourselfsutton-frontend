@@ -110,7 +110,11 @@ class MapView extends Component<IProps, IState> {
     return (
       <div className="flex-container flex-container--space flex-container--row-reverse map">
         <div className="flex-col--8 flex-col--tablet--12 map__map-container">
-          <MapContainer centre={CENTRE_OF_MAP} attributionControl={false} bounds={this.state.bounds}>
+          <MapContainer
+            centre={CENTRE_OF_MAP}
+            attributionControl={false}
+            bounds={this.state.bounds}
+          >
             <TileLayer url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png" />
             {resultsStore.results.map((result: IService) => {
               if (result.service_locations) {
@@ -122,8 +126,8 @@ class MapView extends Component<IProps, IState> {
                       icon={this.getMarkerType('service')}
                       eventHandlers={{
                         click: () => {
-                          this.setActiveService(result.id)
-                        }
+                          this.setActiveService(result.id);
+                        },
                       }}
                     />
                   );

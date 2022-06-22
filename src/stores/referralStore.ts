@@ -54,7 +54,7 @@ class ReferralStore {
     runInAction(() => {
       // @ts-ignore
       this.referral[field] = input;
-    })
+    });
   };
 
   @action
@@ -101,7 +101,7 @@ class ReferralStore {
   @action
   submitReferral = async () => {
     if (this.service) {
-      Object.keys(this.referral).forEach(key => {
+      Object.keys(this.referral).forEach((key) => {
         // @ts-ignore
         if (key.includes('phone') && isString(this.referral[key])) {
           // @ts-ignore
@@ -193,9 +193,9 @@ class ReferralStore {
   partnerOrganisationLabels = () => {
     const orderedList = orderBy(this.partnerOrganisations, 'name', 'asc');
 
-    const filteredList = orderedList.filter(org => org.name !== 'Family/Friend');
+    const filteredList = orderedList.filter((org) => org.name !== 'Family/Friend');
 
-    return filteredList.map(org => ({
+    return filteredList.map((org) => ({
       value: org.id,
       text: org.name,
     }));

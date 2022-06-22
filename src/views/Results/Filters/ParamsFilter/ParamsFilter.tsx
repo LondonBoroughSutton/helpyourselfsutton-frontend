@@ -70,7 +70,7 @@ class Filter extends Component<IProps, IState> {
   handleAmend = async (callback: () => void) => {
     await this.validate();
 
-    const canSubmit = Object.values(this.state.errors).every(error => error === false);
+    const canSubmit = Object.values(this.state.errors).every((error) => error === false);
 
     if (canSubmit) {
       return callback();
@@ -144,7 +144,7 @@ class Filter extends Component<IProps, IState> {
           <h1 className="results__filters__heading">Search results</h1>
         )}
         <form
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
             this.search();
           }}
@@ -152,7 +152,14 @@ class Filter extends Component<IProps, IState> {
           <div className={resultsStore.isKeywordSearch ? 'flex-col' : 'flex-col flex-col--12'}>
             <div className="results__filters--primary">
               {resultsStore.isKeywordSearch && (
-                <div className="">
+                <div>
+                  <label
+                    className="sr-only"
+                    htmlFor="keyword"
+                    aria-label="Search using a keyword"
+                  >
+                    Search using a keyword
+                  </label>
                   <Input
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       const target = e.target || null;
@@ -266,14 +273,15 @@ class Filter extends Component<IProps, IState> {
                 className={'flex-container flex-container--align-center flex-container--no-padding'}
               >
                 <div className={'flex-col flex-col-medium-8'}>
-                  <h3 className="h4">Filter by</h3>
+                  <h2 className="h4">Filter by</h2>
                   <p className="body--m">You can get more personalised results</p>
                 </div>
                 <div className={'flex-col flex-col-medium-2'}>
                   <button
                     type="button"
                     onClick={this.toggleFilters}
-                    className={'results__filters__show-more-button'}>
+                    className={'results__filters__show-more-button'}
+                  >
                     {this.state.showFilters ? 'Hide' : 'Show more'} filters
                     <FontAwesomeIcon
                       icon={!this.state.showFilters ? 'chevron-down' : 'chevron-up'}
@@ -415,16 +423,12 @@ class Filter extends Component<IProps, IState> {
                       </div>
                     )}
                     {/* ./column */}
-                    
+
                     <div className="results__filters--remove">
-                      <Button
-                        onClick={this.resetFilters}
-                        alt={true}
-                        text="Remove all filters"
-                        />
+                      <Button onClick={this.resetFilters} alt={true} text="Remove all filters" />
                     </div>
 
-                    <button type="submit"></button>
+                    <button type="submit" />
                   </div>
                 </div>
               )}

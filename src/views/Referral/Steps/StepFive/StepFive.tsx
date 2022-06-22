@@ -46,11 +46,7 @@ const StepFive: React.FunctionComponent<IProps> = ({ referralStore }) => {
     return null;
   }
 
-  return (
-    <Fragment>
-      {chooseForm(referralStore)}
-    </Fragment>
-  );
+  return <Fragment>{chooseForm(referralStore)}</Fragment>;
 };
 
 export default inject('referralStore')(observer(StepFive));

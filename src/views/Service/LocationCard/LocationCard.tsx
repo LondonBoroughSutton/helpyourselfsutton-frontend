@@ -34,12 +34,9 @@ const formatOpeningTimes = (openingTimes: IOpeningHour[]) => {
 const LocationCard: React.FunctionComponent<IProps> = ({ location, className, desktop }) => (
   <div className={`${className} location`}>
     <div
-      className={cx(
-        'flex-container flex-container--no-padding location__container',
-        {
-          'flex-container--row-reverse service__section--no-padding': desktop,
-        }
-      )}
+      className={cx('flex-container flex-container--no-padding location__container', {
+        'flex-container--row-reverse service__section--no-padding': desktop,
+      })}
     >
       <div
         className={`flex-col ${
@@ -83,20 +80,16 @@ const LocationCard: React.FunctionComponent<IProps> = ({ location, className, de
             </h3>
             <div className="flex-container flex-container--no-padding">
               <div className="flex-col flex-col--12 flex-col--mobile--12 location__opening-times--list">
-                {formatOpeningTimes(location.regular_opening_hours).map(
-                  (openingTime: string) => (
-                    <p key={uniqueId()} dangerouslySetInnerHTML={{ __html: html(openingTime) }} />
-                  )
-                )}
+                {formatOpeningTimes(location.regular_opening_hours).map((openingTime: string) => (
+                  <p key={uniqueId()} dangerouslySetInnerHTML={{ __html: html(openingTime) }} />
+                ))}
               </div>
               {location.holiday_opening_hours.length > 0 && (
                 <div className="flex-col flex-col--12 flex-col--mobile--12 location__opening-times--list">
                   <Accordian title="Bank holiday times" className="location__holiday-times">
-                    {formatHolidayTimes(location.holiday_opening_hours).map(
-                      (time: string) => (
-                        <p key={uniqueId()} dangerouslySetInnerHTML={{ __html: html(time) }} />
-                      )
-                    )}
+                    {formatHolidayTimes(location.holiday_opening_hours).map((time: string) => (
+                      <p key={uniqueId()} dangerouslySetInnerHTML={{ __html: html(time) }} />
+                    ))}
                   </Accordian>
                 </div>
               )}

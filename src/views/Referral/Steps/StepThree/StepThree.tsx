@@ -11,13 +11,7 @@ interface IProps {
 const chooseForm = (referralStore: ReferralStore) => {
   switch (referralStore.whoFor) {
     case 'Myself':
-      return (
-        <Form
-          label="Your full name"
-          heading="About you"
-          referralStore={referralStore}
-        />
-      );
+      return <Form label="Your full name" heading="About you" referralStore={referralStore} />;
     case 'A friend or family member':
       return (
         <Form
@@ -52,11 +46,7 @@ const StepThree: React.FunctionComponent<IProps> = ({ referralStore }) => {
     return null;
   }
 
-  return (
-    <Fragment>
-      {chooseForm(referralStore)}
-    </Fragment>
-  );
+  return <Fragment>{chooseForm(referralStore)}</Fragment>;
 };
 
 export default inject('referralStore')(observer(StepThree));

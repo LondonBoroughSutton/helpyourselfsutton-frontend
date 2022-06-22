@@ -27,14 +27,14 @@ class Form extends Component<IProps> {
           </div>
           <div>
             <div className="referral__form__field">
-              <label
-                className="referral__form__label"
-                htmlFor="name">{label}</label>
+              <label className="referral__form__label" htmlFor="name">
+                {label}
+              </label>
               <Input
                 id="name"
                 value={referralStore.referral.name}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  referralStore.handleInput('name', e.target.value)
+                  referralStore.handleInput('name', e.target.value);
                 }}
                 className="referral__step-container--input"
                 placeholder="John Smith"
@@ -54,8 +54,9 @@ class Form extends Component<IProps> {
               disabled={referralStore.step === 3 && !referralStore.referral.name}
             />
             <p
-              dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
-              className="body--s" />
+              dangerouslySetInnerHTML={{ __html: html(referralStore.stepDescription) }}
+              className="body--s"
+            />
           </div>
         </div>
       </form>

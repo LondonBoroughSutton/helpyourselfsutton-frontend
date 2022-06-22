@@ -63,7 +63,7 @@ class CMSStore {
           // @ts-ignore
           this[key] = data;
         });
-      })
+      });
     } catch (e) {
       console.error(e);
     }
@@ -73,7 +73,7 @@ class CMSStore {
   get hasBanner() {
     const bannerFields = omit(this.banner, 'has_image');
 
-    return every(bannerFields, field => field === null) ? false : true;
+    return every(bannerFields, (field) => field === null) ? false : true;
   }
 }
 

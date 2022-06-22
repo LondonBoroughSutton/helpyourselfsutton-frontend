@@ -4,19 +4,17 @@
 
 .landing-pages {
   padding: space(48) 0;
-  background-color: $fountain-blue;
+  background-color: $botticelli;
 
   &__heading {
-    margin-left: space(56);
+    margin-left: space(8);
     margin-bottom: space(48);
 
     @include for-tablet-landscape-down {
-      margin-left: space(40);
       margin-bottom: space(32);
     }
 
     @include for-phone-only {
-      margin-left: space(32);
       margin-bottom: space(24);
     }
   }

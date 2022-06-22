@@ -38,12 +38,14 @@ class SearchStore {
       categoryList = categoryList.filter((category: any) => category.enabled === true);
 
       // temp addition for COVID-19
-      const [covidCategories, normalCategories] = partition(categoryList, category =>
+      const [covidCategories, normalCategories] = partition(categoryList, (category) =>
         category.name.includes('COVID-19:')
       );
 
       // sanitize category names by removing keyword for sorting
-      covidCategories.forEach(category => (category.name = category.name.replace('COVID-19:', '')));
+      covidCategories.forEach(
+        (category) => (category.name = category.name.replace('COVID-19:', ''))
+      );
 
       runInAction(() => {
         this.categories = normalCategories;
@@ -58,7 +60,7 @@ class SearchStore {
   getPersonas = async () => {
     try {
       const personas = await axios.get(`${apiBase}/collections/personas`);
-      let personasList = get(personas, 'data.data', []);
+      const personasList = get(personas, 'data.data', []);
       runInAction(() => {
         this.personas = personasList.filter((persona: IPersona) => persona.enabled);
       });
