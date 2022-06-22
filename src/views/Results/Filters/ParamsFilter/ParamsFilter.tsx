@@ -70,7 +70,7 @@ class Filter extends Component<IProps, IState> {
   handleAmend = async (callback: () => void) => {
     await this.validate();
 
-    const canSubmit = Object.values(this.state.errors).every(error => error === false);
+    const canSubmit = Object.values(this.state.errors).every((error) => error === false);
 
     if (canSubmit) {
       return callback();
@@ -144,7 +144,7 @@ class Filter extends Component<IProps, IState> {
           <h1 className="results__filters__heading">Search results</h1>
         )}
         <form
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
             this.search();
           }}
@@ -280,7 +280,8 @@ class Filter extends Component<IProps, IState> {
                   <button
                     type="button"
                     onClick={this.toggleFilters}
-                    className={'results__filters__show-more-button'}>
+                    className={'results__filters__show-more-button'}
+                  >
                     {this.state.showFilters ? 'Hide' : 'Show more'} filters
                     <FontAwesomeIcon
                       icon={!this.state.showFilters ? 'chevron-down' : 'chevron-up'}
@@ -422,16 +423,12 @@ class Filter extends Component<IProps, IState> {
                       </div>
                     )}
                     {/* ./column */}
-                    
+
                     <div className="results__filters--remove">
-                      <Button
-                        onClick={this.resetFilters}
-                        alt={true}
-                        text="Remove all filters"
-                        />
+                      <Button onClick={this.resetFilters} alt={true} text="Remove all filters" />
                     </div>
 
-                    <button type="submit"></button>
+                    <button type="submit" />
                   </div>
                 </div>
               )}

@@ -51,7 +51,9 @@ class Form extends Component<IProps, IState> {
           </div>
           <div>
             <div className="referral__form__field">
-              <label className="referral__form__label" htmlFor="name">{label}</label>
+              <label className="referral__form__label" htmlFor="name">
+                {label}
+              </label>
               <Input
                 id="name"
                 value={get(referralStore, 'referral.referee_name') || ''}
@@ -66,7 +68,9 @@ class Form extends Component<IProps, IState> {
             {showPartnerOrgs && (
               <Fragment>
                 <div className="referral__form__field">
-                  <label className="referral__form__label" htmlFor="orderBy">Do you work for one of our partner organisations?</label>
+                  <label className="referral__form__label" htmlFor="orderBy">
+                    Do you work for one of our partner organisations?
+                  </label>
                   <div className="input--container">
                     <Autocomplete
                       storeTextField="organisation"
@@ -88,7 +92,7 @@ class Form extends Component<IProps, IState> {
                     })}
                     tabIndex={0}
                     aria-pressed={open}
-                    onKeyDown={e => (e.key === 'Enter' ? this.toggleOrganisation() : null)}
+                    onKeyDown={(e) => (e.key === 'Enter' ? this.toggleOrganisation() : null)}
                   >
                     I can't see my organisation
                   </button>
@@ -96,7 +100,9 @@ class Form extends Component<IProps, IState> {
 
                 {open && (
                   <div className="referral__form__field">
-                    <label className="referral__form__label" htmlFor="organisation">Other organisation</label>
+                    <label className="referral__form__label" htmlFor="organisation">
+                      Other organisation
+                    </label>
                     <Input
                       id="organisation"
                       value={get(referralStore, 'referral.organisation') || ''}
@@ -124,8 +130,9 @@ class Form extends Component<IProps, IState> {
               disabled={!referralStore.referral.referee_name}
             />
             <p
-              dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
-              className="body--s" />
+              dangerouslySetInnerHTML={{ __html: html(referralStore.stepDescription) }}
+              className="body--s"
+            />
           </div>
         </div>
       </form>

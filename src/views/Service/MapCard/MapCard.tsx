@@ -47,13 +47,12 @@ class MapCard extends Component<IProps, IState> {
   render() {
     const { locations } = this.props;
 
-
     const locationObj: any = first(locations);
     const mapCenter: [number, number] = locationObj
       ? [locationObj.location.lat, locationObj.location.lon]
       : [51.460729410758496, -0.3726421426363473];
-    
-    let markerPin = L.icon({
+
+    const markerPin = L.icon({
       iconUrl: servicePin,
       iconSize: [50, 95],
     });
@@ -61,7 +60,12 @@ class MapCard extends Component<IProps, IState> {
     this.addMarkers(locations);
 
     return (
-      <MapContainer center={mapCenter} zoom={14} attributionControl={false} setMaxBounds={this.state.bounds}>
+      <MapContainer
+        center={mapCenter}
+        zoom={14}
+        attributionControl={false}
+        setMaxBounds={this.state.bounds}
+      >
         <TileLayer url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png" />
         {locations.map((serviceLocation: IServiceLocation) => {
           return (

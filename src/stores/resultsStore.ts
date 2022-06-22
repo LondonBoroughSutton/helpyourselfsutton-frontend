@@ -111,11 +111,11 @@ export default class ResultsStore {
     const params: any = this.queryParams;
     let queryString = null;
 
-    const queryParams = Object.keys(params).map(key => {
+    const queryParams = Object.keys(params).map((key) => {
       return params[key] ? `${key}=${params[key]}` : null;
     });
 
-    queryString = `${queryParams.filter(filter => filter !== null).join('&')}`;
+    queryString = `${queryParams.filter((filter) => filter !== null).join('&')}`;
     return queryString;
   };
 
@@ -341,7 +341,7 @@ export default class ResultsStore {
       await this.fetchResults();
     }
 
-    if(this.isKeywordSearch) {
+    if (this.isKeywordSearch) {
       await this.fetchPages(12);
     }
   };
@@ -384,7 +384,7 @@ export default class ResultsStore {
     const service_eligibilities: any = [];
     const { ...filters }: any = this.filters;
 
-    Object.keys(this.filters).forEach(key => {
+    Object.keys(this.filters).forEach((key) => {
       if (filters[key]) {
         const filterGroup = filters[key].split(',');
 
@@ -421,7 +421,7 @@ export default class ResultsStore {
       runInAction(() => {
         this.results = get(results, 'data.data', []);
         this.totalItems = get(results, 'data.meta.total', 0);
-      })
+      });
 
       forEach(this.results, (service: IService) => {
         // @ts-ignore
@@ -443,14 +443,11 @@ export default class ResultsStore {
     });
 
     try {
-      const results = await axios.post(
-        `${apiBase}/search/pages`,
-        {
-          page: 1,
-          per_page: perPage,
-          query: this.keyword
-        }
-      );
+      const results = await axios.post(`${apiBase}/search/pages`, {
+        page: 1,
+        per_page: perPage,
+        query: this.keyword,
+      });
       runInAction(() => {
         this.pages = get(results, 'data.data', []);
       });
@@ -553,7 +550,7 @@ export default class ResultsStore {
 
   @computed
   get serviceWithLocations() {
-    const locations = this.results.filter(service => service.service_locations.length);
+    const locations = this.results.filter((service) => service.service_locations.length);
 
     const totalLocations = locations.reduce((total, location) => {
       total += location.service_locations.length;

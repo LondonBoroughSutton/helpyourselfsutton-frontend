@@ -6,8 +6,7 @@ const ServiceDisabled = () => (
       <h1 className="not__found--heading">Service not available</h1>
       <p className="body-l">
         This service has been removed from Sutton Information Hub. Please contact{' '}
-        <a href="mailto:ia.hub@sutton.gov.uk">ia.hub@sutton.gov.uk</a> for more
-        information.
+        <a href="mailto:ia.hub@sutton.gov.uk">ia.hub@sutton.gov.uk</a> for more information.
       </p>
     </div>
   </div>

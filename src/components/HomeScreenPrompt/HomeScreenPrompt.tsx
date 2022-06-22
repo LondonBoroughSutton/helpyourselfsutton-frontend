@@ -81,9 +81,7 @@ class HomeScreenPrompt extends Component<any, IState> {
               </div>
               <div className="home-screen-prompt__info">
                 <h2 className="home-screen-prompt__title h4">Add to homescreen?</h2>
-                <p>
-                  Add this website to your homescreen to quickly access support opportunities
-                </p>
+                <p>Add this website to your homescreen to quickly access support opportunities</p>
                 <div className="home-screen-prompt__ctas">
                   <Button
                     size="small"

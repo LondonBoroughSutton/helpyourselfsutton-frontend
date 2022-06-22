@@ -100,7 +100,7 @@ const FavouritesCard: React.FunctionComponent<IProps> = ({
                 title={`${serviceLocations.length} locations`}
                 className={'search-result-card__location-list'}
               >
-                {serviceLocations.map(location => (
+                {serviceLocations.map((location) => (
                   <p key={`${location.id}-${location}`}>{location}</p>
                 ))}
               </Accordian>

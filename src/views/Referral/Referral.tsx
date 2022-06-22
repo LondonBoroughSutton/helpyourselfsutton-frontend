@@ -111,16 +111,12 @@ class Referral extends Component<IProps> {
         </section>
 
         <section className="mobile-show tablet-show flex-col--mobile--12 flex-col--tablet--12">
-          <h1 className="body--s">
-            Connect to {referralStore.service.name}
-          </h1>
+          <h1 className="body--s">Connect to {referralStore.service.name}</h1>
         </section>
 
         <section className="referral__container">
           <div className="flex-container">
-            <div className="flex-col flex-col--7">
-              {this.displayStep()}
-            </div>
+            <div className="flex-col flex-col--7">{this.displayStep()}</div>
 
             <aside className="referral__sidebar flex-col flex-col--5">
               <div className="referral__connect">
@@ -142,8 +138,7 @@ class Referral extends Component<IProps> {
                 <div className="referral__time">
                   <FontAwesomeIcon icon="clock" />
                   <p>
-                    This form should take no longer than <strong>5 minutes</strong> to
-                    complete.
+                    This form should take no longer than <strong>5 minutes</strong> to complete.
                   </p>
                 </div>
               )}
@@ -160,8 +155,9 @@ class Referral extends Component<IProps> {
                 onClick={() => referralStore.nextStep()}
               />
               <p
-            dangerouslySetInnerHTML={{__html: html(referralStore.stepDescription) }}
-            className="body--s" />
+                dangerouslySetInnerHTML={{ __html: html(referralStore.stepDescription) }}
+                className="body--s"
+              />
             </div>
           </section>
         )}

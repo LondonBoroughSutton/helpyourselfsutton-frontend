@@ -24,12 +24,8 @@ function LandingPage(props: any) {
   return (
     <div className="landing-page">
       <Helmet>
-        {props.content.title && (
-          <title>{`${props.content.title} | Sutton Information Hub`}</title>
-        )}
-        {!props.content.title && (
-          <title>Landing Page | Sutton Information Hub</title>
-        )}
+        {props.content.title && <title>{`${props.content.title} | Sutton Information Hub`}</title>}
+        {!props.content.title && <title>Landing Page | Sutton Information Hub</title>}
       </Helmet>
       <Breadcrumb
         crumbs={[
@@ -56,7 +52,7 @@ function LandingPage(props: any) {
               <img alt={props.content.title ? props.content.title : ''} className="image" src={getImg(props.content.id)} />
             )}
           </div>
-          
+
           {props.content.content.about.copy[0] && (
             <div className="flex-col flex-col--7 landing-page__about">
               <ReactMarkdown
@@ -75,13 +71,15 @@ function LandingPage(props: any) {
           )}
         </div>
       </section>
-      
+
       {props.content.children.length > 0 && (
         <section className="landing-page__information">
           <div className="flex-container">
             <div className="flex-col flex-col--12">
               {props.content.content.info_pages.title && (
-                <h2 className="landing-page__sub-heading">{props.content.content.info_pages.title}</h2>
+                <h2 className="landing-page__sub-heading">
+                  {props.content.content.info_pages.title}
+                </h2>
               )}
               {props.content.content.info_pages.copy[0] && (
                 <ReactMarkdown
@@ -92,18 +90,19 @@ function LandingPage(props: any) {
             </div>
             <div className="flex-col flex-col--12 landing-page__pages">
               {console.log(props.content.children)}
-              {props.content.children.filter((child: IPage) => child.enabled)
-                .sort((a: { order: number; }, b: { order: number; }) => a.order - b.order)
-                .map((page: { id: string; title: string; }) => {
-                return (
-                  <ButtonLink
-                    href={'/' + page.id}
-                    text={page.title}
-                    key={page.id}
-                    category={true}
-                  />
-                )
-              })}
+              {props.content.children
+                .filter((child: IPage) => child.enabled)
+                .sort((a: { order: number }, b: { order: number }) => a.order - b.order)
+                .map((page: { id: string; title: string }) => {
+                  return (
+                    <ButtonLink
+                      href={'/' + page.id}
+                      text={page.title}
+                      key={page.id}
+                      category={true}
+                    />
+                  );
+                })}
             </div>
           </div>
         </section>
@@ -114,7 +113,9 @@ function LandingPage(props: any) {
           <div className="flex-container landing-page__services--wrapper">
             <div className="flex-col flex-col--12">
               {props.content.content.collections.title && (
-                <h2 className="landing-page__sub-heading">{props.content.content.collections.title}</h2>
+                <h2 className="landing-page__sub-heading">
+                  {props.content.content.collections.title}
+                </h2>
               )}
               {props.content.content.collections.copy[0] && (
                 <ReactMarkdown

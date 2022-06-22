@@ -42,16 +42,16 @@ class LandingPages extends Component<IProps> {
                 <ButtonLink
                   href={'/' + page.id}
                   text={page.title}
-                  image={page.image ? getImg(page.id) : ""}
+                  image={page.image ? getImg(page.id) : ''}
                   key={page.id}
                   category={true}
                 />
-              )
+              );
             })}
           </div>
         </div>
       </section>
-    )
+    );
   }
 }
 

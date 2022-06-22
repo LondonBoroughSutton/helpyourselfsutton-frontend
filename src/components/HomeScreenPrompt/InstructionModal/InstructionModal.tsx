@@ -15,8 +15,8 @@ class InstructionModal extends Component<any> {
         return (
           <p>
             You can add the launcher to your home screen by clicking the 'Share Options'{' '}
-            <img src={AppleShareIcon} className="apple-share-icon" alt="Share icon" /> 'Add to home Screen' then{' '}
-            <FontAwesomeIcon icon="plus-square" /> 'Add
+            <img src={AppleShareIcon} className="apple-share-icon" alt="Share icon" /> 'Add to home
+            Screen' then <FontAwesomeIcon icon="plus-square" /> 'Add
           </p>
         );
       } else {
@@ -33,7 +33,8 @@ class InstructionModal extends Component<any> {
       if (isIOS) {
         return (
           <p>
-            Tap <img src={AppleShareIcon} className="apple-share-icon" alt="Share icon" /> then 'Add to homescreen'
+            Tap <img src={AppleShareIcon} className="apple-share-icon" alt="Share icon" /> then 'Add
+            to homescreen'
           </p>
         );
       } else {

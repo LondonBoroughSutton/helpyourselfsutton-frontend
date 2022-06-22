@@ -35,7 +35,7 @@ class RelatedServices extends Component<IProps, IState> {
   }
 
   toggleMore = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       showMore: !prevState.showMore,
     }));
   };
@@ -53,7 +53,8 @@ class RelatedServices extends Component<IProps, IState> {
           <Button
             text={`Show ${showMore ? 'less' : 'more'} related services`}
             icon={showMore ? 'caret-up' : 'caret-down'}
-            onClick={() => this.toggleMore()} />
+            onClick={() => this.toggleMore()}
+          />
         </div>
 
         <div className="flex-container">

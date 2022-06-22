@@ -144,7 +144,7 @@ class SearchResultCard extends React.Component<IProps> {
                     title={`${locations.length} locations`}
                     className={'search-result-card__location-list'}
                   >
-                    {locations.map(location => (
+                    {locations.map((location) => (
                       <h4 key={`${result.id}-${location}`}>{location}</h4>
                     ))}
                   </Accordian>

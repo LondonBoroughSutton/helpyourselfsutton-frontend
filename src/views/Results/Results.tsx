@@ -45,7 +45,7 @@ class Results extends Component<IProps, IState> {
       showMoreInfo: false,
     };
   }
-  
+
   componentDidMount() {
     const { resultsStore } = this.props;
 
@@ -80,7 +80,7 @@ class Results extends Component<IProps, IState> {
   }
 
   toggleMoreInfo = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       showMoreInfo: !prevState.showMoreInfo,
     }));
   };
@@ -101,7 +101,14 @@ class Results extends Component<IProps, IState> {
         <Breadcrumb
           crumbs={[
             { text: 'Home', url: '/' },
-            { text: !resultsStore.isKeywordSearch ? (resultsStore.category?.name ? resultsStore.category?.name : '') : 'Search results', url: '' },
+            {
+              text: !resultsStore.isKeywordSearch
+                ? resultsStore.category?.name
+                  ? resultsStore.category?.name
+                  : ''
+                : 'Search results',
+              url: '',
+            },
           ]}
         />
         <section className="results__search-box">
@@ -123,27 +130,46 @@ class Results extends Component<IProps, IState> {
         {resultsStore.pages.length > 0 && (
           <section className="results__info-boxes">
             <div className="flex-container">
-              <h2 className="results__info-boxes__heading">Here's some information you might find useful</h2>
+              <h2 className="results__info-boxes__heading">
+                Here's some information you might find useful
+              </h2>
               <div className="results__info-boxes__items">
                 {map(resultsStore.pages.slice(0, 3), (page: IPage) => {
-                  return <ButtonLink key={page.id} text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
+                  return (
+                    <ButtonLink
+                      key={page.id}
+                      text={page.title}
+                      href={'/' + page.id}
+                      icon="arrow-right"
+                      category={true}
+                    />
+                  );
                 })}
               </div>
-              {(resultsStore.pages.length > 3 && showMoreInfo) && (
+              {resultsStore.pages.length > 3 && showMoreInfo && (
                 <div className="results__info-boxes__more-items">
                   {map(resultsStore.pages.slice(3, 11), (page: IPage) => {
-                    return <ButtonLink key={page.id} text={page.title} href={'/' + page.id} icon="arrow-right" category={true} />;
+                    return (
+                      <ButtonLink
+                        key={page.id}
+                        text={page.title}
+                        href={'/' + page.id}
+                        icon="arrow-right"
+                        category={true}
+                      />
+                    );
                   })}
                 </div>
               )}
-              {resultsStore.pages.length > 3 &&
+              {resultsStore.pages.length > 3 && (
                 <div className="results__info-boxes__show-more">
                   <Button
                     text={`Show ${showMoreInfo ? 'less' : 'more'}`}
                     icon={showMoreInfo ? 'caret-up' : 'caret-down'}
-                    onClick={() => this.toggleMoreInfo()} />
+                    onClick={() => this.toggleMoreInfo()}
+                  />
                 </div>
-              }
+              )}
             </div>
           </section>
         )}
@@ -151,7 +177,9 @@ class Results extends Component<IProps, IState> {
         {this.hasCategories() && this.hasCategories().length !== 0 && (
           <section className="results__info-boxes">
             <div className="flex-container">
-              <h2 className="results__info-boxes__heading">Here's some information you might find useful</h2>
+              <h2 className="results__info-boxes__heading">
+                Here's some information you might find useful
+              </h2>
               <div className="results__info-boxes__items">
                 {map(this.hasCategories(), (sidebox: ISidebox, index) => {
                   return <SideboxCard sidebox={sidebox} key={index} />;
@@ -169,7 +197,9 @@ class Results extends Component<IProps, IState> {
               <div className="results__info">
                 <div className="flex-container flex-container--align-start">
                   <div className="flex-col flex-col--12">
-                    <h2 className="results__info__header">Here's some services you might be interested in</h2>
+                    <h2 className="results__info__header">
+                      Here's some services you might be interested in
+                    </h2>
                   </div>
                   <div className="results__info__count">
                     {!!resultsStore.results.length && !resultsStore.loading && (
@@ -206,12 +236,12 @@ class Results extends Component<IProps, IState> {
 
                     <ul className={'info-cards'}>
                       <li>
-                        <strong>Increase your distance from your location - </strong> E.g. from 5 miles to
-                        10 miles
+                        <strong>Increase your distance from your location - </strong> E.g. from 5
+                        miles to 10 miles
                       </li>
                       <li>
-                        <strong>Try using a different word or term -</strong> E.g. Instead of care homes try
-                        nursing home
+                        <strong>Try using a different word or term -</strong> E.g. Instead of care
+                        homes try nursing home
                       </li>
                       <li>
                         <strong>Remove some of the filters</strong>{' '}
@@ -222,7 +252,9 @@ class Results extends Component<IProps, IState> {
                     </ul>
                   </div>
                   <div className="flex-col flex-col--12">
-                    <h2 className="results__container__heading">You might also find searching by category might be helpful:</h2>
+                    <h2 className="results__container__heading">
+                      You might also find searching by category might be helpful:
+                    </h2>
                     <CategoryList categories={SearchStore.categories} />
                   </div>
                 </div>
@@ -234,7 +266,7 @@ class Results extends Component<IProps, IState> {
           </section>
         )}
 
-        {(resultsStore.totalItems > resultsStore.itemsPerPage && resultsStore.view === 'grid') && (
+        {resultsStore.totalItems > resultsStore.itemsPerPage && resultsStore.view === 'grid' && (
           <div className="results__pagination">
             <div className="flex-container">
               <Pagination
