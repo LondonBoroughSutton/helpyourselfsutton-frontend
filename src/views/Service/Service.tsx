@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { inject, observer } from 'mobx-react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
+import InnerHTML from 'dangerously-set-html-content'
 import get from 'lodash/get';
 import map from 'lodash/map';
 import find from 'lodash/find';
@@ -175,6 +176,10 @@ class Service extends Component<IProps> {
     if (service.status === 'inactive') {
       return <ServiceDisabled />;
     }
+
+    const cqcWidget = (locationId: string) => {
+      return `<script type="text/javascript" src="https://www.cqc.org.uk/sites/all/modules/custom/cqc_widget/widget.js?data-id=${locationId}&data-host=www.cqc.org.uk&type=location"></script>`;
+    };
 
     return (
       <main className="service">
@@ -555,6 +560,12 @@ class Service extends Component<IProps> {
                     </div>
                   )}
                 </div>
+                {(service.cqc_location_id && service.cqc_location_id.match(/^\d-\d+$/)) &&
+                  <div className="service__section">
+                    <h2 className="service__heading">This {service.type}'s CQC Rating</h2>
+                    <InnerHTML html={cqcWidget(service.cqc_location_id)} />
+                  </div>
+                }
                 <div className="service__section">
                   <ShareCard serviceStore={serviceStore} />
                 </div>

@@ -5,6 +5,10 @@
 
 /* Section styles */
 
+.information-page {
+  border-bottom: 2px solid $black;
+}
+
 .information-page__more {
   display: flex;
   justify-content: flex-end;
@@ -94,16 +98,25 @@
 .information-page__image {
   width: 100%;
   height: auto;
-  margin-bottom: space(64);
+  margin-bottom: space(32);
   border-radius: 40px;
   overflow: hidden;
 
   @include for-tablet-landscape-down {
-    margin-bottom: space(32);
+    margin-bottom: space(16);
+  }
+
+  .image {
+    max-width: 280px;
+    max-height: 280px;
+    width: 100%;
+    height: auto;
   }
 }
 
 .information-page__illustration {
+  transform: translateY(6px);
+
   @include for-tablet-landscape-down {
     max-height: 200px;
   }
