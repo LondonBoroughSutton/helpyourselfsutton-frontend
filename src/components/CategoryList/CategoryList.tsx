@@ -51,7 +51,7 @@ const CategoryList: React.FunctionComponent<IProps> = ({
         </div>
       </div>
     </section>
-  )
+  );
 };
 
 export default withRouter(observer(CategoryList));

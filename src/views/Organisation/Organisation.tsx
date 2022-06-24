@@ -97,9 +97,7 @@ class Organisation extends Component<IProps> {
                   {get(organisation, 'phone') && (
                     <li key={`key_${get(organisation, 'phone')}`}>
                       <h2 className="h5">Phone</h2>
-                      <a href={`tel:${get(organisation, 'phone')}`}>
-                        {get(organisation, 'phone')}
-                      </a>
+                      <a href={`tel:${get(organisation, 'phone')}`}>{get(organisation, 'phone')}</a>
                     </li>
                   )}
                   {get(organisation, 'url') && (

@@ -153,11 +153,7 @@ class Filter extends Component<IProps, IState> {
             <div className="results__filters--primary">
               {resultsStore.isKeywordSearch && (
                 <div>
-                  <label
-                    className="sr-only"
-                    htmlFor="keyword"
-                    aria-label="Search using a keyword"
-                  >
+                  <label className="sr-only" htmlFor="keyword" aria-label="Search using a keyword">
                     Search using a keyword
                   </label>
                   <Input

@@ -49,7 +49,11 @@ function LandingPage(props: any) {
 
           <div className="flex-col flex-col--5 landing-page__image">
             {props.content.image && (
-              <img alt={props.content.title ? props.content.title : ''} className="image" src={getImg(props.content.id)} />
+              <img
+                alt={props.content.title ? props.content.title : ''}
+                className="image"
+                src={getImg(props.content.id)}
+              />
             )}
           </div>
 
@@ -125,35 +129,35 @@ function LandingPage(props: any) {
               )}
             </div>
             <div className="flex-col flex-col--12 landing-page__collections">
-              {props.content.collection_categories.filter((category: ICategory) => category.enabled).map((page: { id: string; name: string; icon: IconName; }) => {
-                return (
-                  <ButtonLink
-                    href={'/results?category=' + page.id}
-                    text={page.name}
-                    key={page.id}
-                    category={true}
-                    image={`${apiBase}/collections/categories/${page.id}/image.svg`}
-                  />
-                )
-              })}
+              {props.content.collection_categories
+                .filter((category: ICategory) => category.enabled)
+                .map((page: { id: string; name: string; icon: IconName }) => {
+                  return (
+                    <ButtonLink
+                      href={'/results?category=' + page.id}
+                      text={page.name}
+                      key={page.id}
+                      category={true}
+                      image={`${apiBase}/collections/categories/${page.id}/image.svg`}
+                    />
+                  );
+                })}
             </div>
           </div>
           <div className="flex-col flex-container">
             <div className="landing-page__illustrations">
-              <img
-                src={servicesIllo1}
-                className="image"
-                alt="Lady walking a dog" />
+              <img src={servicesIllo1} className="image" alt="Lady walking a dog" />
               <img
                 src={servicesIllo2}
                 className="image"
-                alt="An aeroplane flying over power lines" />
+                alt="An aeroplane flying over power lines"
+              />
             </div>
           </div>
         </section>
       )}
     </div>
-  )
-};
+  );
+}
 
 export default LandingPage;
