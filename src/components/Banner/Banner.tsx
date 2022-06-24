@@ -20,21 +20,19 @@ const Banner: FunctionComponent<IProps> = ({ banner, activeCarouselItem, bannerI
       <div className="flex-container">
         <div className="banner__content">
           <h1 className="banner__title">{banner.title}</h1>
-          <ReactMarkdown
-            className="banner__description"
-            children={banner.content} />
-          {banner.button_url !== "https://suttoninformationhub.org.uk" &&
+          <ReactMarkdown className="banner__description" children={banner.content} />
+          {banner.button_url !== 'https://suttoninformationhub.org.uk' && (
             <div className="banner__cta">
-              <ButtonLink
-                text={banner.button_text}
-                icon="arrow-right"
-                href={banner.button_url} />
+              <ButtonLink text={banner.button_text} icon="arrow-right" href={banner.button_url} />
             </div>
-          }
+          )}
         </div>
       </div>
       <div className="banner__image">
-        <img src={bannerIllo} alt="Mother in a hi-jab with their son, a teenage girl using a guide dog and an older person using a walking stick" />
+        <img
+          src={bannerIllo}
+          alt="Mother in a hi-jab with their son, a teenage girl using a guide dog and an older person using a walking stick"
+        />
       </div>
     </section>
   );

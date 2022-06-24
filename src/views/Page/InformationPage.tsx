@@ -96,7 +96,7 @@ function InformationPage(props: any) {
         </section>
       )}
     </div>
-  )
-};
+  );
+}
 
 export default InformationPage;
