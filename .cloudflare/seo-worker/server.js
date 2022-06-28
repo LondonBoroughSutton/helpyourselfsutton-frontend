@@ -10,34 +10,34 @@ let defaultContent = '';
 const pageMeta = () => {
   return {
     referral: [
-      { name: '__PAGE_TITLE__', content: 'Referral | Hounslow Connect' },
+      { name: '__PAGE_TITLE__', content: 'Referral | Sutton Information Hub' },
       {
         name: '__PAGE_META_DESCRIPTION__',
         content:
-          'Hounslow Connect is a site dedicated to helping people find activities, join clubs, and navigate local services in Hounslow',
+          'Sutton Information Hub is a site dedicated to helping people find activities, join clubs, and navigate local services in Sutton',
       },
       {
         name: '__PAGE_META_OG_DESCRIPTION__',
         content:
-          'Hounslow Connect is a site dedicated to helping people find activities, join clubs, and navigate local services in Hounslow',
+          'Sutton Information Hub is a site dedicated to helping people find activities, join clubs, and navigate local services in Sutton',
       },
-      { name: '__PAGE_META_OG_TITLE__', content: 'Referral | Hounslow Connect' },
+      { name: '__PAGE_META_OG_TITLE__', content: 'Referral | Sutton Information Hub' },
       { name: '__PAGE_META_OG_URL__', content: `${envUris.frontendBaseUrl}${envUris.originalUrl}` },
       { name: '__PAGE_META_OG_IMAGE__', content: `${envUris.logoUrl}` },
     ],
     'duty-to-refer': [
-      { name: '__PAGE_TITLE__', content: 'Duty to refer | Hounslow Connect' },
+      { name: '__PAGE_TITLE__', content: 'Duty to refer | Sutton Information Hub' },
       {
         name: '__PAGE_META_DESCRIPTION__',
         content:
-          'Hounslow Connect is a site dedicated to helping people find activities, join clubs, and navigate local services in Hounslow',
+          'Sutton Information Hub is a site dedicated to helping people find activities, join clubs, and navigate local services in Sutton',
       },
       {
         name: '__PAGE_META_OG_DESCRIPTION__',
         content:
-          'Hounslow Connect is a site dedicated to helping people find activities, join clubs, and navigate local services in Hounslow',
+          'Sutton Information Hub is a site dedicated to helping people find activities, join clubs, and navigate local services in Sutton',
       },
-      { name: '__PAGE_META_OG_TITLE__', content: 'Duty to refer | Hounslow Connect' },
+      { name: '__PAGE_META_OG_TITLE__', content: 'Duty to refer | Sutton Information Hub' },
       {
         name: '__PAGE_META_OG_URL__',
         content: `${envUris.frontendBaseUrl}${envUris.originalPath}`,
@@ -45,7 +45,7 @@ const pageMeta = () => {
       { name: '__PAGE_META_OG_IMAGE__', content: `${envUris.logoUrl}` },
     ],
     'privacy-policy': [
-      { name: '__PAGE_TITLE__', content: 'Privacy policy | Hounslow Connect' },
+      { name: '__PAGE_TITLE__', content: 'Privacy policy | Sutton Information Hub' },
       {
         name: '__PAGE_META_DESCRIPTION__',
         content: 'We are committed to protecting and respecting your privacy',
@@ -54,7 +54,7 @@ const pageMeta = () => {
         name: '__PAGE_META_OG_DESCRIPTION__',
         content: 'We are committed to protecting and respecting your privacy',
       },
-      { name: '__PAGE_META_OG_TITLE__', content: 'Privacy policy | Hounslow Connect' },
+      { name: '__PAGE_META_OG_TITLE__', content: 'Privacy policy | Sutton Information Hub' },
       {
         name: '__PAGE_META_OG_URL__',
         content: `${envUris.frontendBaseUrl}${envUris.originalPath}`,
@@ -62,7 +62,7 @@ const pageMeta = () => {
       { name: '__PAGE_META_OG_IMAGE__', content: `${envUris.logoUrl}` },
     ],
     'terms-and-conditions': [
-      { name: '__PAGE_TITLE__', content: 'Terms and conditions | Hounslow Connect' },
+      { name: '__PAGE_TITLE__', content: 'Terms and conditions | Sutton Information Hub' },
       {
         name: '__PAGE_META_DESCRIPTION__',
         content:
@@ -73,27 +73,7 @@ const pageMeta = () => {
         content:
           'This page (together with the documents referred to on it) outlines the terms and conditions on which we and our partners offer services to you',
       },
-      { name: '__PAGE_META_OG_TITLE__', content: 'Terms and conditions | Hounslow Connect' },
-      {
-        name: '__PAGE_META_OG_URL__',
-        content: `${envUris.frontendBaseUrl}${envUris.originalPath}`,
-      },
-      { name: '__PAGE_META_OG_IMAGE__', content: `${envUris.logoUrl}` },
-    ],
-    events: [
-      { name: '__PAGE_TITLE__', content: 'Community events in Hounslow | Hounslow Connect' },
-      {
-        name: '__PAGE_META_DESCRIPTION__',
-        content: 'Hounslow has a wide range of community events, many of which are free.',
-      },
-      {
-        name: '__PAGE_META_OG_DESCRIPTION__',
-        content: 'Hounslow has a wide range of community events, many of which are free.',
-      },
-      {
-        name: '__PAGE_META_OG_TITLE__',
-        content: 'Community events in Hounslow | Hounslow Connect',
-      },
+      { name: '__PAGE_META_OG_TITLE__', content: 'Terms and conditions | Sutton Information Hub' },
       {
         name: '__PAGE_META_OG_URL__',
         content: `${envUris.frontendBaseUrl}${envUris.originalPath}`,
@@ -133,9 +113,9 @@ const fetchOrganisation = async (name) => {
   }
 };
 
-const fetchOrganisationEvent = async (id) => {
+const fetchInformationPage = async (id) => {
   try {
-    const response = await getApi(`${envUris.apiBase}/organisation-events/${id}`);
+    const response = await getApi(`${envUris.apiBase}/pages/${id}`);
     return _get(response, 'data');
   } catch (err) {
     console.log(err);
@@ -156,16 +136,6 @@ const fetchCategory = async (id) => {
 const fetchPersona = async (id) => {
   try {
     const response = await getApi(`${envUris.apiBase}/collections/personas/${id}`);
-    return _get(response, 'data');
-  } catch (err) {
-    console.log(err);
-    return false;
-  }
-};
-
-const fetchOrganisationEventCategory = async (id) => {
-  try {
-    const response = await getApi(`${envUris.apiBase}/collections/organisation-events/${id}`);
     return _get(response, 'data');
   } catch (err) {
     console.log(err);
@@ -277,9 +247,9 @@ const renderServiceMeta = async (slug) => {
 
   if (data) {
     metas = [
-      { name: '__PAGE_TITLE__', content: `${metaTitle} | Hounslow Connect` },
+      { name: '__PAGE_TITLE__', content: `${metaTitle} | Sutton Information Hub` },
       { name: '__PAGE_META_DESCRIPTION__', content: metaDesc },
-      { name: '__PAGE_META_OG_TITLE__', content: `${metaTitle} | Hounslow Connect` },
+      { name: '__PAGE_META_OG_TITLE__', content: `${metaTitle} | Sutton Information Hub` },
       { name: '__PAGE_META_OG_DESCRIPTION__', content: metaDesc },
       { name: '__PAGE_META_OG_URL__', content: `${envUris.frontendBaseUrl}/services/${data.slug}` },
       {
@@ -311,9 +281,9 @@ const renderOrganisationMeta = async (slug) => {
 
   if (data) {
     metas = [
-      { name: '__PAGE_TITLE__', content: `${metaTitle} | Hounslow Connect` },
+      { name: '__PAGE_TITLE__', content: `${metaTitle} | Sutton Information Hub` },
       { name: '__PAGE_META_DESCRIPTION__', content: metaDesc },
-      { name: '__PAGE_META_OG_TITLE__', content: `${metaTitle} | Hounslow Connect` },
+      { name: '__PAGE_META_OG_TITLE__', content: `${metaTitle} | Sutton Information Hub` },
       { name: '__PAGE_META_OG_DESCRIPTION__', content: metaDesc },
       {
         name: '__PAGE_META_OG_URL__',
@@ -326,34 +296,33 @@ const renderOrganisationMeta = async (slug) => {
   return metas;
 };
 
-const renderOrganisationEventMeta = async (slug) => {
-  const data = await fetchOrganisationEvent(slug);
+const renderInformationPageMeta = async (slug) => {
+  const data = await fetchInformationPage(slug);
+
+  console.log(data);
 
   const metaTitle = _get(data, 'title', defaultTitle);
-  const eventHasImage = _get(data, 'has_image', false);
-  const orgHasLogo = _get(data, 'organisation.has_logo', false);
-  const orgImageUrl = `${envUris.apiBase}/organisations/${data.organisation_id}/logo.png?v=${data.organisation_id}`;
+  console.log(metaTitle);
+  const pageHasImage = !!_get(data, 'image.id', false);
+  console.log(pageHasImage);
 
-  const rawPageContent = _get(data, 'intro', '');
+  const rawPageContent = _get(data, 'content.introduction.copy', defaultContent);
 
-  const metaDesc = prepareDescription(rawPageContent);
+  const metaDesc = prepareDescription(rawPageContent[0]);
+  console.log(metaDesc);
 
   let metas = [];
 
   if (data) {
     metas = [
-      { name: '__PAGE_TITLE__', content: `${metaTitle} | Hounslow Connect` },
+      { name: '__PAGE_TITLE__', content: `${metaTitle} | Sutton Information Hub` },
       { name: '__PAGE_META_DESCRIPTION__', content: metaDesc },
-      { name: '__PAGE_META_OG_TITLE__', content: `${metaTitle} | Hounslow Connect` },
+      { name: '__PAGE_META_OG_TITLE__', content: `${metaTitle} | Sutton Information Hub` },
       { name: '__PAGE_META_OG_DESCRIPTION__', content: metaDesc },
-      { name: '__PAGE_META_OG_URL__', content: `${envUris.frontendBaseUrl}/events/${data.id}` },
+      { name: '__PAGE_META_OG_URL__', content: `${envUris.frontendBaseUrl}/${data.id}` },
       {
         name: '__PAGE_META_OG_IMAGE__',
-        content: eventHasImage
-          ? `${envUris.apiBase}/organisation-events/${data.id}/image.png?`
-          : orgHasLogo
-          ? orgImageUrl
-          : envUris.logoUrl,
+        content: pageHasImage ? `${envUris.apiBase}/pages/${data.id}/image.png?` : envUris.logoUrl,
       },
     ];
   }
@@ -365,8 +334,6 @@ const renderResultsMeta = async () => {
   const category = getUrlParameter('category');
 
   const persona = getUrlParameter('persona');
-
-  const eventCategory = getUrlParameter('event-category');
 
   let rawPageContent = '';
   let data = null;
@@ -388,17 +355,9 @@ const renderResultsMeta = async () => {
     collectionImage = `${envUris.apiBase}/collections/personas/${persona}/image.png`;
   }
 
-  if (eventCategory) {
-    data = await fetchOrganisationEventCategory(eventCategory);
-
-    rawPageContent = _get(data, 'intro', '');
-
-    collectionImage = `${envUris.apiBase}/collections/organisation-events/${eventCategory}/image.png`;
-  }
-
   const metaDesc = prepareDescription(rawPageContent);
 
-  const metaTitle = _get(data, 'name', defaultTitle).concat(' in Hounslow');
+  const metaTitle = _get(data, 'name', defaultTitle).concat(' in Sutton');
 
   let metas = [];
 
@@ -431,10 +390,10 @@ const renderCmsMeta = async (page) => {
 
   if (data) {
     metas = [
-      { name: '__PAGE_TITLE__', content: `${metaTitle} | Hounslow Connect` },
+      { name: '__PAGE_TITLE__', content: `${metaTitle} | Sutton Information Hub` },
       { name: '__PAGE_META_DESCRIPTION__', content: metaDesc },
       { name: '__PAGE_META_OG_DESCRIPTION__', content: metaDesc },
-      { name: '__PAGE_META_OG_TITLE__', content: `${metaTitle} | Hounslow Connect` },
+      { name: '__PAGE_META_OG_TITLE__', content: `${metaTitle} | Sutton Information Hub` },
       {
         name: '__PAGE_META_OG_URL__',
         content: `${envUris.frontendBaseUrl}${envUris.originalPath}`,
@@ -459,10 +418,10 @@ const renderHomeMeta = async () => {
 
   if (data) {
     metas = [
-      { name: '__PAGE_TITLE__', content: `${metaTitle} | Hounslow Connect` },
+      { name: '__PAGE_TITLE__', content: `${metaTitle} | Sutton Information Hub` },
       { name: '__PAGE_META_DESCRIPTION__', content: metaDesc },
       { name: '__PAGE_META_OG_DESCRIPTION__', content: metaDesc },
-      { name: '__PAGE_META_OG_TITLE__', content: `${metaTitle} | Hounslow Connect` },
+      { name: '__PAGE_META_OG_TITLE__', content: `${metaTitle} | Sutton Information Hub` },
       {
         name: '__PAGE_META_OG_URL__',
         content: `${envUris.frontendBaseUrl}${envUris.originalPath}`,
@@ -498,14 +457,6 @@ const renderMeta = async () => {
       slug = urlElements[2].trim();
       meta = await renderOrganisationMeta(slug);
       break;
-    case 'events':
-      if (!urlElements[2] || urlElements[2] === '') {
-        meta = pageMeta()['events'];
-      } else {
-        slug = urlElements[2].trim();
-        meta = await renderOrganisationEventMeta(slug);
-      }
-      break;
     case 'results':
       meta = await renderResultsMeta();
       break;
@@ -523,12 +474,23 @@ const renderMeta = async () => {
       meta = pageMeta()[urlElements[1]];
       break;
     default:
-      meta = await renderHomeMeta();
+      if (urlElements[1] && urlElements[1] !== '') {
+        // information pages have a uri pattern of /{uuid}
+        const uuidRegex =
+          /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+        slug = urlElements[1].trim();
+        if (slug.search(uuidRegex) === -1) {
+          throw new Error('Unknown slug');
+        }
+        meta = await renderInformationPageMeta(slug);
+      } else {
+        meta = await renderHomeMeta();
+      }
   }
   return meta;
 };
 
-const renderPage = async (bucket) => {
+const renderPage = async () => {
   try {
     const response = await fetch(`${envUris.frontendBaseUrl}/index.html`);
     let body = await response.text();
@@ -564,13 +526,14 @@ const renderPage = async (bucket) => {
 };
 
 export default async function render(request) {
-  // const domainName = request.url.split('/', 3)[2];
-  const domainName = 'staging.suttoninformationhub.org.uk';
-  envUris.frontendBaseUrl = `https://${domainName}`;
-  envUris.apiBase = `https://api.${domainName}/core/v1`;
-  envUris.originalPath = request.url.slice(request.url.indexOf('/', 8));
-  envUris.querystring = request.url.split('?', 2)[1] || null;
-  envUris.logoUrl = `${envUris.frontendBaseUrl}/hounslow-logo-white.png`;
+  let url = new URL(request.url);
+  // Development workaround
+  // url = new URL(`https://staging.suttoninformationhub.org.uk${url.pathname}${url.search}`);
+  envUris.frontendBaseUrl = `https://${url.hostname}`;
+  envUris.apiBase = `https://api.${url.hostname}/core/v1`;
+  envUris.originalPath = url.pathname;
+  envUris.querystring = url.search;
+  envUris.logoUrl = `${envUris.frontendBaseUrl}/sutton-logo-white.png`;
 
-  return await renderPage(domainName);
+  return await renderPage();
 }

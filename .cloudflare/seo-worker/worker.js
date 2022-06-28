@@ -1,43 +1,23 @@
 'use strict';
 
-/**
- * API Token: zcUbKt6iUtFagG3isEDiL5ROmrypO5KF62TW7ltw
- */
 import render from './server';
 
-const originUri = 'https://staging.suttoninformationhub.org.uk';
-
 addEventListener('fetch', (event) => {
-  console.log(event.request.url);
   event.respondWith(handleRequest(event.request));
 });
 
 async function handleRequest(request) {
-  const path = request.url.slice(request.url.indexOf('/', 8));
+  const url = new URL(request.url);
 
-  console.log(path);
-
-  if (
-    path.includes('.js') ||
-    path.includes('.css') ||
-    path.includes('.png') ||
-    path.includes('.jpg') ||
-    path.includes('.svg')
-  ) {
+  const assetRegex = /(?:\/static\/)+|(?:\.png)+|(?:\.jpg)+|(?:\.svg)+|(?:\.ico)+/g;
+  if (url.pathname.search(assetRegex) !== -1) {
     // Asset request: return to Cloudflare
-    const originalResponse = await fetch(`${originUri}${path}`);
-    return originalResponse;
+    // Development workaround
+    // return await fetch(
+    //   new URL(`https://staging.suttoninformationhub.org.uk${url.pathname}${url.search}`).toString()
+    // );
+    return fetch(request);
   }
 
   return render(request);
-
-  // const originalResponse = await fetch(`${originUri}/index.html`);
-
-  // let response = new Response(originalResponse.body, {
-  //   headers: originalResponse.headers,
-  //   status: originalResponse.status,
-  //   statusText: originalResponse.statusText,
-  // });
-
-  // return response;
 }
