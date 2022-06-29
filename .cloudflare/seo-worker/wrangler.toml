@@ -1,4 +1,0 @@
-name = "seo-worker"
-compatibility_date = "2022-06-27"
-account_id = "a97b1ee464116b7ba42f7cebeeea2f3e"
-main = "./worker.js"
