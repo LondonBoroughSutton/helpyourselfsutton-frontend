@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * Cloudflare Worker script to render SEO meta data into main pages
+ * Ref: https://developers.cloudflare.com/workers/
+ * See ticket https://app.shortcut.com/helpyourselfsutton/story/942/frontend-deployment-seo-friendly-route
+ */
+
 import render from './server';
 
 addEventListener('fetch', (event) => {
