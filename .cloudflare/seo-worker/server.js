@@ -533,7 +533,7 @@ export default async function render(request) {
   envUris.apiBase = `https://api.${url.hostname}/core/v1`;
   envUris.originalPath = url.pathname;
   envUris.querystring = url.search;
-  envUris.logoUrl = `${envUris.frontendBaseUrl}/sutton-logo-white.png`;
+  envUris.logoUrl = `${envUris.frontendBaseUrl}/sutton-information-hub-logo.svg`;
 
   return await renderPage();
 }
