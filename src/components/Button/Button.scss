@@ -113,3 +113,14 @@ button {
 .button--small {
   padding: space(8);  
 }
+
+.button__excerpt {
+  flex-wrap: wrap;
+  .button__excerpt__title {
+    text-decoration: underline;
+  }
+  .button__excerpt__text {
+    @include body-m;
+    margin-top: 1rem;
+  }
+}

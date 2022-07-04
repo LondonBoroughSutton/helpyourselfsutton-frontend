@@ -33,32 +33,44 @@ function LandingPage(props: any) {
           { text: props.content.title ? props.content.title : 'Information Page', url: '' },
         ]}
       />
+
       <section className="landing-page__overview">
         <div className="flex-container">
-          <div className="flex-col flex-col--7 landing-page__intro">
-            {props.content.title && (
-              <h1 className="landing-page__heading">{props.content.title}</h1>
-            )}
-            {props.content.content.introduction.copy && (
+          <div className="cms--contact-card">
+            <div className="flex-container">
+              <div className="flex-col flex-col--8 landing-page__intro">
+                {props.content.content.introduction.copy && (
+                  <ReactMarkdown
+                    children={props.content.content.introduction.copy[0]}
+                    className="landing-page__content"
+                  />
+                )}
+              </div>
+
+              <div className="flex-col flex-col--4 landing-page__image">
+                {props.content.image && (
+                  <img
+                    alt={props.content.title ? props.content.title : ''}
+                    className="image"
+                    src={getImg(props.content.id)}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex-container">
+          <div className="flex-col flex-col--8 landing-page__intro">
+            {props.content.content.about.copy && (
               <ReactMarkdown
-                children={props.content.content.introduction.copy[0]}
+                children={props.content.content.about.copy}
                 className="landing-page__content"
               />
             )}
           </div>
 
-          <div className="flex-col flex-col--5 landing-page__image">
-            {props.content.image && (
-              <img
-                alt={props.content.title ? props.content.title : ''}
-                className="image"
-                src={getImg(props.content.id)}
-              />
-            )}
-          </div>
-
           {props.content.content.about.copy[0] && (
-            <div className="flex-col flex-col--7 landing-page__about">
+            <div className="flex-col flex-col--8 landing-page__about">
               <ReactMarkdown
                 children={props.content.content.about.copy[0]}
                 className="landing-page__content markdown"
@@ -66,7 +78,7 @@ function LandingPage(props: any) {
             </div>
           )}
           {props.content.content.about.copy[1] && (
-            <div className="flex-col flex-col--5">
+            <div className="flex-col flex-col--4">
               <ReactMarkdown
                 children={props.content.content.about.copy[1]}
                 className="landing-page__content markdown"
@@ -93,18 +105,20 @@ function LandingPage(props: any) {
               )}
             </div>
             <div className="flex-col flex-col--12 landing-page__pages">
-              {console.log(props.content.children)}
               {props.content.children
                 .filter((child: IPage) => child.enabled)
                 .sort((a: { order: number }, b: { order: number }) => a.order - b.order)
-                .map((page: { id: string; title: string }) => {
+                .map((page: { id: string; title: string; excerpt: string }) => {
                   return (
-                    <ButtonLink
-                      href={'/' + page.id}
-                      text={page.title}
-                      key={page.id}
-                      category={true}
-                    />
+                    <>
+                      <ButtonLink
+                        href={'/' + page.id}
+                        text={page.title}
+                        key={page.id}
+                        category={true}
+                        excerpt={{ isExcerpt: true, text: page.excerpt }}
+                      />
+                    </>
                   );
                 })}
             </div>

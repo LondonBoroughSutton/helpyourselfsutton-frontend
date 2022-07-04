@@ -6,7 +6,7 @@
 /* Section styles */
 
 .landing-page__overview {
-  padding: space(40) 0;
+  // padding: space(40) 0;
 
   @include for-tablet-landscape-down {
     margin-bottom: space(24);
@@ -15,12 +15,22 @@
 
 .landing-page__information {
   padding: space(56) 0;
-  background-color: $casablanca;
+  background-color: $botticelli; // $casablanca
+  text-align: center;
+  p {
+    max-width: 740px;
+    margin: 0 auto;
+  }
 }
 
 .landing-page__services {
   padding-top: space(56);
   background-color: $bermuda;
+  text-align: center;
+  p {
+    max-width: 740px;
+    margin: 0 auto;
+  }
 }
 
 .landing-page__pages,
@@ -129,5 +139,6 @@
 
   @include for-phone-only {
     margin-bottom: 0;
+    padding-right: 0;
   }
 }
