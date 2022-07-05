@@ -65,14 +65,14 @@ function LandingPage(props: any) {
           </div>
         </div>
         <div className="flex-container">
-          <div className="flex-col flex-col--8 landing-page__intro">
+          {/* <div className="flex-col flex-col--8 landing-page__intro">
             {props.content.content.about.copy && (
               <ReactMarkdown
                 children={props.content.content.about.copy}
                 className="landing-page__content"
               />
             )}
-          </div>
+          </div> */}
 
           {props.content.content.about.copy[0] && (
             <div className="flex-col flex-col--8 landing-page__about">

@@ -144,6 +144,9 @@
     max-height: 120px;
     width: auto;
     margin: 0 auto 1.4rem;
+    @include for-phone-only {
+      max-height: 90px;
+    }
   }
 }
 
@@ -156,6 +159,9 @@
   background: $botticelli;
   padding: 1.5rem;
   border-radius: 7px;
+  @include for-phone-only {
+    margin-top: 2.5rem;
+  }
 }
 
 .information-page__sitemap__link {

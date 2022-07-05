@@ -20,7 +20,7 @@ function InformationPage(props: any) {
   const getImg = (pageId: string) => {
     return `${apiBase}/pages/${pageId}/image.png?max_dimension=900`;
   };
-  console.log(props.content)
+
   return (
     <div className="information-page">
       <Helmet>
@@ -40,7 +40,7 @@ function InformationPage(props: any) {
       <section className="information-page__overview">
         <div className="flex-container">
           <div className="cms--contact-card">
-            <div className="flex-container">
+            <div className="flex-container flex-container--no-padding">
               <div className="flex-col flex-col--8 landing-page__intro">
                 {props.content.title && (
                    <h1 className="information-page__heading">{props.content.title}</h1>
