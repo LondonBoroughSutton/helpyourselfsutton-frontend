@@ -116,11 +116,19 @@ button {
 
 .button__excerpt {
   flex-wrap: wrap;
+  display: unset;
   .button__excerpt__title {
     text-decoration: underline;
   }
   .button__excerpt__text {
     @include body-m;
     margin-top: 1rem;
+  }
+}
+
+.button__excerpt--peach {
+  a.button__excerpt {
+    background: $peach;
+    padding: 1rem;
   }
 }
