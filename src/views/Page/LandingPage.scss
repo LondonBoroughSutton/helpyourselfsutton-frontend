@@ -6,8 +6,6 @@
 /* Section styles */
 
 .landing-page__overview {
-  // padding: space(40) 0;
-
   @include for-tablet-landscape-down {
     margin-bottom: space(24);
   }
@@ -15,7 +13,7 @@
 
 .landing-page__information {
   padding: space(56) 0;
-  background-color: $botticelli; // $casablanca
+  background-color: $botticelli;
   text-align: center;
   p {
     max-width: 740px;

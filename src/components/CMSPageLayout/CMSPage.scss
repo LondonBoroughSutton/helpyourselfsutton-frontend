@@ -62,11 +62,6 @@
   background-color: $casablanca;
   border-radius: 20px;
   text-overflow: ellipsis;
-  // margin-left: space(16);
-
-  // @include for-tablet-portrait-down {
-  //   margin-left: 0;
-  // }
 
   &--row {
     margin-top: space(24);
