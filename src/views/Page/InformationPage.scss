@@ -145,9 +145,11 @@
     width: auto;
     margin: 0 auto 1.4rem;
   }
-  .title {
-    @include heading-s;
-  }
+}
+
+.parent-title {
+  @include heading-s;
+  display: block;
 }
 
 .information-page__sitemap {
@@ -155,3 +157,15 @@
   padding: 1.5rem;
   border-radius: 7px;
 }
+
+.information-page__sitemap__link {
+  font-size: pxtorem(20);
+  font-family: "Outfit", sans-serif;
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
+  .button__icon {
+    margin: 0 1rem 0 0;
+  }
+}
+

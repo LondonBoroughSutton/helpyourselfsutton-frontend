@@ -48,13 +48,18 @@ function LandingPage(props: any) {
               </div>
 
               <div className="flex-col flex-col--4 landing-page__image">
-                {props.content.image && (
-                  <img
-                    alt={props.content.title ? props.content.title : ''}
-                    className="image"
-                    src={getImg(props.content.id)}
-                  />
-                )}
+                <div className='parent-page-image'>
+                  {props.content.image && (
+                    <img
+                      alt={props.content.title ? props.content.title : ''}
+                      className="image"
+                      src={getImg(props.content.id)}
+                    />
+                  )}
+                  {props.content.title && (
+                    <div className='parent-title'>{props.content.title}</div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

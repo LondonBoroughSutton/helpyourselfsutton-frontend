@@ -1,19 +1,20 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
-
-import { apiBase } from '../../config/api';
-
-import './InformationPage.scss';
-
-import Breadcrumb from '../../components/Breadcrumb';
-
-// Import assets
-import pageIllo from '../../assets/images/mother-and-son-walking.svg';
-import ButtonLink from '../../components/Button/ButtonLink';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 
+import { apiBase } from '../../config/api';
+import Breadcrumb from '../../components/Breadcrumb';
+import pageIllo from '../../assets/images/mother-and-son-walking.svg';
+import ButtonLink from '../../components/Button/ButtonLink';
+import data from "../../components/RecursiveUl/file-structure";
+import UnorderedList from "../../components/RecursiveUl";
+
 import { IPage } from '../../types/types';
+
+import './InformationPage.scss';
 
 function InformationPage(props: any) {
   const getImg = (pageId: string) => {
@@ -63,7 +64,7 @@ function InformationPage(props: any) {
                     />
                   )}
                   {props.content.parent.title && (
-                    <div className='title'>{props.content.parent.title}</div>
+                    <Link to={`/${props.content.parent.id}`} className='parent-title'>{props.content.parent.title}</Link>
                   )}
                 </div>
               </div>
@@ -72,7 +73,7 @@ function InformationPage(props: any) {
         </div>
 
         <div className="flex-container">
-          <div className="flex-col flex-col--8">
+          <div className="flex-col flex-col--8 landing-page__intro">
             {props.content.image && (
               <img
                 alt={props.content.title ? props.content.title : ''}
@@ -83,6 +84,7 @@ function InformationPage(props: any) {
             {props.content.content.introduction.copy && (
               <div>
                 <ReactMarkdown
+                  data-content='main'
                   children={props.content.content.introduction.copy[0]}
                   className="information-page__content markdown"
                 />
@@ -117,20 +119,33 @@ function InformationPage(props: any) {
           </div>
           <div className="flex-col flex-col--4">
             <div className="information-page__sitemap">
-              sitemap goes here
+              {props.content.parent.title && (
+                <div className='parent-title'>{props.content.parent.title}</div>
+              )}
+              <div className='list-recursive__wrapper'>
+                {data.children.map(list => (
+                  <UnorderedList key={list.id} list={list} />
+                ))}
+              </div>
+              <Link to={`/${props.content.parent.id}`} className='information-page__sitemap__link'>
+                <FontAwesomeIcon icon='arrow-left' className='button__icon' />
+                Return to {props.content.parent.title}
+              </Link>  
             </div>  
           </div>  
         </div>
-        <div className="information-page__more">
-          {pageIllo && (
-            <div className="flex-col">
-              <img
-                alt="Mum and child walking together"
-                className="information-page__illustration"
-                src={pageIllo}
-              />
-            </div>
-          )}
+        <div className="flex-container">
+          <div className="flex-col flex-col--12 information-page__more">
+            {pageIllo && (
+              <div className="flex-col">
+                <img
+                  alt="Mum and child walking together"
+                  className="information-page__illustration"
+                  src={pageIllo}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </section>
     </div>
