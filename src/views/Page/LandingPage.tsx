@@ -7,6 +7,7 @@ import { apiBase } from '../../config/api';
 import './LandingPage.scss';
 
 import Breadcrumb from '../../components/Breadcrumb';
+import LastUpdatedAt from '../../components/LastUpdatedAt';
 
 // Import assets
 import servicesIllo1 from '../../assets/images/lady-walking-a-dog.svg';
@@ -37,7 +38,7 @@ function LandingPage(props: any) {
       <section className="landing-page__overview">
         <div className="flex-container">
           <div className="cms--contact-card">
-            <div className="flex-container">
+            <div className="flex-container flex-container--no-padding">
               <div className="flex-col flex-col--8 landing-page__intro">
                 {props.content.content.introduction.copy && (
                   <ReactMarkdown
@@ -48,7 +49,7 @@ function LandingPage(props: any) {
               </div>
 
               <div className="flex-col flex-col--4 landing-page__image">
-                <div className='parent-page-image'>
+                <div className="parent-page-image">
                   {props.content.image && (
                     <img
                       alt={props.content.title ? props.content.title : ''}
@@ -56,9 +57,7 @@ function LandingPage(props: any) {
                       src={getImg(props.content.id)}
                     />
                   )}
-                  {props.content.title && (
-                    <div className='parent-title'>{props.content.title}</div>
-                  )}
+                  {props.content.title && <div className="parent-title">{props.content.title}</div>}
                 </div>
               </div>
             </div>
@@ -79,6 +78,7 @@ function LandingPage(props: any) {
                 children={props.content.content.about.copy[1]}
                 className="landing-page__content markdown"
               />
+              <LastUpdatedAt time={props.content.updated_at} />
             </div>
           )}
         </div>
@@ -106,15 +106,13 @@ function LandingPage(props: any) {
                 .sort((a: { order: number }, b: { order: number }) => a.order - b.order)
                 .map((page: { id: string; title: string; excerpt: string }) => {
                   return (
-                    <>
-                      <ButtonLink
-                        href={'/' + page.id}
-                        text={page.title}
-                        key={page.id}
-                        category={true}
-                        excerpt={{ isExcerpt: true, text: page.excerpt }}
-                      />
-                    </>
+                    <ButtonLink
+                      href={'/' + page.id}
+                      text={page.title}
+                      key={page.id}
+                      category={true}
+                      excerpt={{ isExcerpt: true, text: page.excerpt }}
+                    />
                   );
                 })}
             </div>

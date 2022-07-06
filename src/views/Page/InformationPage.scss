@@ -11,7 +11,8 @@
 
 .information-page__more {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-top: space(40);
 
   @include for-tablet-landscape-down {
@@ -19,6 +20,7 @@
   }
 
   @include for-phone-only {
+    display: block;
     margin-top: space(24);
   }
 }

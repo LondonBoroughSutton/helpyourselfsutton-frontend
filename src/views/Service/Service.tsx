@@ -9,7 +9,6 @@ import map from 'lodash/map';
 import find from 'lodash/find';
 import _orderBy from 'lodash/orderBy';
 import ReactMarkdown from 'react-markdown';
-import moment from 'moment';
 import cx from 'classnames';
 import uniqueId from 'lodash/uniqueId';
 
@@ -50,6 +49,7 @@ import Loading from '../../components/Loading';
 import ServiceDisabled from './ServiceDisabled';
 import LinkButton from '../../components/LinkButton';
 import Button from '../../components/Button';
+import LastUpdatedAt from '../../components/LastUpdatedAt';
 
 import serviceImage from '../../assets/images/teenagers-hanging-out.svg';
 
@@ -570,10 +570,7 @@ class Service extends Component<IProps> {
                   <ShareCard serviceStore={serviceStore} />
                 </div>
                 <div className="flex-container flex-container--justify flex-container--no-padding">
-                  <p>
-                    Page last updated{' '}
-                    <strong>{moment(service!.updated_at).format('Do MMMM YYYY')}</strong>
-                  </p>
+                  <LastUpdatedAt time={service!.updated_at} />
                 </div>
               </aside>
             </div>
