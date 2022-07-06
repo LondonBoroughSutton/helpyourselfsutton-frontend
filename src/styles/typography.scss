@@ -35,6 +35,9 @@ $font-body-mobile-xl: pxtorem(22);
 $font-body-l: pxtorem(24);
 $font-body-mobile-l: pxtorem(20);
 
+$font-body-xm: pxtorem(22);
+$font-body-mobile-xm: pxtorem(20);
+
 $font-body-m: pxtorem(18);
 $font-body-mobile-m: pxtorem(16);
 
@@ -142,6 +145,18 @@ $font-link-medium: pxtorem(20);
   @include for-phone-only {
     font-size: $font-body-mobile-l;
     line-height: 1.75rem;
+  }
+}
+
+@mixin body-xm {
+  font-size: $font-body-xm;
+  font-family: $font-primary;
+  font-weight: 400;
+  line-height: 2.25rem;
+
+  @include for-phone-only {
+    font-size: $font-body-mobile-xm;
+    line-height: 1.5rem;
   }
 }
 
