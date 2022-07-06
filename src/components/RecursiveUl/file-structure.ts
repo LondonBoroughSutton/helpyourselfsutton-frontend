@@ -1,4 +1,4 @@
-export default {
+const testData = {
   id: 1,
   filename: "root",
   children: [
@@ -118,3 +118,5 @@ export default {
     }
   ]
 };
+
+export default testData;
