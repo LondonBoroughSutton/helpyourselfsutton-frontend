@@ -328,7 +328,7 @@ blockquote {
     }
   }
 
-  li {
+  ul > li {
     display: flex;
 
     &::before {
@@ -338,10 +338,21 @@ blockquote {
       font-size: pxtorem(48);
     }
   }
+
+  ol > li::marker {
+    display: inline-block;
+    @include body-l;
+    line-height: 2.25rem;
+  }
+
+  ol > li p {
+    display: inline-block;
+    margin-left: 0.5rem;
+  }
 }
 
 .landing-page__content.markdown p:nth-child(1),
-.information-page__content.markdown p:nth-child(1):not(ul li p),
+.information-page__content.markdown p:nth-child(1):not(ul li p):not(ol li p),
 .information-page__content.markdown h1:first-child + p,
 .information-page__content.markdown h2:first-child + p,
 .information-page__content.markdown h3:first-child + p {
