@@ -6,8 +6,6 @@
 /* Section styles */
 
 .landing-page__overview {
-  padding: space(40) 0;
-
   @include for-tablet-landscape-down {
     margin-bottom: space(24);
   }
@@ -15,12 +13,22 @@
 
 .landing-page__information {
   padding: space(56) 0;
-  background-color: $casablanca;
+  background-color: $botticelli;
+  text-align: center;
+  p {
+    max-width: 740px;
+    margin: 0 auto;
+  }
 }
 
 .landing-page__services {
   padding-top: space(56);
   background-color: $bermuda;
+  text-align: center;
+  p {
+    max-width: 740px;
+    margin: 0 auto;
+  }
 }
 
 .landing-page__pages,
@@ -81,7 +89,7 @@
 }
 
 .landing-page__content {
-  margin-bottom: space(48);
+ // margin-bottom: space(48);
 
   @include for-tablet-landscape-down {
     margin-bottom: space(32);
@@ -98,6 +106,9 @@
   a {
     @include body-l;
     text-decoration: underline;
+  }
+  > h1, > h2, > h3 {
+    margin-bottom: 2rem;
   }
 }
 
@@ -129,5 +140,6 @@
 
   @include for-phone-only {
     margin-bottom: 0;
+    padding-right: 0;
   }
 }

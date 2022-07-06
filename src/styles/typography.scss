@@ -324,3 +324,31 @@ blockquote {
     }
   }
 }
+
+.landing-page__content.markdown p:nth-child(1),
+.information-page__content.markdown p:nth-child(1):not(ul li p),
+.information-page__content.markdown h1:first-child + p,
+.information-page__content.markdown h2:first-child + p,
+.information-page__content.markdown h3:first-child + p {
+  border-left: 8px solid #000;
+  padding: 0.5rem 0 0.5rem 1.2rem;
+  font-weight: 700;
+  font-size: pxtorem(28);
+  line-height: pxtorem(40);
+  margin-bottom: 2rem;
+  a {
+    font-weight: 700;
+    font-size: pxtorem(28);
+    line-height: pxtorem(40);
+    @include for-phone-only {
+      @include body-l;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+  }
+  @include for-phone-only {
+    @include body-l;
+    margin-bottom: 2rem;
+    font-weight: 700;
+  }
+}

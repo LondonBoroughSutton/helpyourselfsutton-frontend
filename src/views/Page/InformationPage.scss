@@ -38,7 +38,7 @@
 
 .information-page__pages {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 
   @include for-tablet-landscape-down {
@@ -125,3 +125,53 @@
     max-height: 160px;
   }
 }
+
+.information-page__overview {
+  .article-image {
+    width: 100%;
+    height: auto;
+    border-radius: pxtorem(34);
+    margin-bottom: 2.4rem;
+  }
+}
+
+.parent-page-image {
+  border-radius: pxtorem(36);
+  padding: space(20);
+  background: $white;
+  text-align: center;
+  .image {
+    max-height: 120px;
+    width: auto;
+    margin: 0 auto 1.4rem;
+    @include for-phone-only {
+      max-height: 90px;
+    }
+  }
+}
+
+.parent-title {
+  @include heading-s;
+  display: block;
+}
+
+.information-page__sitemap {
+  background: $botticelli;
+  padding: 1.5rem;
+  border-radius: 7px;
+  @include for-phone-only {
+    margin-top: 2.5rem;
+  }
+}
+
+.information-page__sitemap__link {
+  font-size: pxtorem(20);
+  font-family: "Outfit", sans-serif;
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
+  .button__icon {
+    margin: 0 1rem 0 0;
+  }
+}
+

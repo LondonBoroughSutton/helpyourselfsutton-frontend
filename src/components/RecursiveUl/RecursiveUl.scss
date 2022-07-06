@@ -1,0 +1,44 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/typography.scss';
+
+.list {
+  height: 30px;
+  overflow: hidden;
+  padding: revert;
+  list-style-type: none;
+  padding-left: 1rem;
+  font-size: pxtorem(18);
+  font-weight: 700;
+  li {
+    margin: 0;
+    font-size: pxtorem(18);
+    line-height: pxtorem(30);
+    font-weight: 700;
+  }
+  &.isOnHover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  > li::before {
+    content: '[+] ';
+  }
+  > li.isOnHover {
+      text-decoration: underline;
+      cursor: pointer;
+  }
+  &.open {
+    height: auto;
+    > li::before {
+      content: '[-] ';
+    }
+  }
+  .leaf {
+    padding-left: 1rem;
+    list-style-type: disc;
+    font-weight: normal;
+  }
+}
+
+.list-recursive__wrapper {
+  margin: 2rem 0 2rem -1rem;
+}
