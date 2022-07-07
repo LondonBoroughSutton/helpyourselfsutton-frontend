@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { LegacyRef, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import './RecursiveUl.scss';
@@ -11,6 +11,14 @@ type RecursiveUlProps = {
 
 const RecursiveUl: React.FC<{ list: RecursiveUlProps, activePage?: string }> = ({ list, activePage }) => {
   const [open, setOpen] = useState(true);
+  const [height, setHeight] = useState(true);
+  const ref = useRef<any>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      setHeight(ref.current.clientHeight);
+    }
+  }, [])
 
   const handleOnClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>, id: string) => {
     const target = e.target as Element;
@@ -29,14 +37,15 @@ const RecursiveUl: React.FC<{ list: RecursiveUlProps, activePage?: string }> = (
       );
     return <RecursiveUl key={list.id} list={list} />;
   });
-
+  console.log({height})
   return (
     <ul
+      {...(!open && { style: { height: `${height}px` } })}
       data-id={list.id}
       className={`list ${open ? 'open' : ''}`}
       onClick={(e) => handleOnClick(e, list.id)}
     >
-      <li>{list.filename}</li>
+      <li ref={ref}>{list.filename}</li>
       {handleSubsequentUls}
     </ul>
   );
