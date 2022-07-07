@@ -45,7 +45,15 @@ const Sitemap: React.FC<{ list: SitemapProps; activePage?: string }> = ({ list, 
       className={`list ${open ? 'open' : ''}`}
       onClick={(e) => handleOnClick(e, list.id)}
     >
-      <li ref={ref}>{list.filename}</li>
+      {list.children ? (
+        <li ref={ref}>
+          {list.filename}
+        </li>
+      ) : (
+        <li className='leaf' ref={ref}>
+          <Link to={`/${list.id}`}>{list.filename}</Link>
+        </li>
+      )}
       {handleSubsequentUls}
     </ul>
   );

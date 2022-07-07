@@ -55,7 +55,7 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
     if (content.landing_page) {
       pageStore.fetchPageTree(content.landing_page.id);
     }
-  });
+  }, [pageStore, content.landing_page]);
 
   const getImg = (pageId: string) => {
     return `${apiBase}/pages/${pageId}/image.png?max_dimension=900`;

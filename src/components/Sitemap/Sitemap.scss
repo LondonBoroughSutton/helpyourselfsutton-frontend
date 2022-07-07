@@ -1,7 +1,7 @@
 @import '../../styles/mixins.scss';
 @import '../../styles/typography.scss';
 
-.list {
+ul.list {
   height: 30px;
   overflow: hidden;
   padding: revert;
@@ -34,13 +34,14 @@
     }
   }
 
-  .leaf {
+  li.leaf {
     padding-left: 1.4rem;
     font-weight: normal;
 
     a {
       font-size: 1.2rem;
     }
+   
     a:hover {
       text-decoration: underline;
       cursor: pointer;
