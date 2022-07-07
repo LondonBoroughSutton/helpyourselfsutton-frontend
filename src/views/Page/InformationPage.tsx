@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
@@ -25,23 +25,24 @@ const setPageTreeFields = (pageTree: IPage[]) =>
       parent: item.parent.title,
       parentId: item.parent.id,
       children: null,
-    })
+    });
     return acc;
   }, []);
 
 const makePageTree = (data: IPageTree[]) => {
-  const tree = data.map((e: IPageTree) => ({...e}))
+  const tree = data
+    .map((e: IPageTree) => ({ ...e }))
     .reduce((a: IPageTreeHashed, e: IPageTree) => {
       a[e.id] = a[e.id] || e;
       a[e.parentId] = a[e.parentId] || {};
       const parent = a[e.parentId];
-        // @ts-ignore  
-      parent.children = parent.children || []; 
+      // @ts-ignore
+      parent.children = parent.children || [];
       parent.children!.push(e);
       return a;
     }, {});
-  // @ts-ignore  
-  return Object.values(tree).find(e => e.id === undefined).children;
+  // @ts-ignore
+  return Object.values(tree).find((e) => e.id === undefined).children;
 };
 
 interface IProps {
@@ -58,8 +59,8 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
 
   const getImg = (pageId: string) => {
     return `${apiBase}/pages/${pageId}/image.png?max_dimension=900`;
-  };  
-  
+  };
+
   const pagesList = pageStore.pageTree && setPageTreeFields(pageStore.pageTree);
   const pageTree = pagesList && makePageTree(pagesList);
 
@@ -84,14 +85,9 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
           <div className="cms--contact-card">
             <div className="flex-container flex-container--no-padding">
               <div className="flex-col flex-col--8 landing-page__intro">
-                {content.title && (
-                  <h1 className="information-page__heading">{content.title}</h1>
-                )}
+                {content.title && <h1 className="information-page__heading">{content.title}</h1>}
                 {content.excerpt && (
-                  <ReactMarkdown
-                    children={content.excerpt}
-                    className="information-page__content"
-                  />
+                  <ReactMarkdown children={content.excerpt} className="information-page__content" />
                 )}
               </div>
 
@@ -162,13 +158,12 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
           </div>
           <div className="flex-col flex-col--4">
             <div className="information-page__sitemap">
-              {content.parent.title && (
-                <div className="parent-title">{content.parent.title}</div>
-              )}
+              {content.parent.title && <div className="parent-title">{content.parent.title}</div>}
               <div className="list-recursive__wrapper">
-                {pageTree && pageTree.map((list: any) => (
-                  <Sitemap key={list.id} list={list} activePage={content.id} />
-                ))}
+                {pageTree &&
+                  pageTree.map((list: any) => (
+                    <Sitemap key={list.id} list={list} activePage={content.id} />
+                  ))}
               </div>
               <Link to={`/${content.parent.id}`} className="information-page__sitemap__link">
                 <FontAwesomeIcon icon="arrow-left" className="button__icon" />
@@ -194,6 +189,6 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
       </section>
     </div>
   );
-}
+};
 
 export default inject('pageStore')(observer(InformationPage));

@@ -9,7 +9,7 @@ type SitemapProps = {
   children: SitemapProps[] | null;
 };
 
-const Sitemap: React.FC<{ list: SitemapProps, activePage?: string }> = ({ list, activePage }) => {
+const Sitemap: React.FC<{ list: SitemapProps; activePage?: string }> = ({ list, activePage }) => {
   const [open, setOpen] = useState(true);
   const [height, setHeight] = useState(true);
   const ref = useRef<any>(null);
@@ -18,7 +18,7 @@ const Sitemap: React.FC<{ list: SitemapProps, activePage?: string }> = ({ list, 
     if (ref.current) {
       setHeight(ref.current.clientHeight);
     }
-  }, [])
+  }, []);
 
   const handleOnClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>, id: string) => {
     const target = e.target as Element;

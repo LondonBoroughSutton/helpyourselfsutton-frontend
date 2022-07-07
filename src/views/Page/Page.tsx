@@ -39,7 +39,9 @@ class Page extends Component<IProps> {
       page && (
         <main>
           {page.page_type === 'landing' && <LandingPage content={page} />}
-          {page.page_type === 'information' && <InformationPage pageStore={pageStore} content={page} />}
+          {page.page_type === 'information' && (
+            <InformationPage pageStore={pageStore} content={page} />
+          )}
         </main>
       )
     );
