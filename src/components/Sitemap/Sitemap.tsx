@@ -1,15 +1,15 @@
-import React, { LegacyRef, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-import './RecursiveUl.scss';
+import './Sitemap.scss';
 
-type RecursiveUlProps = {
+type SitemapProps = {
   id: string;
   filename: string;
-  children: RecursiveUlProps[] | null;
+  children: SitemapProps[] | null;
 };
 
-const RecursiveUl: React.FC<{ list: RecursiveUlProps, activePage?: string }> = ({ list, activePage }) => {
+const Sitemap: React.FC<{ list: SitemapProps, activePage?: string }> = ({ list, activePage }) => {
   const [open, setOpen] = useState(true);
   const [height, setHeight] = useState(true);
   const ref = useRef<any>(null);
@@ -26,7 +26,7 @@ const RecursiveUl: React.FC<{ list: RecursiveUlProps, activePage?: string }> = (
     setOpen((prev) => !prev);
   };
 
-  const handleSubsequentUls = (list.children || []).map((list: RecursiveUlProps) => {
+  const handleSubsequentUls = (list.children || []).map((list: SitemapProps) => {
     if (list.children === null)
       return (
         <ul key={list.id}>
@@ -35,9 +35,9 @@ const RecursiveUl: React.FC<{ list: RecursiveUlProps, activePage?: string }> = (
           </li>
         </ul>
       );
-    return <RecursiveUl key={list.id} list={list} />;
+    return <Sitemap key={list.id} list={list} />;
   });
-  console.log({height})
+
   return (
     <ul
       {...(!open && { style: { height: `${height}px` } })}
@@ -51,4 +51,4 @@ const RecursiveUl: React.FC<{ list: RecursiveUlProps, activePage?: string }> = (
   );
 };
 
-export default RecursiveUl;
+export default Sitemap;
