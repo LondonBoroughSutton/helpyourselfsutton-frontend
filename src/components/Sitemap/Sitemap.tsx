@@ -6,6 +6,7 @@ import './Sitemap.scss';
 type SitemapProps = {
   id: string;
   filename: string;
+  slug: string;
   children: SitemapProps[] | null;
 };
 
@@ -31,7 +32,7 @@ const Sitemap: React.FC<{ list: SitemapProps; activePage?: string }> = ({ list, 
       return (
         <ul key={list.id}>
           <li className={`leaf ${activePage === list.id ? 'currentPage' : ''}`}>
-            <Link to={`/${list.id}`}>{list.filename}</Link>
+            <Link to={`/${list.slug}`}>{list.filename}</Link>
           </li>
         </ul>
       );
@@ -46,12 +47,10 @@ const Sitemap: React.FC<{ list: SitemapProps; activePage?: string }> = ({ list, 
       onClick={(e) => handleOnClick(e, list.id)}
     >
       {list.children ? (
-        <li ref={ref}>
-          {list.filename}
-        </li>
+        <li ref={ref}>{list.filename}</li>
       ) : (
-        <li className='leaf' ref={ref}>
-          <Link to={`/${list.id}`}>{list.filename}</Link>
+        <li className="leaf" ref={ref}>
+          <Link to={`/${list.slug}`}>{list.filename}</Link>
         </li>
       )}
       {handleSubsequentUls}

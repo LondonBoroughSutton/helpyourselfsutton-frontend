@@ -22,6 +22,7 @@ const setPageTreeFields = (pageTree: IPage[]) =>
     acc.push({
       id: item.id,
       filename: item.title,
+      slug: item.slug,
       parent: item.parent.title,
       parentId: item.parent.id,
       children: null,
@@ -75,7 +76,7 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
           { text: 'Home', url: '/' },
           {
             text: content.parent.title ? content.parent.title : 'Information Page',
-            url: '/' + content.parent.id,
+            url: '/' + content.parent.slug,
           },
           { text: content.title ? content.title : 'Information Page', url: '' },
         ]}
@@ -137,21 +138,29 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
                   {content.children
                     .filter((child: IPage) => child.enabled)
                     .sort((a: { order: number }, b: { order: number }) => a.order - b.order)
-                    .map((page: { id: string; title: string; icon: IconName; excerpt: string }) => {
-                      return (
-                        <ButtonLink
-                          href={'/' + page.id}
-                          text={page.title}
-                          key={page.id}
-                          category={true}
-                          icon={page.icon}
-                          excerpt={{
-                            isExcerpt: true,
-                            text: page.excerpt,
-                          }}
-                        />
-                      );
-                    })}
+                    .map(
+                      (page: {
+                        id: string;
+                        title: string;
+                        icon: IconName;
+                        excerpt: string;
+                        slug: string;
+                      }) => {
+                        return (
+                          <ButtonLink
+                            href={'/' + page.slug}
+                            text={page.title}
+                            key={page.id}
+                            category={true}
+                            icon={page.icon}
+                            excerpt={{
+                              isExcerpt: true,
+                              text: page.excerpt,
+                            }}
+                          />
+                        );
+                      }
+                    )}
                 </div>
               </div>
             )}

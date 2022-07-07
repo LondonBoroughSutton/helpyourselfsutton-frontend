@@ -104,10 +104,10 @@ function LandingPage(props: any) {
               {props.content.children
                 .filter((child: IPage) => child.enabled)
                 .sort((a: { order: number }, b: { order: number }) => a.order - b.order)
-                .map((page: { id: string; title: string; excerpt: string }) => {
+                .map((page: { id: string; title: string; excerpt: string; slug: string }) => {
                   return (
                     <ButtonLink
-                      href={'/' + page.id}
+                      href={'/' + page.slug}
                       text={page.title}
                       key={page.id}
                       category={true}

@@ -33,6 +33,7 @@ export interface IPage {
   updated_at: string;
   excerpt?: string;
   landing_page?: IPage;
+  slug: string;
 }
 
 export interface IPersona {
@@ -261,6 +262,7 @@ export interface IPageTreeHashed {
 export interface IPageTree {
   id: string;
   filename: string;
+  slug: string;
   parent: string;
   parentId: string;
   children: IPageTree[] | null;
