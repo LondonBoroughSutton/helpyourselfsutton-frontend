@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import './RecursiveUl.scss';
 
 type RecursiveUlProps = {
-  id: number;
+  id: string;
   filename: string;
   children: RecursiveUlProps[] | null;
 };
 
-const RecursiveUl: React.FC<{ list: RecursiveUlProps }> = ({ list }) => {
+const RecursiveUl: React.FC<{ list: RecursiveUlProps, activePage?: string }> = ({ list, activePage }) => {
   const [open, setOpen] = useState(true);
 
-  const handleOnClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>, id: number) => {
+  const handleOnClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>, id: string) => {
     const target = e.target as Element;
-    // @ts-ignore
-    if (id !== +target.parentElement.getAttribute('data-id')) return;
+    if (id !== target.parentElement!.getAttribute('data-id')) return;
     setOpen((prev) => !prev);
   };
 
@@ -21,7 +22,9 @@ const RecursiveUl: React.FC<{ list: RecursiveUlProps }> = ({ list }) => {
     if (list.children === null)
       return (
         <ul key={list.id}>
-          <li className="leaf">{list.filename}</li>
+          <li className={`leaf ${activePage === list.id ? 'currentPage' : ''}`}>
+            <Link to={`/${list.id}`}>{list.filename}</Link>
+          </li>
         </ul>
       );
     return <RecursiveUl key={list.id} list={list} />;

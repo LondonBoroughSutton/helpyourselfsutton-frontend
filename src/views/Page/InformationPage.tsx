@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
+import { observer, inject } from 'mobx-react';
 
 import { apiBase } from '../../config/api';
 import Breadcrumb from '../../components/Breadcrumb';
 import pageIllo from '../../assets/images/mother-and-son-walking.svg';
 import ButtonLink from '../../components/Button/ButtonLink';
-import data from '../../components/RecursiveUl/file-structure';
 import UnorderedList from '../../components/RecursiveUl';
 import LastUpdatedAt from '../../components/LastUpdatedAt';
 
@@ -17,10 +17,43 @@ import { IPage } from '../../types/types';
 
 import './InformationPage.scss';
 
+const getPageTreeFields = (pageTree: any) => pageTree.reduce((acc:any, item:any) => {
+  acc.push({
+    id: item.id,
+    filename: item.title,
+    parent: item.parent.title,
+    parentId: item.parent.id,
+    children: null,
+  })
+  return acc;
+}, []);
+
+const makePageTree = (data:any) => {
+  const tree = data.map((e:any) => ({...e}))
+    .sort((a:any, b:any) => a.id - b.id)
+    .reduce((a:any, e:any) => {
+      a[e.id] = a[e.id] || e;
+      a[e.parentId] = a[e.parentId] || {};
+      const parent = a[e.parentId];
+      parent.children = parent.children || [];
+      parent.children.push(e);
+      return a;
+    }, {});
+  // @ts-ignore  
+  return Object.values(tree).find(e => e.id === undefined).children;
+};
+
 function InformationPage(props: any) {
+  useEffect(() => {
+    props.pageStore.fetchPageTree(props.content.landing_page.id)
+  }, [props.content.landing_page.id])
+
   const getImg = (pageId: string) => {
     return `${apiBase}/pages/${pageId}/image.png?max_dimension=900`;
-  };
+  };  
+  
+  const pagesList = props.pageStore.pageTree && getPageTreeFields(props.pageStore.pageTree);
+  const pageTree = pagesList && makePageTree(pagesList);
 
   return (
     <div className="information-page">
@@ -125,8 +158,8 @@ function InformationPage(props: any) {
                 <div className="parent-title">{props.content.parent.title}</div>
               )}
               <div className="list-recursive__wrapper">
-                {data.children.map((list) => (
-                  <UnorderedList key={list.id} list={list} />
+                {pageTree && pageTree.map((list: any) => (
+                  <UnorderedList key={list.id} list={list} activePage={props.content.id} />
                 ))}
               </div>
               <Link to={`/${props.content.parent.id}`} className="information-page__sitemap__link">
@@ -155,4 +188,4 @@ function InformationPage(props: any) {
   );
 }
 
-export default InformationPage;
+export default inject('pageStore')(observer(InformationPage));
