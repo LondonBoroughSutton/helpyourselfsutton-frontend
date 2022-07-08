@@ -9,6 +9,7 @@ export default class PageStore {
   @observable loading: boolean = false;
   @observable pages: IPage[] | null = null;
   @observable page: IPage | null = null;
+  @observable pageTree: any = null;
 
   constructor() {
     makeObservable(this);
@@ -23,6 +24,21 @@ export default class PageStore {
         this.pages = get(pagesData, 'data.data').sort(
           (a: { order: number }, b: { order: number }) => a.order - b.order
         );
+      });
+    } catch (error) {
+      this.loading = false;
+    }
+  };
+
+  @action
+  fetchPageTree = async (landingPageUuid: string) => {
+    this.loading = true;
+    try {
+      const pageTreeData = await axios.get(
+        `${apiBase}/pages?filter[landing_page]=${landingPageUuid}&include=parent`
+      );
+      runInAction(() => {
+        this.pageTree = get(pageTreeData, 'data.data');
       });
     } catch (error) {
       this.loading = false;

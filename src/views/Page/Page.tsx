@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router';
 
 import './LandingPage.scss';
 
-import pageStore from '../../stores/pageStore';
+import PageStore from '../../stores/pageStore';
 
 import LandingPage from './LandingPage';
 import InformationPage from './InformationPage';
@@ -14,7 +14,7 @@ interface RouteParams {
 }
 
 interface IProps extends RouteComponentProps<RouteParams> {
-  pageStore: pageStore;
+  pageStore: PageStore;
 }
 
 class Page extends Component<IProps> {
@@ -39,7 +39,9 @@ class Page extends Component<IProps> {
       page && (
         <main>
           {page.page_type === 'landing' && <LandingPage content={page} />}
-          {page.page_type === 'information' && <InformationPage content={page} />}
+          {page.page_type === 'information' && (
+            <InformationPage pageStore={pageStore} content={page} />
+          )}
         </main>
       )
     );

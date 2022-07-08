@@ -26,10 +26,13 @@ export interface IPage {
       copy: string[];
     };
   };
-  parent: [];
+  parent: IPage;
   children: [];
   collections_categories: [];
   collections_personas: [];
+  updated_at: string;
+  excerpt?: string;
+  landing_page?: IPage;
 }
 
 export interface IPersona {
@@ -249,4 +252,16 @@ export interface IEligibilityFilters {
 
 export enum Events {
   SET_TITLE = 'set_title',
+}
+
+export interface IPageTreeHashed {
+  [index: string]: IPageTree;
+}
+
+export interface IPageTree {
+  id: string;
+  filename: string;
+  parent: string;
+  parentId: string;
+  children: IPageTree[] | null;
 }
