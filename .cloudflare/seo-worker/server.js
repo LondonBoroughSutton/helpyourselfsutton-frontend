@@ -299,17 +299,12 @@ const renderOrganisationMeta = async (slug) => {
 const renderInformationPageMeta = async (slug) => {
   const data = await fetchInformationPage(slug);
 
-  console.log(data);
-
   const metaTitle = _get(data, 'title', defaultTitle);
-  console.log(metaTitle);
   const pageHasImage = !!_get(data, 'image.id', false);
-  console.log(pageHasImage);
 
   const rawPageContent = _get(data, 'content.introduction.copy', defaultContent);
 
   const metaDesc = prepareDescription(rawPageContent[0]);
-  console.log(metaDesc);
 
   let metas = [];
 
