@@ -140,47 +140,43 @@ class Filter extends Component<IProps, IState> {
 
     return (
       <div className="results__filters">
-        {resultsStore.isKeywordSearch && (
-          <h1 className="results__filters__heading">Search results</h1>
-        )}
+        <h1 className="results__filters__heading">Search results</h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();
             this.search();
           }}
         >
-          <div className={resultsStore.isKeywordSearch ? 'flex-col' : 'flex-col flex-col--12'}>
+          <div className="flex-col">
             <div className="results__filters--primary">
-              {resultsStore.isKeywordSearch && (
-                <div>
-                  <label className="sr-only" htmlFor="keyword" aria-label="Search using a keyword">
-                    Search using a keyword
-                  </label>
-                  <Input
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      const target = e.target || null;
-                      if (resultsStore) {
-                        resultsStore.setKeyword(target.value);
-                      }
+              <div>
+                <label className="sr-only" htmlFor="keyword" aria-label="Search using a keyword">
+                  Search using a keyword
+                </label>
+                <Input
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    const target = e.target || null;
+                    if (resultsStore) {
+                      resultsStore.setKeyword(target.value);
+                    }
 
-                      if (this.state.typingTimeoutId) {
-                        clearTimeout(this.state.typingTimeoutId);
-                      }
+                    if (this.state.typingTimeoutId) {
+                      clearTimeout(this.state.typingTimeoutId);
+                    }
 
-                      this.setState({
-                        typingTimeoutId: setTimeout(() => {
-                          this.search();
-                        }, 500),
-                      });
-                    }}
-                    id="keyword"
-                    value={resultsStore.keyword || ''}
-                    placeholder="Search using a keyword"
-                    className="results__search-box-keyword"
-                    error={this.state.errors.keyword}
-                  />
-                </div>
-              )}
+                    this.setState({
+                      typingTimeoutId: setTimeout(() => {
+                        this.search();
+                      }, 500),
+                    });
+                  }}
+                  id="keyword"
+                  value={resultsStore.keyword || ''}
+                  placeholder="Search using a keyword"
+                  className="results__search-box-keyword"
+                  error={this.state.errors.keyword}
+                />
+              </div>
 
               <div
                 className=""
