@@ -148,7 +148,7 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
                       }) => {
                         return (
                           <ButtonLink
-                            href={'/' + page.slug}
+                            href={'/pages/' + page.slug}
                             text={page.title}
                             key={page.id}
                             category={true}

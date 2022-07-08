@@ -107,7 +107,7 @@ function LandingPage(props: any) {
                 .map((page: { id: string; title: string; excerpt: string; slug: string }) => {
                   return (
                     <ButtonLink
-                      href={'/' + page.slug}
+                      href={'/pages/' + page.slug}
                       text={page.title}
                       key={page.id}
                       category={true}

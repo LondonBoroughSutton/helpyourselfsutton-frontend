@@ -139,7 +139,7 @@ class Results extends Component<IProps, IState> {
                     <ButtonLink
                       key={page.id}
                       text={page.title}
-                      href={'/' + page.id}
+                      href={'/pages/' + page.slug}
                       icon="arrow-right"
                       category={true}
                     />
@@ -153,7 +153,7 @@ class Results extends Component<IProps, IState> {
                       <ButtonLink
                         key={page.id}
                         text={page.title}
-                        href={'/' + page.id}
+                        href={'/pages/' + page.slug}
                         icon="arrow-right"
                         category={true}
                       />
