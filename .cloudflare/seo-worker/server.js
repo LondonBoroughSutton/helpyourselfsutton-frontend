@@ -113,9 +113,9 @@ const fetchOrganisation = async (name) => {
   }
 };
 
-const fetchInformationPage = async (id) => {
+const fetchInformationPage = async (slug) => {
   try {
-    const response = await getApi(`${envUris.apiBase}/pages/${id}`);
+    const response = await getApi(`${envUris.apiBase}/pages/${slug.trim()}`);
     return _get(response, 'data');
   } catch (err) {
     console.log(err);
@@ -457,6 +457,13 @@ const renderMeta = async () => {
       slug = urlElements[2].trim();
       meta = await renderOrganisationMeta(slug);
       break;
+    case 'pages':
+      if (!urlElements[2] || urlElements[2] === '') {
+        throw new Error('Missing slug');
+      }
+      slug = urlElements[2].trim();
+      meta = await renderInformationPageMeta(slug);
+      break;
     case 'results':
       meta = await renderResultsMeta();
       break;
@@ -474,18 +481,7 @@ const renderMeta = async () => {
       meta = pageMeta()[urlElements[1]];
       break;
     default:
-      if (urlElements[1] && urlElements[1] !== '') {
-        // information pages have a uri pattern of /{uuid}
-        const uuidRegex =
-          /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-        slug = urlElements[1].trim();
-        if (slug.search(uuidRegex) === -1) {
-          throw new Error('Unknown slug');
-        }
-        meta = await renderInformationPageMeta(slug);
-      } else {
-        meta = await renderHomeMeta();
-      }
+      meta = await renderHomeMeta();
   }
   return meta;
 };
