@@ -32,7 +32,7 @@ const Sitemap: React.FC<{ list: SitemapProps; activePage?: string }> = ({ list, 
       return (
         <ul key={list.id}>
           <li className={`leaf ${activePage === list.id ? 'currentPage' : ''}`}>
-            <Link to={`/${list.slug}`}>{list.filename}</Link>
+            <Link to={`/pages/${list.slug}`}>{list.filename}</Link>
           </li>
         </ul>
       );
@@ -50,7 +50,7 @@ const Sitemap: React.FC<{ list: SitemapProps; activePage?: string }> = ({ list, 
         <li ref={ref}>{list.filename}</li>
       ) : (
         <li className="leaf" ref={ref}>
-          <Link to={`/${list.slug}`}>{list.filename}</Link>
+          <Link to={`/pages/${list.slug}`}>{list.filename}</Link>
         </li>
       )}
       {handleSubsequentUls}

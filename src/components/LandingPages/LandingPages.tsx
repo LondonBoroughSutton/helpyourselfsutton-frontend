@@ -40,7 +40,7 @@ class LandingPages extends Component<IProps> {
             {pageStore.pages?.map((page: IPage) => {
               return (
                 <ButtonLink
-                  href={'/' + page.slug}
+                  href={'/pages/' + page.slug}
                   text={page.title}
                   image={page.image ? getImg(page.id) : ''}
                   key={page.id}
