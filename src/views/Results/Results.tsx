@@ -141,7 +141,7 @@ class Results extends Component<IProps, IState> {
                       text={page.title}
                       href={'/pages/' + page.slug}
                       icon="arrow-right"
-                      parent={page.landing_page}
+                      parent={page.landing_page as IPage}
                     />
                   );
                 })}
@@ -155,7 +155,7 @@ class Results extends Component<IProps, IState> {
                         text={page.title}
                         href={'/pages/' + page.slug}
                         icon="arrow-right"
-                        parent={page.landing_page}
+                        parent={page.landing_page as IPage}
                       />
                     );
                   })}
