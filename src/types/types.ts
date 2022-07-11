@@ -12,9 +12,6 @@ export interface IPage {
   page_type: string;
   title: string;
   image: string;
-  introduction: {
-    content: IContentBlock[];
-  };
   content: {
     about: null | {
       content: IContentBlock[];
@@ -37,7 +34,7 @@ export interface IPage {
   collections_personas: [];
   updated_at: string;
   excerpt?: string;
-  landing_page?: IPage;
+  landing_page?: IPage | null;
   slug: string;
 }
 
