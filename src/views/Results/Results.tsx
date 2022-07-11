@@ -23,7 +23,6 @@ import { IPage, ISidebox } from '../../types/types';
 import Loading from '../../components/Loading';
 import CategoryList from '../../components/CategoryList';
 import Button from '../../components/Button/Button';
-import ButtonLink from '../../components/Button/ButtonLink';
 import ButtonLinkWithParent from '../../components/Button/ButtonWithParent';
 
 import resultsImage from '../../assets/images/mother-and-son-walking.svg';
