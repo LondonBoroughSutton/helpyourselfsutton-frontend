@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { observer, inject } from 'mobx-react';
 
-import { apiBase } from '../../config/api';
+import { getImg } from '../../utils/utils';
 import Breadcrumb from '../../components/Breadcrumb';
 import pageIllo from '../../assets/images/mother-and-son-walking.svg';
 import ButtonLink from '../../components/Button/ButtonLink';
@@ -58,9 +58,6 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
     }
   }, [pageStore, content.landing_page]);
 
-  const getImg = (pageId: string) => {
-    return `${apiBase}/pages/${pageId}/image.png?max_dimension=900`;
-  };
 
   const pagesList = pageStore.pageTree && setPageTreeFields(pageStore.pageTree);
   const pageTree = pagesList && makePageTree(pagesList);

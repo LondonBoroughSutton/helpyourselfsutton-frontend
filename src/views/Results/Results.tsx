@@ -85,10 +85,12 @@ class Results extends Component<IProps, IState> {
     }));
   };
 
+
   render() {
     const { resultsStore, history } = this.props;
     const { showMoreInfo } = this.state;
-
+    
+    console.log(resultsStore.withAncestorPages, resultsStore.pages)
     return (
       <section className="results">
         <Helmet>
@@ -134,7 +136,7 @@ class Results extends Component<IProps, IState> {
                 Here's some information you might find useful
               </h2>
               <div className="results__info-boxes__items">
-                {map(resultsStore.pages.slice(0, 3), (page: IPage) => {
+                {map(resultsStore.withAncestorPages.slice(0, 3), (page: IPage) => {
                   return (
                     <ButtonLink
                       key={page.id}
@@ -142,6 +144,7 @@ class Results extends Component<IProps, IState> {
                       href={'/pages/' + page.slug}
                       icon="arrow-right"
                       category={true}
+                      parent={page.landing_page}
                     />
                   );
                 })}
@@ -309,4 +312,4 @@ class Results extends Component<IProps, IState> {
   }
 }
 
-export default inject('resultsStore')(observer(Results));
+export default inject('resultsStore', 'pageStore')(observer(Results));

@@ -132,3 +132,10 @@ button {
     padding: 1rem;
   }
 }
+
+.button__excerpt__parent {
+  display: block;
+  a {
+    text-decoration: underline;
+  }
+}

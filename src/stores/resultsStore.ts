@@ -42,7 +42,9 @@ export default class ResultsStore {
   @observable view: 'grid' | 'map' = 'grid';
   serviceEligibilityOptions: [] = [];
   @observable queryParams: IParams = {};
-
+  @observable pagesIds: any;
+  @observable withAncestorPages: IPage[] = [];;
+  
   @observable filters: IEligibilityFilters = {
     age: null,
     income: null,
@@ -153,6 +155,7 @@ export default class ResultsStore {
     this.postcode = '';
     this.locationCoords = {};
     this.view = 'grid';
+    this.withAncestorPages = [];
 
     this.clearFilters();
   }
@@ -342,7 +345,7 @@ export default class ResultsStore {
     }
 
     if (this.isKeywordSearch) {
-      await this.fetchPages(12);
+      await this.fetchPages(12, true);
     }
   };
 
@@ -437,7 +440,7 @@ export default class ResultsStore {
   };
 
   @action
-  fetchPages = async (perPage: number) => {
+  fetchPages = async (perPage: number, getAncestors: boolean) => {
     runInAction(() => {
       this.loading = true;
     });
@@ -451,9 +454,23 @@ export default class ResultsStore {
       runInAction(() => {
         this.pages = get(results, 'data.data', []);
       });
+
+      if (getAncestors) {
+        this.pagesIds = this.pages.reduce((acc, item) => {
+          // @ts-ignore
+          acc.push(item.id)
+          return acc
+        }, [])
+      
+        runInAction(async () => {
+          const ancestorPagesData = await axios.get(`${apiBase}/pages?filter[id]=${this.pagesIds.join(',')}&include=landingPageAncestors`);
+          this.withAncestorPages = get(ancestorPagesData, 'data.data', []);
+        });
+      }
     } catch (e) {
       runInAction(() => {
         this.pages = [];
+        this.withAncestorPages = [];
         this.loading = false;
       });
     }
