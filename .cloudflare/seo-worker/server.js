@@ -301,10 +301,40 @@ const renderInformationPageMeta = async (slug) => {
 
   const metaTitle = _get(data, 'title', defaultTitle);
   const pageHasImage = !!_get(data, 'image.id', false);
+  let metaDesc = prepareDescription(defaultContent);
 
-  const rawPageContent = _get(data, 'content.introduction.copy', defaultContent);
+  /**
+   * Remove when https://github.com/LondonBoroughSutton/suttoninformationhub-api/pull/35
+   * goes to production
+   */
+  let rawPageContent = _get(data, 'content.introduction.copy');
 
-  const metaDesc = prepareDescription(rawPageContent[0]);
+  if (rawPageContent) {
+    metaDesc = prepareDescription(rawPageContent[0]);
+  } else {
+    /**
+     * When https://github.com/LondonBoroughSutton/suttoninformationhub-api/pull/35
+     * goes to production remove the wrapping if...else block
+     */
+    rawPageContent = _get(data, 'content.introduction.content', defaultContent);
+
+    if (rawPageContent !== defaultContent) {
+      const contentBlocks = [];
+      rawPageContent.forEach((content) => {
+        switch (content.type) {
+          case 'copy':
+            contentBlocks.push(content.value);
+            break;
+          case 'cta':
+            contentBlocks.push(content.title + ' : ' + content.description);
+            break;
+          default:
+            break;
+        }
+      });
+      metaDesc = prepareDescription(contentBlocks.join('\n'));
+    }
+  }
 
   let metas = [];
 
