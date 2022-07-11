@@ -42,7 +42,7 @@ export default class ResultsStore {
   @observable view: 'grid' | 'map' = 'grid';
   serviceEligibilityOptions: [] = [];
   @observable queryParams: IParams = {};
-  @observable pagesIds: any;
+  @observable pagesIds: string[] = [];
   @observable withAncestorPages: IPage[] = [];
 
   @observable filters: IEligibilityFilters = {
