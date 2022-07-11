@@ -142,22 +142,21 @@ class Results extends Component<IProps, IState> {
                       text={page.title}
                       href={'/pages/' + page.slug}
                       icon="arrow-right"
-                      category={true}
                       parent={page.landing_page}
                     />
                   );
                 })}
               </div>
-              {resultsStore.pages.length > 3 && showMoreInfo && (
+              {resultsStore.withAncestorPages.length > 3 && showMoreInfo && (
                 <div className="results__info-boxes__more-items">
-                  {map(resultsStore.pages.slice(3, 11), (page: IPage) => {
+                  {map(resultsStore.withAncestorPages.slice(3, 11), (page: IPage) => {
                     return (
-                      <ButtonLink
+                      <ButtonLinkWithParent
                         key={page.id}
                         text={page.title}
                         href={'/pages/' + page.slug}
                         icon="arrow-right"
-                        category={true}
+                        parent={page.landing_page}
                       />
                     );
                   })}
