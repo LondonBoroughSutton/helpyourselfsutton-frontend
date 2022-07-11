@@ -31,7 +31,6 @@ class Page extends Component<IProps> {
     }
   }
 
-
   render() {
     const { pageStore } = this.props;
     const { page } = pageStore;

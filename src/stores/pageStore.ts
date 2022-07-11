@@ -34,9 +34,11 @@ export default class PageStore {
   fetchPageTree = async (landingPageUuid: string) => {
     this.loading = true;
     try {
-      const pageTreeData = await axios.get(`${apiBase}/pages?filter[landing_page]=${landingPageUuid}&include=parent`);
+      const pageTreeData = await axios.get(
+        `${apiBase}/pages?filter[landing_page]=${landingPageUuid}&include=parent`
+      );
       runInAction(() => {
-        this.pageTree = get(pageTreeData, 'data.data')
+        this.pageTree = get(pageTreeData, 'data.data');
       });
     } catch (error) {
       this.loading = false;

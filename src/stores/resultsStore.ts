@@ -43,8 +43,8 @@ export default class ResultsStore {
   serviceEligibilityOptions: [] = [];
   @observable queryParams: IParams = {};
   @observable pagesIds: any;
-  @observable withAncestorPages: IPage[] = [];;
-  
+  @observable withAncestorPages: IPage[] = [];
+
   @observable filters: IEligibilityFilters = {
     age: null,
     income: null,
@@ -458,12 +458,14 @@ export default class ResultsStore {
       if (getAncestors) {
         this.pagesIds = this.pages.reduce((acc, item) => {
           // @ts-ignore
-          acc.push(item.id)
-          return acc
-        }, [])
-      
+          acc.push(item.id);
+          return acc;
+        }, []);
+
         runInAction(async () => {
-          const ancestorPagesData = await axios.get(`${apiBase}/pages?filter[id]=${this.pagesIds.join(',')}&include=landingPageAncestors`);
+          const ancestorPagesData = await axios.get(
+            `${apiBase}/pages?filter[id]=${this.pagesIds.join(',')}&include=landingPageAncestors`
+          );
           this.withAncestorPages = get(ancestorPagesData, 'data.data', []);
         });
       }

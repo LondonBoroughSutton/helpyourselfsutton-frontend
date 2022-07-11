@@ -58,7 +58,6 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
     }
   }, [pageStore, content.landing_page]);
 
-
   const pagesList = pageStore.pageTree && setPageTreeFields(pageStore.pageTree);
   const pageTree = pagesList && makePageTree(pagesList);
 

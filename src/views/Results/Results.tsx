@@ -24,6 +24,7 @@ import Loading from '../../components/Loading';
 import CategoryList from '../../components/CategoryList';
 import Button from '../../components/Button/Button';
 import ButtonLink from '../../components/Button/ButtonLink';
+import ButtonLinkWithParent from '../../components/Button/ButtonWithParent';
 
 import resultsImage from '../../assets/images/mother-and-son-walking.svg';
 
@@ -85,12 +86,10 @@ class Results extends Component<IProps, IState> {
     }));
   };
 
-
   render() {
     const { resultsStore, history } = this.props;
     const { showMoreInfo } = this.state;
-    
-    console.log(resultsStore.withAncestorPages, resultsStore.pages)
+
     return (
       <section className="results">
         <Helmet>
@@ -138,7 +137,7 @@ class Results extends Component<IProps, IState> {
               <div className="results__info-boxes__items">
                 {map(resultsStore.withAncestorPages.slice(0, 3), (page: IPage) => {
                   return (
-                    <ButtonLink
+                    <ButtonLinkWithParent
                       key={page.id}
                       text={page.title}
                       href={'/pages/' + page.slug}
@@ -312,4 +311,4 @@ class Results extends Component<IProps, IState> {
   }
 }
 
-export default inject('resultsStore', 'pageStore')(observer(Results));
+export default inject('resultsStore')(observer(Results));

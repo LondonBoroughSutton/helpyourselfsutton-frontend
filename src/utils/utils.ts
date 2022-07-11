@@ -15,4 +15,5 @@ export const removeQuotesRegex = new RegExp(/^["']|["']$|["]/, 'g');
 
 export const capitalise = (string: string) => string.charAt(0).toUpperCase() + string.slice(1);
 
-export const getImg = (pageId: string, max_dimension = 900) => `${apiBase}/pages/${pageId}/image.png?max_dimension=${max_dimension}`;
+export const getImg = (pageId: string, max_dimension = 900) =>
+  `${apiBase}/pages/${pageId}/image.png?max_dimension=${max_dimension}`;
