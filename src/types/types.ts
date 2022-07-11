@@ -1,5 +1,10 @@
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 
+interface IContentBlock {
+  value: string;
+  type: string;
+}
+
 export interface IPage {
   id: string;
   enabled: boolean;
@@ -8,22 +13,22 @@ export interface IPage {
   title: string;
   image: string;
   introduction: {
-    copy: string[];
+    content: IContentBlock[];
   };
   content: {
     about: null | {
-      copy: string[];
+      content: IContentBlock[];
     };
     info_pages: null | {
-      copy: string[];
+      content: IContentBlock[];
       title: string;
     };
     collections: null | {
-      copy: string[];
+      content: IContentBlock[];
       title: string;
     };
     introduction: null | {
-      copy: string[];
+      content: IContentBlock[];
     };
   };
   parent: IPage;

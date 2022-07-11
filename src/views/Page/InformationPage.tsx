@@ -72,11 +72,12 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
           { text: 'Home', url: '/' },
           {
             text: content.parent.title ? content.parent.title : 'Information Page',
-            url: '/' + content.parent.slug,
+            url: '/pages/' + content.parent.slug,
           },
           { text: content.title ? content.title : 'Information Page', url: '' },
         ]}
       />
+
       <section className="information-page__overview">
         <div className="flex-container">
           <div className="cms--contact-card">
@@ -117,11 +118,11 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
                 src={getImg(content.id)}
               />
             )}
-            {content.content.introduction!.copy && (
+            {content.content.introduction!.content && (
               <div>
                 <ReactMarkdown
                   data-content="main"
-                  children={content.content.introduction!.copy[0]}
+                  children={content.content.introduction!.content[0].value}
                   className="information-page__content markdown"
                 />
               </div>
