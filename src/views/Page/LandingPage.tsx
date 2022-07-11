@@ -16,12 +16,9 @@ import ButtonLink from '../../components/Button/ButtonLink';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 import { ICategory, IPage } from '../../types/types';
+import { getImg } from '../../utils/utils';
 
 function LandingPage(props: any) {
-  const getImg = (pageId: string) => {
-    return `${apiBase}/pages/${pageId}/image.png?max_dimension=900`;
-  };
-
   return (
     <div className="landing-page">
       <Helmet>

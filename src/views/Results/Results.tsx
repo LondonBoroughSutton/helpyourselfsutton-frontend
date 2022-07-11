@@ -24,6 +24,7 @@ import Loading from '../../components/Loading';
 import CategoryList from '../../components/CategoryList';
 import Button from '../../components/Button/Button';
 import ButtonLink from '../../components/Button/ButtonLink';
+import ButtonLinkWithParent from '../../components/Button/ButtonWithParent';
 
 import resultsImage from '../../assets/images/mother-and-son-walking.svg';
 
@@ -134,28 +135,28 @@ class Results extends Component<IProps, IState> {
                 Here's some information you might find useful
               </h2>
               <div className="results__info-boxes__items">
-                {map(resultsStore.pages.slice(0, 3), (page: IPage) => {
+                {map(resultsStore.withAncestorPages.slice(0, 3), (page: IPage) => {
                   return (
-                    <ButtonLink
+                    <ButtonLinkWithParent
                       key={page.id}
                       text={page.title}
                       href={'/pages/' + page.slug}
                       icon="arrow-right"
-                      category={true}
+                      parent={page.landing_page}
                     />
                   );
                 })}
               </div>
-              {resultsStore.pages.length > 3 && showMoreInfo && (
+              {resultsStore.withAncestorPages.length > 3 && showMoreInfo && (
                 <div className="results__info-boxes__more-items">
-                  {map(resultsStore.pages.slice(3, 11), (page: IPage) => {
+                  {map(resultsStore.withAncestorPages.slice(3, 11), (page: IPage) => {
                     return (
-                      <ButtonLink
+                      <ButtonLinkWithParent
                         key={page.id}
                         text={page.title}
                         href={'/pages/' + page.slug}
                         icon="arrow-right"
-                        category={true}
+                        parent={page.landing_page}
                       />
                     );
                   })}
