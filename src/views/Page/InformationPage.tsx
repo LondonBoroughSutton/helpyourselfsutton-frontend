@@ -98,9 +98,9 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
                       src={getImg(content.parent.id)}
                     />
                   )}
-                  {content.parent.title && (
-                    <Link to={`/${content.parent.id}`} className="parent-title">
-                      {content.parent.title}
+                  {content.landing_page && (
+                    <Link to={`/pages/${content.landing_page.slug}`} className="parent-title">
+                      {content.landing_page.title}
                     </Link>
                   )}
                 </div>

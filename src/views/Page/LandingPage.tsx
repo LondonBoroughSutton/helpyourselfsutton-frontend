@@ -54,7 +54,6 @@ function LandingPage(props: any) {
                       src={getImg(props.content.id)}
                     />
                   )}
-                  {props.content.title && <div className="parent-title">{props.content.title}</div>}
                 </div>
               </div>
             </div>
