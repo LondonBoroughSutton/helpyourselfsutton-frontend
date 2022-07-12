@@ -34,8 +34,9 @@ export default class PageStore {
   fetchPageTree = async (landingPageUuid: string) => {
     this.loading = true;
     try {
+      // we use the include params parent for the site map tree and the ancestor for the landing page link at the bottom
       const pageTreeData = await axios.get(
-        `${apiBase}/pages?filter[landing_page]=${landingPageUuid}&include=parent`
+        `${apiBase}/pages?filter[landing_page]=${landingPageUuid}&include=parent&include=landingPageAncestors`
       );
       runInAction(() => {
         this.pageTree = get(pageTreeData, 'data.data');

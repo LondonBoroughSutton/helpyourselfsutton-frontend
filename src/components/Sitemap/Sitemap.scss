@@ -38,6 +38,11 @@ ul.list {
     padding-left: 1.4rem;
     font-weight: normal;
 
+    &::before {
+      content: '';
+      visibility: hidden;
+    }
+
     a {
       font-size: 1.2rem;
     }
@@ -64,4 +69,7 @@ ul.list {
 
 .list-recursive__wrapper {
   margin: 2rem 0 2rem -1rem;
+  > ul > li.leaf {
+    text-indent: 0;
+  }
 }

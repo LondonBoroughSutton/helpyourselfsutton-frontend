@@ -88,12 +88,18 @@
   }
 
   p {
-    @include body-l;
+    @include body-xm;
   }
 
   a {
-    @include body-l;
+    @include body-xm;
     text-decoration: underline;
+  }
+  > h1, > h2, > h3 {
+    margin-bottom: 2rem;
+  }
+  > h1 {
+    @include heading-xl;
   }
 }
 
