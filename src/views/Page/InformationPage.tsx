@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
@@ -121,15 +121,29 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
                 src={getImg(content.id)}
               />
             )}
-            {content.content.introduction!.content && (
-              <div>
-                <ReactMarkdown
-                  data-content="main"
-                  children={content.content.introduction!.content[0].value}
-                  className="information-page__content markdown"
-                />
-              </div>
-            )}
+
+            {content.content.introduction!.content.map((contentBlock: any, index: number) => (
+              <Fragment key={index}>
+                {contentBlock.type === 'copy' && (
+                  <ReactMarkdown
+                    data-content="main"
+                    children={contentBlock.value as string}
+                    className="information-page__content markdown"
+                  />
+                )}
+                {contentBlock.type === 'cta' && (
+                  <div className="information-page__cta">
+                    <h3>{contentBlock.title}</h3>
+                    <p>{contentBlock.description}</p>
+                    {contentBlock.url && contentBlock.buttonText && (
+                      <div className="information-page__cta__button-wrap">
+                        <ButtonLink text={contentBlock.buttonText} href={contentBlock.url} />
+                      </div>
+                    )}
+                  </div>
+                )}
+              </Fragment>
+            ))}
 
             {content.children.filter((child: IPage) => child.enabled).length > 0 && (
               <div>
