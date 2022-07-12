@@ -2,12 +2,14 @@ import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 interface IContentBlock {
   type: string;
-  value: string | {
-    buttonText: string;
-    description: string;
-    title: string;
-  };
-
+  value:
+    | string
+    | {
+        description: string;
+        title: string;
+        url?: string;
+        buttonText?: string;
+      };
 }
 
 export interface IPage {
