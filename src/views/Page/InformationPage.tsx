@@ -176,7 +176,10 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
               </div>
 
               {content.landing_page && (
-                <Link to={`/pages/${content.landing_page.slug}`} className="information-page__sitemap__link">
+                <Link
+                  to={`/pages/${content.landing_page.slug}`}
+                  className="information-page__sitemap__link"
+                >
                   <FontAwesomeIcon icon="arrow-left" className="button__icon" />
                   Return to {content.landing_page.title}
                 </Link>

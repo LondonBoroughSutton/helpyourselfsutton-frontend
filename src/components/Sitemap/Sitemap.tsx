@@ -46,7 +46,9 @@ const Sitemap: React.FC<{ list: SitemapProps; activePage?: string }> = ({ list, 
     >
       {list.children ? (
         <li ref={ref} data-id={list.id}>
-          <div className='toggler' onClick={(e) => handleOnClick(e, list.id)}>{open ? '[-]' : '[+]'}</div>
+          <div className="toggler" onClick={(e) => handleOnClick(e, list.id)}>
+            {open ? '[-]' : '[+]'}
+          </div>
           <Link to={`/pages/${list.slug}`}>{list.filename}</Link>
         </li>
       ) : (
