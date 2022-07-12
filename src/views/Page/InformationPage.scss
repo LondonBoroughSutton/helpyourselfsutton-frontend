@@ -68,12 +68,9 @@
 }
 
 .information-page__sub-heading {
-  margin-bottom: space(24);
+  margin-top: space(36);
+  margin-bottom: space(48);
   @include heading-s;
-
-  @include for-tablet-landscape-down {
-    margin-bottom: space(16);
-  }
 }
 
 .information-page__content {
@@ -183,3 +180,34 @@
   }
 }
 
+.information-page__cta {
+  background: #FFE3BA;
+  padding: 1.4rem;
+  border-radius: 1.25rem;
+  margin-bottom: 2rem;
+  p {
+    @include body-xm;
+  }
+}
+
+// any generated content after CTA's need to not have the first paragraph styling
+// its hacky but a lot of this CSS classes would need a rewrite to allow for a neater solution
+.information-page__cta + .information-page__content.markdown {
+  p {
+    @include body-xm;
+    font-weight: 400 !important;
+    font-size: 1.375rem !important;
+    line-height: 2.25rem !important;
+    border-left: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 1rem !important;
+    @include for-phone-only {
+      font-size: 1.25rem !important;
+      line-height: 1.5rem !important;
+    }
+  }
+}
+
+.information-page__cta__button-wrap {
+  margin: 1rem 0;
+}
