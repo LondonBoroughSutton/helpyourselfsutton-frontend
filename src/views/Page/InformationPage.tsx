@@ -132,15 +132,12 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
                   />
                 )}
                 {contentBlock.type === 'cta' && (
-                  <div className='information-page__cta'>
+                  <div className="information-page__cta">
                     <h3>{contentBlock.title}</h3>
                     <p>{contentBlock.description}</p>
                     {contentBlock.url && contentBlock.buttonText && (
                       <div className="information-page__cta__button-wrap">
-                        <ButtonLink
-                          text={contentBlock.buttonText}
-                          href={contentBlock.url}
-                        />
+                        <ButtonLink text={contentBlock.buttonText} href={contentBlock.url} />
                       </div>
                     )}
                   </div>
