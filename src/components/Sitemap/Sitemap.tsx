@@ -21,7 +21,7 @@ const Sitemap: React.FC<{ list: SitemapProps; activePage?: string }> = ({ list, 
     }
   }, []);
 
-  const handleOnClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>, id: string) => {
+  const handleOnClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, id: string) => {
     const target = e.target as Element;
     if (id !== target.parentElement!.getAttribute('data-id')) return;
     setOpen((prev) => !prev);
@@ -42,14 +42,17 @@ const Sitemap: React.FC<{ list: SitemapProps; activePage?: string }> = ({ list, 
   return (
     <ul
       {...(!open && { style: { height: `${height}px` } })}
-      data-id={list.id}
       className={`list ${open ? 'open' : ''}`}
-      onClick={(e) => handleOnClick(e, list.id)}
     >
       {list.children ? (
-        <li ref={ref}>{list.filename}</li>
+        <li ref={ref} data-id={list.id}>
+          <div className="toggler" onClick={(e) => handleOnClick(e, list.id)}>
+            {open ? '[-]' : '[+]'}
+          </div>
+          <Link to={`/pages/${list.slug}`}>{list.filename}</Link>
+        </li>
       ) : (
-        <li className="leaf" ref={ref}>
+        <li className="leaf" ref={ref} data-id={list.id}>
           <Link to={`/pages/${list.slug}`}>{list.filename}</Link>
         </li>
       )}

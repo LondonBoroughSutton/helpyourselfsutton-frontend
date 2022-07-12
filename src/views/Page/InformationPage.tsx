@@ -37,9 +37,11 @@ const makePageTree = (data: IPageTree[]) => {
       a[e.id] = a[e.id] || e;
       a[e.parentId] = a[e.parentId] || {};
       const parent = a[e.parentId];
+
       // @ts-ignore
       parent.children = parent.children || [];
       parent.children!.push(e);
+
       return a;
     }, {});
   // @ts-ignore
@@ -52,6 +54,7 @@ interface IProps {
 }
 
 const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }) => {
+  // fetch the whole page tree / sitemap for Sutton
   useEffect(() => {
     if (content.landing_page) {
       pageStore.fetchPageTree(content.landing_page.id);
@@ -171,10 +174,16 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
                     <Sitemap key={list.id} list={list} activePage={content.id} />
                   ))}
               </div>
-              <Link to={`/${content.parent.id}`} className="information-page__sitemap__link">
-                <FontAwesomeIcon icon="arrow-left" className="button__icon" />
-                Return to {content.parent.title}
-              </Link>
+
+              {content.landing_page && (
+                <Link
+                  to={`/pages/${content.landing_page.slug}`}
+                  className="information-page__sitemap__link"
+                >
+                  <FontAwesomeIcon icon="arrow-left" className="button__icon" />
+                  Return to {content.landing_page.title}
+                </Link>
+              )}
             </div>
           </div>
         </div>

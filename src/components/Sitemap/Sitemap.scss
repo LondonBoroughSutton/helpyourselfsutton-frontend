@@ -6,7 +6,7 @@ ul.list {
   overflow: hidden;
   padding: revert;
   list-style-type: none;
-  padding-left: 1rem;
+  padding-left: 1.4rem;
   font-size: pxtorem(18);
   font-weight: 700;
 
@@ -19,8 +19,23 @@ ul.list {
     text-indent: -25px;
   }
 
-  > li::before {
-    content: '[+] ';
+  a {
+    font-size: 1.2rem;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  a:active, a:focus {
+    box-shadow: none;
+  }
+ 
+  .toggler {
+    display: inline-block;
+    margin: 0 5px 0 20px;
+    cursor: pointer;
   }
 
   li::marker {
@@ -29,26 +44,9 @@ ul.list {
 
   &.open {
     height: auto;
-    > li::before {
-      content: '[-] ';
-    }
   }
 
   li.leaf {
-    padding-left: 1.4rem;
-    font-weight: normal;
-
-    a {
-      font-size: 1.2rem;
-    }
-   
-    a:hover {
-      text-decoration: underline;
-      cursor: pointer;
-    }
-    a:active, a:focus {
-      box-shadow: none;
-    }
     &.currentPage > a {
       font-weight: 700;
     }
@@ -58,10 +56,13 @@ ul.list {
   }
 
   ul > li.leaf {
-    padding-left: 2.8rem;
+    padding-left: 2.4rem;
   }
 }
 
 .list-recursive__wrapper {
   margin: 2rem 0 2rem -1rem;
+  > ul > li.leaf {
+    text-indent: -2px;
+  }
 }
