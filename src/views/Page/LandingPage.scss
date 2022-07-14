@@ -17,7 +17,6 @@
   text-align: center;
   p {
     max-width: 740px;
-    margin: 0 auto;
   }
 }
 
@@ -27,7 +26,7 @@
   text-align: center;
   p {
     max-width: 740px;
-    margin: 0 auto 3rem;
+    margin-bottom: 3rem;
     @include for-phone-only {
       margin-bottom: 0;
     }
@@ -80,7 +79,8 @@
 
 .landing-page__sub-heading {
   margin-bottom: space(32);
-  @include heading-mxl;
+  text-align: left;
+  @include heading-l;
  
   @include for-tablet-landscape-down {
     margin-bottom: space(24);
@@ -88,6 +88,10 @@
 
   @include for-phone-only {
     margin-bottom: space(16);
+  }
+  + .landing-page__content p {
+    @include body-m;
+    text-align: left;
   }
 }
 
