@@ -366,6 +366,7 @@ blockquote {
   }
 }
 
+// Stylise the first paragraph of any article within a markdown component
 .landing-page__content.markdown p:nth-child(1),
 .information-page__content.markdown p:nth-child(1):not(ul li p):not(ol li p),
 .information-page__content.markdown h1:first-child + p,
@@ -391,5 +392,34 @@ blockquote {
     @include body-l;
     margin-bottom: 2rem;
     font-weight: 700;
+  }
+}
+
+// uniform the styling for ul's and ol's in side a markup component
+.information-page__content.markdown {
+  ul, ol {
+    padding: 2rem;
+  }
+  ol {
+    counter-reset: counterVar;
+    display: table;
+  }
+
+  ol > li {
+    counter-increment: counterVar;
+    display: flex;
+    margin-bottom: 1rem;
+  }
+
+  ol > li {
+    p {
+      margin-left: 1rem;
+    }
+
+    &::before {
+      content: counter(counterVar) ".";
+      display: table;
+      @include body-xm;
+    }
   }
 }
