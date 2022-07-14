@@ -199,11 +199,12 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
                 </Link>
               )}
             </div>
+            <LastUpdatedAt time={content.updated_at} />
           </div>
         </div>
         <div className="flex-container">
           <div className="flex-col flex-col--12 information-page__more">
-            <LastUpdatedAt time={content.updated_at} />
+            <div />
             {pageIllo && (
               <div className="flex-col">
                 <img
