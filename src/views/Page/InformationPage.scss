@@ -164,8 +164,9 @@
   background: $botticelli;
   padding: 1.5rem;
   border-radius: 7px;
+  margin-bottom: 2rem;
   @include for-phone-only {
-    margin-top: 2.5rem;
+    margin: 2rem 0 2rem;
   }
 }
 
