@@ -3,15 +3,15 @@ import axios from 'axios';
 import { apiBase } from '../config/api';
 import get from 'lodash/get';
 
-import { IPage, IPageTreeHashed } from '../types/types';
+import { IPage, IPageTree, IPageTreeHashed } from '../types/types';
 
 export default class PageStore {
   @observable loading: boolean = false;
   @observable pages: IPage[] | null = null;
   @observable page: IPage | null = null;
-  @observable pageTree: any = null;
-  @observable pageTreeFields: any = null;
-  @observable pageTreeInner: any = null;
+  @observable pageTree: IPage[] = [];
+  @observable pageTreeFields: IPageTree[] | null = null;
+  @observable pageTreeInner: IPageTree[] | null = null;
 
   constructor() {
     makeObservable(this);
@@ -53,8 +53,8 @@ export default class PageStore {
   /** this picks the fields relevant for walking the page tree structure */
   @action
   setPageTreeFields = async (pageTree: IPage[]) => {
-    if (!pageTree) return;
-    return pageTree.reduce((acc: any[], item: IPage) => {
+    if (!pageTree) return null;
+    return pageTree.reduce((acc: IPageTree[], item: IPage) => {
       acc.push({
         id: item.id,
         filename: item.title,
@@ -69,10 +69,11 @@ export default class PageStore {
 
   /** this builds the tree structure for our sitemap */
   @action
-  makePageTree = async (data: any[]) => {
+  makePageTree = async (data: IPageTree[] | null) => {
+    if (!data) return null;
     const tree = data
-      .map((e: any) => ({ ...e }))
-      .reduce((a: any, e: any) => {
+      .map((e: IPageTree) => ({ ...e }))
+      .reduce((a: IPageTreeHashed, e: IPageTree) => {
         a[e.id] = a[e.id] || e;
         a[e.parentId] = a[e.parentId] || {};
         const parent = a[e.parentId];

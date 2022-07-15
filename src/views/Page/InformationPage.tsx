@@ -13,7 +13,7 @@ import ButtonLink from '../../components/Button/ButtonLink';
 import Sitemap from '../../components/Sitemap';
 import LastUpdatedAt from '../../components/LastUpdatedAt';
 import PageStore from '../../stores/pageStore';
-import { IPage, IPageTree } from '../../types/types';
+import { IPage, IContentBlock } from '../../types/types';
 import { getActive, buildPathFromTree } from '../../components/Sitemap/utils';
 
 import './InformationPage.scss';
@@ -24,7 +24,7 @@ interface IProps {
 }
 
 const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }) => {
-  const [activeBranch, setActiveBranch] = useState<IPageTree[] | null>(null);
+  const [activeBranch, setActiveBranch] = useState<string[] | null>(null);
 
   // fetch the whole page tree / sitemap for Sutton
   useEffect(() => {

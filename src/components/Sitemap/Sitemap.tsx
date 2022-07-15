@@ -2,17 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import { getActive } from './utils';
+import { IPageTree } from '../../types/types';
 
 import './Sitemap.scss';
 
-type SitemapProps = {
-  id: string;
-  filename: string;
-  slug: string;
-  children: SitemapProps[] | null;
-};
-
-const Sitemap: React.FC<{ list: SitemapProps; activeBranch?: any }> = ({ list, activeBranch }) => {
+const Sitemap: React.FC<{ list: IPageTree; activeBranch?: any }> = ({ list, activeBranch }) => {
   const [open, setOpen] = useState(true);
   const [height, setHeight] = useState(true);
   const ref = useRef<any>(null);
@@ -40,7 +34,7 @@ const Sitemap: React.FC<{ list: SitemapProps; activeBranch?: any }> = ({ list, a
     setOpen((prev) => !prev);
   };
 
-  const handleSubsequentUls = (list.children || []).map((list: SitemapProps) => {
+  const handleSubsequentUls = (list.children || []).map((list: IPageTree) => {
     isActive = getActive(activeBranch, list.id);
 
     if (list.children === null)

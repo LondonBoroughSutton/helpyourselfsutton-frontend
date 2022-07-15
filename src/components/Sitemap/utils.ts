@@ -1,19 +1,21 @@
-export const getActive = (activeBranch: any, listId: string) =>
-  activeBranch.find((item: any) => item === listId);
+import { IPageTree } from '../../types/types';
+
+export const getActive = (activeBranch: string[], listId: string) =>
+  activeBranch.find((item: string) => item === listId);
 
 // This walks the tree and builds a path to the active nested page
 // taken from https://www.techighness.com/post/javascript-find-key-path-in-deeply-nested-object-or-array/
-export const buildPathFromTree = (ob: any, key: any, value: any) => {
-  const path = [] as any[];
-  // @ts-ignore
-  const keyExists = (obj: any) => {
+export const buildPathFromTree = (data: IPageTree[], key: string, value: string) => {
+  const path = [] as string[];
+
+  const keyExists = (obj: IPageTree | string | null, noopKey?: string): string | boolean => {
     if (!obj || (typeof obj !== 'object' && !Array.isArray(obj))) {
       return false;
-    } else if (obj.hasOwnProperty(key) && obj[key] === value) {
+    } else if (obj.hasOwnProperty(key) && (obj as any)[key] === value) {
       return true;
     } else if (Array.isArray(obj)) {
-      // the meat of it happens here for when each level the conidtions have been met,
-      // we push the index and its key into the path.
+      // the main bit happens here for when the conditions are met for each level,
+      // we push the id we're currently on until we get to the leaf active id.
       for (let i = 0; i < obj.length; i++) {
         path.push(obj[i].id);
         // @ts-ignore
@@ -26,8 +28,7 @@ export const buildPathFromTree = (ob: any, key: any, value: any) => {
     } else {
       for (const k in obj) {
         path.push(k);
-        // @ts-ignore
-        const result = keyExists(obj[k], key);
+        const result = keyExists((obj as any)[k], key);
         if (result) {
           return result;
         }
@@ -38,6 +39,6 @@ export const buildPathFromTree = (ob: any, key: any, value: any) => {
     return false;
   };
 
-  keyExists(ob);
+  keyExists(data as unknown as IPageTree);
   return path;
 };

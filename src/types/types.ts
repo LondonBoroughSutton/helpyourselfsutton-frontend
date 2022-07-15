@@ -1,6 +1,6 @@
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 
-interface IContentBlock {
+export interface IContentBlock {
   type: string;
   value:
     | string
