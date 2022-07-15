@@ -10,6 +10,8 @@ export default class PageStore {
   @observable pages: IPage[] | null = null;
   @observable page: IPage | null = null;
   @observable pageTree: any = null;
+  @observable pageTreeFields: any = null;
+  @observable pageTreeInner: any = null;
 
   constructor() {
     makeObservable(this);
@@ -41,11 +43,50 @@ export default class PageStore {
       runInAction(() => {
         this.pageTree = get(pageTreeData, 'data.data');
       });
+      this.pageTreeFields = await this.setPageTreeFields(this.pageTree);
+      this.pageTreeInner = await this.makePageTree(this.pageTreeFields);
     } catch (error) {
       this.loading = false;
     }
   };
 
+  /** this picks the fields relevant for walking the page tree structure */
+  @action
+  setPageTreeFields = async (pageTree: IPage[]) => {
+    if (!pageTree) return;
+    return pageTree.reduce((acc: any[], item: IPage) => {
+      acc.push({
+        id: item.id,
+        filename: item.title,
+        slug: item.slug,
+        parent: item.parent.title,
+        parentId: item.parent.id,
+        children: null,
+      });
+      return acc;
+    }, []);
+  }
+  
+  /** this builds the tree structure for our sitemap */
+  @action
+  makePageTree = async (data: any[]) => {
+    const tree = data
+      .map((e: any) => ({ ...e }))
+      .reduce((a: any, e: any) => {
+        a[e.id] = a[e.id] || e;
+        a[e.parentId] = a[e.parentId] || {};
+        const parent = a[e.parentId];
+  
+        // @ts-ignore
+        parent.children = parent.children || [];
+        parent.children!.push(e);
+  
+        return a;
+      }, {});
+    // @ts-ignore
+    return Object.values(tree).find((e) => e.id === undefined).children;
+  };
+  
   /**
    * Get page using the passed in page slug
    * @param slug

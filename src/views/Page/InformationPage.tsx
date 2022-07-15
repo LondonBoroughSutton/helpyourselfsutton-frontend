@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
@@ -17,8 +17,9 @@ import { IPage, IPageTree, IPageTreeHashed } from '../../types/types';
 
 import './InformationPage.scss';
 
-const setPageTreeFields = (pageTree: IPage[]) =>
-  pageTree.reduce((acc: IPageTree[], item: IPage) => {
+const setPageTreeFields = async (pageTree: IPage[]) => {
+  if (!pageTree) return;
+  return pageTree.reduce((acc: IPageTree[], item: IPage) => {
     acc.push({
       id: item.id,
       filename: item.title,
@@ -29,8 +30,9 @@ const setPageTreeFields = (pageTree: IPage[]) =>
     });
     return acc;
   }, []);
+}
 
-const makePageTree = (data: IPageTree[]) => {
+const makePageTree = async (data: IPageTree[]) => {
   const tree = data
     .map((e: IPageTree) => ({ ...e }))
     .reduce((a: IPageTreeHashed, e: IPageTree) => {
@@ -48,7 +50,8 @@ const makePageTree = (data: IPageTree[]) => {
   return Object.values(tree).find((e) => e.id === undefined).children;
 };
 
- // taken from https://www.techighness.com/post/javascript-find-key-path-in-deeply-nested-object-or-array/
+ // This walks the tree and builds a path to the active nested page
+  // taken from https://www.techighness.com/post/javascript-find-key-path-in-deeply-nested-object-or-array/
  const findPath = (ob:any, key:any, value:any) => {
   const path = [] as any[];
   // @ts-ignore
@@ -63,7 +66,6 @@ const makePageTree = (data: IPageTree[]) => {
       // the meat of it happens here for when each level the conidtions have been met,
       // we push the index and its key into the path.
       for (let i = 0; i < obj.length; i++) {
-        // path.push({id: obj[i].id, filename: obj[i].filename });
         path.push(obj[i].id);
         // @ts-ignore
         const result = keyExists(obj[i], key);
@@ -98,6 +100,8 @@ interface IProps {
 }
 
 const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }) => {
+  const [activeBranch, setActiveBranch] = useState<IPageTree[] | null>(null);
+
   // fetch the whole page tree / sitemap for Sutton
   useEffect(() => {
     if (content.landing_page) {
@@ -105,10 +109,13 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
     }
   }, [pageStore, content.landing_page]);
 
-  const pagesList = pageStore.pageTree && setPageTreeFields(pageStore.pageTree);
-  const pageTree = pagesList && makePageTree(pagesList);
-  const activeBranch = pageTree && findPath(pageTree, 'id', content.id);
-
+  useEffect(() => {
+    if (pageStore.pageTreeInner) {
+      const currentActiveBranch = findPath(pageStore.pageTreeInner, 'id', content.id);
+      setActiveBranch(currentActiveBranch)
+    }
+  }, [pageStore.pageTreeInner, content.id]);
+ 
   return (
     <div className="information-page">
       <Helmet>
@@ -227,20 +234,17 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
           <div className="flex-col flex-col--4">
             <div className="information-page__sitemap">
               {content.parent.title && <div className="parent-title">{content.parent.title}</div>}
-              <div className="list-recursive__wrapper">
-                {pageTree &&
-                  pageTree.map((list: any) => {
-                    activeBranch.find((item:any) => {
-                      console.log(item, list.id)
-                      return item.id === list.id
-                    })
+              {console.log('render', activeBranch, pageStore.pageTreeInner)}
 
+              <div className="list-recursive__wrapper">
+                {activeBranch && pageStore.pageTreeInner && pageStore.pageTreeInner.map((list: any) => {                  
                     return (
-                      <div className={`leaf ${activeBranch.find((item:any) => item.id === list.id) ? 'currentPage' : ''}`}>
+                      <div 
+                        key={list.id}
+                        className={`${activeBranch.find((item:any) => item === list.id) ? 'active-branch' : ''}`}>
                         <Sitemap
-                          key={list.id}
                           list={list}
-                          activeBranch={activeBranch.filter((item: any) => item !== 'children')}
+                          activeBranch={activeBranch}
                         />
                       </div>
                     )

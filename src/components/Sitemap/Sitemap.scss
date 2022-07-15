@@ -65,4 +65,7 @@ ul.list {
   > ul > li.leaf {
     text-indent: -2px;
   }
+  .active-branch > ul > li > a {
+    font-weight: bold;
+  }
 }

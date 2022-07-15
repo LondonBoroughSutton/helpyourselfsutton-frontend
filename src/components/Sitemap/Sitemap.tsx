@@ -31,7 +31,7 @@ const Sitemap: React.FC<{ list: SitemapProps; activeBranch?: any }> = ({ list, a
     if (list.children === null)
       return (
         <ul key={list.id}>
-          <li className={`leaf ${activeBranch === list.id ? 'currentPage' : ''}`}>
+          <li className={`leaf ${activeBranch && activeBranch.find((item:any) => item === list.id) ? 'active-branch' : ''}`}>
             <Link to={`/pages/${list.slug}`}>{list.filename}</Link>
           </li>
         </ul>
@@ -46,6 +46,7 @@ const Sitemap: React.FC<{ list: SitemapProps; activeBranch?: any }> = ({ list, a
     >
       {list.children ? (
         <li ref={ref} data-id={list.id}>
+          {console.log(activeBranch)}
           <div className="toggler" onClick={(e) => handleOnClick(e, list.id)}>
             {open ? '[-]' : '[+]'}
           </div>
