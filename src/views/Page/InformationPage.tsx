@@ -234,21 +234,21 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
           <div className="flex-col flex-col--4">
             <div className="information-page__sitemap">
               {content.parent.title && <div className="parent-title">{content.parent.title}</div>}
-              {console.log('render', activeBranch, pageStore.pageTreeInner)}
 
               <div className="list-recursive__wrapper">
                 {activeBranch && pageStore.pageTreeInner && pageStore.pageTreeInner.map((list: any) => {                  
-                    return (
-                      <div 
-                        key={list.id}
-                        className={`${activeBranch.find((item:any) => item === list.id) ? 'active-branch' : ''}`}>
-                        <Sitemap
-                          list={list}
-                          activeBranch={activeBranch}
-                        />
-                      </div>
-                    )
-                  })}
+                  return (
+                    <div 
+                      key={list.id}
+                      className={`${activeBranch.find((item:any) => item === list.id) ? 'active-branch' : ''}`}
+                      >
+                      <Sitemap
+                        list={list}
+                        activeBranch={activeBranch}
+                      />
+                    </div>
+                  )
+                })}
               </div>
 
               {content.landing_page && (
