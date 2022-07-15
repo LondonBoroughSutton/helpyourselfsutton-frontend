@@ -10,7 +10,7 @@ type SitemapProps = {
   children: SitemapProps[] | null;
 };
 
-const Sitemap: React.FC<{ list: SitemapProps; activePage?: string }> = ({ list, activePage }) => {
+const Sitemap: React.FC<{ list: SitemapProps; activeBranch?: any }> = ({ list, activeBranch }) => {
   const [open, setOpen] = useState(true);
   const [height, setHeight] = useState(true);
   const ref = useRef<any>(null);
@@ -31,7 +31,7 @@ const Sitemap: React.FC<{ list: SitemapProps; activePage?: string }> = ({ list, 
     if (list.children === null)
       return (
         <ul key={list.id}>
-          <li className={`leaf ${activePage === list.id ? 'currentPage' : ''}`}>
+          <li className={`leaf ${activeBranch === list.id ? 'currentPage' : ''}`}>
             <Link to={`/pages/${list.slug}`}>{list.filename}</Link>
           </li>
         </ul>

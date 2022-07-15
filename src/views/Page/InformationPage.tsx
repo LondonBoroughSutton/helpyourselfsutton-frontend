@@ -48,6 +48,50 @@ const makePageTree = (data: IPageTree[]) => {
   return Object.values(tree).find((e) => e.id === undefined).children;
 };
 
+ // taken from https://www.techighness.com/post/javascript-find-key-path-in-deeply-nested-object-or-array/
+ const findPath = (ob:any, key:any, value:any) => {
+  const path = [] as any[];
+  // @ts-ignore
+  const keyExists = (obj: any) => {
+    if (!obj || (typeof obj !== "object" && !Array.isArray(obj))) {
+      return false;
+    }
+    else if (obj.hasOwnProperty(key) && obj[key] === value) {
+      return true;
+    }
+    else if (Array.isArray(obj)) {
+      // the meat of it happens here for when each level the conidtions have been met,
+      // we push the index and its key into the path.
+      for (let i = 0; i < obj.length; i++) {
+        // path.push({id: obj[i].id, filename: obj[i].filename });
+        path.push(obj[i].id);
+        // @ts-ignore
+        const result = keyExists(obj[i], key);
+        if (result) {
+          return result;
+        }
+        path.pop();
+      }
+    }
+    else {
+      for (const k in obj) {
+        path.push(k);
+          // @ts-ignore
+        const result = keyExists(obj[k], key);
+        if (result) {
+          return result;
+        }
+        path.pop();
+      }
+    }
+
+    return false;
+  };
+
+  keyExists(ob);
+  return path;
+}
+
 interface IProps {
   pageStore: PageStore;
   content: IPage;
@@ -63,6 +107,7 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
 
   const pagesList = pageStore.pageTree && setPageTreeFields(pageStore.pageTree);
   const pageTree = pagesList && makePageTree(pagesList);
+  const activeBranch = pageTree && findPath(pageTree, 'id', content.id);
 
   return (
     <div className="information-page">
@@ -184,9 +229,22 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
               {content.parent.title && <div className="parent-title">{content.parent.title}</div>}
               <div className="list-recursive__wrapper">
                 {pageTree &&
-                  pageTree.map((list: any) => (
-                    <Sitemap key={list.id} list={list} activePage={content.id} />
-                  ))}
+                  pageTree.map((list: any) => {
+                    activeBranch.find((item:any) => {
+                      console.log(item, list.id)
+                      return item.id === list.id
+                    })
+
+                    return (
+                      <div className={`leaf ${activeBranch.find((item:any) => item.id === list.id) ? 'currentPage' : ''}`}>
+                        <Sitemap
+                          key={list.id}
+                          list={list}
+                          activeBranch={activeBranch.filter((item: any) => item !== 'children')}
+                        />
+                      </div>
+                    )
+                  })}
               </div>
 
               {content.landing_page && (
