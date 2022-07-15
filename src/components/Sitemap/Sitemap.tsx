@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
+import { getActive } from './utils';
+
 import './Sitemap.scss';
 
 type SitemapProps = {
@@ -13,21 +15,24 @@ type SitemapProps = {
 const Sitemap: React.FC<{ list: SitemapProps; activeBranch?: any }> = ({ list, activeBranch }) => {
   const [open, setOpen] = useState(true);
   const [height, setHeight] = useState(true);
-  const [activePath, setActivePath] = useState<any>(undefined);
   const ref = useRef<any>(null);
 
+  /** get initial dynamic height for each collapsable list element */
   useEffect(() => {
     if (ref.current) {
       setHeight(ref.current.clientHeight);
     }
   }, []);
 
-  // we need to set the state again here as the recursion looses tracking of what we can check against for being active
+  /** Change which parent pages are open depending on active branch / selected page */
   useEffect(() => {
-    if (activeBranch && activeBranch.length) {
-      setActivePath(activeBranch);
+    if (ref.current.className !== 'active-branch') {
+      setOpen(false);
     }
   }, [activeBranch]);
+
+  /** we have to instantiate it both on initial render and below inside handleSubsequentUls*/
+  let isActive;
 
   const handleOnClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, id: string) => {
     const target = e.target as Element;
@@ -36,7 +41,7 @@ const Sitemap: React.FC<{ list: SitemapProps; activeBranch?: any }> = ({ list, a
   };
 
   const handleSubsequentUls = (list.children || []).map((list: SitemapProps) => {
-    const isActive = activePath && activePath.find((item:any) => item === list.id)
+    isActive = getActive(activeBranch, list.id);
 
     if (list.children === null)
       return (
@@ -49,7 +54,7 @@ const Sitemap: React.FC<{ list: SitemapProps; activeBranch?: any }> = ({ list, a
     return <Sitemap key={list.id} list={list} activeBranch={activeBranch} />;
   });
 
-  const isActive = activePath && activePath.find((item:any) => item === list.id)
+  isActive = getActive(activeBranch, list.id);
 
   return (
     <ul

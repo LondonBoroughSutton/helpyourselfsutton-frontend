@@ -13,86 +13,10 @@ import ButtonLink from '../../components/Button/ButtonLink';
 import Sitemap from '../../components/Sitemap';
 import LastUpdatedAt from '../../components/LastUpdatedAt';
 import PageStore from '../../stores/pageStore';
-import { IPage, IPageTree, IPageTreeHashed } from '../../types/types';
+import { IPage, IPageTree } from '../../types/types';
+import { getActive, buildPathFromTree } from '../../components/Sitemap/utils';
 
 import './InformationPage.scss';
-
-const setPageTreeFields = async (pageTree: IPage[]) => {
-  if (!pageTree) return;
-  return pageTree.reduce((acc: IPageTree[], item: IPage) => {
-    acc.push({
-      id: item.id,
-      filename: item.title,
-      slug: item.slug,
-      parent: item.parent.title,
-      parentId: item.parent.id,
-      children: null,
-    });
-    return acc;
-  }, []);
-}
-
-const makePageTree = async (data: IPageTree[]) => {
-  const tree = data
-    .map((e: IPageTree) => ({ ...e }))
-    .reduce((a: IPageTreeHashed, e: IPageTree) => {
-      a[e.id] = a[e.id] || e;
-      a[e.parentId] = a[e.parentId] || {};
-      const parent = a[e.parentId];
-
-      // @ts-ignore
-      parent.children = parent.children || [];
-      parent.children!.push(e);
-
-      return a;
-    }, {});
-  // @ts-ignore
-  return Object.values(tree).find((e) => e.id === undefined).children;
-};
-
- // This walks the tree and builds a path to the active nested page
-  // taken from https://www.techighness.com/post/javascript-find-key-path-in-deeply-nested-object-or-array/
- const findPath = (ob:any, key:any, value:any) => {
-  const path = [] as any[];
-  // @ts-ignore
-  const keyExists = (obj: any) => {
-    if (!obj || (typeof obj !== "object" && !Array.isArray(obj))) {
-      return false;
-    }
-    else if (obj.hasOwnProperty(key) && obj[key] === value) {
-      return true;
-    }
-    else if (Array.isArray(obj)) {
-      // the meat of it happens here for when each level the conidtions have been met,
-      // we push the index and its key into the path.
-      for (let i = 0; i < obj.length; i++) {
-        path.push(obj[i].id);
-        // @ts-ignore
-        const result = keyExists(obj[i], key);
-        if (result) {
-          return result;
-        }
-        path.pop();
-      }
-    }
-    else {
-      for (const k in obj) {
-        path.push(k);
-          // @ts-ignore
-        const result = keyExists(obj[k], key);
-        if (result) {
-          return result;
-        }
-        path.pop();
-      }
-    }
-
-    return false;
-  };
-
-  keyExists(ob);
-  return path;
-}
 
 interface IProps {
   pageStore: PageStore;
@@ -111,11 +35,11 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
 
   useEffect(() => {
     if (pageStore.pageTreeInner) {
-      const currentActiveBranch = findPath(pageStore.pageTreeInner, 'id', content.id);
-      setActiveBranch(currentActiveBranch)
+      const currentActiveBranch = buildPathFromTree(pageStore.pageTreeInner, 'id', content.id);
+      setActiveBranch(currentActiveBranch);
     }
   }, [pageStore.pageTreeInner, content.id]);
- 
+
   return (
     <div className="information-page">
       <Helmet>
@@ -236,19 +160,18 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
               {content.parent.title && <div className="parent-title">{content.parent.title}</div>}
 
               <div className="list-recursive__wrapper">
-                {activeBranch && pageStore.pageTreeInner && pageStore.pageTreeInner.map((list: any) => {                  
-                  return (
-                    <div 
-                      key={list.id}
-                      className={`${activeBranch.find((item:any) => item === list.id) ? 'active-branch' : ''}`}
+                {activeBranch &&
+                  pageStore.pageTreeInner &&
+                  pageStore.pageTreeInner.map((list: any) => {
+                    return (
+                      <div
+                        key={list.id}
+                        className={`${getActive(activeBranch, list.id) ? 'active-branch' : ''}`}
                       >
-                      <Sitemap
-                        list={list}
-                        activeBranch={activeBranch}
-                      />
-                    </div>
-                  )
-                })}
+                        <Sitemap list={list} activeBranch={activeBranch} />
+                      </div>
+                    );
+                  })}
               </div>
 
               {content.landing_page && (

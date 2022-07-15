@@ -3,7 +3,7 @@ import axios from 'axios';
 import { apiBase } from '../config/api';
 import get from 'lodash/get';
 
-import { IPage } from '../types/types';
+import { IPage, IPageTreeHashed } from '../types/types';
 
 export default class PageStore {
   @observable loading: boolean = false;
@@ -65,8 +65,8 @@ export default class PageStore {
       });
       return acc;
     }, []);
-  }
-  
+  };
+
   /** this builds the tree structure for our sitemap */
   @action
   makePageTree = async (data: any[]) => {
@@ -76,17 +76,17 @@ export default class PageStore {
         a[e.id] = a[e.id] || e;
         a[e.parentId] = a[e.parentId] || {};
         const parent = a[e.parentId];
-  
+
         // @ts-ignore
         parent.children = parent.children || [];
         parent.children!.push(e);
-  
+
         return a;
       }, {});
     // @ts-ignore
     return Object.values(tree).find((e) => e.id === undefined).children;
   };
-  
+
   /**
    * Get page using the passed in page slug
    * @param slug
