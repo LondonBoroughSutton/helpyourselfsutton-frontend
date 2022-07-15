@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
@@ -13,40 +13,10 @@ import ButtonLink from '../../components/Button/ButtonLink';
 import Sitemap from '../../components/Sitemap';
 import LastUpdatedAt from '../../components/LastUpdatedAt';
 import PageStore from '../../stores/pageStore';
-import { IPage, IPageTree, IPageTreeHashed } from '../../types/types';
+import { IPage, IContentBlock } from '../../types/types';
+import { getActive, buildPathFromTree } from '../../components/Sitemap/utils';
 
 import './InformationPage.scss';
-
-const setPageTreeFields = (pageTree: IPage[]) =>
-  pageTree.reduce((acc: IPageTree[], item: IPage) => {
-    acc.push({
-      id: item.id,
-      filename: item.title,
-      slug: item.slug,
-      parent: item.parent.title,
-      parentId: item.parent.id,
-      children: null,
-    });
-    return acc;
-  }, []);
-
-const makePageTree = (data: IPageTree[]) => {
-  const tree = data
-    .map((e: IPageTree) => ({ ...e }))
-    .reduce((a: IPageTreeHashed, e: IPageTree) => {
-      a[e.id] = a[e.id] || e;
-      a[e.parentId] = a[e.parentId] || {};
-      const parent = a[e.parentId];
-
-      // @ts-ignore
-      parent.children = parent.children || [];
-      parent.children!.push(e);
-
-      return a;
-    }, {});
-  // @ts-ignore
-  return Object.values(tree).find((e) => e.id === undefined).children;
-};
 
 interface IProps {
   pageStore: PageStore;
@@ -54,6 +24,8 @@ interface IProps {
 }
 
 const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }) => {
+  const [activeBranch, setActiveBranch] = useState<string[] | null>(null);
+
   // fetch the whole page tree / sitemap for Sutton
   useEffect(() => {
     if (content.landing_page) {
@@ -61,8 +33,12 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
     }
   }, [pageStore, content.landing_page]);
 
-  const pagesList = pageStore.pageTree && setPageTreeFields(pageStore.pageTree);
-  const pageTree = pagesList && makePageTree(pagesList);
+  useEffect(() => {
+    if (pageStore.pageTreeInner) {
+      const currentActiveBranch = buildPathFromTree(pageStore.pageTreeInner, 'id', content.id);
+      setActiveBranch(currentActiveBranch);
+    }
+  }, [pageStore.pageTreeInner, content.id]);
 
   return (
     <div className="information-page">
@@ -182,11 +158,20 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
           <div className="flex-col flex-col--4">
             <div className="information-page__sitemap">
               {content.parent.title && <div className="parent-title">{content.parent.title}</div>}
+
               <div className="list-recursive__wrapper">
-                {pageTree &&
-                  pageTree.map((list: any) => (
-                    <Sitemap key={list.id} list={list} activePage={content.id} />
-                  ))}
+                {activeBranch &&
+                  pageStore.pageTreeInner &&
+                  pageStore.pageTreeInner.map((list: any) => {
+                    return (
+                      <div
+                        key={list.id}
+                        className={`${getActive(activeBranch, list.id) ? 'active-branch' : ''}`}
+                      >
+                        <Sitemap list={list} activeBranch={activeBranch} />
+                      </div>
+                    );
+                  })}
               </div>
 
               {content.landing_page && (
