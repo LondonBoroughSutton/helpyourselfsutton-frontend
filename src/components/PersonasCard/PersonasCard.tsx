@@ -21,7 +21,7 @@ const PersonasCard: React.FunctionComponent<IProps> = ({ persona, url }) => (
     </div>
     <div className="persona-card__content">
       <h3 className="persona-card__header">{persona.name}</h3>
-      <p className="persona-card__description">{persona.intro}</p>
+      <p className="persona-card__description">{persona.subtitle}</p>
     </div>
   </a>
 );

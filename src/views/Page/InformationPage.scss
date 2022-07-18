@@ -11,7 +11,8 @@
 
 .information-page__more {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-top: space(40);
 
   @include for-tablet-landscape-down {
@@ -19,6 +20,7 @@
   }
 
   @include for-phone-only {
+    display: block;
     margin-top: space(24);
   }
 }
@@ -38,7 +40,7 @@
 
 .information-page__pages {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 
   @include for-tablet-landscape-down {
@@ -66,12 +68,9 @@
 }
 
 .information-page__sub-heading {
-  margin-bottom: space(24);
+  margin-top: space(36);
+  margin-bottom: space(48);
   @include heading-s;
-
-  @include for-tablet-landscape-down {
-    margin-bottom: space(16);
-  }
 }
 
 .information-page__content {
@@ -85,13 +84,19 @@
     margin-bottom: space(24);
   }
 
-  p {
-    @include body-l;
+  p, li {
+    @include body-xm;
   }
 
   a {
-    @include body-l;
+    @include body-xm;
     text-decoration: underline;
+  }
+  > h1, > h2, > h3 {
+    margin-bottom: 2rem;
+  }
+  > h1 {
+    @include heading-xl;
   }
 }
 
@@ -124,4 +129,86 @@
   @include for-phone-only {
     max-height: 160px;
   }
+}
+
+.information-page__overview {
+  .article-image {
+    width: 100%;
+    height: auto;
+    border-radius: pxtorem(34);
+    margin-bottom: 2.4rem;
+  }
+}
+
+.parent-page-image {
+  border-radius: pxtorem(36);
+  padding: space(20);
+  background: $white;
+  text-align: center;
+  .image {
+    max-height: 120px;
+    width: auto;
+    margin: 0 auto 1.4rem;
+    @include for-phone-only {
+      max-height: 90px;
+    }
+  }
+}
+
+.parent-title {
+  @include heading-s;
+  display: block;
+}
+
+.information-page__sitemap {
+  background: $botticelli;
+  padding: 1.5rem;
+  border-radius: 7px;
+  margin-bottom: 2rem;
+  @include for-phone-only {
+    margin: 2rem 0 2rem;
+  }
+}
+
+.information-page__sitemap__link {
+  font-size: pxtorem(20);
+  font-family: "Outfit", sans-serif;
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
+  .button__icon {
+    margin: 0 1rem 0 0;
+  }
+}
+
+.information-page__cta {
+  background: #FFE3BA;
+  padding: 1.4rem;
+  border-radius: 1.25rem;
+  margin-bottom: 2rem;
+  p {
+    @include body-xm;
+  }
+}
+
+// any generated content after CTA's need to not have the first paragraph styling
+// its hacky but a lot of this CSS classes would need a rewrite to allow for a neater solution
+.information-page__cta + .information-page__content.markdown {
+  p {
+    @include body-xm;
+    font-weight: 400 !important;
+    font-size: 1.375rem !important;
+    line-height: 2.25rem !important;
+    border-left: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 1rem !important;
+    @include for-phone-only {
+      font-size: 1.25rem !important;
+      line-height: 1.5rem !important;
+    }
+  }
+}
+
+.information-page__cta__button-wrap {
+  margin: 1rem 0;
 }

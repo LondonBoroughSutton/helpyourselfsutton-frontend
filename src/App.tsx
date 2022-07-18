@@ -118,7 +118,7 @@ const App = () => {
               <Route path="/terms-and-conditions" component={Terms} />
               <Route path="/duty-to-refer" component={DutyToRefer} />
               <Route path="/organisations/:organisation" component={Organisation} />
-              <Route path="/:page" component={Page} />
+              <Route path="/pages/:page" component={Page} />
               <Route component={NotFound} />
             </Switch>
           </Suspense>

@@ -222,9 +222,6 @@
 
 .service__markdown {
   &--intro {
-    border-left: 4px solid $black;
-    padding-left: space(20);
-
     @media(min-width: 601px) {
       margin-bottom: space(40);
     }

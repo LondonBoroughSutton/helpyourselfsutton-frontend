@@ -1,0 +1,11 @@
+@import '../../styles/variables.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/breakpoints.scss';
+@import '../../styles/typography.scss';
+
+.page__updated-at {
+  @include body-xm;
+  font-style: italic;
+  margin-bottom: 1rem;
+}

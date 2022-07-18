@@ -1,0 +1,74 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/typography.scss';
+
+ul.list {
+  height: 30px;
+  overflow: hidden;
+  padding: revert;
+  list-style-type: none;
+  padding-left: 1.4rem;
+  font-size: pxtorem(18);
+  font-weight: 700;
+
+  li {
+    margin: 0;
+    font-size: pxtorem(18);
+    line-height: 1.5rem;
+    font-weight: 700;
+    padding: 0 0 10px 20px;
+  }
+
+  a {
+    font-size: 1.2rem;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  a:active, a:focus {
+    box-shadow: none;
+  }
+ 
+  .toggler {
+    display: inline-block;
+    margin: 0 5px 0 -25px;
+    cursor: pointer;
+  }
+
+  li::marker {
+    display: inline-block;
+  }
+
+  &.open {
+    height: auto;
+  }
+
+  li.leaf {
+    &.currentPage > a {
+      font-weight: 700;
+    }
+    &.currentPage > a:hover {
+      text-decoration: none;
+    }
+  }
+
+  ul > li.leaf {
+    padding-left: 3rem;
+    text-indent: -25px;
+  }
+}
+
+.list-recursive__wrapper {
+  margin: 2rem 0 2rem -1rem;
+  > ul > li.leaf {
+    text-indent: -2px;
+  }
+  .active-branch > ul > li > a {
+    font-weight: bold;
+  }
+  li.active-branch > a {
+    font-weight: bold;
+  }
+}

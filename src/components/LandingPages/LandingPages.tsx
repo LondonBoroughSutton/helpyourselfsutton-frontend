@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 
-import { apiBase } from '../../config/api';
-
 import ButtonLink from '../Button/ButtonLink';
 
 import './LandingPages.scss';
 
 import PageStore from '../../stores/pageStore';
 import { IPage } from '../../types/types';
+import { getImg } from '../../utils/utils';
 
 interface IProps {
   pageStore?: PageStore;
@@ -28,10 +27,6 @@ class LandingPages extends Component<IProps> {
       return null;
     }
 
-    const getImg = (pageId: string) => {
-      return `${apiBase}/pages/${pageId}/image.png?max_dimension=120`;
-    };
-
     return (
       <section className="landing-pages">
         <div className="flex-container">
@@ -40,9 +35,9 @@ class LandingPages extends Component<IProps> {
             {pageStore.pages?.map((page: IPage) => {
               return (
                 <ButtonLink
-                  href={'/' + page.id}
+                  href={'/pages/' + page.slug}
                   text={page.title}
-                  image={page.image ? getImg(page.id) : ''}
+                  image={page.image ? getImg(page.id, 120) : ''}
                   key={page.id}
                   category={true}
                 />
