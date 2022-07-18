@@ -303,7 +303,7 @@ const renderInformationPageMeta = async (slug) => {
   const pageHasImage = !!_get(data, 'image.id', false);
   let metaDesc = prepareDescription(defaultContent);
 
-  rawPageContent = _get(data, 'content.introduction.content', defaultContent);
+  const rawPageContent = _get(data, 'content.introduction.content', defaultContent);
 
   if (rawPageContent !== defaultContent) {
     const contentBlocks = [];
