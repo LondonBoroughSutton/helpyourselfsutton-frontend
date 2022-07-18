@@ -160,8 +160,8 @@ const removeMarkdown = (content) => {
   const h1 = /^# (.*\b)/gim;
   const h1Alt = /\n+=+\n+/gim;
   const bq = /^\> (.*\b)/gim;
-  const bold = /\*\*(.*)\*\*/gim;
-  const italics = /\*(.*)\*/gim;
+  const bold = /\*\*(\S[^\*]+\S)\*\*/gim;
+  const italics = /\*(\S[^\*]+\S)\*/gim;
   const image = /!\[(.*?)\]\((.*?)\)/gim;
   const link = /\[(.*?)\]\((.*?)\)/gim;
   const lineBreak = /\n+/gim;
@@ -303,37 +303,23 @@ const renderInformationPageMeta = async (slug) => {
   const pageHasImage = !!_get(data, 'image.id', false);
   let metaDesc = prepareDescription(defaultContent);
 
-  /**
-   * Remove when https://github.com/LondonBoroughSutton/suttoninformationhub-api/pull/35
-   * goes to production
-   */
-  let rawPageContent = _get(data, 'content.introduction.copy');
+  rawPageContent = _get(data, 'content.introduction.content', defaultContent);
 
-  if (rawPageContent) {
-    metaDesc = prepareDescription(rawPageContent[0]);
-  } else {
-    /**
-     * When https://github.com/LondonBoroughSutton/suttoninformationhub-api/pull/35
-     * goes to production remove the wrapping if...else block
-     */
-    rawPageContent = _get(data, 'content.introduction.content', defaultContent);
-
-    if (rawPageContent !== defaultContent) {
-      const contentBlocks = [];
-      rawPageContent.forEach((content) => {
-        switch (content.type) {
-          case 'copy':
-            contentBlocks.push(content.value);
-            break;
-          case 'cta':
-            contentBlocks.push(content.title + ' : ' + content.description);
-            break;
-          default:
-            break;
-        }
-      });
-      metaDesc = prepareDescription(contentBlocks.join('\n'));
-    }
+  if (rawPageContent !== defaultContent) {
+    const contentBlocks = [];
+    rawPageContent.forEach((content) => {
+      switch (content.type) {
+        case 'copy':
+          contentBlocks.push(content.value);
+          break;
+        case 'cta':
+          contentBlocks.push(content.title + ' : ' + content.description);
+          break;
+        default:
+          break;
+      }
+    });
+    metaDesc = prepareDescription(contentBlocks.join('\n'));
   }
 
   let metas = [];
