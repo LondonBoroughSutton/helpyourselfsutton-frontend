@@ -113,9 +113,9 @@ const fetchOrganisation = async (name) => {
   }
 };
 
-const fetchInformationPage = async (id) => {
+const fetchInformationPage = async (slug) => {
   try {
-    const response = await getApi(`${envUris.apiBase}/pages/${id}`);
+    const response = await getApi(`${envUris.apiBase}/pages/${slug.trim()}`);
     return _get(response, 'data');
   } catch (err) {
     console.log(err);
@@ -160,8 +160,8 @@ const removeMarkdown = (content) => {
   const h1 = /^# (.*\b)/gim;
   const h1Alt = /\n+=+\n+/gim;
   const bq = /^\> (.*\b)/gim;
-  const bold = /\*\*(.*)\*\*/gim;
-  const italics = /\*(.*)\*/gim;
+  const bold = /\*\*(\S[^\*]+\S)\*\*/gim;
+  const italics = /\*(\S[^\*]+\S)\*/gim;
   const image = /!\[(.*?)\]\((.*?)\)/gim;
   const link = /\[(.*?)\]\((.*?)\)/gim;
   const lineBreak = /\n+/gim;
@@ -299,17 +299,28 @@ const renderOrganisationMeta = async (slug) => {
 const renderInformationPageMeta = async (slug) => {
   const data = await fetchInformationPage(slug);
 
-  console.log(data);
-
   const metaTitle = _get(data, 'title', defaultTitle);
-  console.log(metaTitle);
   const pageHasImage = !!_get(data, 'image.id', false);
-  console.log(pageHasImage);
+  let metaDesc = prepareDescription(defaultContent);
 
-  const rawPageContent = _get(data, 'content.introduction.copy', defaultContent);
+  rawPageContent = _get(data, 'content.introduction.content', defaultContent);
 
-  const metaDesc = prepareDescription(rawPageContent[0]);
-  console.log(metaDesc);
+  if (rawPageContent !== defaultContent) {
+    const contentBlocks = [];
+    rawPageContent.forEach((content) => {
+      switch (content.type) {
+        case 'copy':
+          contentBlocks.push(content.value);
+          break;
+        case 'cta':
+          contentBlocks.push(content.title + ' : ' + content.description);
+          break;
+        default:
+          break;
+      }
+    });
+    metaDesc = prepareDescription(contentBlocks.join('\n'));
+  }
 
   let metas = [];
 
@@ -457,6 +468,13 @@ const renderMeta = async () => {
       slug = urlElements[2].trim();
       meta = await renderOrganisationMeta(slug);
       break;
+    case 'pages':
+      if (!urlElements[2] || urlElements[2] === '') {
+        throw new Error('Missing slug');
+      }
+      slug = urlElements[2].trim();
+      meta = await renderInformationPageMeta(slug);
+      break;
     case 'results':
       meta = await renderResultsMeta();
       break;
@@ -474,18 +492,7 @@ const renderMeta = async () => {
       meta = pageMeta()[urlElements[1]];
       break;
     default:
-      if (urlElements[1] && urlElements[1] !== '') {
-        // information pages have a uri pattern of /{uuid}
-        const uuidRegex =
-          /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-        slug = urlElements[1].trim();
-        if (slug.search(uuidRegex) === -1) {
-          throw new Error('Unknown slug');
-        }
-        meta = await renderInformationPageMeta(slug);
-      } else {
-        meta = await renderHomeMeta();
-      }
+      meta = await renderHomeMeta();
   }
   return meta;
 };
