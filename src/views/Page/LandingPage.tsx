@@ -16,12 +16,9 @@ import ButtonLink from '../../components/Button/ButtonLink';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 import { ICategory, IPage } from '../../types/types';
+import { getImg } from '../../utils/utils';
 
 function LandingPage(props: any) {
-  const getImg = (pageId: string) => {
-    return `${apiBase}/pages/${pageId}/image.png?max_dimension=900`;
-  };
-
   return (
     <div className="landing-page">
       <Helmet>
@@ -40,9 +37,9 @@ function LandingPage(props: any) {
           <div className="cms--contact-card">
             <div className="flex-container flex-container--no-padding">
               <div className="flex-col flex-col--8 landing-page__intro">
-                {props.content.content.introduction.copy && (
+                {props.content.content.introduction.content && (
                   <ReactMarkdown
-                    children={props.content.content.introduction.copy[0]}
+                    children={props.content.content.introduction.content[0].value}
                     className="landing-page__content"
                   />
                 )}
@@ -57,25 +54,24 @@ function LandingPage(props: any) {
                       src={getImg(props.content.id)}
                     />
                   )}
-                  {props.content.title && <div className="parent-title">{props.content.title}</div>}
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div className="flex-container">
-          {props.content.content.about.copy[0] && (
+          {props.content.content.about.content[0] && (
             <div className="flex-col flex-col--8 landing-page__about">
               <ReactMarkdown
-                children={props.content.content.about.copy[0]}
+                children={props.content.content.about.content[0].value}
                 className="landing-page__content markdown"
               />
             </div>
           )}
-          {props.content.content.about.copy[1] && (
+          {props.content.content.about.content[1] && (
             <div className="flex-col flex-col--4">
               <ReactMarkdown
-                children={props.content.content.about.copy[1]}
+                children={props.content.content.about.content[1].value}
                 className="landing-page__content markdown"
               />
               <LastUpdatedAt time={props.content.updated_at} />
@@ -93,9 +89,9 @@ function LandingPage(props: any) {
                   {props.content.content.info_pages.title}
                 </h2>
               )}
-              {props.content.content.info_pages.copy[0] && (
+              {props.content.content.info_pages.content[0] && (
                 <ReactMarkdown
-                  children={props.content.content.info_pages.copy[0]}
+                  children={props.content.content.info_pages.content[0].value}
                   className="landing-page__content"
                 />
               )}
@@ -129,9 +125,9 @@ function LandingPage(props: any) {
                   {props.content.content.collections.title}
                 </h2>
               )}
-              {props.content.content.collections.copy[0] && (
+              {props.content.content.collections.content[0] && (
                 <ReactMarkdown
-                  children={props.content.content.collections.copy[0]}
+                  children={props.content.content.collections.content[0].value}
                   className="landing-page__content"
                 />
               )}

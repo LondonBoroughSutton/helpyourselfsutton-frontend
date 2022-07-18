@@ -1,7 +1,7 @@
+import React from 'react';
 import { IconName } from '@fortawesome/fontawesome-common-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cx from 'classnames';
-import React from 'react';
 
 import './Button.scss';
 

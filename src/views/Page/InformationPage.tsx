@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
@@ -6,45 +6,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { observer, inject } from 'mobx-react';
 
-import { apiBase } from '../../config/api';
+import { getImg } from '../../utils/utils';
 import Breadcrumb from '../../components/Breadcrumb';
 import pageIllo from '../../assets/images/mother-and-son-walking.svg';
 import ButtonLink from '../../components/Button/ButtonLink';
 import Sitemap from '../../components/Sitemap';
 import LastUpdatedAt from '../../components/LastUpdatedAt';
 import PageStore from '../../stores/pageStore';
-import { IPage, IPageTree, IPageTreeHashed } from '../../types/types';
+import { IPage } from '../../types/types';
+import { getActive, buildPathFromTree } from '../../components/Sitemap/utils';
 
 import './InformationPage.scss';
-
-const setPageTreeFields = (pageTree: IPage[]) =>
-  pageTree.reduce((acc: IPageTree[], item: IPage) => {
-    acc.push({
-      id: item.id,
-      filename: item.title,
-      slug: item.slug,
-      parent: item.parent.title,
-      parentId: item.parent.id,
-      children: null,
-    });
-    return acc;
-  }, []);
-
-const makePageTree = (data: IPageTree[]) => {
-  const tree = data
-    .map((e: IPageTree) => ({ ...e }))
-    .reduce((a: IPageTreeHashed, e: IPageTree) => {
-      a[e.id] = a[e.id] || e;
-      a[e.parentId] = a[e.parentId] || {};
-      const parent = a[e.parentId];
-      // @ts-ignore
-      parent.children = parent.children || [];
-      parent.children!.push(e);
-      return a;
-    }, {});
-  // @ts-ignore
-  return Object.values(tree).find((e) => e.id === undefined).children;
-};
 
 interface IProps {
   pageStore: PageStore;
@@ -52,18 +24,21 @@ interface IProps {
 }
 
 const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }) => {
+  const [activeBranch, setActiveBranch] = useState<string[] | null>(null);
+
+  // fetch the whole page tree / sitemap for Sutton
   useEffect(() => {
     if (content.landing_page) {
       pageStore.fetchPageTree(content.landing_page.id);
     }
   }, [pageStore, content.landing_page]);
 
-  const getImg = (pageId: string) => {
-    return `${apiBase}/pages/${pageId}/image.png?max_dimension=900`;
-  };
-
-  const pagesList = pageStore.pageTree && setPageTreeFields(pageStore.pageTree);
-  const pageTree = pagesList && makePageTree(pagesList);
+  useEffect(() => {
+    if (pageStore.pageTreeInner) {
+      const currentActiveBranch = buildPathFromTree(pageStore.pageTreeInner, 'id', content.id);
+      setActiveBranch(currentActiveBranch);
+    }
+  }, [pageStore.pageTreeInner, content.id]);
 
   return (
     <div className="information-page">
@@ -76,11 +51,12 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
           { text: 'Home', url: '/' },
           {
             text: content.parent.title ? content.parent.title : 'Information Page',
-            url: '/' + content.parent.slug,
+            url: '/pages/' + content.parent.slug,
           },
           { text: content.title ? content.title : 'Information Page', url: '' },
         ]}
       />
+
       <section className="information-page__overview">
         <div className="flex-container">
           <div className="cms--contact-card">
@@ -101,9 +77,9 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
                       src={getImg(content.parent.id)}
                     />
                   )}
-                  {content.parent.title && (
-                    <Link to={`/${content.parent.id}`} className="parent-title">
-                      {content.parent.title}
+                  {content.landing_page && (
+                    <Link to={`/pages/${content.landing_page.slug}`} className="parent-title">
+                      {content.landing_page.title}
                     </Link>
                   )}
                 </div>
@@ -121,15 +97,29 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
                 src={getImg(content.id)}
               />
             )}
-            {content.content.introduction!.copy && (
-              <div>
-                <ReactMarkdown
-                  data-content="main"
-                  children={content.content.introduction!.copy[0]}
-                  className="information-page__content markdown"
-                />
-              </div>
-            )}
+
+            {content.content.introduction!.content.map((contentBlock: any, index: number) => (
+              <Fragment key={index}>
+                {contentBlock.type === 'copy' && (
+                  <ReactMarkdown
+                    data-content="main"
+                    children={contentBlock.value as string}
+                    className="information-page__content markdown"
+                  />
+                )}
+                {contentBlock.type === 'cta' && (
+                  <div className="information-page__cta">
+                    <h3>{contentBlock.title}</h3>
+                    <p>{contentBlock.description}</p>
+                    {contentBlock.url && contentBlock.buttonText && (
+                      <div className="information-page__cta__button-wrap">
+                        <ButtonLink text={contentBlock.buttonText} href={contentBlock.url} />
+                      </div>
+                    )}
+                  </div>
+                )}
+              </Fragment>
+            ))}
 
             {content.children.filter((child: IPage) => child.enabled).length > 0 && (
               <div>
@@ -168,22 +158,38 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
           <div className="flex-col flex-col--4">
             <div className="information-page__sitemap">
               {content.parent.title && <div className="parent-title">{content.parent.title}</div>}
+
               <div className="list-recursive__wrapper">
-                {pageTree &&
-                  pageTree.map((list: any) => (
-                    <Sitemap key={list.id} list={list} activePage={content.id} />
-                  ))}
+                {activeBranch &&
+                  pageStore.pageTreeInner &&
+                  pageStore.pageTreeInner.map((list: any) => {
+                    return (
+                      <div
+                        key={list.id}
+                        className={`${getActive(activeBranch, list.id) ? 'active-branch' : ''}`}
+                      >
+                        <Sitemap list={list} activeBranch={activeBranch} />
+                      </div>
+                    );
+                  })}
               </div>
-              <Link to={`/${content.parent.id}`} className="information-page__sitemap__link">
-                <FontAwesomeIcon icon="arrow-left" className="button__icon" />
-                Return to {content.parent.title}
-              </Link>
+
+              {content.landing_page && (
+                <Link
+                  to={`/pages/${content.landing_page.slug}`}
+                  className="information-page__sitemap__link"
+                >
+                  <FontAwesomeIcon icon="arrow-left" className="button__icon" />
+                  Return to {content.landing_page.title}
+                </Link>
+              )}
             </div>
+            <LastUpdatedAt time={content.updated_at} />
           </div>
         </div>
         <div className="flex-container">
           <div className="flex-col flex-col--12 information-page__more">
-            <LastUpdatedAt time={content.updated_at} />
+            <div />
             {pageIllo && (
               <div className="flex-col">
                 <img

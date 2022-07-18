@@ -130,5 +130,48 @@ button {
   a.button__excerpt {
     background: $peach;
     padding: 1rem;
+    line-height: 36px;
+  }
+}
+
+.button__excerpt__parent {
+  display: flex;
+  border-radius: 8px;
+  background: $white;
+  padding: space(20);
+  border: 3px solid transparent;
+  color: $black;
+  flex-direction: column;
+  justify-content: space-between;
+  @include for-tablet-landscape-down {
+    display: block;
+  }
+
+  .flex__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .info__link {
+    margin-bottom: 2rem;
+    &:hover {
+      text-decoration: underline;
+    }
+    svg {
+      font-size: 2rem;
+      font-size: 2rem;
+      line-height: 1.22;
+    }
+    
+  }
+  .parent__link {
+    a {
+      text-decoration: underline;
+    }
+    .image {
+      max-height: 50px;
+      width: auto;
+      margin-left: 1rem;
+    }
   }
 }

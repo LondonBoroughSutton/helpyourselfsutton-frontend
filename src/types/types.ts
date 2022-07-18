@@ -1,5 +1,17 @@
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 
+export interface IContentBlock {
+  type: string;
+  value:
+    | string
+    | {
+        description: string;
+        title: string;
+        url?: string;
+        buttonText?: string;
+      };
+}
+
 export interface IPage {
   id: string;
   enabled: boolean;
@@ -7,23 +19,20 @@ export interface IPage {
   page_type: string;
   title: string;
   image: string;
-  introduction: {
-    copy: string[];
-  };
   content: {
     about: null | {
-      copy: string[];
+      content: IContentBlock[];
     };
     info_pages: null | {
-      copy: string[];
+      content: IContentBlock[];
       title: string;
     };
     collections: null | {
-      copy: string[];
+      content: IContentBlock[];
       title: string;
     };
     introduction: null | {
-      copy: string[];
+      content: IContentBlock[];
     };
   };
   parent: IPage;
@@ -32,7 +41,7 @@ export interface IPage {
   collections_personas: [];
   updated_at: string;
   excerpt?: string;
-  landing_page?: IPage;
+  landing_page?: IPage | null;
   slug: string;
 }
 
