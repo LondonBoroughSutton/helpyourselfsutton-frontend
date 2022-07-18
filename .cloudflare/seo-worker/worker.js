@@ -8,6 +8,7 @@
 
 import render from './server';
 
+// Fetch event listener
 addEventListener('fetch', (event) => {
   try {
     return event.respondWith(handleRequest(event));
