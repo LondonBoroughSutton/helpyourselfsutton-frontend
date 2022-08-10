@@ -26,8 +26,8 @@ class CookieBanner extends Component<any> {
       content: {
         href: '/privacy-policy',
         message:
-          'Our website uses cookies, for more information on what they are, how they work and how to manage them, please view our ',
-        link: 'policy here',
+          'Our website uses cookies. ',
+        link: 'Read more about what cookies are, how they we use them on this website and how to manage them.',
       },
       padding: 'small',
     };
