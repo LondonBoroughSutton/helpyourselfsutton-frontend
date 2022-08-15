@@ -14,7 +14,7 @@ const BetaBanner: React.FunctionComponent = () => {
           role="menuitem"
           aria-label="Use our Google Form if you a find bug or issue"
         >
-          Use our Google Form if you find bug or issue
+          Use our Google Form if you find a bug or issue
         </a>{' '}
         whilst using the website.
       </p>
