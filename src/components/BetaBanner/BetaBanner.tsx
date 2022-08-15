@@ -12,7 +12,7 @@ const BetaBanner: React.FunctionComponent = () => {
           target="_blank"
           rel="noopener noreferrer"
           role="menuitem"
-          aria-label="Use our Google Form if you find bug or issue"
+          aria-label="Use our Google Form if you a find bug or issue"
         >
           Use our Google Form if you find bug or issue
         </a>{' '}
