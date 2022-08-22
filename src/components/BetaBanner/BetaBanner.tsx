@@ -6,17 +6,17 @@ const BetaBanner: React.FunctionComponent = () => {
   return (
     <div className="beta-banner">
       <p>
-        The site is in Public Beta and if you find a issue or bug please{' '}
+        The site is in Public Beta.{' '}
         <a
           href={`https://docs.google.com/forms/d/e/1FAIpQLSfEdZWKC0kz1ht6qLRO1SGDWAmK2HzvAl7O-SxPzN9f7pzBOg/viewform`}
           target="_blank"
           rel="noopener noreferrer"
           role="menuitem"
-          aria-label="Report an issue or bug here"
+          aria-label="Use our Google Form if you a find bug or issue"
         >
-          click here
+          Use our Google Form if you find a bug or issue
         </a>{' '}
-        to report it
+        whilst using the website.
       </p>
     </div>
   );
