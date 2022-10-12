@@ -14,12 +14,10 @@ import uniqueId from 'lodash/uniqueId';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { apiBase } from '../../config/api';
-
 import './Service.scss';
 
-import { removeQuotesRegex, capitalise } from '../../utils/utils';
-import { IServiceLocation, IService } from '../../types/types';
+import { removeQuotesRegex, capitalise, getServiceImg } from '../../utils/utils';
+import { IServiceLocation } from '../../types/types';
 import ServiceStore from '../../stores/serviceStore';
 import UIStore from '../../stores/uiStore';
 
@@ -73,17 +71,6 @@ const iconMap = [
   { 'Keeping updated': 'calendar-alt' },
   { 'Additional information': 'info-circle' },
 ];
-
-const getImg = (service: IService) => {
-  if (service.has_logo) {
-    return `${apiBase}/services/${service.id}/logo.png?`;
-  } else {
-    return `${apiBase}/organisations/${get(service, 'organisation.id')}/logo.png?v=${get(
-      service,
-      'organisation.id'
-    )}`;
-  }
-};
 
 class Service extends Component<IProps> {
   componentDidMount() {
@@ -198,7 +185,7 @@ class Service extends Component<IProps> {
               content={`${process.env.REACT_APP_FRONTEND_URL}/${get(service, 'slug')}`}
             />
           )}
-          {getImg(service) && <meta property="og:image" content={getImg(service)} />}
+          {getServiceImg(service) && <meta property="og:image" content={getServiceImg(service)} />}
           <meta property="og:type" content="website" />
         </Helmet>
 
@@ -213,7 +200,7 @@ class Service extends Component<IProps> {
           <div className="flex-container">
             <div className="flex-col">
               <div className="service__header__logo">
-                <img src={getImg(service)} alt={`${service.name} logo`} />
+                <img src={getServiceImg(service)} alt={`${service.name} logo`} />
               </div>
             </div>
             <div className="flex-col">
