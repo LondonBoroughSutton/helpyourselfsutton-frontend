@@ -1,4 +1,4 @@
-import { IServiceLocation } from '../types/types';
+import { IServiceLocation, IService } from '../types/types';
 import get from 'lodash/get';
 import { apiBase } from '../config/api';
 
@@ -17,3 +17,22 @@ export const capitalise = (string: string) => string.charAt(0).toUpperCase() + s
 
 export const getImg = (pageId: string, max_dimension = 900) =>
   `${apiBase}/pages/${pageId}/image.png?max_dimension=${max_dimension}`;
+
+
+export const getServiceImg = (service: IService) => {
+  if (service.has_logo) {
+    return `${apiBase}/services/${service.id}/logo.png?`;
+  } else {
+    if (get(service, 'organisation_id')) return `${apiBase}/organisations/${get(service, 'organisation_id')}/logo.png?v=${get(
+      service,
+      'organisation.id'
+    )}`;
+
+     if (get(service, 'organisation.id')) return `${apiBase}/organisations/${get(service, 'organisation.id')}/logo.png?v=${get(
+      service,
+      'organisation.id'
+    )}`;
+
+    return ''
+  }
+};
