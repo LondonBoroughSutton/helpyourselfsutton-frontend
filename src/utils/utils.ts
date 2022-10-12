@@ -23,16 +23,8 @@ export const getServiceImg = (service: IService) => {
   if (service.has_logo) {
     return `${apiBase}/services/${service.id}/logo.png?`;
   } else {
-    if (get(service, 'organisation_id')) return `${apiBase}/organisations/${get(service, 'organisation_id')}/logo.png?v=${get(
-      service,
-      'organisation.id'
-    )}`;
-
-     if (get(service, 'organisation.id')) return `${apiBase}/organisations/${get(service, 'organisation.id')}/logo.png?v=${get(
-      service,
-      'organisation.id'
-    )}`;
-
+    if (get(service, 'organisation_id')) return `${apiBase}/organisations/${get(service, 'organisation_id')}/logo.png?v=${get(service, 'organisation_id')}`;
+    if (get(service, 'organisation.id')) return `${apiBase}/organisations/${get(service, 'organisation.id')}/logo.png?v=${get(service,'organisation.id')}`;
     return ''
   }
 };
