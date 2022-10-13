@@ -35,8 +35,7 @@
   width: 154px;
   height: 154px;
   margin: 0 space(40) space(40) 0;
-  border-radius: 40px;
-  box-sizing: content-box;
+  border-radius: 20px;
   overflow: hidden;
 
   @include for-tablet-landscape-down {
@@ -53,7 +52,9 @@
   img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    padding: 0.5rem;
+    background-color: $lavender;
   }
 }
 
