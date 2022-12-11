@@ -338,14 +338,18 @@ blockquote {
       &:first-of-type {
         border-left: 8px solid $black;
         padding: 0.5rem 0 0.5rem 1.2rem;
-        font-weight: 700;
-        font-size: pxtorem(28);
         line-height: pxtorem(40);
         margin-bottom: 2rem;
 
-        @include for-phone-only {
-          @include body-l;
+        &,
+        a {
           font-weight: 700;
+          font-size: pxtorem(28);
+
+          @include for-phone-only {
+            @include body-l;
+            font-weight: 700;
+          }
         }
       }
     }
