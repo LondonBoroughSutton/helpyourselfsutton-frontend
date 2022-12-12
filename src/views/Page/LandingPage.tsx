@@ -68,15 +68,16 @@ function LandingPage(props: any) {
               />
             </div>
           )}
-          {props.content.content.about.content[1] && (
-            <div className="flex-col flex-col--4">
+
+          <div className="flex-col flex-col--4">
+            {props.content.content.about.content[1] && (
               <ReactMarkdown
                 children={props.content.content.about.content[1].value}
                 className="landing-page__content markdown"
               />
-              <LastUpdatedAt time={props.content.updated_at} />
-            </div>
-          )}
+            )}
+            <LastUpdatedAt time={props.content.updated_at} />
+          </div>
         </div>
       </section>
 
