@@ -353,6 +353,27 @@ blockquote {
         }
       }
     }
+
+    ul,
+    ol {
+      list-style-position: outside;
+      margin: 2rem;
+      @include for-phone-only {
+        margin: 1rem;
+      }
+
+      li {
+        margin-top: 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &::marker {
+          @include body-l;
+        }
+      }
+    }
   }
 
   a {
@@ -380,47 +401,17 @@ blockquote {
     }
   }
 
-  ol > li::marker {
-    display: inline-block;
-    @include body-l;
-    line-height: 2.25rem;
-  }
-
-  ol > li p {
-    display: inline-block;
-    margin-left: 0.5rem;
-  }
-}
-
-// uniform the styling for ul's and ol's in side a markup component
-.information-page__content.markdown {
-  ul,
-  ol {
-    padding: 2rem;
-    @include for-phone-only {
-      padding: 1rem;
-    }
-  }
-  ol {
-    counter-reset: counterVar;
-    display: table;
-  }
-
   ol > li {
-    counter-increment: counterVar;
-    display: flex;
     margin-bottom: 1rem;
-  }
+    padding-left: 0.5rem;
 
-  ol > li {
     p {
-      margin-left: 1rem;
+      display: inline;
     }
 
-    &::before {
-      content: counter(counterVar) '.';
-      display: table;
-      @include body-xm;
+    &::marker {
+      display: list-item;
+      @include body-m;
     }
   }
 }
