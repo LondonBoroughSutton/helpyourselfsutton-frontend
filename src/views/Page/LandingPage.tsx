@@ -73,7 +73,7 @@ function LandingPage(props: any) {
             {props.content.content.about.content[1] && (
               <ReactMarkdown
                 children={props.content.content.about.content[1].value}
-                className="landing-page__content markdown"
+                className="landing-page__content landing-page__content-aside markdown"
               />
             )}
             <LastUpdatedAt time={props.content.updated_at} />
