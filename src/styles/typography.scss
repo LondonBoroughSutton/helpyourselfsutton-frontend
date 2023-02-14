@@ -334,7 +334,7 @@ blockquote {
 
   &.landing-page__content,
   &.information-page__content {
-    & > p {
+    &:not(.landing-page__content-aside) > p {
       &:first-of-type {
         border-left: 8px solid $black;
         padding: 0.5rem 0 0.5rem 1.2rem;
