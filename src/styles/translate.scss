@@ -8,9 +8,9 @@
   background-color: $black !important;
   border-radius: 4px;
   border: none !important;
-  font-size: pxtorem(20) !important;
-  line-height: 2rem !important;
-  height: auto !important;
+  font-size: 1.25rem !important;
+  line-height: 1.8rem !important;
+  height: pxtorem(46) !important;
   display: inline-block;
   cursor: pointer;
   zoom: 1;
@@ -20,9 +20,24 @@
   box-sizing: border-box;
 
   @include for-tablet-landscape-down {
-    padding: space(8) !important;
+    padding: space(8) space(10) !important;
+    font-size: pxtorem(18) !important;
+  }
+
+  @include for-phone-only {
+    padding: space(6) space(8) !important;
     font-size: pxtorem(16) !important;
-    line-height: pxtorem(16) !important;
+  }
+
+  a {
+    color: $white !important;
+    font-family: 'Outfit', sans-serif !important;
+    margin: 0 !important;
+    font-size: inherit !important;
+
+    [aria-hidden='true'] {
+      color: $white !important;
+    }
   }
 
   &:hover {
