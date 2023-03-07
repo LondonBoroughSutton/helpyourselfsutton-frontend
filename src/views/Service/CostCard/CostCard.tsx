@@ -15,7 +15,11 @@ const CostCard: React.FunctionComponent<IProps> = ({ service }) => (
     <div className="service__cost-card__content">
       <h2 className="service__cost-card__title">{!service.is_free ? 'Cost' : 'Free'}</h2>
       <p className="service__cost-card__description">
-        This {service.type} {service.is_free ? 'is free' : 'has a cost associated'}
+        {service.is_free
+          ? `This ${service.type} is free`
+          : service.fees_text
+          ? service.fees_text
+          : `This ${service.type} has a cost associated`}
       </p>
       {service.fees_url && (
         <p>
