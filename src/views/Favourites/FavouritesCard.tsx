@@ -10,6 +10,7 @@ import { IService, IServiceLocation } from '../../types/types';
 import { getLocationName } from '../../utils/utils';
 import Accordian from '../../components/Accordian';
 
+import { formatContactNumber } from '../../helpers';
 import { apiBase } from '../../config/api';
 import { observer, inject } from 'mobx-react';
 import FavouritesStore from '../../stores/favouritesStore';
@@ -142,7 +143,7 @@ const FavouritesCard: React.FunctionComponent<IProps> = ({
                 <FontAwesomeIcon icon="phone" /> Telephone
               </p>
               <a href={`tel:${service.contact_phone}`} className="body--m">
-                {service.contact_phone}
+                {formatContactNumber(service.contact_phone)}
               </a>
             </div>
           )}

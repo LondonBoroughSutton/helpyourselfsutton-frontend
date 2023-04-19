@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import find from 'lodash/find';
 import size from 'lodash/size';
 
+import { formatContactNumber } from '../../../helpers';
+
 import './ContactCard.scss';
 
 import { IOrganisation, IService } from '../../../types/types';
@@ -54,7 +56,7 @@ const ContactCard: React.FunctionComponent<IProps> = ({ service, accordian, orga
         >
           <FontAwesomeIcon icon="phone" /> Telephone
         </h3>
-        <a href={`tel:${service.contact_phone}`}>{service.contact_phone}</a>
+        <a href={`tel:${service.contact_phone}`}>{formatContactNumber(service.contact_phone)}</a>
       </div>
     )}
     {service.contact_email && (

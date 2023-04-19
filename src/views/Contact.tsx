@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import get from 'lodash/get';
 import ReactMarkdown from 'react-markdown';
 
+import { formatContactNumber } from '../helpers';
 import CMSStore from '../stores/CMSStore';
 import CMSPage from '../components/CMSPageLayout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -36,7 +37,11 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
             <h3 className="h5">
               <FontAwesomeIcon icon="phone-alt" /> Telephone
             </h3>
-            <p className="">{get(cmsStore, 'global.contact_phone')}</p>
+            <p className="">
+              <a href={`tel:${get(cmsStore, 'global.contact_phone')}`}>
+                {formatContactNumber(get(cmsStore, 'global.contact_phone'))}
+              </a>
+            </p>
           </div>
           <div className="cms--contact-card--row">
             <h3 className="h5">
