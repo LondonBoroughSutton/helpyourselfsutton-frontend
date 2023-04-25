@@ -35,14 +35,14 @@ import CookieBanner from './components/CookieBanner';
 import Loading from './components/Loading';
 
 // React GA
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 import RouteChangeTracker from './components/RouteChangeTracker';
 import BetaBanner from './components/BetaBanner/BetaBanner';
 
 if (!window.location.href.includes('localhost')) {
   ReactGA.initialize([
     {
-      trackingId: 'UA-218218288-1',
+      trackingId: 'G-BLYE34QQ9S',
     },
   ]);
 }
