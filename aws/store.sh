@@ -32,30 +32,22 @@ BLUE='\e[1;34m'
 GREEN='\e[1;32m'
 ENDCOLOUR='\e[1;m'
 
-# Get the Cloud Foundry details
-if [ -z "$CF_USERNAME" ]; then
-    read -p 'Cloudfoundry Username: ' CF_USERNAME
+# Get the AWS details
+if [ -z "$AWS_ACCESS_KEY_ID" ]; then
+    read -p 'AWS Access Key ID: ' AWS_ACCESS_KEY_ID
 fi
 
-if [ -z "$CF_PASSWORD" ]; then
-    read -sp 'Cloudfoundry Password: ' CF_PASSWORD
+if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
+    read -sp 'AWS Secret Access Key: ' AWS_SECRET_ACCESS_KEY
     echo
 fi
 
-if [ -z "$CF_ORGANISATION" ]; then
-    read -p 'Cloudfoundry Organisation: ' CF_ORGANISATION
+if [ -z "$AWS_DEFAULT_REGION" ]; then
+    read -p 'AWS Default Region: ' AWS_DEFAULT_REGION
 fi
 
-if [ -z "$CF_SPACE" ]; then
-    read -p 'Cloudfoundry Space: ' CF_SPACE
-fi
-
-if [ -z "$CF_ENV_SERVICE" ]; then
-    read -p 'AWS S3 Bucket name: ' CF_ENV_SERVICE
-fi
-
-if [ -z "$CF_ENV_SERVICE_KEY" ]; then
-    read -p 'AWS service key for the S3 Bucket: ' CF_ENV_SERVICE_KEY
+if [ -z "$AWS_BUCKET_NAME" ]; then
+    read -p 'AWS Bucket Name: ' AWS_BUCKET_NAME
 fi
 
 # Install required packages
@@ -69,28 +61,6 @@ unzip awscliv2.zip
 ${PWD}/aws/install
 aws --version
 rm  awscliv2.zip
-
-# Install CF
-echo -e "${BLUE}Installing CloudFoundry CLI...${ENDCOLOUR}"
-apt-get update && apt-get install -y --allow-unauthenticated gnupg
-wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add -
-echo "deb https://packages.cloudfoundry.org/debian stable main" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-apt-get update && apt-get install -y --allow-unauthenticated cf7-cli
-
-# Login to Cloud Foundry.
-cf login -a $CF_API -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORGANISATION -s $CF_SPACE
-
-# Get the .env file from the secret S3 bucket
-cf service-key $CF_ENV_SERVICE $CF_ENV_SERVICE_KEY | sed -n '/{/,/}/p' | jq . > secret_access.json
-
-# Export the AWS S3 access credentials for use by the AWS CLI
-export AWS_ACCESS_KEY_ID=`jq -r .aws_access_key_id secret_access.json`
-export AWS_DEFAULT_REGION=`jq -r .aws_region secret_access.json`
-export AWS_SECRET_ACCESS_KEY=`jq -r .aws_secret_access_key secret_access.json`
-export AWS_BUCKET_NAME=`jq -r .bucket_name secret_access.json`
-export AWS_DEFAULT_OUTPUT=json
-
-rm secret_access.json
 
 # Select what operation to perform
 read -p '(L)ist, (G)et, (P)ut or (D)elete an object: ' ACTION
