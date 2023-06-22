@@ -21,14 +21,12 @@ if [[ $# -gt 0  ]]; then
             ${DOCKER} run --rm ${TTY} \
                 -v `pwd`:/var/www/html \
                 -w /var/www/html \
-                -e CF_ENV_SERVICE=${CF_ENV_SERVICE:-''} \
-                -e CF_ENV_SERVICE_KEY=${CF_ENV_SERVICE_KEY:-''} \
-                -e CF_USERNAME=${CF_USERNAME:-''} \
-                -e CF_PASSWORD=${CF_PASSWORD:-''} \
-                -e CF_ORGANISATION=${CF_ORGANISATION:-''} \
-                -e CF_SPACE=${CF_SPACE:-''} \
+                -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-''} \
+                -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-''} \
+                -e AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-''} \
+                -e AWS_BUCKET_NAME=${AWS_BUCKET_NAME:-''} \
                 ubuntu:latest \
-                bash .cloudfoundry/store.sh
+                bash aws/store.sh
             ;;
 
         deploy )
