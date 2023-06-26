@@ -16,21 +16,6 @@ fi
 if [[ $# -gt 0  ]]; then
     case "$1" in
 
-        store )
-            shift 1
-            ${DOCKER} run --rm ${TTY} \
-                -v `pwd`:/var/www/html \
-                -w /var/www/html \
-                -e CF_ENV_SERVICE=${CF_ENV_SERVICE:-''} \
-                -e CF_ENV_SERVICE_KEY=${CF_ENV_SERVICE_KEY:-''} \
-                -e CF_USERNAME=${CF_USERNAME:-''} \
-                -e CF_PASSWORD=${CF_PASSWORD:-''} \
-                -e CF_ORGANISATION=${CF_ORGANISATION:-''} \
-                -e CF_SPACE=${CF_SPACE:-''} \
-                ubuntu:latest \
-                bash .cloudfoundry/store.sh
-            ;;
-
         deploy )
             shift 1
             ${DOCKER} run --rm ${TTY} \
