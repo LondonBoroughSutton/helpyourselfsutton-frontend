@@ -407,7 +407,7 @@ Resources:
 
             const metaDesc = prepareDescription(rawPageContent);
 
-            const metaTitle = _get(data, 'name', defaultTitle).concat(' in Hounslow');
+            const metaTitle = _get(data, 'name', defaultTitle).concat(' in Sutton');
 
             let metas = [];
 
