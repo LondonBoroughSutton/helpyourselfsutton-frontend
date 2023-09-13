@@ -43,6 +43,7 @@ class CMSStore {
   @observable get_involved: IContent | null = null;
   @observable privacy_policy: IContent | null = null;
   @observable terms_and_conditions: IContent | null = null;
+  @observable accessibility_statement: IContent | null = null;
   @observable global: IGlobal | null = null;
   @observable home: IHome | null = null;
   @observable banner: IBanner | null = null;

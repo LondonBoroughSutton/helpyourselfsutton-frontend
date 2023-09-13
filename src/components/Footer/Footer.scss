@@ -22,7 +22,13 @@
 .footer__link {
   @include link-large;
   margin-right: space(20);
+  margin-bottom: space(12);
   text-decoration: underline;
+  display: inline-block;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .footer__social-links {
@@ -37,14 +43,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
-  > .footer__link {
-    margin-bottom: space(12);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
 }
 
 .footer__members {
