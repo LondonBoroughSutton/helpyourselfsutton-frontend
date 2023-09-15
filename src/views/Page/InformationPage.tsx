@@ -15,6 +15,7 @@ import LastUpdatedAt from '../../components/LastUpdatedAt';
 import PageStore from '../../stores/pageStore';
 import { IPage } from '../../types/types';
 import { getActive, buildPathFromTree } from '../../components/Sitemap/utils';
+import VideoCard from '../Service/VideoCard';
 
 import './InformationPage.scss';
 
@@ -117,6 +118,9 @@ const InformationPage: React.FunctionComponent<IProps> = ({ pageStore, content }
                       </div>
                     )}
                   </div>
+                )}
+                {contentBlock.type === 'video' && contentBlock.url && (
+                  <VideoCard video={contentBlock.url} classes="information-page__content" width="100%" />
                 )}
               </Fragment>
             ))}

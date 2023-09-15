@@ -8,6 +8,7 @@ import './LandingPage.scss';
 
 import Breadcrumb from '../../components/Breadcrumb';
 import LastUpdatedAt from '../../components/LastUpdatedAt';
+import VideoCard from '../Service/VideoCard';
 
 // Import assets
 import servicesIllo1 from '../../assets/images/lady-walking-a-dog.svg';
@@ -70,6 +71,9 @@ function LandingPage(props: any) {
                         children={contentBlock.value as string}
                         className="landing-page__content markdown"
                       />
+                    )}
+                    { contentBlock.type === 'video' && contentBlock.url && (
+                      <VideoCard video={contentBlock.url} classes="landing-page__content" width="100%" />
                     )}
                     {contentBlock.type === 'cta' && (
                       <div className="information-page__cta">
