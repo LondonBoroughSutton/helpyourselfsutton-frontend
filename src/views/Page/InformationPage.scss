@@ -28,7 +28,7 @@
 .information-page__other {
   padding: space(56) 0 space(72);
   background-color: $casablanca;
-  
+
   @include for-tablet-landscape-down {
     padding: space(40) 0 space(56);
   }
@@ -80,19 +80,22 @@
     margin-bottom: space(32);
   }
 
-  @include for-phone-only {
-    margin-bottom: space(24);
+  p,
+  li {
+    @include body-xm;
   }
 
-  p, li {
-    @include body-xm;
+  & > p:last-child {
+    margin-bottom: 0;
   }
 
   a {
     @include body-xm;
     text-decoration: underline;
   }
-  > h1, > h2, > h3 {
+  > h1,
+  > h2,
+  > h3 {
     margin-bottom: 2rem;
   }
   > h1 {
@@ -172,7 +175,7 @@
 
 .information-page__sitemap__link {
   font-size: pxtorem(20);
-  font-family: "Outfit", sans-serif;
+  font-family: 'Outfit', sans-serif;
   text-decoration: underline;
   display: flex;
   align-items: center;
@@ -182,12 +185,17 @@
 }
 
 .information-page__cta {
-  background: #FFE3BA;
+  background: #ffe3ba;
   padding: 1.4rem;
   border-radius: 1.25rem;
-  margin-bottom: 2rem;
+  margin-bottom: space(48);
+
   p {
     @include body-xm;
+  }
+
+  @include for-tablet-landscape-down {
+    margin-bottom: space(32);
   }
 }
 
