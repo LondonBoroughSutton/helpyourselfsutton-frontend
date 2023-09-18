@@ -73,14 +73,14 @@
     margin-right: 0;
     max-width: 100%;
 
-    @media(min-width: 426px) {
-      &+div {
+    @media (min-width: 426px) {
+      & + div {
         padding-left: 1.5rem;
       }
     }
   }
 
-  @media(max-width: 425px) {
+  @media (max-width: 425px) {
     margin-bottom: space(12);
     border-radius: 12px;
     height: 130px;
@@ -90,7 +90,7 @@
   img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
 
@@ -103,7 +103,7 @@
   margin-top: space(32);
   padding: 0;
 
-  @media(min-width: 576px) {
+  @media (min-width: 576px) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: space(20);
