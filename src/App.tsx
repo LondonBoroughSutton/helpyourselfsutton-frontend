@@ -38,7 +38,7 @@ import Loading from './components/Loading';
 // React GA
 import ReactGA from 'react-ga4';
 import RouteChangeTracker from './components/RouteChangeTracker';
-import BetaBanner from './components/BetaBanner/BetaBanner';
+// import BetaBanner from './components/BetaBanner/BetaBanner';
 
 if (!window.location.href.includes('localhost')) {
   ReactGA.initialize([
@@ -95,7 +95,7 @@ const App = () => {
       <Router>
         <RouteChangeTracker />
         <ScrollToTop>
-          <BetaBanner />
+          {/* <BetaBanner /> */}
           <Header />
           {isStagingEnv() && (
             <HeaderAlertBanner
