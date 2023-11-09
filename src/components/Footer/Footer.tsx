@@ -42,6 +42,9 @@ const Footer: React.FunctionComponent<IProps> = ({ cmsStore, uiStore }) => {
           <Link className="footer__link" to="/terms-and-conditions">
             Terms and Conditions
           </Link>
+          <Link className="footer__link" to="/accessibility-statement">
+            Accessibility statement
+          </Link>
         </div>
         <div className="flex-col flex-col--6 flex-col--tablet--12">
           <div className="flex-container flex-container--no-padding">

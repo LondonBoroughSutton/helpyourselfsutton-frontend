@@ -353,11 +353,11 @@ export default class ResultsStore {
     const params: IParams = {};
 
     if (this.category) {
-      params.category = get(this.category, 'name');
+      params.category = get(this.category, 'slug');
     }
 
     if (this.persona) {
-      params.persona = get(this.persona, 'name');
+      params.persona = get(this.persona, 'slug');
     }
 
     if (this.is_free) {

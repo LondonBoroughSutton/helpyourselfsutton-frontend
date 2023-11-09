@@ -28,6 +28,7 @@ import ReferralStore from './stores/referralStore';
 import PageStore from './stores/pageStore';
 
 import Terms from './views/Terms';
+import AccessibilityStatement from './views/AccessibilityStatement';
 import FeedbackModal from './components/FeedbackModal';
 import HomeScreenPrompt from './components/HomeScreenPrompt';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
@@ -37,7 +38,7 @@ import Loading from './components/Loading';
 // React GA
 import ReactGA from 'react-ga4';
 import RouteChangeTracker from './components/RouteChangeTracker';
-import BetaBanner from './components/BetaBanner/BetaBanner';
+// import BetaBanner from './components/BetaBanner/BetaBanner';
 
 if (!window.location.href.includes('localhost')) {
   ReactGA.initialize([
@@ -94,7 +95,7 @@ const App = () => {
       <Router>
         <RouteChangeTracker />
         <ScrollToTop>
-          <BetaBanner />
+          {/* <BetaBanner /> */}
           <Header />
           {isStagingEnv() && (
             <HeaderAlertBanner
@@ -116,6 +117,7 @@ const App = () => {
               <Route path="/get-involved" component={GetInvolved} />
               <Route path="/privacy-policy" component={Privacy} />
               <Route path="/terms-and-conditions" component={Terms} />
+              <Route path="/accessibility-statement" component={AccessibilityStatement} />
               <Route path="/duty-to-refer" component={DutyToRefer} />
               <Route path="/organisations/:organisation" component={Organisation} />
               <Route path="/pages/:page" component={Page} />

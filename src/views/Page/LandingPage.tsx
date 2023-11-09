@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 
@@ -8,6 +8,7 @@ import './LandingPage.scss';
 
 import Breadcrumb from '../../components/Breadcrumb';
 import LastUpdatedAt from '../../components/LastUpdatedAt';
+import VideoCard from '../Service/VideoCard';
 
 // Import assets
 import servicesIllo1 from '../../assets/images/lady-walking-a-dog.svg';
@@ -18,7 +19,7 @@ import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { ICategory, IPage } from '../../types/types';
 import { getImg } from '../../utils/utils';
 
-function LandingPage(props: any) {
+function LandingPage(props: any) {  
   return (
     <div className="landing-page">
       <Helmet>
@@ -62,10 +63,31 @@ function LandingPage(props: any) {
         <div className="flex-container">
           {props.content.content.about.content[0] && (
             <div className="flex-col flex-col--8 landing-page__about">
-              <ReactMarkdown
-                children={props.content.content.about.content[0].value}
-                className="landing-page__content markdown"
-              />
+              { props.content.content.about!.content.map((contentBlock: any, index: number) => (
+                  <Fragment key={index}>
+                    {contentBlock.type === 'copy' && (
+                      <ReactMarkdown
+                        data-content="main"
+                        children={contentBlock.value as string}
+                        className="landing-page__content markdown"
+                      />
+                    )}
+                    { contentBlock.type === 'video' && contentBlock.url && (
+                      <VideoCard video={contentBlock.url} classes="landing-page__content" width="100%" />
+                    )}
+                    {contentBlock.type === 'cta' && (
+                      <div className="information-page__cta">
+                        <h3>{contentBlock.title}</h3>
+                        <p>{contentBlock.description}</p>
+                        {contentBlock.url && contentBlock.buttonText && (
+                          <div className="information-page__cta__button-wrap">
+                            <ButtonLink text={contentBlock.buttonText} href={contentBlock.url} />
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </Fragment>
+                ))}
             </div>
           )}
 
