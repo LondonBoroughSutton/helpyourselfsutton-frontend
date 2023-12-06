@@ -74,7 +74,7 @@ class InstructionModal extends Component<any> {
             <p>
               <strong>Sutton Information Hub</strong>
               <br />
-              https://helpyourselfsutton.org
+              https://suttoninformationhub.org.uk
             </p>
             <p>Add this app to your home screen for quick access to our services.</p>
             {renderModalContent()}
