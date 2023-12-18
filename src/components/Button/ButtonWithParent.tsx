@@ -39,7 +39,7 @@ const ButtonLink: React.FunctionComponent<IProps> = ({
   const [parentImage, setParentImage] = useState<string | null>(null);
 
   useEffect(() => {
-    getResolvedImg(parent?.id as string, 120).then((path) => setParentImage(path as string));
+    if (parent?.image) getResolvedImg(parent?.id as string, 120).then((path) => setParentImage(path as string));
   }, [parent]);
 
   return (
@@ -66,7 +66,7 @@ const ButtonLink: React.FunctionComponent<IProps> = ({
             <Link to={`/pages/${parent.slug}`}> {parent.title}</Link>
           </p>
 
-          {parentImage && (
+          {parent?.image && parentImage && (
             <img alt={parent.title ? parent.title : ''} className="image" src={parentImage} />
           )}
         </div>
