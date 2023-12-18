@@ -1,4 +1,4 @@
-import { observable, computed, action } from 'mobx';
+import { makeObservable, observable, computed, action } from 'mobx';
 import debounce from 'lodash/debounce';
 
 export default class WindowSizeStore {
@@ -16,6 +16,7 @@ export default class WindowSizeStore {
   }, 100);
 
   constructor() {
+    makeObservable(this);
     this.setWindow();
   }
 
