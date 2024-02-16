@@ -65,7 +65,7 @@ function LandingPage(props: any) {
             <div className="flex-col flex-col--8 landing-page__about">
               { props.content.content.about!.content.map((contentBlock: any, index: number) => (
                   <Fragment key={index}>
-                    {contentBlock.type === 'copy' && (
+                    {contentBlock.type === 'copy' && index === 0 && (
                       <ReactMarkdown
                         data-content="main"
                         children={contentBlock.value as string}
