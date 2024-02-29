@@ -31,7 +31,7 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
         <ReactMarkdown className="markdown" children={get(cmsStore, 'contact.content')} />
       </div>
       <div className="flex-col flex-col--3 flex-col--tablet--6">
-        <div className="cms--contact-card">
+        {/* <div className="cms--contact-card">
           <h2>Contact</h2>
           <div className="cms--contact-card--row">
             <h3 className="h5">
@@ -78,7 +78,7 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
               </a>
             )}
           </div>
-        </div>
+        </div> */}
       </div>
     </CMSPage>
   );
