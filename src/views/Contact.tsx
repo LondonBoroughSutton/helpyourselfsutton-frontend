@@ -4,10 +4,10 @@ import { inject, observer } from 'mobx-react';
 import get from 'lodash/get';
 import ReactMarkdown from 'react-markdown';
 
-import { formatContactNumber } from '../helpers';
+// import { formatContactNumber } from '../helpers';
 import CMSStore from '../stores/CMSStore';
 import CMSPage from '../components/CMSPageLayout';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface IProps {
   cmsStore: CMSStore;
@@ -18,8 +18,8 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
     return null;
   }
 
-  const facebookHandle = cmsStore?.global?.facebook_handle;
-  const twitterHandle = cmsStore?.global?.twitter_handle;
+  // const facebookHandle = cmsStore?.global?.facebook_handle;
+  // const twitterHandle = cmsStore?.global?.twitter_handle;
 
   return (
     <CMSPage title={get(cmsStore, 'contact.title')} twoColumn={true} breadcrumb="Contact">
