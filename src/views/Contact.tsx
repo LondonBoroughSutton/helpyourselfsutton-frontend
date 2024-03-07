@@ -4,10 +4,10 @@ import { inject, observer } from 'mobx-react';
 import get from 'lodash/get';
 import ReactMarkdown from 'react-markdown';
 
-import { formatContactNumber } from '../helpers';
+// import { formatContactNumber } from '../helpers';
 import CMSStore from '../stores/CMSStore';
 import CMSPage from '../components/CMSPageLayout';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface IProps {
   cmsStore: CMSStore;
@@ -18,8 +18,8 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
     return null;
   }
 
-  const facebookHandle = cmsStore?.global?.facebook_handle;
-  const twitterHandle = cmsStore?.global?.twitter_handle;
+  // const facebookHandle = cmsStore?.global?.facebook_handle;
+  // const twitterHandle = cmsStore?.global?.twitter_handle;
 
   return (
     <CMSPage title={get(cmsStore, 'contact.title')} twoColumn={true} breadcrumb="Contact">
@@ -31,7 +31,7 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
         <ReactMarkdown className="markdown" children={get(cmsStore, 'contact.content')} />
       </div>
       <div className="flex-col flex-col--3 flex-col--tablet--6">
-        <div className="cms--contact-card">
+        {/* <div className="cms--contact-card">
           <h2>Contact</h2>
           <div className="cms--contact-card--row">
             <h3 className="h5">
@@ -78,7 +78,7 @@ const Contact: React.FunctionComponent<IProps> = ({ cmsStore }) => {
               </a>
             )}
           </div>
-        </div>
+        </div> */}
       </div>
     </CMSPage>
   );
