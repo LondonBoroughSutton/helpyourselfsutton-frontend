@@ -1,5 +1,6 @@
 import { makeObservable, observable, action, computed, runInAction } from 'mobx';
 import forEach from 'lodash/forEach';
+import isEmpty from 'lodash/isEmpty';
 import get from 'lodash/get';
 import size from 'lodash/size';
 import axios from 'axios';
@@ -462,12 +463,26 @@ export default class ResultsStore {
           return acc;
         }, []);
 
-        runInAction(async () => {
-          const ancestorPagesData = await axios.get(
-            `${apiBase}/pages?filter[id]=${this.pagesIds.join(',')}&include=landingPageAncestors`
-          );
-          this.withAncestorPages = get(ancestorPagesData, 'data.data', []);
-        });
+        if (this.pagesIds?.length) {
+          runInAction(async () => {
+            try {
+              const ancestorPagesData = await axios.get(
+                `${apiBase}/pages?filter[id]=${this.pagesIds.join(',')}&include=landingPageAncestors`
+              );
+    
+              const ancestorPages = get(ancestorPagesData, 'data.data', []);
+    
+              this.withAncestorPages = this.pages?.map((page: any) => {
+                const matchedPage = ancestorPages.find((item: any) => page?.id === item?.id)
+    
+                if (!isEmpty(matchedPage)) {
+                  page = {...page, landing_page: matchedPage?.landing_page, parent: matchedPage?.parent }
+                }
+                return page
+              }).filter(_ => !isEmpty(_?.landing_page)) ?? []
+            } catch {}
+          });
+        }
       }
     } catch (e) {
       runInAction(() => {
