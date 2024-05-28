@@ -127,7 +127,7 @@ class Results extends Component<IProps, IState> {
           </div>
         </section>
 
-        {resultsStore.pages.length > 0 && (
+        {resultsStore.withAncestorPages.length > 0 && (
           <section className="results__info-boxes">
             <div className="flex-container">
               <h2 className="results__info-boxes__heading">
@@ -161,7 +161,7 @@ class Results extends Component<IProps, IState> {
                   })}
                 </div>
               )}
-              {resultsStore.pages.length > 3 && (
+              {resultsStore.withAncestorPages.length > 3 && (
                 <div className="results__info-boxes__show-more">
                   <Button
                     text={`Show ${showMoreInfo ? 'less' : 'more'}`}
