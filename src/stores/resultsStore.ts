@@ -479,7 +479,7 @@ export default class ResultsStore {
                   page = {...page, landing_page: matchedPage?.landing_page, parent: matchedPage?.parent }
                 }
                 return page
-              }).filter(_ => !isEmpty(_?.landing_page)) ?? []
+              }) ?? []
             } catch {}
           });
         }
